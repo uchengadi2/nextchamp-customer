@@ -147,6 +147,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
+    width: "22%",
+  },
+  thirdColumn: {
+    marginTop: 20,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 20,
     width: 1330,
   },
   secondColumnMobile: {
@@ -511,8 +518,108 @@ export default function ProductDetailCard(props) {
               </Box>
             </Grid>
           </Grid>
-          <Grid item className={classes.secondColumn}>
+          <Grid
+            item
+            container
+            direction="row"
+            style={{ width: 1330 }}
+            justifyContent="center"
+          >
+            <Grid
+              item
+              className={classes.secondColumn}
+              style={{ marginLeft: 15 }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Prerequisites:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.prerequisites}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid
+              item
+              className={classes.secondColumn}
+              style={{ marginLeft: 15 }}
+            >
+              <Box>
+                <Typography>
+                  <strong>What you will Learn:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.whatToLearn}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              className={classes.secondColumn}
+              style={{ marginLeft: 15 }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Required Learning Tools:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.tools}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              className={classes.secondColumn}
+              style={{ marginLeft: 15 }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Who should attend:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.targetAudience}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid item className={classes.thirdColumn}>
             <Box>
+              <Typography>
+                <strong>Course Description:</strong>
+              </Typography>
               <Typography
                 variant="h5"
                 style={{
@@ -553,7 +660,7 @@ export default function ProductDetailCard(props) {
                     ? price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
                     : 0}
                   <span style={{ fontSize: 12, marginLeft: 0 }}>
-                    per learner
+                    per person
                   </span>
                 </Typography>
                 <Typography

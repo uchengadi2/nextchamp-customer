@@ -377,6 +377,11 @@ function ProductDetails(props) {
             // isOnPromo={isOnPromo}
             // promoPrice={promoPrice}
             // promoMinQuantity={promoMinQuantity}
+            prerequisites={course.prerequisites}
+            tools={course.tools}
+            targetAudience={course.targetAudience}
+            whatToLearn={course.whatToLearn}
+            venueLink={course.venueLink}
             key={course.id}
             token={props.token}
             userId={props.userId}
@@ -404,6 +409,11 @@ function ProductDetails(props) {
             // isOnPromo={isOnPromo}
             // promoPrice={promoPrice}
             // promoMinQuantity={promoMinQuantity}
+            prerequisites={course.prerequisites}
+            tools={course.tools}
+            targetAudience={course.targetAudience}
+            whatToLearn={course.whatToLearn}
+            venueLink={course.venueLink}
             key={course.id}
             token={props.token}
             userId={props.userId}
