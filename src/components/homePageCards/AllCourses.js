@@ -29,6 +29,7 @@ import CoverImage from "./../../assets/images/home/course6.jpg";
 //import MobileCoverImage from "/../../assets/images/home/mobile/cover2.png";
 import MobileCoverImage from "./../../assets/images/home/mobile/cover2.png";
 import background from "./../../assets/images/home/course6.jpg";
+import CourseInfo from "./CourseInfo";
 
 import { baseURL } from "./../../apis/util";
 
@@ -556,29 +557,16 @@ export default function AllCourses(props) {
               </Grid>
 
               <Grid item style={{ width: 349, border: "1px dotted grey" }}>
-                {/* <SearchPageAction
-                  price={product.pricePerUnit}
-                  minimumQuantity={product.minimumQuantity}
-                  remainingTotalUnits={product.remainingTotalUnits}
-                  weight={product.weightPerUnit}
-                  productId={product.id}
-                  categoryId={product.category}
-                  token={props.token}
-                  userId={props.userId}
-                  currency={product.currency}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                /> */}
-                <CardActions>
+                <CourseInfo
+                  prerequisites={props.prerequisites}
+                  tools={props.tools}
+                  targetAudience={props.targetAudience}
+                  whatToLearn={props.whatToLearn}
+                  venueLink={props.venueLink}
+                  categoryId={props.category}
+                  productId={props.courseId}
+                />
+                {/* <CardActions>
                   <Button
                     component={Link}
                     // to="/mobileapps"
@@ -594,7 +582,7 @@ export default function AllCourses(props) {
                       fill={theme.palette.common.blue}
                     />
                   </Button>
-                </CardActions>
+                </CardActions> */}
               </Grid>
             </Grid>
           </CardActionArea>
@@ -711,29 +699,16 @@ export default function AllCourses(props) {
               </Grid>
 
               <Grid item style={{ width: 360, border: "1px dotted grey" }}>
-                {/* <SearchPageAction
-                  price={product.pricePerUnit}
-                  minimumQuantity={product.minimumQuantity}
-                  remainingTotalUnits={product.remainingTotalUnits}
-                  weight={product.weightPerUnit}
-                  productId={product.id}
-                  categoryId={product.category}
-                  token={props.token}
-                  userId={props.userId}
-                  currency={product.currency}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                /> */}
-                <CardActions>
+                <CourseInfo
+                  prerequisites={props.prerequisites}
+                  tools={props.tools}
+                  targetAudience={props.targetAudience}
+                  whatToLearn={props.whatToLearn}
+                  venueLink={props.venueLink}
+                  categoryId={props.category}
+                  productId={props.courseId}
+                />
+                {/* <CardActions>
                   <Button
                     component={Link}
                     // to="/mobileapps"
@@ -750,7 +725,7 @@ export default function AllCourses(props) {
                       fill={theme.palette.common.blue}
                     />
                   </Button>
-                </CardActions>
+                </CardActions> */}
               </Grid>
             </Grid>
           </CardActionArea>

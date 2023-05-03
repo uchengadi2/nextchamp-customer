@@ -488,6 +488,11 @@ const Marketplace = (props) => {
               sessionPeriod={course.sessionPeriod}
               studyPeriod={course.studyPeriod}
               category={course.category}
+              prerequisites={course.prerequisites}
+              tools={course.tools}
+              targetAudience={course.targetAudience}
+              whatToLearn={course.whatToLearn}
+              venueLink={course.venueLink}
               image={course.image}
               courseId={course.id}
               token={props.token}
@@ -529,6 +534,11 @@ const Marketplace = (props) => {
               sessionPeriod={course.sessionPeriod}
               studyPeriod={course.studyPeriod}
               category={course.category}
+              prerequisites={course.prerequisites}
+              tools={course.tools}
+              targetAudience={course.targetAudience}
+              whatToLearn={course.whatToLearn}
+              venueLink={course.venueLink}
               image={course.image}
               courseId={course.id}
               token={props.token}
