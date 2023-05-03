@@ -18,7 +18,9 @@ import Grid from "@material-ui/core/Grid";
 
 import ButtonArrow from "./../ui/ButtonArrow";
 import UserLogin from "./../users/UserLogin";
+import LoginForm from "../authForms/LoginForm";
 import UserSignUp from "./../users/UserSignUp";
+import SignUpForm from "../authForms/SignUpForm";
 import UserPasswordReset from "./../users/UserPasswordReset";
 import Bookings from "./../Bookings";
 import history from "../../history";
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "10px",
     borderRadius: 0,
-    marginTop: "12em",
+    marginTop: "4em",
     padding: 0,
     // "&:hover": {
     //   border: "solid",
@@ -322,7 +324,7 @@ export default function ProductDetailCard(props) {
         onClose={() => [setOpenLoginForm(false)]}
       >
         <DialogContent>
-          <UserLogin
+          <LoginForm
             handleLoginDialogOpenStatus={handleLoginDialogOpenStatus}
             handleMakeOpenSignUpDialogStatus={handleMakeOpenSignUpDialogStatus}
             handleMakeCloseSignUpDialogStatus={

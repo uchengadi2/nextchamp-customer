@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     height: "80vh",
-    marginTop: "3rem",
+    marginTop: "0.2rem",
     // height: "100%",
     position: "relative",
     "& video": {

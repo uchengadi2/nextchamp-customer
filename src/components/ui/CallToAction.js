@@ -153,7 +153,7 @@ export default function CallToAction(props) {
                     fill={theme.palette.common.orange}
                   />
                 </Button> */}
-                <Button
+                {/* <Button
                   component={Link}
                   // to="/mobileapps"
                   to={`/logistics`}
@@ -169,7 +169,7 @@ export default function CallToAction(props) {
                     width={10}
                     fill={theme.palette.common.orange}
                   />
-                </Button>
+                </Button> */}
               </Grid>
             ) : (
               <></>
@@ -196,7 +196,7 @@ export default function CallToAction(props) {
           >
             Become a Vendor Partner
           </Button> */}
-          <Button
+          {/* <Button
             component={Link}
             // to="/mobileapps"
             to={`/vendors`}
@@ -205,7 +205,7 @@ export default function CallToAction(props) {
             onClick={() => <VendorPartner token={props.token} />}
           >
             Become a Vendor Partner
-          </Button>
+          </Button> */}
         </Grid>
       ) : (
         <></>

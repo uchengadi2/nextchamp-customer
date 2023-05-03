@@ -30,7 +30,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 
-import logo from "./../../assets/logo/eshield.png";
+import logo from "./../../assets/logo/logo.png";
 import { RouterRounded, Search } from "@material-ui/icons";
 import Select from "@material-ui/core/Select";
 import history from "../../history";
@@ -82,9 +82,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
-    height: "12em",
-    width: "11em",
-    marginLeft: -15,
+    height: "5em",
+    width: "4em",
+    marginLeft: -10,
+    marginRight: 50,
     padding: 0,
     [theme.breakpoints.down("md")]: {
       height: "7em",
@@ -176,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "3px",
     marginRight: "2px",
     height: "45px",
-    width: "100px",
+    width: "70px",
     fontSize: "13px",
     fontWeight: "500px",
     "&:hover": {
@@ -191,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuItem: {
     ...theme.typography.tab,
-    opacity: 0.7,
+    opacity: 0.9,
     "&:hover": {
       opacity: 1,
     },
@@ -493,14 +494,15 @@ const Header = (props) => {
         <Fragment>
           {/* <Button
             variant="contained"
+            disableRipple
             component={Link}
             to="/"
-            color="secondary"
-            className={classes.button}
+            // color="secondary"
+            className={classes.checkout}
             //onClick={() => [setOpenLoginForm(true), history.push("/")]}
             //onClick={() => [setOpenLoginForm(true)]}
           >
-            Home
+            Career
           </Button> */}
           <Button
             variant="contained"
@@ -518,6 +520,18 @@ const Header = (props) => {
     } else {
       return (
         <Fragment>
+          {/* <Button
+            variant="contained"
+            disableRipple
+            component={Link}
+            to="/career"
+            //color="secondary"
+            className={classes.checkout}
+            //onClick={() => [setOpenLoginForm(true), history.push("/")]}
+            //onClick={() => [setOpenLoginForm(true)]}
+          >
+            Career
+          </Button> */}
           <Button
             onClick={() => <OrderPage />}
             disableRipple
@@ -569,7 +583,8 @@ const Header = (props) => {
             // to="/logout"
             color="inherit"
             className={classes.buttonSignOut}
-            onClick={() => [setOpenLogOut(true), history.push("/")]}
+            //onClick={() => [setOpenLogOut(true), history.push("/")]}
+            onClick={() => [setOpenLogOut(true)]}
           >
             Sign Out
           </Button>
@@ -585,7 +600,7 @@ const Header = (props) => {
     : [
         { name: "Home", link: "/", activeIndex: 0 },
 
-        // { name: "My Classes", link: `/orders`, activeIndex: 1 },
+        { name: "Career", link: `/career`, activeIndex: 1 },
         // { name: "Profile", link: "/profile", activeIndex: 2 },
       ];
 
@@ -622,6 +637,20 @@ const Header = (props) => {
       >
         {routes.map((route, index) => {
           if (props.token !== undefined || route.link === "/") {
+            return (
+              <Tab
+                key={`${route}${index}`}
+                className={classes.tab}
+                component={Link}
+                to={route.link}
+                label={route.name}
+                aria-owns={route.ariaOwns}
+                aria-haspopup={route.ariaPopup}
+                onMouseOver={route.mouseOver}
+              />
+            );
+          }
+          if (props.token !== undefined || route.link === "/career") {
             return (
               <Tab
                 key={`${route}${index}`}
@@ -1265,7 +1294,7 @@ const Header = (props) => {
                 <TextField
                   variant="outlined"
                   className={classes.root}
-                  style={{ width: 220, marginLeft: 8 }}
+                  style={{ width: 200, marginLeft: 8 }}
                   onChange={onChangeSearchText}
                   defaultValue={searchText}
                   component={Link}

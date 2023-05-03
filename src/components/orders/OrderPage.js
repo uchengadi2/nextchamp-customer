@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     //height: "80vh",
-    marginTop: "5em",
+    marginTop: "2em",
     height: "100%",
     position: "relative",
     "& video": {
@@ -273,7 +273,7 @@ function OrderPage(props) {
       const response = await api.get(
         `/orders?page=${page}&limit=${limit}&sort=asc`,
         {
-          params: { orderedBy: user },
+          params: { orderedBy: props.userId },
         }
       );
       const items = response.data.data.data;

@@ -14,6 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import api from "../../apis/local";
 import { CREATE_CART, EDIT_CART } from "../../actions/types";
 import history from "../../history";
+import { FaBullseye } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,6 +129,7 @@ function SendCourseToCheckoutForm(props) {
   //     : 0
   // );
   const [loading, setLoading] = useState();
+  const [isLoading, setIsLoading] = useState();
 
   //get the currency name
   useEffect(() => {
@@ -270,12 +272,14 @@ function SendCourseToCheckoutForm(props) {
     if (props.token === undefined) {
       props.handleMakeOpenLoginFormDialogStatus();
       setLoading(false);
+
       return;
     }
 
     if (!newQuantity) {
       props.handleFailedSnackbar("The order quantity cannot be empty");
       setLoading(false);
+
       return;
     }
 
@@ -284,6 +288,7 @@ function SendCourseToCheckoutForm(props) {
         "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
       );
       setLoading(false);
+
       return;
     }
 
@@ -292,6 +297,7 @@ function SendCourseToCheckoutForm(props) {
         "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
       );
       setLoading(false);
+
       return;
     }
 
@@ -342,17 +348,17 @@ function SendCourseToCheckoutForm(props) {
   };
 
   const onSubmitToCart = (formValues) => {
-    setLoading(true);
+    setIsLoading(true);
 
     if (props.token === undefined) {
       props.handleMakeOpenLoginFormDialogStatus();
-      setLoading(false);
+      setIsLoading(false);
       return;
     }
 
     if (!newQuantity) {
       props.handleFailedSnackbar("The order quantity cannot be empty");
-      setLoading(false);
+      setIsLoading(false);
       return;
     }
 
@@ -360,7 +366,7 @@ function SendCourseToCheckoutForm(props) {
       props.handleFailedSnackbar(
         "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
       );
-      setLoading(false);
+      setIsLoading(false);
       return;
     }
 
@@ -368,7 +374,7 @@ function SendCourseToCheckoutForm(props) {
       props.handleFailedSnackbar(
         "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
       );
-      setLoading(false);
+      setIsLoading(false);
       return;
     }
 
@@ -402,7 +408,7 @@ function SendCourseToCheckoutForm(props) {
           //   `item(s) successfully added to cart. Please visit the cart to continue to checkout and payment`
           // );
           history.push(`/`);
-          setLoading(false);
+          setIsLoading(false);
         } else {
           props.handleFailedSnackbar(
             "Something went wrong, please try again!!!"
@@ -486,7 +492,7 @@ function SendCourseToCheckoutForm(props) {
           className={classes.submitToCartButton}
           onClick={props.handleSubmit(onSubmitToCart)}
         >
-          {loading ? (
+          {isLoading ? (
             <CircularProgress size={30} color="inherit" />
           ) : (
             cartButtonContent()

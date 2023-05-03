@@ -244,27 +244,30 @@ const Footer = (props) => {
         <Grid
           item
           component={"a"}
-          href="https://www.facebook.com/eshieldafricab2b/"
+          //href="https://www.facebook.com/eshieldafricab2b/"
+          href="#"
           rel="noopener noreferrer"
-          target="_blank"
+          target="_self"
         >
           <img alt="facebok logo" src={facebook} className={classes.icon} />
         </Grid>
         <Grid
           item
           component={"a"}
-          href="https://www.linkedin.com/company/e-shield-africa/"
+          //href="https://www.linkedin.com/company/e-shield-africa/"
+          href="#"
           rel="noopener noreferrer"
-          target="_blank"
+          target="_self"
         >
           <img alt="twitter logo" src={linkedIn} className={classes.icon} />
         </Grid>
         <Grid
           item
           component={"a"}
-          href="https://www.instagram.com/e_shieldafrica/"
+          //href="https://www.instagram.com/e_shieldafrica/"
+          href="#"
           rel="noopener noreferrer"
-          target="_blank"
+          target="_self"
         >
           <img alt="instagram logo" src={instagram} className={classes.icon} />
         </Grid>

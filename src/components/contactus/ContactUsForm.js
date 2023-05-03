@@ -87,7 +87,7 @@ function ContactUsForm(props) {
           <Typography variant="h5" style={{ marginTop: 50 }}>
             <span style={{ color: "orange" }}>Address:</span>{" "}
             <span style={{ marginLeft: 10 }}>
-              64 Okota Road, Isolo,{" "}
+              157 Adetola Street, Aguda, Surulere{" "}
               <span style={{ marginLeft: 100 }}> Lagos </span>{" "}
               {/* <span style={{ marginLeft: 100 }}>
                 Estate, Ilasa, Lagos, Nigeria

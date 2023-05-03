@@ -25,6 +25,7 @@ import Categories from "./Categories";
 import VendorPartner from "./VendorPartner";
 import LogisticsPartner from "./LogisticsPartner";
 import Footer from "./ui/Footer";
+import CareerPage from "./career/CareerPage";
 
 import OrderPage from "./orders/OrderPage";
 import SearchPage from "./search/SearchPage";
@@ -206,10 +207,10 @@ function App() {
             <Route path="/profile">
               <ProfileLayout token={token} setToken={setToken} />
             </Route>
-            {/* <Route path="/dashboard">
-              <Dashboard />
+            <Route path="/career">
+              <CareerPage />
             </Route>
-            <Route path="/preferences">
+            {/* <Route path="/preferences">
               <Preferences />
             </Route> */}
           </Switch>
