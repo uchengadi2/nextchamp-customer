@@ -162,9 +162,10 @@ export default function TopCover() {
                   </Typography>
                   <br />
                   <Typography variant="h5" color="textSecondary" component="p">
-                    All students that completed a course will be awarded a
-                    Certificate of Attendance but the students that meet the
-                    NextChamp grade mark on that course will become a NextChamp.
+                    A certificate of attendance will be awarded to all students
+                    at the completion of a course. However the students that
+                    meet the NextChamp grade mark on that course will become a
+                    NextChamp.
                   </Typography>
                 </CardContent>
               </Grid>
@@ -181,7 +182,7 @@ export default function TopCover() {
                   <Typography variant="h5" color="textSecondary" component="p">
                     Corporations and Institutions that need trusted and
                     competent hands in their workforce or as part of a project
-                    could hire from the pool of the NextChamps
+                    could hire from the pool of the NextChamps (Next Champion)
                   </Typography>
                 </CardContent>
               </Grid>
