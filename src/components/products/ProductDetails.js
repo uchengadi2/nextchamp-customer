@@ -327,6 +327,10 @@ function ProductDetails(props) {
         targetAudience: course.targetAudience,
         whatToLearn: course.whatToLearn,
         venueLink: course.venueLink,
+        contents: course.contents,
+        capstoneProject: course.capstoneProject,
+        passGrade: course.passGrade,
+        successTips: course.successTips,
       });
 
       setCourse({
@@ -357,6 +361,10 @@ function ProductDetails(props) {
         targetAudience: allData[0].targetAudience,
         whatToLearn: allData[0].whatToLearn,
         venueLink: allData[0].venueLink,
+        contents: allData[0].contents,
+        capstoneProject: allData[0].capstoneProject,
+        passGrade: allData[0].passGrade,
+        successTips: allData[0].successTips,
       });
       setIsLoading(false);
     };
@@ -382,6 +390,10 @@ function ProductDetails(props) {
             targetAudience={course.targetAudience}
             whatToLearn={course.whatToLearn}
             venueLink={course.venueLink}
+            contents={course.contents}
+            capstoneProject={course.capstoneProject}
+            passGrade={course.passGrade}
+            successTips={course.successTips}
             key={course.id}
             token={props.token}
             userId={props.userId}
@@ -414,6 +426,10 @@ function ProductDetails(props) {
             targetAudience={course.targetAudience}
             whatToLearn={course.whatToLearn}
             venueLink={course.venueLink}
+            contents={course.contents}
+            capstoneProject={course.capstoneProject}
+            passGrade={course.passGrade}
+            successTips={course.successTips}
             key={course.id}
             token={props.token}
             userId={props.userId}

@@ -117,6 +117,13 @@ const useStyles = makeStyles((theme) => ({
     border: "1px dotted",
     padding: 20,
   },
+  imageColumn: {
+    //marginLeft: 5,
+    width: 380,
+
+    border: "1px dotted",
+    //padding: 5,
+  },
   secondRowMobile: {
     marginLeft: 0,
     marginTop: 30,
@@ -154,8 +161,30 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
-    width: 1330,
+    width: 1300,
   },
+  forthColumn: {
+    marginTop: 20,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 20,
+    width: 1300,
+  },
+  fifthColumn: {
+    marginTop: 20,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 20,
+    width: 1300,
+  },
+  sixthColumn: {
+    marginTop: 20,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 20,
+    width: 1300,
+  },
+
   secondColumnMobile: {
     marginTop: 50,
     marginBottom: 50,
@@ -473,7 +502,7 @@ export default function ProductDetailCard(props) {
                   {props.course.shortDescription}
                 </Typography>
 
-                {props.course.refNumber !== "undefined" && (
+                {props.course.refNumber !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -483,6 +512,68 @@ export default function ProductDetailCard(props) {
                       <strong>Reference Number:</strong>
                     </span>
                     {props.course.refNumber}
+                  </Typography>
+                )}
+                {props.course.duration !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Duration:</strong>
+                    </span>
+                    {props.course.duration} hours
+                  </Typography>
+                )}
+                {props.course.commencementDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Start date:</strong>
+                    </span>
+                    {props.course.commencementDate
+                      ? new Date(props.course.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </Typography>
+                )}
+                {props.course.deliveryMethod !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Delivery Method:</strong>
+                    </span>
+                    {props.course.deliveryMethod}
+                  </Typography>
+                )}
+                {props.course.venue !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Venue:</strong>
+                    </span>
+                    {props.course.venue}
+                  </Typography>
+                )}
+                {props.course.passGrade !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Pass Grade:</strong>
+                    </span>
+                    {props.course.passGrade}
                   </Typography>
                 )}
               </Box>
@@ -630,6 +721,62 @@ export default function ProductDetailCard(props) {
                 }}
               >
                 {props.course.longDescription}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item className={classes.forthColumn}>
+            <Box>
+              <Typography>
+                <strong>Course Content:</strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.contents}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item className={classes.fifthColumn}>
+            <Box>
+              <Typography>
+                <strong>Capstone Project:</strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.capstoneProject}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item className={classes.sixthColumn}>
+            <Box>
+              <Typography>
+                <strong>
+                  What you need to become the NextChamp in this Course:
+                </strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.successTips}{" "}
               </Typography>
             </Box>
           </Grid>

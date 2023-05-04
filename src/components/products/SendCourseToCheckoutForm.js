@@ -199,14 +199,14 @@ function SendCourseToCheckoutForm(props) {
         error={touched && invalid}
         //placeholder="category description"
         variant="outlined"
-        helperText="Total Amount"
+        helperText="Amount"
         label={label}
         id={input.name}
         name={input.name}
         value={total}
         fullWidth
         type={type}
-        style={{ marginTop: 20, width: 240 }}
+        style={{ marginTop: 3, width: 240 }}
         onChange={input.onChange}
         InputProps={{
           inputProps: {
@@ -440,7 +440,7 @@ function SendCourseToCheckoutForm(props) {
           style={{ marginTop: 10, marginBottom: 10 }}
           justifyContent="center"
         ></Grid>
-        <Field
+        {/* <Field
           label=""
           id="minimumQuantity"
           name="minimumQuantity"
@@ -457,7 +457,7 @@ function SendCourseToCheckoutForm(props) {
           onChange={onQuantityChange}
           component={renderRequestedQuantityField}
           style={{ width: 300, marginTop: 10 }}
-        />
+        /> */}
         <Grid container direction="row">
           <Grid item style={{ width: 50, marginTop: 45, fontSize: 45 }}>
             <span style={{ color: "grey" }}>&#8358;</span>
