@@ -25,6 +25,8 @@ import infoBackground from "./../assets/infoBackground.svg";
 
 import background from "./../assets/images/covers/cover_1_image.jpg";
 import UpperFooter from "./ui/UpperFooter";
+import TopCover from "./homePageCards/TopCover";
+import LearningPath from "./homePageCards/LearningPath";
 
 //import mobileBackground from "./../../assets/mobileBackground.jpg";
 
@@ -167,6 +169,14 @@ const useStyles = makeStyles((theme) => ({
       padding: 25,
     },
   },
+
+  topCover: {
+    marginTop: "20em",
+    [theme.breakpoints.down("sm")]: {
+      padding: 25,
+    },
+  },
+
   revolutionBackground: {
     backgroundImage: `url(${revolutionBackground})`,
     backgroundPosition: "center",
@@ -694,7 +704,7 @@ const Marketplace = (props) => {
                       container
                       justifyContent="flex-start"
                       direction={matchesSM ? "column" : "row"}
-                      className={classes.buttonContainer}
+                      // className={classes.topCover}
                     >
                       {/* <Grid item>
                         <Button
@@ -741,6 +751,9 @@ const Marketplace = (props) => {
           </Grid>
         </Grid>
         {/* </section> */}
+
+        <TopCover />
+        <LearningPath />
         {isLoading && (
           <CircularProgress
             size={100}

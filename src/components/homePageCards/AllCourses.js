@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "10rem",
+    marginTop: "5rem",
     marginBottom: "1.5em",
     padding: 0,
     // "&:hover": {
