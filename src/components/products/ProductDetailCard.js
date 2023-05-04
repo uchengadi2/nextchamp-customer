@@ -571,7 +571,7 @@ export default function ProductDetailCard(props) {
                   >
                     <span style={{ marginRight: 20 }}>
                       {" "}
-                      <strong>Pass Grade:</strong>
+                      <strong>Minimum NextChamp Grade:</strong>
                     </span>
                     {props.course.passGrade}
                   </Typography>
