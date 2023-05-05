@@ -31,22 +31,13 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 1500,
     //height: "100%",
     //height: 350,
-    width: 1300,
+    width: 1000,
 
-    marginLeft: "10px",
+    marginLeft: "13em",
     //borderRadius: 30,
     marginTop: "5em",
     marginBottom: "1em",
     padding: 0,
-    // "&:hover": {
-    //   //border: "solid",
-    //   //borderColor: theme.palette.common.grey,
-    // },
-    // backgroundImage: `url(${background})`,
-    // backgroundPosition: "center",
-    // backgroundSize: "cover",
-    // //backgroundAttachment: "fixed",
-    // backgroundRepeat: "no-repeat",
   },
   rootMobile: {
     maxWidth: 600,
@@ -191,8 +182,8 @@ export default function LearningPath() {
   return (
     <>
       {matchesMDUp ? (
-        <Card className={classes.root} disableRipple={true}>
-          <CardActionArea disableRipple>
+        <Card className={classes.root}>
+          <CardActionArea>
             <Grid
               container
               direction="row"
@@ -218,9 +209,7 @@ export default function LearningPath() {
                   marginLeft: 250,
                 }}
               >
-                <CardContent disableRipple>
-                  {renderLearningPathField()}
-                </CardContent>
+                <CardContent>{renderLearningPathField()}</CardContent>
               </Grid>
 
               {/* <Grid
