@@ -40,10 +40,10 @@ import VendorPartner from "../VendorPartner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "100%",
     //height: 440,
     //height: 550,
-    width: 1330,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 
   media: {
     height: "100%",
-    width: 350,
+    width: "100%",
     marginLeft: "0px",
     marginTop: "0px",
   },
@@ -447,7 +447,7 @@ export default function AllCourses(props) {
         <Card className={classes.root} disableRipple>
           <CardActionArea disableRipple>
             <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
+              <Grid item style={{ width: "26.94%" }}>
                 <CardMedia
                   className={classes.media}
                   component="img"
@@ -457,7 +457,7 @@ export default function AllCourses(props) {
                   crossOrigin="anonymous"
                 />
               </Grid>
-              <Grid item style={{ width: 600, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h4" color="textSecondary" component="p">
                     {props.title}
@@ -556,7 +556,7 @@ export default function AllCourses(props) {
                 </CardContent>
               </Grid>
 
-              <Grid item style={{ width: 349, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
                 <CourseInfo
                   prerequisites={props.prerequisites}
                   tools={props.tools}

@@ -32,10 +32,10 @@ import theme from "./../ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "100%",
     height: "100%",
     //height: 350,
-    width: 1300,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
@@ -518,7 +518,7 @@ export default function SearchProductCard(props) {
         <Card className={classes.root} disableRipple>
           <CardActionArea disableRipple>
             <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
+              <Grid item style={{ width: "26.94%" }}>
                 <CardMedia
                   className={classes.media}
                   component="img"
@@ -528,7 +528,7 @@ export default function SearchProductCard(props) {
                   crossOrigin="anonymous"
                 />
               </Grid>
-              <Grid item style={{ width: 600, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h4" color="textSecondary" component="p">
                     {product.title}
@@ -582,7 +582,7 @@ export default function SearchProductCard(props) {
                 </CardContent>
               </Grid>
 
-              <Grid item style={{ width: 349, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
                 <SearchPageAction
                   price={product.price}
                   minimumQuantity={minLearnerSlot}

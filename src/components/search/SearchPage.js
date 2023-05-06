@@ -153,6 +153,10 @@ const useStyles = makeStyles((theme) => ({
       padding: 25,
     },
   },
+  footer: {
+    width: "100%",
+    marginTop: "10rem",
+  },
   revolutionBackground: {
     backgroundImage: `url(${revolutionBackground})`,
     backgroundPosition: "center",

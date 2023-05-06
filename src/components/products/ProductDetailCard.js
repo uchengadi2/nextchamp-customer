@@ -38,11 +38,11 @@ import { RoomSharp } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 325,
-    maxWidth: 1400,
+    maxWidth: "100%",
     //height: 440,
     //height: 500,
 
-    marginLeft: "10px",
+    marginLeft: "0.5%",
     borderRadius: 0,
     marginTop: "4em",
     padding: 0,
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
   secondRow: {
-    marginLeft: 10,
+    marginLeft: "0.7",
     width: 550,
     border: "1px dotted",
     padding: 20,
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10rem",
   },
   thirdRow: {
-    marginLeft: 10,
+    marginLeft: "0.9%",
     width: 350,
     border: "1px dotted",
     padding: 20,
@@ -161,28 +161,28 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
-    width: 1300,
+    width: "98%",
   },
   forthColumn: {
     marginTop: 20,
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
-    width: 1300,
+    width: "98%",
   },
   fifthColumn: {
     marginTop: 20,
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
-    width: 1300,
+    width: "98%",
   },
   sixthColumn: {
     marginTop: 20,
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
-    width: 1300,
+    width: "98%",
   },
 
   secondColumnMobile: {
@@ -613,13 +613,13 @@ export default function ProductDetailCard(props) {
             item
             container
             direction="row"
-            style={{ width: 1330 }}
+            style={{ width: "100%" }}
             justifyContent="center"
           >
             <Grid
               item
               className={classes.secondColumn}
-              style={{ marginLeft: 15 }}
+              style={{ marginLeft: "2%" }}
             >
               <Box>
                 <Typography>
@@ -642,7 +642,7 @@ export default function ProductDetailCard(props) {
             <Grid
               item
               className={classes.secondColumn}
-              style={{ marginLeft: 15 }}
+              style={{ marginLeft: "0.5%" }}
             >
               <Box>
                 <Typography>
@@ -664,7 +664,7 @@ export default function ProductDetailCard(props) {
             <Grid
               item
               className={classes.secondColumn}
-              style={{ marginLeft: 15 }}
+              style={{ marginLeft: "0.5%" }}
             >
               <Box>
                 <Typography>
@@ -686,7 +686,7 @@ export default function ProductDetailCard(props) {
             <Grid
               item
               className={classes.secondColumn}
-              style={{ marginLeft: 15 }}
+              style={{ marginLeft: "0.5%" }}
             >
               <Box>
                 <Typography>

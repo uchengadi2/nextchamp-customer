@@ -707,8 +707,9 @@ function CheckoutDeliveryAndPayment(props) {
               </Grid> */}
               <Box
                 sx={{
-                  width: 1200,
+                  //width: 1200,
                   //height: 450,
+                  width: "80%",
                 }}
                 noValidate
                 autoComplete="off"

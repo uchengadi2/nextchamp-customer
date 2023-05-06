@@ -34,10 +34,10 @@ import theme from "./../ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "100%",
     //height: 440,
     height: "100%",
-    width: 1300,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
@@ -443,7 +443,7 @@ export default function OrderProductCard(props) {
         <Card className={classes.root} disableRipple>
           <CardActionArea disableRipple>
             <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
+              <Grid item style={{ width: "26.94%" }}>
                 <CardMedia
                   className={classes.media}
                   component="img"
@@ -453,7 +453,7 @@ export default function OrderProductCard(props) {
                   crossOrigin="anonymous"
                 />
               </Grid>
-              <Grid item style={{ width: 600, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h4" color="textSecondary" component="p">
                     {product.title}
@@ -522,7 +522,7 @@ export default function OrderProductCard(props) {
                 </CardContent>
               </Grid>
 
-              <Grid item style={{ width: 349, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
                 <OrderPageAction
                   price={props.orderedPrice}
                   productId={props.product}
@@ -719,12 +719,6 @@ export default function OrderProductCard(props) {
               />
             </CardActionArea>
           </Card>
-
-          <Bookings
-            token={props.token}
-            userId={props.userId}
-            handleBookingsOpenDialogStatus={handleBookingsOpenDialogStatus}
-          />
         </DialogContent>
       </Dialog>
       {renderLoginForm()}

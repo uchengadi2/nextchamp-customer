@@ -21,10 +21,10 @@ import theme from "./../ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "100%",
     //height: "100%",
     //height: 350,
-    width: 1300,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
@@ -140,7 +140,7 @@ export default function TopCover() {
       {matchesMDUp ? (
         <Card className={classes.root} disableRipple={true}>
           <CardActionArea disableRipple>
-            <Grid container direction="row" justifyContent="center">
+            <Grid container direction="row">
               {/* <Grid item style={{ width: 350 }}>
                 <CardMedia
                   className={classes.media}
@@ -151,7 +151,7 @@ export default function TopCover() {
                   crossOrigin="anonymous"
                 />
               </Grid> */}
-              <Grid item style={{ width: 635, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "48%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h5" color="textSecondary" component="p">
                     At NextChamp, we take students through a combination of
@@ -173,8 +173,8 @@ export default function TopCover() {
               <Grid
                 item
                 style={{
-                  width: 635,
-                  marginLeft: 15,
+                  width: "50%",
+                  marginLeft: "1.7%",
                   border: "1px dotted grey",
                 }}
               >
