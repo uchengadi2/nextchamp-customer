@@ -139,9 +139,9 @@ export default function TopCover() {
     <>
       {matchesMDUp ? (
         <Card className={classes.root} disableRipple={true}>
-          <CardActionArea disableRipple>
-            <Grid container direction="row">
-              {/* <Grid item style={{ width: 350 }}>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="row">
+            {/* <Grid item style={{ width: 350 }}>
                 <CardMedia
                   className={classes.media}
                   component="img"
@@ -151,43 +151,43 @@ export default function TopCover() {
                   crossOrigin="anonymous"
                 />
               </Grid> */}
-              <Grid item style={{ width: "48%", border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    At NextChamp, we take students through a combination of
-                    teachings, practices, mockings, assessments and mentoring.
-                    At the end of each course, a student is evaluated and
-                    assessed based on the module and/or capstone projects on
-                    that course.
-                  </Typography>
-                  <br />
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    A certificate of attendance will be awarded to all students
-                    at the completion of a course. However the students that
-                    meet the NextChamp grade mark on that course will become a
-                    NextChamp.
-                  </Typography>
-                </CardContent>
-              </Grid>
-
-              <Grid
-                item
-                style={{
-                  width: "50%",
-                  marginLeft: "1.7%",
-                  border: "1px dotted grey",
-                }}
-              >
-                <CardContent disableRipple>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    Corporations and Institutions that need trusted and
-                    competent hands in their workforce or as part of a project
-                    could hire from the pool of the NextChamps (Next Champion)
-                  </Typography>
-                </CardContent>
-              </Grid>
+            <Grid item style={{ width: "48%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  At NextChamp, we take students through a combination of
+                  teachings, practices, mockings, assessments and mentoring. At
+                  the end of each course, a student is evaluated and assessed
+                  based on the module and/or capstone projects on that course.
+                </Typography>
+                <br />
+                <Typography variant="h5" color="textSecondary" component="p">
+                  A certificate of attendance will be awarded to all students at
+                  the completion of a course. However the students that meet the
+                  NextChamp grade mark on that course will become a NextChamp.
+                </Typography>
+              </CardContent>
             </Grid>
-          </CardActionArea>
+
+            <Grid
+              item
+              style={{
+                width: "50%",
+                marginLeft: "1.7%",
+                border: "1px dotted grey",
+              }}
+            >
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Corporations and Institutions that need trusted and competent
+                  hands in their workforce or as part of a project could hire
+                  from the pool of the professional NextChamps (Next Champion).
+                  However Academic NextChamps will have the confidence they need
+                  to overcome further challenges on that study domain.
+                </Typography>
+              </CardContent>
+            </Grid>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>

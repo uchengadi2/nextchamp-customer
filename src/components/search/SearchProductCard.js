@@ -516,96 +516,94 @@ export default function SearchProductCard(props) {
     <>
       {matchesMDUp ? (
         <Card className={classes.root} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="row">
-              <Grid item style={{ width: "26.94%" }}>
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  alt={product.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {product.title}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(product.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h4"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {getCurrencyCode()}
-                        {product.price
-                          ? product.price
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                        /person
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Course duration:</strong>&nbsp;&nbsp;
-                    {`${product.duration}`} days
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Start Date: </strong>&nbsp;&nbsp;
-                    {product.commencementDate
-                      ? new Date(product.commencementDate).toDateString()
-                      : "Coming Soon"}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Delivery Method: </strong> &nbsp; &nbsp;
-                    {`${product.deliveryMethod}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Reference Number : </strong> &nbsp;
-                    {`${product.refNumber ? product.refNumber : ""}`}
-                  </Typography>
-                </CardContent>
-              </Grid>
-
-              <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
-                <SearchPageAction
-                  price={product.price}
-                  minimumQuantity={minLearnerSlot}
-                  productId={product.id}
-                  categoryId={product.category}
-                  token={props.token}
-                  userId={props.userId}
-                  currency={product.currency}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                />
-              </Grid>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="row">
+            <Grid item style={{ width: "26.94%" }}>
+              <CardMedia
+                className={classes.media}
+                component="img"
+                alt={product.title}
+                image={imageUrl}
+                //title={product.name}
+                crossOrigin="anonymous"
+              />
             </Grid>
-          </CardActionArea>
+            <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h4" color="textSecondary" component="p">
+                  {product.title}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {Str(product.shortDescription).limit(200, "...").get()}
+                </Typography>
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 5, marginBottom: 15 }}
+                >
+                  <span style={{ marginLeft: 130 }}>
+                    <strong>
+                      {getCurrencyCode()}
+                      {product.price
+                        ? product.price
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                        : 0}
+                      /person
+                    </strong>
+                  </span>
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Course duration:</strong>&nbsp;&nbsp;
+                  {`${product.duration}`} days
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Start Date: </strong>&nbsp;&nbsp;
+                  {product.commencementDate
+                    ? new Date(product.commencementDate).toDateString()
+                    : "Coming Soon"}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Delivery Method: </strong> &nbsp; &nbsp;
+                  {`${product.deliveryMethod}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Reference Number : </strong> &nbsp;
+                  {`${product.refNumber ? product.refNumber : ""}`}
+                </Typography>
+              </CardContent>
+            </Grid>
+
+            <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
+              <SearchPageAction
+                price={product.price}
+                minimumQuantity={minLearnerSlot}
+                productId={product.id}
+                categoryId={product.category}
+                token={props.token}
+                userId={props.userId}
+                currency={product.currency}
+                handleMakeOpenLoginFormDialogStatus={
+                  handleMakeOpenLoginFormDialogStatus
+                }
+                handleFailedSnackbar={handleFailedSnackbar}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                getCurrencyCode={getCurrencyCode}
+                handleCartItemForCheckoutBox={
+                  props.handleCartItemForCheckoutBox
+                }
+              />
+            </Grid>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>

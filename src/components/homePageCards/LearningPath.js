@@ -28,10 +28,10 @@ import theme from "./../ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "100%",
     //height: "100%",
     //height: 350,
-    width: 1000,
+    width: "80%",
 
     marginLeft: "13em",
     //borderRadius: 30,
@@ -183,14 +183,14 @@ export default function LearningPath() {
     <>
       {matchesMDUp ? (
         <Card className={classes.root}>
-          <CardActionArea>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              //style={{ backgroundColor: "white" }}
-            >
-              {/* <Grid item style={{ width: 350 }}>
+          {/* <CardActionArea disableRipple disableTouchRipple> */}
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            //style={{ backgroundColor: "white" }}
+          >
+            {/* <Grid item style={{ width: 350 }}>
                 <CardMedia
                   className={classes.media}
                   component="img"
@@ -200,19 +200,19 @@ export default function LearningPath() {
                   crossOrigin="anonymous"
                 />
               </Grid> */}
-              <Grid
-                item
-                style={{
-                  width: "100%",
-                  //border: "1px dotted white",
-                  // backgroundColor: "white",
-                  marginLeft: 250,
-                }}
-              >
-                <CardContent>{renderLearningPathField()}</CardContent>
-              </Grid>
+            <Grid
+              item
+              style={{
+                width: "100%",
+                //border: "1px dotted white",
+                // backgroundColor: "white",
+                marginLeft: 250,
+              }}
+            >
+              <CardContent>{renderLearningPathField()}</CardContent>
+            </Grid>
 
-              {/* <Grid
+            {/* <Grid
                 item
                 style={{
                   width: 635,
@@ -226,8 +226,8 @@ export default function LearningPath() {
                   </Typography>
                 </CardContent>
               </Grid> */}
-            </Grid>
-          </CardActionArea>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>

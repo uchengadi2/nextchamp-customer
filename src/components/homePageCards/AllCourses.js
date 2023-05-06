@@ -445,128 +445,126 @@ export default function AllCourses(props) {
     <>
       {matchesMDUp ? (
         <Card className={classes.root} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="row">
-              <Grid item style={{ width: "26.94%" }}>
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  alt={props.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {props.title}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(props.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h4"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {getCurrencyCode()}
-                        {props.price
-                          ? props.price
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span
-                      style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}
-                    >
-                      <strong>Delivery Method:</strong> &nbsp;
-                      <span>{props.deliveryMethod}</span>
-                    </span>
-                  </Typography>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="row">
+            <Grid item style={{ width: "26.94%" }}>
+              <CardMedia
+                className={classes.media}
+                component="img"
+                alt={props.title}
+                image={imageUrl}
+                //title={product.name}
+                crossOrigin="anonymous"
+              />
+            </Grid>
+            <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h4" color="textSecondary" component="p">
+                  {props.title}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {Str(props.shortDescription).limit(200, "...").get()}
+                </Typography>
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 5, marginBottom: 15 }}
+                >
+                  <span style={{ marginLeft: 130 }}>
+                    <strong>
+                      {getCurrencyCode()}
+                      {props.price
+                        ? props.price
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                        : 0}
+                    </strong>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}>
+                    <strong>Delivery Method:</strong> &nbsp;
+                    <span>{props.deliveryMethod}</span>
+                  </span>
+                </Typography>
 
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Venue:</strong>
-                      <span>{props.venue}</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Total Course Duration:</strong>
-                      <span>{props.duration} days</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Duration for Lectures/Teaching:</strong>
-                      <span>{props.lectureDuration} days</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Duration for Project:</strong>
-                      <span>{props.projectDuration} days</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Session Duration:</strong>
-                      <span>{props.sessionDuration} hours per day</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Session Period:</strong>
-                      <span>{props.sessionPeriod}</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Study Days:</strong>
-                      <span>{props.studyPeriod}</span>
-                    </span>
-                  </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Venue:</strong>
+                    <span>{props.venue}</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Total Course Duration:</strong>
+                    <span>{props.duration} days</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Duration for Lectures/Teaching:</strong>
+                    <span>{props.lectureDuration} days</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Duration for Project:</strong>
+                    <span>{props.projectDuration} days</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Session Duration:</strong>
+                    <span>{props.sessionDuration} hours per day</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Session Period:</strong>
+                    <span>{props.sessionPeriod}</span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong> Study Days:</strong>
+                    <span>{props.studyPeriod}</span>
+                  </span>
+                </Typography>
 
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>Start Date: </strong>&nbsp;&nbsp;
-                      {props.commencementDate
-                        ? new Date(props.commencementDate).toDateString()
-                        : "Coming Soon"}
-                    </span>
-                  </Typography>
+                <Typography>
+                  <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <strong>Start Date: </strong>&nbsp;&nbsp;
+                    {props.commencementDate
+                      ? new Date(props.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </span>
+                </Typography>
 
-                  {/* <Typography style={{ marginTop: 10 }}>
+                {/* <Typography style={{ marginTop: 10 }}>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Vendor:</strong>
                       <span>{vendorName}</span>
                     </span>
                   </Typography> */}
-                </CardContent>
-              </Grid>
+              </CardContent>
+            </Grid>
 
-              <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
-                <CourseInfo
-                  prerequisites={props.prerequisites}
-                  tools={props.tools}
-                  targetAudience={props.targetAudience}
-                  whatToLearn={props.whatToLearn}
-                  venueLink={props.venueLink}
-                  categoryId={props.category}
-                  productId={props.courseId}
-                />
-                {/* <CardActions>
+            <Grid item style={{ width: "26.50%", border: "1px dotted grey" }}>
+              <CourseInfo
+                prerequisites={props.prerequisites}
+                tools={props.tools}
+                targetAudience={props.targetAudience}
+                whatToLearn={props.whatToLearn}
+                venueLink={props.venueLink}
+                categoryId={props.category}
+                productId={props.courseId}
+              />
+              {/* <CardActions>
                   <Button
                     component={Link}
                     // to="/mobileapps"
@@ -583,9 +581,9 @@ export default function AllCourses(props) {
                     />
                   </Button>
                 </CardActions> */}
-              </Grid>
             </Grid>
-          </CardActionArea>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
