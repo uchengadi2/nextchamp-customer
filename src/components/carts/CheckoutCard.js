@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "1.5em",
+    marginTop: "0.5em",
     marginBottom: "3em",
     padding: 0,
     // "&:hover": {
@@ -50,14 +50,16 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 600,
-    //height: 440,
-    height: 545,
-    width: 400,
+    // maxWidth: 600,
+    maxWidth: "100%",
+    height: "100%",
+    //height: 545,
+    //width: 400,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "5em",
+    marginTop: "1.5em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -68,9 +70,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mediaMobile: {
-    height: 200,
-    width: 200,
-    marginLeft: "80px",
+    //height: 200,
+    height: "100%",
+    //width: 200,
+    width: "100%",
+    //marginLeft: "80px",
   },
   media: {
     height: "100%",
@@ -545,100 +549,115 @@ export default function CheckoutCard(props) {
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="column">
-              <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.mediaMobile}
-                  component="img"
-                  alt={course.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: 400, border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    {`${course.title} `}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(course.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {getCurrencyCode()}
-                        {course.price
-                          ? course.price
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : ""}
-                        <span style={{ fontSize: 12 }}> &nbsp; per person</span>
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Course duration:</strong> &nbsp;
-                    {`${course.duration}`} &nbsp; days
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Start Date: </strong>&nbsp;&nbsp;
-                    {course.commencementDate
-                      ? new Date(course.commencementDate).toDateString()
-                      : "Coming Soon"}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Venue: </strong> &nbsp;{`${course.venue}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Delivery Method: </strong> &nbsp;
-                    {`${course.deliveryMethod}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Reference Number : </strong> &nbsp;
-                    {`${course.refNumber ? course.refNumber : ""}`}
-                  </Typography>
-                </CardContent>
-              </Grid>
-
-              <Grid item style={{ width: 400, border: "1px dotted grey" }}>
-                {course.price && (
-                  <CheckoutActionPage
-                    price={course.price}
-                    minimumQuantity={course.minimumQuantity}
-                    courseId={course.id}
-                    token={props.token}
-                    userId={props.userId}
-                    quantity={props.quantity}
-                    cartId={props.cartId}
-                    currency={course.currency}
-                    dateAddedToCart={props.dateAddedToCart}
-                    handleMakeOpenLoginFormDialogStatus={
-                      handleMakeOpenLoginFormDialogStatus
-                    }
-                    getCurrencyCode={getCurrencyCode}
-                    handleCartItemForCheckoutBox={
-                      props.handleCartItemForCheckoutBox
-                    }
-                    handleSuccessfulCreateSnackbar={
-                      props.handleSuccessfulCreateSnackbar
-                    }
-                    handleFailedSnackbar={props.handleFailedSnack}
-                  />
-                )}
-              </Grid>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="column">
+            <Grid item style={{ width: "100%", height: "100%" }}>
+              <CardMedia
+                className={classes.mediaMobile}
+                component="img"
+                alt={course.title}
+                image={imageUrl}
+                //title={product.name}
+                crossOrigin="anonymous"
+              />
             </Grid>
-          </CardActionArea>
+            <Grid
+              item
+              style={{
+                width: "100%",
+                //height: "100%",
+                border: "1px dotted grey",
+              }}
+            >
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  {`${course.title} `}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {Str(course.shortDescription).limit(200, "...").get()}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 5, marginBottom: 15 }}
+                >
+                  <span style={{ marginLeft: 130 }}>
+                    <strong>
+                      {getCurrencyCode()}
+                      {course.price
+                        ? course.price
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                        : ""}
+                      <span style={{ fontSize: 12 }}> &nbsp; per person</span>
+                    </strong>
+                  </span>
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Course duration:</strong> &nbsp;
+                  {`${course.duration}`} &nbsp; days
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Start Date: </strong>&nbsp;&nbsp;
+                  {course.commencementDate
+                    ? new Date(course.commencementDate).toDateString()
+                    : "Coming Soon"}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Venue: </strong> &nbsp;{`${course.venue}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Delivery Method: </strong> &nbsp;
+                  {`${course.deliveryMethod}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Reference Number : </strong> &nbsp;
+                  {`${course.refNumber ? course.refNumber : ""}`}
+                </Typography>
+              </CardContent>
+            </Grid>
+
+            <Grid
+              item
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                //marginBottom: 10,
+                border: "1px dotted grey",
+              }}
+            >
+              {course.price && (
+                <CheckoutActionPage
+                  price={course.price}
+                  minimumQuantity={course.minimumQuantity}
+                  courseId={course.id}
+                  token={props.token}
+                  userId={props.userId}
+                  quantity={props.quantity}
+                  cartId={props.cartId}
+                  currency={course.currency}
+                  dateAddedToCart={props.dateAddedToCart}
+                  handleMakeOpenLoginFormDialogStatus={
+                    handleMakeOpenLoginFormDialogStatus
+                  }
+                  getCurrencyCode={getCurrencyCode}
+                  handleCartItemForCheckoutBox={
+                    props.handleCartItemForCheckoutBox
+                  }
+                  handleSuccessfulCreateSnackbar={
+                    props.handleSuccessfulCreateSnackbar
+                  }
+                  handleFailedSnackbar={props.handleFailedSnack}
+                />
+              )}
+            </Grid>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       )}
       <Dialog
@@ -681,12 +700,6 @@ export default function CheckoutCard(props) {
               />
             </CardActionArea>
           </Card>
-
-          <Bookings
-            token={props.token}
-            userId={props.userId}
-            handleBookingsOpenDialogStatus={handleBookingsOpenDialogStatus}
-          />
         </DialogContent>
       </Dialog>
       {renderLoginForm()}

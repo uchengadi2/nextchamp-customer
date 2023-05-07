@@ -50,10 +50,13 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 600,
+    //maxWidth: 600,
+    maxWidth: "100%",
     //height: 440,
-    height: 900,
-    width: 400,
+    //height: 900,
+    height: "100%",
+    //width: 400,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
@@ -72,9 +75,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   mediaMobile: {
-    height: 200,
-    width: 200,
-    marginLeft: "80px",
+    height: "100%",
+    width: "100%",
+    //marginLeft: "80px",
   },
 
   learnButton: {
@@ -559,122 +562,120 @@ export default function OrderProductCard(props) {
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="column">
-              <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.mediaMobile}
-                  component="img"
-                  alt={product.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: 380, border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {product.title}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(product.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {getCurrencyCode()}
-                        {props.orderedPrice
-                          ? props.orderedPrice
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                        /person
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 10 }}
-                  >
-                    <strong>Course duration:</strong>&nbsp;&nbsp;
-                    {`${product.duration}`}&nbsp;days
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Start Date: </strong>&nbsp;&nbsp;
-                    {product.commencementDate
-                      ? new Date(product.commencementDate).toDateString()
-                      : "Coming Soon"}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Delivery Method: </strong> &nbsp;&nbsp;
-                    {`${product.deliveryMethod}`}
-                  </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Reference Number : </strong>&nbsp;&nbsp;
-                    {`${product.refNumber ? product.refNumber : ""}`}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 10 }}
-                  >
-                    <strong>Course Link : </strong>&nbsp;&nbsp;
-                    {`${product.venueLink ? product.venueLink : ""}`}
-                  </Typography>
-                </CardContent>
-              </Grid>
-
-              <Grid item style={{ width: 380, border: "1px dotted grey" }}>
-                <OrderPageAction
-                  price={props.orderedPrice}
-                  productId={props.product}
-                  token={props.token}
-                  userId={props.userId}
-                  location={props.productLocation}
-                  locationCountry={props.locationCountry}
-                  quantity={props.orderedQuantity}
-                  cartId={props.cartId}
-                  totalDeliveryCost={props.totalDeliveryCost}
-                  totalProductCost={props.totalProductCost}
-                  paymentStatus={props.paymentStatus}
-                  paymentMethod={props.paymentMethod}
-                  recipientName={props.recipientName}
-                  recipientPhoneNumber={props.recipientPhoneNumber}
-                  recipientAddress={props.recipientAddress}
-                  recipientCountry={props.recipientCountry}
-                  recipientState={props.recipientState}
-                  currency={product.currency}
-                  dateAddedToCart={props.dateAddedToCart}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                />
-              </Grid>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="column">
+            <Grid item style={{ width: "100%" }}>
+              <CardMedia
+                className={classes.mediaMobile}
+                component="img"
+                alt={product.title}
+                image={imageUrl}
+                //title={product.name}
+                crossOrigin="anonymous"
+              />
             </Grid>
-          </CardActionArea>
+            <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h4" color="textSecondary" component="p">
+                  {product.title}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {Str(product.shortDescription).limit(200, "...").get()}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 5, marginBottom: 15 }}
+                >
+                  <span style={{ marginLeft: 130 }}>
+                    <strong>
+                      {getCurrencyCode()}
+                      {props.orderedPrice
+                        ? props.orderedPrice
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                        : 0}
+                      /person
+                    </strong>
+                  </span>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  <strong>Course duration:</strong>&nbsp;&nbsp;
+                  {`${product.duration}`}&nbsp;days
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Start Date: </strong>&nbsp;&nbsp;
+                  {product.commencementDate
+                    ? new Date(product.commencementDate).toDateString()
+                    : "Coming Soon"}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Delivery Method: </strong> &nbsp;&nbsp;
+                  {`${product.deliveryMethod}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Reference Number : </strong>&nbsp;&nbsp;
+                  {`${product.refNumber ? product.refNumber : ""}`}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  <strong>Course Link : </strong>&nbsp;&nbsp;
+                  {`${product.venueLink ? product.venueLink : ""}`}
+                </Typography>
+              </CardContent>
+            </Grid>
+
+            <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
+              <OrderPageAction
+                price={props.orderedPrice}
+                productId={props.product}
+                token={props.token}
+                userId={props.userId}
+                location={props.productLocation}
+                locationCountry={props.locationCountry}
+                quantity={props.orderedQuantity}
+                cartId={props.cartId}
+                totalDeliveryCost={props.totalDeliveryCost}
+                totalProductCost={props.totalProductCost}
+                paymentStatus={props.paymentStatus}
+                paymentMethod={props.paymentMethod}
+                recipientName={props.recipientName}
+                recipientPhoneNumber={props.recipientPhoneNumber}
+                recipientAddress={props.recipientAddress}
+                recipientCountry={props.recipientCountry}
+                recipientState={props.recipientState}
+                currency={product.currency}
+                dateAddedToCart={props.dateAddedToCart}
+                handleMakeOpenLoginFormDialogStatus={
+                  handleMakeOpenLoginFormDialogStatus
+                }
+                handleFailedSnackbar={handleFailedSnackbar}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                getCurrencyCode={getCurrencyCode}
+                handleCartItemForCheckoutBox={
+                  props.handleCartItemForCheckoutBox
+                }
+              />
+            </Grid>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       )}
       <Dialog

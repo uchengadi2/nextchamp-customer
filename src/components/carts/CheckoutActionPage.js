@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     marginLeft: 230,
     marginTop: 30,
+    marginBottom: 20,
     // color: "white",
     // backgroundColor: theme.palette.common.green,
     // "&:hover": {
@@ -665,10 +666,10 @@ function CheckoutActionPage(props) {
         Total Delivery Cost:{props.getCurrencyCode()}
         {totalDeliveryCostForDisplay}
       </Typography> */}
-      <Typography style={{ width: 300, marginTop: 15, marginLeft: 10 }}>
+      <Typography style={{ width: "100%", marginTop: 5, marginLeft: 10 }}>
         Number of Learner(s) Slot:&nbsp;&nbsp;{quantity}
       </Typography>
-      <Typography style={{ width: 300, marginTop: 15, marginLeft: 10 }}>
+      <Typography style={{ width: "100%", marginTop: 15, marginLeft: 10 }}>
         Total Cost:{props.getCurrencyCode()}
         {total}
       </Typography>

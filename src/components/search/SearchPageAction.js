@@ -694,6 +694,7 @@ function SearchPageAction(props) {
           varaint="outlined"
           className={classes.submitButton}
           onClick={() => <ProductDetails />}
+          style={{ marginBottom: 10 }}
         >
           {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
           {loading ? (

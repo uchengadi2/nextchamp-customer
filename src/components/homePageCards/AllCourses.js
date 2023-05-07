@@ -56,14 +56,14 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 600,
+    maxWidth: "100%",
     //height: 440,
-    height: 800,
-    width: 400,
+    height: "100%",
+    width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "250em",
+    marginTop: "3.5em",
     marginBottom: "3em",
     padding: 0,
 
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     //height: 550,
-    width: 650,
+    width: "100%",
     marginLeft: -15,
     padding: 0,
     [theme.breakpoints.down("md")]: {
@@ -91,8 +91,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageMobile: {
-    height: 650,
-    width: 500,
+    height: "100%",
+    width: "100%",
     marginLeft: 10,
     padding: 0,
     [theme.breakpoints.down("md")]: {
@@ -544,13 +544,6 @@ export default function AllCourses(props) {
                       : "Coming Soon"}
                   </span>
                 </Typography>
-
-                {/* <Typography style={{ marginTop: 10 }}>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Vendor:</strong>
-                      <span>{vendorName}</span>
-                    </span>
-                  </Typography> */}
               </CardContent>
             </Grid>
 
@@ -564,23 +557,6 @@ export default function AllCourses(props) {
                 categoryId={props.category}
                 productId={props.courseId}
               />
-              {/* <CardActions>
-                  <Button
-                    component={Link}
-                    // to="/mobileapps"
-                    to={`/categories/${props.category}/${props.courseId}`}
-                    varaint="outlined"
-                    className={classes.learnButton}
-                    onClick={() => <ProductDetails />}
-                  >
-                    <span style={{ marginRight: 10 }}>Show Details </span>
-                    <ButtonArrow
-                      height={10}
-                      width={10}
-                      fill={theme.palette.common.blue}
-                    />
-                  </Button>
-                </CardActions> */}
             </Grid>
           </Grid>
           {/* </CardActionArea> */}
@@ -589,7 +565,7 @@ export default function AllCourses(props) {
         <Card className={classes.rootMobile} disableRipple>
           <CardActionArea disableRipple>
             <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
+              <Grid item style={{ width: "100%" }}>
                 <CardMedia
                   className={classes.mediaMobile}
                   component="img"
@@ -599,7 +575,7 @@ export default function AllCourses(props) {
                   crossOrigin="anonymous"
                 />
               </Grid>
-              <Grid item style={{ width: 380, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h4" color="textSecondary" component="p">
                     {props.title}
@@ -683,7 +659,9 @@ export default function AllCourses(props) {
                   <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Start Date:</strong>
-                      <span>{props.commencementDate}</span>
+                      <span>
+                        {new Date(props.commencementDate).toDateString()}
+                      </span>
                     </span>
                   </Typography>
 
@@ -696,7 +674,7 @@ export default function AllCourses(props) {
                 </CardContent>
               </Grid>
 
-              <Grid item style={{ width: 360, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <CourseInfo
                   prerequisites={props.prerequisites}
                   tools={props.tools}
@@ -706,24 +684,6 @@ export default function AllCourses(props) {
                   categoryId={props.category}
                   productId={props.courseId}
                 />
-                {/* <CardActions>
-                  <Button
-                    component={Link}
-                    // to="/mobileapps"
-                    //to={`/categories/${props.category}/${props.productId}`}
-                    to={`/categories/${props.category}/${props.courseId}`}
-                    varaint="outlined"
-                    className={classes.learnButton}
-                    onClick={() => <ProductDetails />}
-                  >
-                    <span style={{ marginRight: 10 }}>Show Details </span>
-                    <ButtonArrow
-                      height={10}
-                      width={10}
-                      fill={theme.palette.common.blue}
-                    />
-                  </Button>
-                </CardActions> */}
               </Grid>
             </Grid>
           </CardActionArea>

@@ -40,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   rootMobile: {
-    maxWidth: 600,
+    maxWidth: "100%",
     //height: 440,
-    height: 800,
-    width: 400,
+    //height: "100%",
+    width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "5em",
+    marginTop: 50,
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -166,7 +166,12 @@ export default function LearningPath() {
             value={learningPath}
             onChange={changeLearningPathHandler}
             label="Learning Path"
-            style={{ height: 38, width: 700, marginTop: 10, marginLeft: 10 }}
+            style={{
+              height: 38,
+              width: matchesMDUp ? 700 : 300,
+              marginTop: 10,
+              marginLeft: 10,
+            }}
           >
             <MenuItem value={"courses"}>Courses</MenuItem>
             {/* <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
@@ -190,16 +195,6 @@ export default function LearningPath() {
             justifyContent="center"
             //style={{ backgroundColor: "white" }}
           >
-            {/* <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  alt={product.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid> */}
             <Grid
               item
               style={{
@@ -211,164 +206,30 @@ export default function LearningPath() {
             >
               <CardContent>{renderLearningPathField()}</CardContent>
             </Grid>
-
-            {/* <Grid
-                item
-                style={{
-                  width: 635,
-                  marginLeft: 15,
-                  border: "1px dotted grey",
-                }}
-              >
-                <CardContent disableRipple>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    Learning Path
-                  </Typography>
-                </CardContent>
-              </Grid> */}
           </Grid>
           {/* </CardActionArea> */}
         </Card>
       ) : (
-        <Card className={classes.rootMobile} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.mediaMobile}
-                  component="img"
-                  alt={product.name}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: "40%", border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(product.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {product.pricePerUnit
-                          ? product.pricePerUnit
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                        /unit
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span
-                      style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}
-                    >
-                      <strong>Sku:</strong> &nbsp;
-                      <span>{product.sku}</span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Product Location:</strong>
-                      <span>
-                        {stateName}/{countryName}
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Period within {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {product.estimatedDeliveryPeriodInDays}&nbsp;day(s)/
-                        {product.estimatedDeliveryPeriodInHours}&nbsp;hour(s)/
-                        {product.estimatedDeliveryPeriodInMinutes}&nbsp;minutes
-                      </span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Cost within &nbsp; {stateName}/{countryName}{" "}
-                        for the initial first{" "}
-                        {product.maxmumQuantityForBaselineDelivery} unit:
-                      </strong>
-                      <span>
-                        {product.baselineDeliveryCostWithinProductLocation
-                          ? product.baselineDeliveryCostWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Subsequent Delivery Cost per Unit within &nbsp;{" "}
-                        {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {product.deliveryCostPerUnitWithinProductLocation
-                          ? product.deliveryCostPerUnitWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
-                  </Typography>
-                  {/* <Typography style={{ marginTop: 10 }}>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Vendor:</strong>
-                      <span>{vendorName}</span>
-                    </span>
-                  </Typography> */}
-                </CardContent>
-              </Grid>
-
-              <Grid item style={{ width: "40%", border: "1px dotted grey" }}>
-                {/* <SearchPageAction
-                  price={product.pricePerUnit}
-                  minimumQuantity={minLearnerSlot}
-                  remainingTotalUnits={product.remainingTotalUnits}
-                  weight={product.weightPerUnit}
-                  productId={product.id}
-                  categoryId={product.category}
-                  token={props.token}
-                  userId={props.userId}
-                  currency={product.currency}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                /> */}
-              </Grid>
-            </Grid>
-          </CardActionArea>
-        </Card>
+        // <Card className={classes.rootMobile} disableRipple>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          className={classes.rootMobile}
+        >
+          <Grid
+            item
+            style={{
+              width: "100%",
+              //border: "1px dotted white",
+              // backgroundColor: "white",
+              marginLeft: 10,
+            }}
+          >
+            <CardContent>{renderLearningPathField()}</CardContent>
+          </Grid>
+        </Grid>
+        //</Card>
       )}
       <Dialog
         //style={{ zIndex: 1302 }}

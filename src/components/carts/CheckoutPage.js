@@ -40,9 +40,9 @@ import api from "./../../apis/local";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    height: "40vh",
-    marginTop: "3em",
-    // height: "100%",
+    //height: "40vh",
+    marginTop: "1.5em",
+    height: "100%",
     position: "relative",
     "& video": {
       objectFit: "cover",

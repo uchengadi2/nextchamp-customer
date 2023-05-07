@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     width: 130,
     marginLeft: 80,
     marginTop: 30,
+    marginBottom: 15,
     color: "white",
     backgroundColor: theme.palette.common.green,
     "&:hover": {

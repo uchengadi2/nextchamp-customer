@@ -56,14 +56,16 @@ const useStyles = makeStyles((theme) => ({
     //padding: 20,
   },
   rootMobile: {
-    maxWidth: 600,
-    //height: 440,
-    height: 780,
-    width: 400,
+    //maxWidth: 600,
+    maxWidth: "100%",
+    height: "100%",
+    //height: 780,
+    //width: 400,
+    width: "100%",
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "5em",
+    marginTop: "0.2em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -74,9 +76,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mediaMobile: {
-    height: 200,
-    width: 200,
-    marginLeft: "80px",
+    // height: 200,
+    // width: 200,
+    height: "100%",
+    width: "100%",
+    //marginLeft: "80px",
   },
 
   learnButton: {
@@ -694,80 +698,80 @@ export default function CartProductCard(props) {
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="column">
-              <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.mediaMobile}
-                  component="img"
-                  alt={course.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: 350, border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    {`${course.title} `}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(product.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {getCurrencyCode()}
-                        {course.price
-                          ? course.price
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : ""}
-                        /unit
-                      </strong>
-                    </span>
-                  </Typography>
-                </CardContent>
-              </Grid>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="column">
+            <Grid item style={{ width: "100%" }}>
+              <CardMedia
+                className={classes.mediaMobile}
+                component="img"
+                alt={course.title}
+                image={imageUrl}
+                //title={product.name}
+                crossOrigin="anonymous"
+              />
+            </Grid>
+            <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  {`${course.title} `}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {Str(product.shortDescription).limit(200, "...").get()}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 5 }}
+                >
+                  <span style={{ marginLeft: 130 }}>
+                    <strong>
+                      {getCurrencyCode()}
+                      {course.price
+                        ? course.price
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                        : ""}
+                      /unit
+                    </strong>
+                  </span>
+                </Typography>
+              </CardContent>
+            </Grid>
 
-              <Grid item style={{ width: 350, border: "1px dotted grey" }}>
-                {course.price && (
-                  <CartUpdateAndDeliveryForm
-                    price={course.price}
-                    minimumQuantity={course.minimumQuantity}
-                    courseId={course.id}
-                    currency={course.currency}
-                    token={props.token}
-                    userId={props.userId}
-                    quantity={props.quantity}
-                    cartId={props.cartId}
-                    handleMakeOpenLoginFormDialogStatus={
-                      handleMakeOpenLoginFormDialogStatus
-                    }
-                    handleSuccessfulCreateSnackbar={
-                      props.handleSuccessfulCreateSnackbar
-                    }
-                    handleFailedSnackbar={props.handleFailedSnackbar}
-                    getCurrencyCode={getCurrencyCode}
-                    handleCartItemForCheckoutBox={
-                      props.handleCartItemForCheckoutBox
-                    }
-                    renderCartUpdate={props.renderCartUpdate}
-                    renderCartUpdateAfterRemoval={
-                      props.renderCartUpdateAfterRemoval
-                    }
-                  />
-                )}
-                {/* <CardActions>
+            <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
+              {course.price && (
+                <CartUpdateAndDeliveryForm
+                  price={course.price}
+                  minimumQuantity={course.minimumQuantity}
+                  courseId={course.id}
+                  currency={course.currency}
+                  token={props.token}
+                  userId={props.userId}
+                  quantity={props.quantity}
+                  cartId={props.cartId}
+                  handleMakeOpenLoginFormDialogStatus={
+                    handleMakeOpenLoginFormDialogStatus
+                  }
+                  handleSuccessfulCreateSnackbar={
+                    props.handleSuccessfulCreateSnackbar
+                  }
+                  handleFailedSnackbar={props.handleFailedSnackbar}
+                  getCurrencyCode={getCurrencyCode}
+                  handleCartItemForCheckoutBox={
+                    props.handleCartItemForCheckoutBox
+                  }
+                  renderCartUpdate={props.renderCartUpdate}
+                  renderCartUpdateAfterRemoval={
+                    props.renderCartUpdateAfterRemoval
+                  }
+                />
+              )}
+              {/* <CardActions>
               <Button
                 component={Link}
                 // to="/mobileapps"
@@ -789,9 +793,9 @@ export default function CartProductCard(props) {
                 />
               </Button>
             </CardActions> */}
-              </Grid>
             </Grid>
-          </CardActionArea>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       )}
       <Dialog

@@ -345,132 +345,6 @@ const Marketplace = (props) => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-  //const imageUrl = `${baseURL}/images/categories/${image}`;
-
-  // const coursesList = [
-  //   {
-  //     id: "c1",
-  //     title: "React - The Complete Guide (Incl Hooks, React Router)",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 35,
-  //     commencementDate: "05-05-2023",
-  //     price: 150000,
-  //     venue: "Zoom",
-  //     instructor: "Uche Ngadi",
-  //     sessionDuration: 5,
-  //     sessionPeriod: "10am to 3pm",
-  //     studyPeriod: "Weekdays Only",
-  //     lectureDuration: 10,
-  //     projectDuration: 25,
-  //     image: courseImage1,
-  //   },
-  //   {
-  //     id: "c2",
-  //     title:
-  //       "Programming with Bubble (No-code Programming): The complete Guide",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 20,
-  //     commencementDate: "05-05-2023",
-  //     price: 120000,
-  //     venue: "Zoom",
-  //     sessionDuration: 4,
-  //     sessionPeriod: "10am to 2pm",
-  //     studyPeriod: "Weekends Only",
-  //     lectureDuration: 10,
-  //     projectDuration: 10,
-  //     instructor: "Uche Ngadi",
-  //     image: courseImage2,
-  //   },
-  //   {
-  //     id: "c3",
-  //     title: "React Native - The Practical Guide",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 30,
-  //     commencementDate: "Coming Soon",
-  //     price: 140000,
-  //     venue: "Zoom",
-  //     sessionDuration: 7,
-  //     sessionPeriod: "10am to 6pm",
-  //     studyPeriod: "Weekdays Only",
-  //     lectureDuration: 10,
-  //     projectDuration: 20,
-  //     instructor: "Uche Ngadi",
-  //     image: courseImage3,
-  //   },
-  //   {
-  //     id: "c4",
-  //     title: "Microservices with NodeJS and React",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 25,
-  //     commencementDate: "Coming Soon",
-  //     price: 240000,
-  //     venue: "Zoom",
-  //     sessionDuration: 4,
-  //     sessionPeriod: "10am to 2pm",
-  //     studyPeriod: "Weekdays Only",
-  //     lectureDuration: 10,
-  //     projectDuration: 15,
-  //     instructor: "Uche Ngadi",
-  //     image: courseImage4,
-  //   },
-  //   {
-  //     id: "c5",
-  //     title: "Docker and Kunernetes: The Complete Guide",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 18,
-  //     commencementDate: "Coming Soon",
-  //     price: 150000,
-  //     venue: "Zoom",
-  //     sessionDuration: 6,
-  //     sessionPeriod: "10am to 4pm",
-  //     studyPeriod: "Weekdays Only",
-  //     lectureDuration: 8,
-  //     projectDuration: 10,
-  //     instructor: "Uche Ngadi",
-  //     image: courseImage5,
-  //   },
-  //   {
-  //     id: "c6",
-  //     title: "React Testing Libraryand Jest: the complete ",
-  //     features: "This is the Crane Trucks/Mobile Cranes",
-  //     shortDescription:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in",
-  //     longDescription: "This is the Crane Trucks/Mobile Cranes",
-  //     deliveryMethod: "live",
-  //     duration: 10,
-  //     commencementDate: "Coming Soon",
-  //     price: 120000,
-  //     venue: "Zoom",
-  //     sessionDuration: 8,
-  //     sessionPeriod: "9am to 5pm",
-  //     studyPeriod: "Weekdays Only",
-  //     lectureDuration: 2,
-  //     projectDuration: 8,
-  //     instructor: "Uche Ngadi",
-  //     image: courseImage6,
-  //   },
-  // ];
-
   const Str = require("@supercharge/strings");
 
   const allCoursesList = matchesMD ? (
@@ -699,48 +573,18 @@ const Marketplace = (props) => {
                     </Typography>
                   )}
 
-                  {matchesMD ? (
+                  {/* {matchesMD ? (
                     <Grid
                       container
                       justifyContent="flex-start"
                       direction={matchesSM ? "column" : "row"}
                       // className={classes.topCover}
                     >
-                      {/* <Grid item>
-                        <Button
-                          component={Link}
-                          // to="/mobileapps"
-                          to={`/categories`}
-                          varaint="outlined"
-                          className={classes.estimateButton}
-                          onClick={() => <Categories token={props.token} />}
-                        >
-                          See Our Product Categories
-                        </Button>
-                      </Grid> */}
+                      
                     </Grid>
                   ) : (
-                    <Typography>Just to be suire</Typography>
-                    // <Grid
-                    //   container
-                    //   justifyContent="flex-start"
-                    //   direction={matchesSM ? "column" : "row"}
-                    //   className={classes.buttonContainerMobile}
-                    // >
-                    //   {/* <Grid item>
-                    //     <Button
-                    //       component={Link}
-                    //       // to="/mobileapps"
-                    //       to={`/categories`}
-                    //       varaint="outlined"
-                    //       className={classes.estimateButtonMobile}
-                    //       onClick={() => <Categories token={props.token} />}
-                    //     >
-                    //       See Our Product Categories
-                    //     </Button>
-                    //   </Grid> */}
-                    // </Grid>
-                  )}
+                    
+                  )} */}
                 </Grid>
               </Box>
               {/* </div> */}
@@ -762,31 +606,7 @@ const Marketplace = (props) => {
           />
         )}
         {!isLoading && <Grid item>{allCoursesList}</Grid>}
-        {/* <Grid item className={classes.category}>
-          <AllProductsCategoriesCard />
-        </Grid> */}
-        {/* <Grid item className={classes.features}>
-          <FeatureProductsPage />
-        </Grid> */}
 
-        {/* <Grid item>
-          <RequestForVendorsCard className={classes.vendor} />
-        </Grid> */}
-        {/* <Grid item>
-          <PromotionalProductsPage className={classes.promotion} />
-        </Grid> */}
-        {/* <Grid item>
-          <RequestForLogisticsCard className={classes.logistics} />
-        </Grid>
-        <Grid item>
-          <CourseFourCard className={classes.logistics} />
-        </Grid>
-        <Grid item>
-          <CourseFiveCard className={classes.logistics} />
-        </Grid>
-        <Grid item>
-          <CourseSixCard className={classes.logistics} />
-        </Grid> */}
         <Grid item className={classes.footer}>
           <UpperFooter />
         </Grid>

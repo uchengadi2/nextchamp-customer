@@ -738,7 +738,7 @@ function CheckoutDeliveryAndPayment(props) {
                   <strong>Sort Code:</strong> &nbsp; &nbsp; 231486
                 </Typography>
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; academy@dninjas.com.ng
+                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
                 </Typography>
 
                 <Typography>
@@ -770,62 +770,8 @@ function CheckoutDeliveryAndPayment(props) {
                   <strong>Routing (ABA):</strong> &nbsp; &nbsp; 061120084
                 </Typography>
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; academy@dninjas.com.ng
+                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
                 </Typography>
-                {/* <form id="cartUpdateAndDeliveryForm">
-                  <Field
-                    label=""
-                    id="recipient"
-                    name="recipient"
-                    onChange={onRecipientNameChange}
-                    type="text"
-                    component={renderRecipientNameField}
-                    //style={{ width: 200, marginTop: 30 }}
-                  />
-                  <Field
-                    label=""
-                    id="recipientPhoneNumber"
-                    name="recipientPhoneNumber"
-                    onChange={onRecipientPhoneNumberChange}
-                    type="text"
-                    component={renderRecipientPhoneNumberField}
-                    // style={{ width: 400 }}
-                  />
-
-                  <Grid
-                    container
-                    direction="row"
-                    style={{ marginTop: 10, width: 600 }}
-                  >
-                    <Grid item style={{ width: "55%" }}>
-                      <Field
-                        label=""
-                        id="locationCountry"
-                        name="locationCountry"
-                        type="text"
-                        component={renderProductCountryField}
-                      />
-                    </Grid>
-                    <Grid item style={{ width: "40%", marginLeft: 10 }}>
-                      <Field
-                        label=""
-                        id="location"
-                        name="location"
-                        type="text"
-                        component={renderProductLocationField}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Field
-                    label=""
-                    id="recipientAddress"
-                    name="recipientAddress"
-                    onChange={onRecipientAddressChange}
-                    type="text"
-                    component={renderRecipientAddressField}
-                    style={{ width: 400 }}
-                  />
-                </form> */}
               </Box>
             </Grid>
           </Grid>
@@ -915,103 +861,88 @@ function CheckoutDeliveryAndPayment(props) {
               style={{ marginTop: 10, marginBottom: 10 }}
               justifyContent="center"
             >
-              <Grid item container style={{ marginTop: 20, width: 300 }}>
+              {/* <Grid item container style={{ marginTop: 20, width: 600 }}>
                 <FormLabel
                   style={{
                     color: "blue",
                     marginBottom: 30,
-                    marginLeft: 100,
+                    marginLeft: 300,
                     fontSize: 20,
                   }}
                   component="legend"
                 >
                   Delivery Details
                 </FormLabel>
-              </Grid>
+              </Grid> */}
               <Box
                 sx={{
-                  width: 350,
+                  //width: 1200,
                   //height: 450,
+                  width: "80%",
                 }}
                 noValidate
                 autoComplete="off"
               >
-                <form id="cartUpdateAndDeliveryForm">
-                  <Field
-                    label=""
-                    id="recipient"
-                    name="recipient"
-                    onChange={onRecipientNameChange}
-                    type="text"
-                    component={renderRecipientNameField}
-                    style={{ width: 250 }}
-                  />
-                  <Field
-                    label=""
-                    id="recipientPhoneNumber"
-                    name="recipientPhoneNumber"
-                    onChange={onRecipientPhoneNumberChange}
-                    type="text"
-                    component={renderRecipientPhoneNumberField}
-                    style={{ width: 250 }}
-                  />
-                  <Field
-                    label=""
-                    id="recipientAddress"
-                    name="recipientAddress"
-                    onChange={onRecipientAddressChange}
-                    type="text"
-                    component={renderRecipientAddressField}
-                    style={{ width: 300, marginTop: 10 }}
-                  />
+                <Typography variant="h5">
+                  Enrolling from the United Kingdom? Use the details below:
+                </Typography>
+                <Typography>
+                  <strong>Expected Amount:</strong> &nbsp; &nbsp; &#163;
+                  {totalProductCostForUkForDisplay}
+                </Typography>
+                <Typography>
+                  <strong>Pay To:</strong>
+                </Typography>
+                <Typography>
+                  <strong>Beneficiary:</strong> &nbsp; &nbsp; ControlSoft
+                  Limited
+                </Typography>
+                <Typography>
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; Barclays Bank
+                </Typography>
+                <Typography>
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 02313927
+                </Typography>
+                <Typography>
+                  <strong>Sort Code:</strong> &nbsp; &nbsp; 231486
+                </Typography>
+                <Typography style={{ marginTop: 15 }}>
+                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                </Typography>
 
-                  <Grid
-                    container
-                    direction="column"
-                    style={{ marginTop: 5, width: 400 }}
-                  >
-                    <Grid
-                      item
-                      style={
-                        matchesMD
-                          ? { width: 365, marginTop: 0, height: 38 }
-                          : {
-                              width: 350,
-                              height: 38,
-                              marginTop: 2,
-                              marginBottom: 20,
-                            }
-                      }
-                    >
-                      <Field
-                        label=""
-                        id="locationCountry"
-                        name="locationCountry"
-                        type="text"
-                        component={renderProductCountryField}
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      style={
-                        matchesMD
-                          ? { width: 365, marginTop: 0, height: 38 }
-                          : { width: 350, height: 38, marghinTop: 5 }
-                      }
-                    >
-                      <Field
-                        label=""
-                        id="location"
-                        name="location"
-                        type="text"
-                        component={renderProductLocationField}
-                      />
-                    </Grid>
-                  </Grid>
-                </form>
+                <Typography>=====================================</Typography>
+
+                <Typography variant="h5">
+                  Enrolling from the United States or Other Countries outside
+                  Nigeria? Use the details below:
+                </Typography>
+                <Typography>
+                  <strong>Expected Amount:</strong>&nbsp; &nbsp; $
+                  {totalProductCostForUsForDisplay}
+                </Typography>
+                <Typography>
+                  <strong>Pay To:</strong>
+                </Typography>
+                <Typography>
+                  <strong>Beneficiary:</strong> &nbsp; &nbsp; ControlSoft
+                  Limited
+                </Typography>
+                <Typography>
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; First Century Bank
+                </Typography>
+                <Typography>
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 4010187581108
+                </Typography>
+                <Typography>
+                  <strong>Routing (ABA):</strong> &nbsp; &nbsp; 061120084
+                </Typography>
+                <Typography style={{ marginTop: 15 }}>
+                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                </Typography>
               </Box>
             </Grid>
           </Grid>
+
           <Grid
             item
             container

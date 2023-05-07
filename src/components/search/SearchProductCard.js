@@ -48,14 +48,14 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 600,
+    maxWidth: "100%",
     //height: 440,
-    height: 800,
-    width: 400,
+    height: "100%",
+    width: "100%",
 
-    marginLeft: "10px",
+    // marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "5em",
+    marginTop: "0.5em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -66,9 +66,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mediaMobile: {
-    height: 150,
-    width: 150,
-    marginLeft: "80px",
+    height: "100%",
+    width: "100%",
+    // marginLeft: "80px",
   },
   media: {
     height: "100%",
@@ -215,82 +215,6 @@ export default function SearchProductCard(props) {
 
     fetchData().catch(console.error);
   }, []);
-
-  // //get the currency name
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/currencies/${product.currency}`);
-  //     const item = response.data.data.data;
-  //     allData.push({ id: item._id, name: item.name });
-
-  //     if (allData[0].name) {
-  //       setCurrencyName(allData[0].name);
-  //     }
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [product]);
-
-  // //get the country name
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/countries/${product.locationCountry}`);
-  //     const item = response.data.data.data;
-  //     allData.push({ id: item._id, name: item.name });
-
-  //     if (allData[0].name) {
-  //       setCountryName(allData[0].name);
-  //     }
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [product]);
-
-  // //get the state name
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/states/${product.location}`);
-  //     const item = response.data.data.data;
-  //     allData.push({ id: item._id, name: item.name });
-
-  //     if (allData[0].name) {
-  //       setStateName(allData[0].name);
-  //     }
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [product]);
-
-  // //get the state name
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/vendors/${product.vendor}`);
-  //     const item = response.data.data.data;
-  //     allData.push({ id: item._id, name: item.name });
-
-  //     if (allData[0].name) {
-  //       setVendorName(allData[0].name);
-  //     }
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [product]);
 
   let imageUrl = "";
   if (product) {
@@ -609,7 +533,7 @@ export default function SearchProductCard(props) {
         <Card className={classes.rootMobile} disableRipple>
           <CardActionArea disableRipple>
             <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
+              <Grid item style={{ width: "100%" }}>
                 <CardMedia
                   className={classes.mediaMobile}
                   component="img"
@@ -619,7 +543,7 @@ export default function SearchProductCard(props) {
                   crossOrigin="anonymous"
                 />
               </Grid>
-              <Grid item style={{ width: 380, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
                   <Typography variant="h4" color="textSecondary" component="p">
                     {product.name}
@@ -628,100 +552,53 @@ export default function SearchProductCard(props) {
                     variant="subtitle1"
                     color="textSecondary"
                     component="p"
+                    style={{ marginTop: 10 }}
                   >
                     {Str(product.shortDescription).limit(200, "...").get()}
                   </Typography>
                   <Typography
-                    variant="h5"
+                    variant="h4"
                     color="textSecondary"
                     component="p"
                     style={{ marginTop: 5, marginBottom: 15 }}
                   >
-                    <span style={{ marginLeft: 130 }}>
+                    <span style={{ marginLeft: "5%", marginTop: 10 }}>
                       <strong>
                         {getCurrencyCode()}
-                        {product.pricePerUnit
-                          ? product.pricePerUnit
+                        {product.price
+                          ? product.price
                               .toFixed(2)
                               .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                           : 0}
-                        /unit
+                        /person
                       </strong>
                     </span>
                   </Typography>
-                  <Typography>
-                    <span
-                      style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}
-                    >
-                      <strong>Sku:</strong> &nbsp;
-                      <span>{product.sku}</span>
-                    </span>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    <strong>Course duration:</strong>&nbsp;&nbsp;
+                    {`${product.duration}`} days
                   </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Product Location:</strong>
-                      <span>
-                        {stateName}/{countryName}
-                      </span>
-                    </span>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    <strong>Start Date: </strong>&nbsp;&nbsp;
+                    {product.commencementDate
+                      ? new Date(product.commencementDate).toDateString()
+                      : "Coming Soon"}
                   </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Period within {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {product.estimatedDeliveryPeriodInDays}&nbsp;day(s)/
-                        {product.estimatedDeliveryPeriodInHours}&nbsp;hour(s)/
-                        {product.estimatedDeliveryPeriodInMinutes}&nbsp;minutes
-                      </span>
-                    </span>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
                   </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Cost within &nbsp; {stateName}/{countryName}{" "}
-                        for the initial first{" "}
-                        {product.maxmumQuantityForBaselineDelivery} unit:
-                      </strong>
-                      <span>
-                        {getCurrencyCode()}
-                        {product.baselineDeliveryCostWithinProductLocation
-                          ? product.baselineDeliveryCostWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    <strong>Delivery Method: </strong> &nbsp; &nbsp;
+                    {`${product.deliveryMethod}`}
                   </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Subsequent Delivery Cost per Unit within &nbsp;{" "}
-                        {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {getCurrencyCode()}
-                        {product.deliveryCostPerUnitWithinProductLocation
-                          ? product.deliveryCostPerUnitWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    <strong>Reference Number : </strong> &nbsp;
+                    {`${product.refNumber ? product.refNumber : ""}`}
                   </Typography>
-                  {/* <Typography style={{ marginTop: 10 }}>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Vendor:</strong>
-                      <span>{vendorName}</span>
-                    </span>
-                  </Typography> */}
                 </CardContent>
               </Grid>
 
-              <Grid item style={{ width: 360, border: "1px dotted grey" }}>
+              <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <SearchPageAction
                   price={product.pricePerUnit}
                   minimumQuantity={minLearnerSlot}

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "5em",
+    marginTop: "2em",
     marginBottom: "1em",
     padding: 0,
     // "&:hover": {
@@ -37,15 +37,15 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 600,
+    maxWidth: "100%",
     //height: 440,
-    height: 800,
-    width: 400,
+    //height: "100%",
+    width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "5em",
-    marginBottom: "3em",
+    marginTop: "2.5em",
+    marginBottom: "0.5em",
     padding: 0,
     backgroundColor: "#FFFFFF",
 
@@ -55,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mediaMobile: {
-    height: 150,
-    width: 150,
-    marginLeft: "80px",
+    height: "100%",
+    width: "100%",
+    // marginLeft: "80px",
   },
   media: {
     height: "100%",
@@ -141,16 +141,6 @@ export default function TopCover() {
         <Card className={classes.root} disableRipple={true}>
           {/* <CardActionArea disableRipple> */}
           <Grid container direction="row">
-            {/* <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  alt={product.title}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid> */}
             <Grid item style={{ width: "48%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
                 <Typography variant="h5" color="textSecondary" component="p">
@@ -191,143 +181,46 @@ export default function TopCover() {
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
-          <CardActionArea disableRipple>
-            <Grid container direction="row">
-              <Grid item style={{ width: 350 }}>
-                <CardMedia
-                  className={classes.mediaMobile}
-                  component="img"
-                  alt={product.name}
-                  image={imageUrl}
-                  //title={product.name}
-                  crossOrigin="anonymous"
-                />
-              </Grid>
-              <Grid item style={{ width: "40%", border: "1px dotted grey" }}>
-                <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {Str(product.shortDescription).limit(200, "...").get()}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="textSecondary"
-                    component="p"
-                    style={{ marginTop: 5, marginBottom: 15 }}
-                  >
-                    <span style={{ marginLeft: 130 }}>
-                      <strong>
-                        {product.pricePerUnit
-                          ? product.pricePerUnit
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                        /unit
-                      </strong>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span
-                      style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}
-                    >
-                      <strong>Sku:</strong> &nbsp;
-                      <span>{product.sku}</span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Product Location:</strong>
-                      <span>
-                        {stateName}/{countryName}
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Period within {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {product.estimatedDeliveryPeriodInDays}&nbsp;day(s)/
-                        {product.estimatedDeliveryPeriodInHours}&nbsp;hour(s)/
-                        {product.estimatedDeliveryPeriodInMinutes}&nbsp;minutes
-                      </span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Delivery Cost within &nbsp; {stateName}/{countryName}{" "}
-                        for the initial first{" "}
-                        {product.maxmumQuantityForBaselineDelivery} unit:
-                      </strong>
-                      <span>
-                        {product.baselineDeliveryCostWithinProductLocation
-                          ? product.baselineDeliveryCostWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong>
-                        Subsequent Delivery Cost per Unit within &nbsp;{" "}
-                        {stateName}/{countryName}:
-                      </strong>
-                      <span>
-                        {product.deliveryCostPerUnitWithinProductLocation
-                          ? product.deliveryCostPerUnitWithinProductLocation
-                              .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")
-                          : 0}
-                      </span>
-                    </span>
-                  </Typography>
-                  {/* <Typography style={{ marginTop: 10 }}>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Vendor:</strong>
-                      <span>{vendorName}</span>
-                    </span>
-                  </Typography> */}
-                </CardContent>
-              </Grid>
-
-              <Grid item style={{ width: "40%", border: "1px dotted grey" }}>
-                {/* <SearchPageAction
-                  price={product.pricePerUnit}
-                  minimumQuantity={minLearnerSlot}
-                  remainingTotalUnits={product.remainingTotalUnits}
-                  weight={product.weightPerUnit}
-                  productId={product.id}
-                  categoryId={product.category}
-                  token={props.token}
-                  userId={props.userId}
-                  currency={product.currency}
-                  handleMakeOpenLoginFormDialogStatus={
-                    handleMakeOpenLoginFormDialogStatus
-                  }
-                  handleFailedSnackbar={handleFailedSnackbar}
-                  handleSuccessfulCreateSnackbar={
-                    handleSuccessfulCreateSnackbar
-                  }
-                  getCurrencyCode={getCurrencyCode}
-                  handleCartItemForCheckoutBox={
-                    props.handleCartItemForCheckoutBox
-                  }
-                /> */}
-              </Grid>
+          {/* <CardActionArea disableRipple> */}
+          <Grid container direction="column">
+            <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  At NextChamp, we take students through a combination of
+                  teachings, practices, mockings, assessments and mentoring. At
+                  the end of each course, a student is evaluated and assessed
+                  based on the module and/or capstone projects on that course.
+                </Typography>
+                <br />
+                <Typography variant="h5" color="textSecondary" component="p">
+                  A certificate of attendance will be awarded to all students at
+                  the completion of a course. However the students that meet the
+                  NextChamp grade mark on that course will become a NextChamp.
+                </Typography>
+              </CardContent>
             </Grid>
-          </CardActionArea>
+
+            <Grid
+              item
+              style={{
+                width: "100%",
+                marginLeft: "0%",
+                marginTop: 10,
+                border: "1px dotted grey",
+              }}
+            >
+              <CardContent disableRipple>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Corporations and Institutions that need trusted and competent
+                  hands in their workforce or as part of a project could hire
+                  from the pool of the professional NextChamps (Next Champion).
+                  However Academic NextChamps will have the confidence they need
+                  to overcome further challenges on that study domain.
+                </Typography>
+              </CardContent>
+            </Grid>
+          </Grid>
+          {/* </CardActionArea> */}
         </Card>
       )}
       <Dialog

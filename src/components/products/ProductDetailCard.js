@@ -52,14 +52,14 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   rootMobile: {
-    maxWidth: 400,
+    maxWidth: "100%",
     //height: 440,
     //height: 800,
-    width: 350,
+    width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "10em",
+    marginTop: "2em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -70,9 +70,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mediaMobile: {
-    height: 200,
-    width: 200,
-    marginLeft: "100px",
+    height: "100%",
+    width: "100%",
+    //marginLeft: "100px",
   },
   media: {
     height: 400,
@@ -156,6 +156,13 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     width: "22%",
   },
+  secondColumnMobile: {
+    marginTop: 50,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 10,
+    width: "98%",
+  },
   thirdColumn: {
     marginTop: 20,
     marginBottom: 50,
@@ -163,11 +170,25 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     width: "98%",
   },
+  thirdColumnMobile: {
+    marginTop: 15,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 10,
+    width: "98%",
+  },
   forthColumn: {
-    marginTop: 20,
+    marginTop: 15,
     marginBottom: 50,
     border: "1px dotted",
     padding: 20,
+    width: "98%",
+  },
+  forthColumnMobile: {
+    marginTop: 15,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 10,
     width: "98%",
   },
   fifthColumn: {
@@ -177,6 +198,13 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     width: "98%",
   },
+  fifthColumnMobile: {
+    marginTop: 15,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 10,
+    width: "98%",
+  },
   sixthColumn: {
     marginTop: 20,
     marginBottom: 50,
@@ -184,13 +212,12 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     width: "98%",
   },
-
-  secondColumnMobile: {
-    marginTop: 50,
+  sixthColumnMobile: {
+    marginTop: 15,
     marginBottom: 50,
     border: "1px dotted",
-    padding: 20,
-    width: 400,
+    padding: 10,
+    width: "98%",
   },
 }));
 
@@ -834,6 +861,68 @@ export default function ProductDetailCard(props) {
                     {props.course.refNumber}
                   </Typography>
                 )}
+                {props.course.duration !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Duration:</strong>
+                    </span>
+                    {props.course.duration} hours
+                  </Typography>
+                )}
+                {props.course.commencementDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Start date:</strong>
+                    </span>
+                    {props.course.commencementDate
+                      ? new Date(props.course.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </Typography>
+                )}
+                {props.course.deliveryMethod !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Delivery Method:</strong>
+                    </span>
+                    {props.course.deliveryMethod}
+                  </Typography>
+                )}
+                {props.course.venue !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Venue:</strong>
+                    </span>
+                    {props.course.venue}
+                  </Typography>
+                )}
+                {props.course.passGrade !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Minimum NextChamp Grade:</strong>
+                    </span>
+                    {props.course.passGrade}
+                  </Typography>
+                )}
               </Box>
             </Grid>
             <Grid item className={classes.thirdRowMobile}>
@@ -867,8 +956,108 @@ export default function ProductDetailCard(props) {
               </Box>
             </Grid>
           </Grid>
-          <Grid item className={classes.secondColumnMobile}>
+          <Grid
+            item
+            container
+            direction="column"
+            style={{ width: "100%" }}
+            justifyContent="center"
+          >
+            <Grid
+              item
+              className={classes.secondColumnMobile}
+              style={{ marginLeft: "2%" }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Prerequisites:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.prerequisites}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid
+              item
+              className={classes.secondColumnMobile}
+              style={{ marginLeft: "0.5%" }}
+            >
+              <Box>
+                <Typography>
+                  <strong>What you will Learn:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.whatToLearn}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              className={classes.secondColumnMobile}
+              style={{ marginLeft: "0.5%" }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Required Learning Tools:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.tools}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              className={classes.secondColumnMobile}
+              style={{ marginLeft: "0.5%" }}
+            >
+              <Box>
+                <Typography>
+                  <strong>Who should attend:</strong>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{
+                    color: "black",
+                    marginTop: 20,
+                    marginBottom: 20,
+                    justifyContent: "center",
+                  }}
+                >
+                  {props.course.targetAudience}{" "}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid item className={classes.thirdColumnMobile}>
             <Box>
+              <Typography>
+                <strong>Course Description:</strong>
+              </Typography>
               <Typography
                 variant="h5"
                 style={{
@@ -882,6 +1071,63 @@ export default function ProductDetailCard(props) {
               </Typography>
             </Box>
           </Grid>
+          <Grid item className={classes.forthColumnMobile}>
+            <Box>
+              <Typography>
+                <strong>Course Content:</strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.contents}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item className={classes.fifthColumnMobile}>
+            <Box>
+              <Typography>
+                <strong>Capstone Project:</strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.capstoneProject}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item className={classes.sixthColumnMobile}>
+            <Box>
+              <Typography>
+                <strong>
+                  What you need to become the NextChamp in this Course:
+                </strong>
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  color: "black",
+                  marginTop: 20,
+                  marginBottom: 20,
+                  justifyContent: "center",
+                }}
+              >
+                {props.course.successTips}{" "}
+              </Typography>
+            </Box>
+          </Grid>
+          {/* </Grid> */}
         </Grid>
       )}
       {renderLoginForm()}
