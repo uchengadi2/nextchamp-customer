@@ -225,7 +225,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   drawer: {
-    backgroundColor: theme.palette.common.blue,
+    backgroundColor: theme.palette.common.green,
     marginLeft: "0px",
   },
   drawerItem: {
@@ -957,7 +957,7 @@ const Header = (props) => {
                 selected={props.value === 5}
               >
                 <ListItemText className={classes.drawerItem} disableTypography>
-                  My Classes
+                  Learning Center
                 </ListItemText>
               </ListItem>
               <ListItem
