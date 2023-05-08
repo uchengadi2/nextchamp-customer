@@ -557,7 +557,7 @@ const Marketplace = (props) => {
                     >
                       <span
                         style={{
-                          marginLeft: matchesSM ? 20 : 5,
+                          marginLeft: matchesSM ? 7 : 5,
                         }}
                       >
                         {" "}
@@ -567,7 +567,7 @@ const Marketplace = (props) => {
                         that makes professionals from novices
                       </span>
                       <br />
-                      <span style={{ marginLeft: matchesSM ? 20 : 110 }}>
+                      <span style={{ marginLeft: matchesSM ? 30 : 110 }}>
                         and experts from professionals
                       </span>
                     </Typography>

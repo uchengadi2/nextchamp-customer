@@ -368,7 +368,7 @@ function UpperFooter(props) {
                     <Typography variant="subtitle2">Say hello!</Typography>
                   ) : (
                     <Typography variant="subtitle2" style={{ fontSize: 14 }}>
-                      <span> Okota, Lagos</span>
+                      <span> 157 Adetola Street, Aguda, Surulere</span>
                       <br />
 
                       <span>info@nextchamp.co</span>
