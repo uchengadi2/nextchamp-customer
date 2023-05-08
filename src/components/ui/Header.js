@@ -95,15 +95,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoMobile: {
-    height: "11em",
-    width: "10em",
-    marginLeft: -15,
+    height: "3em",
+    width: "3em",
+    marginLeft: -30,
+    marginRight: "1.5px",
     padding: 0,
     [theme.breakpoints.down("md")]: {
-      height: "7em",
+      height: "4em",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "6.5em",
+      height: "4em",
     },
   },
   logoContainer: {
@@ -114,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainerMobile: {
     padding: 0,
+    marginLeft: "-10px",
     "&:hover": {
       backgroundColor: "transparent",
     },
@@ -171,6 +173,20 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+  searchMobile: {
+    //...theme.typography.estimate,
+    borderRadius: "30%",
+    marginLeft: "0px",
+    marginRight: "0px",
+    //height: "45px",
+    width: "35px",
+    backgroundColor: theme.palette.secondary.light,
+    color: "white",
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+      color: "white",
+    },
+  },
   checkout: {
     ...theme.typography.estimate,
     borderRadius: "250px",
@@ -203,13 +219,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerIconContainer: {
     //marginLeft: "auto",
-    marginLeft: 150,
+    marginLeft: "auto",
     "&:hover": {
       backgroundColor: "transparent",
     },
   },
   drawer: {
     backgroundColor: theme.palette.common.blue,
+    marginLeft: "0px",
   },
   drawerItem: {
     ...theme.typography.tab,
@@ -248,6 +265,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
+    "& .MuiFilledInput-root": {
+      background: "white",
+    },
+  },
+  rootMobile: {
+    maxWidth: "100%",
+    width: "100%",
+    height: 20,
     "& .MuiFilledInput-root": {
       background: "white",
     },
@@ -833,7 +858,7 @@ const Header = (props) => {
           onChange={handleCategoryChange}
           style={{
             marginTop: 0,
-            width: matchesMDUp ? 150 : 105,
+            width: matchesMDUp ? 150 : 80,
             height: 38,
             marginLeft: 0,
           }}
@@ -1178,99 +1203,6 @@ const Header = (props) => {
               </Grid>
             </Grid>
           )} */}
-          {/* {matchesMDUp ? (
-            <Toolbar disableGutters>
-              <Button
-                onClick={() => props.setValue(0)}
-                disableRipple
-                component={Link}
-                to="/"
-                className={classes.logoContainer}
-              >
-                <img alt="company logo" src={logo} className={classes.logo} />
-              </Button>
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 20,
-                }}
-              >
-                {renderCategoryField()}
-                <TextField
-                  variant="outlined"
-                  className={classes.root}
-                  style={{ width: 220, marginLeft: 8 }}
-                  onChange={onChangeSearchText}
-                  defaultValue={searchText}
-                  InputProps={{
-                    style: {
-                      height: 38,
-                    },
-                  }}
-                />
-                <Button
-                  onClick={() => <SearchPage />}
-                  disableRipple
-                  component={Link}
-                  to={`/${category}/products/${searchText}`}
-                  className={classes.search}
-                >
-                  Search
-                </Button>
-              </Box>
-
-              {matches ? drawer : tabs}
-            </Toolbar>
-          ) : (
-            <Toolbar disableGutters>
-              <Button
-                onClick={() => props.setValue(0)}
-                disableRipple
-                component={Link}
-                to="/"
-                className={classes.logoContainerMobile}
-              >
-                <img
-                  alt="company logo"
-                  src={logo}
-                  className={classes.logoMobile}
-                />
-              </Button>
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 20,
-                }}
-              >
-                {renderCategoryField()}
-                <TextField
-                  variant="outlined"
-                  className={classes.root}
-                  style={{ width: 150, marginLeft: 8 }}
-                  onChange={onChangeSearchText}
-                  defaultValue={searchText}
-                  InputProps={{
-                    style: {
-                      height: 38,
-                    },
-                  }}
-                />
-                <Button
-                  onClick={() => <SearchPage />}
-                  disableRipple
-                  component={Link}
-                  to={`/${category}/products/${searchText}`}
-                  className={classes.search}
-                >
-                  Search
-                </Button>
-              </Box>
-
-              {matches ? drawer : tabs}
-            </Toolbar>
-          )} */}
 
           {matchesMDUp ? (
             <Toolbar disableGutters>
@@ -1323,27 +1255,33 @@ const Header = (props) => {
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
-              {/* <Button
+              <Button
                 onClick={() => props.setValue(0)}
                 disableRipple
                 component={Link}
                 to="/"
-                className={classes.logoContainer}
+                className={classes.logoContainerMobile}
               >
-                <img alt="company logo" src={logo} className={classes.logo} />
-              </Button> */}
+                <img
+                  alt="company logo"
+                  src={logo}
+                  className={classes.logoMobile}
+                />
+              </Button>
               <Box
                 sx={{
                   backgroundColor: "white",
                   padding: 10,
-                  borderRadius: 20,
+                  borderRadius: 5,
+                  //width: 500,
+                  marginLeft: "-18px",
                 }}
               >
                 {renderCategoryField()}
                 <TextField
                   variant="outlined"
-                  className={classes.root}
-                  style={{ width: 150, marginLeft: 8 }}
+                  className={classes.rootMobile}
+                  style={{ width: 90, marginLeft: 5 }}
                   onChange={onChangeSearchText}
                   onKeyDown={(e) => (e.key === 13 ? <SearchPage /> : null)}
                   defaultValue={searchText}
@@ -1358,13 +1296,15 @@ const Header = (props) => {
                   disableRipple
                   component={Link}
                   to={`/${category}/courses/${searchText}`}
-                  className={classes.search}
+                  className={classes.searchMobile}
                 >
-                  Search
+                  <span style={{ fontSize: 12, marginLeft: "-8px" }}>
+                    Search
+                  </span>
                 </Button>
               </Box>
 
-              {/* {matches ? drawer : tabs} */}
+              {matches ? drawer : tabs}
             </Toolbar>
           )}
         </AppBar>
