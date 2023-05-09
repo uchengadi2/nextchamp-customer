@@ -3,7 +3,7 @@ import { createVendor } from "../../actions";
 
 class VendorCreate extends React.Component {
   render() {
-    return <div>Vendor Create</div>;
+    return <div>Vendor Createee</div>;
   }
 }
 
