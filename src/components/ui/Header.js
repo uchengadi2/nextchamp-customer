@@ -176,10 +176,10 @@ const useStyles = makeStyles((theme) => ({
   searchMobile: {
     //...theme.typography.estimate,
     borderRadius: "30%",
-    marginLeft: "0px",
+    marginLeft: "10px",
     marginRight: "0px",
     //height: "45px",
-    width: "35px",
+    //width: "5%",
     backgroundColor: theme.palette.secondary.light,
     color: "white",
     "&:hover": {
@@ -858,7 +858,7 @@ const Header = (props) => {
           onChange={handleCategoryChange}
           style={{
             marginTop: 0,
-            width: matchesMDUp ? 150 : 80,
+            width: matchesMDUp ? 150 : "100%",
             height: 38,
             marginLeft: 0,
           }}
@@ -1254,58 +1254,98 @@ const Header = (props) => {
               {matches ? drawer : tabs}
             </Toolbar>
           ) : (
-            <Toolbar disableGutters>
-              <Button
-                onClick={() => props.setValue(0)}
-                disableRipple
-                component={Link}
-                to="/"
-                className={classes.logoContainerMobile}
-              >
-                <img
-                  alt="company logo"
-                  src={logo}
-                  className={classes.logoMobile}
-                />
-              </Button>
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 5,
-                  //width: 500,
-                  marginLeft: "-18px",
-                }}
-              >
-                {renderCategoryField()}
-                <TextField
-                  variant="outlined"
-                  className={classes.rootMobile}
-                  style={{ width: 90, marginLeft: 5 }}
-                  onChange={onChangeSearchText}
-                  onKeyDown={(e) => (e.key === 13 ? <SearchPage /> : null)}
-                  defaultValue={searchText}
-                  InputProps={{
-                    style: {
-                      height: 38,
-                    },
-                  }}
-                />
+            <>
+              <Toolbar disableGutters>
                 <Button
-                  onClick={() => <SearchPage />}
+                  onClick={() => props.setValue(0)}
                   disableRipple
                   component={Link}
-                  to={`/${category}/courses/${searchText}`}
-                  className={classes.searchMobile}
+                  to="/"
+                  className={classes.logoContainerMobile}
                 >
-                  <span style={{ fontSize: 12, marginLeft: "-8px" }}>
-                    Search
-                  </span>
+                  <img
+                    alt="company logo"
+                    src={logo}
+                    className={classes.logoMobile}
+                  />
                 </Button>
-              </Box>
+                <Box
+                  sx={{
+                    backgroundColor: "white",
+                    padding: 1,
+                    borderRadius: 5,
+                    //width: "70%",
+                    marginLeft: "-18px",
+                  }}
+                >
+                  {renderCategoryField()}
+                  <TextField
+                    variant="outlined"
+                    className={classes.rootMobile}
+                    style={{ width: "45%", marginLeft: "0.5%" }}
+                    onChange={onChangeSearchText}
+                    onKeyDown={(e) => (e.key === 13 ? <SearchPage /> : null)}
+                    defaultValue={searchText}
+                    InputProps={{
+                      style: {
+                        height: 38,
+                      },
+                    }}
+                  />
+                  <Button
+                    onClick={() => <SearchPage />}
+                    disableRipple
+                    component={Link}
+                    to={`/${category}/courses/${searchText}`}
+                    className={classes.searchMobile}
+                    style={{ width: "15%" }}
+                  >
+                    <span style={{ fontSize: 12, marginLeft: "-10px" }}>
+                      Search
+                    </span>
+                  </Button>
+                </Box>
 
-              {matches ? drawer : tabs}
-            </Toolbar>
+                {matches ? drawer : tabs}
+              </Toolbar>
+              {/* <Toolbar>
+                <Box
+                  sx={{
+                    backgroundColor: "white",
+                    padding: 10,
+                    borderRadius: 5,
+                    width: "78%",
+                    //marginLeft: "18px",
+                  }}
+                >
+                  {renderCategoryField()}
+                  <TextField
+                    variant="outlined"
+                    className={classes.rootMobile}
+                    style={{ width: "40%", marginLeft: 5 }}
+                    onChange={onChangeSearchText}
+                    onKeyDown={(e) => (e.key === 13 ? <SearchPage /> : null)}
+                    defaultValue={searchText}
+                    InputProps={{
+                      style: {
+                        height: 38,
+                      },
+                    }}
+                  />
+                  <Button
+                    onClick={() => <SearchPage />}
+                    disableRipple
+                    component={Link}
+                    to={`/${category}/courses/${searchText}`}
+                    className={classes.searchMobile}
+                  >
+                    <span style={{ fontSize: 12, marginLeft: "-8px" }}>
+                      Search
+                    </span>
+                  </Button>
+                </Box>
+              </Toolbar> */}
+            </>
           )}
         </AppBar>
       </ElevationScroll>
