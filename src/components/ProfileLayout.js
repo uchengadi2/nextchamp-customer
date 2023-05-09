@@ -26,6 +26,7 @@ import background from "./../assets/images/footage/footage_image.png";
 import history from "./../history";
 import data from "./../apis/local";
 import UserOwnPasswordChange from "./users/UserOwnPasswordChange";
+import UserChangePasswordForm from "./users/UserChangePasswordForm";
 import UserOwnNameChangeContainer from "./users/UserOwnNameChangeContainer";
 import UpperFooter from "./ui/UpperFooter";
 
@@ -67,9 +68,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
+    maxWidth: "100%",
     width: "100%",
     height: "80vh",
-    marginTop: "0.2rem",
+    marginTop: "0.5rem",
     // height: "100%",
     position: "relative",
     "& video": {
@@ -142,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mainContainer: {
-    marginTop: "5em",
+    marginTop: "2em",
     marginLeft: "2px",
     [theme.breakpoints.down("md")]: {
       marginTop: "3em",
@@ -236,7 +238,7 @@ const ProfileLayout = (props) => {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-  const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const [aboutUsOpen, setAboutUsOpen] = useState(false);
   const [contactUsOpen, setContactUsOpen] = useState(false);
   const [becomePartnerOpen, setBecomePartnerOpen] = useState(false);
@@ -246,6 +248,7 @@ const ProfileLayout = (props) => {
   const [passwordFormOpen, setPasswordFormOpen] = useState(false);
   const [nameFormOpen, setNameFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(null);
+  const [updateUser, setUpdateUser] = useState(false);
 
   const getUserIdFromLocatStorage = () => {
     const tokenString = localStorage.getItem("token");
@@ -260,6 +263,7 @@ const ProfileLayout = (props) => {
     message: "",
     backgroundColor: "",
   });
+
   const defaultOptions = {
     loop: true,
     autoplay: false,
@@ -267,6 +271,29 @@ const ProfileLayout = (props) => {
     rendererSettings: {
       preserveAspectRatio: "xMidyMid slice",
     },
+  };
+
+  const updateUserInfoHandler = () => {
+    setUpdateUser((prevState) => !prevState);
+  };
+
+  const handleSuccessfulCreateSnackbar = (message) => {
+    //setBecomePartnerOpen(false);
+    setAlert({
+      open: true,
+      message: message,
+      //backgroundColor: "#4BB543",
+      backgroundColor: "#FF731D",
+    });
+  };
+
+  const handleFailedSnackbar = (message) => {
+    setAlert({
+      open: true,
+      message: message,
+      backgroundColor: "#FF3232",
+    });
+    //setBecomePartnerOpen(true);
   };
 
   useEffect(() => {
@@ -285,7 +312,7 @@ const ProfileLayout = (props) => {
     //call the function
 
     fetchData().catch(console.error);
-  }, []);
+  }, [updateUser]);
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -309,13 +336,17 @@ const ProfileLayout = (props) => {
         onClose={() => [setPasswordFormOpen(false), history.push("/profile")]}
       >
         <DialogContent>
-          <UserOwnPasswordChange
+          <UserChangePasswordForm
             setToken={props.setToken}
-            existingToken={props.token}
-            userId={userId}
+            setUserId={props.setUserId}
+            token={props.token}
+            userId={props.userId}
+            updateUserInfoHandler={updateUserInfoHandler}
             handleMakeChangePasswordDialogForm={
               handleMakeChangePasswordDialogForm
             }
+            handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+            handleFailedSnackbar={handleFailedSnackbar}
           />
         </DialogContent>
       </Dialog>
@@ -334,7 +365,11 @@ const ProfileLayout = (props) => {
           <UserOwnNameChangeContainer
             existingToken={props.token}
             userId={userId}
+            updateUserInfoHandler={updateUserInfoHandler}
             handleMakeChangeNameDialogForm={handleMakeChangeNameDialogForm}
+            handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+            handleFailedSnackbar={handleFailedSnackbar}
+            user={user}
           />
         </DialogContent>
       </Dialog>
@@ -345,91 +380,114 @@ const ProfileLayout = (props) => {
     <>
       {isLoading && (
         <CircularProgress
-          size={100}
+          size={80}
           color="inherit"
-          style={{ marginTop: 250, marginLeft: 650 }}
+          style={{ marginTop: 300, marginLeft: 650 }}
         />
       )}
-      {!isLoading && (
-        <Grid container direction="row" className={classes.root}>
-          <Grid item>
-            <Box className={classes.root}>
-              <Box
-                component="div"
-                id="profileLayout"
-                // onSubmit={onSubmit}
-                sx={{
-                  width: 1400,
-                  height: 480,
-                }}
-                noValidate
-                autoComplete="off"
-                // style={{ marginTop: 20 }}
-              >
-                <Grid container direction="row" className={classes.background}>
-                  <Box
-                    sx={{
-                      width: 350,
-                      height: 180,
-                    }}
-                    noValidate
-                    autoComplete="off"
-                  ></Box>
-                </Grid>
-
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                  style={{ marginTop: 15 }}
+      {matchesMdUp ? (
+        !isLoading && (
+          <Grid container direction="row" className={classes.root}>
+            <Grid item>
+              <Box className={classes.root}>
+                <Box
+                  component="div"
+                  id="profileLayout"
+                  // onSubmit={onSubmit}
+                  sx={{
+                    width: 1350,
+                    height: 480,
+                  }}
+                  noValidate
+                  autoComplete="off"
+                  // style={{ marginTop: 20 }}
                 >
-                  <Grid item>
-                    <Typography variant="subtitle1">{user.name}</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="subtitle1">{user.email}</Typography>
+                  <Grid
+                    container
+                    direction="row"
+                    className={classes.background}
+                  >
+                    <Box
+                      sx={{
+                        width: 350,
+                        height: 180,
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    ></Box>
                   </Grid>
 
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      className={classes.sendButton}
-                      // onClick={() => setPasswordFormOpen(true)}
-                      onClick={() => [setPasswordFormOpen(true)]}
-                    >
-                      Change Password
-                    </Button>
-                  </Grid>
                   <Grid
-                    item
                     container
-                    alignItems="center"
+                    direction="column"
                     justifyContent="center"
-                    style={{ marginTop: 20 }}
+                    alignItems="center"
+                    style={{ marginTop: 15 }}
                   >
-                    <Button
-                      variant="text"
-                      onClick={() => [setNameFormOpen(true)]}
+                    <Grid item>
+                      <Typography variant="subtitle1">{user.name}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">{user.email}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">
+                        {user.phoneNumber}
+                      </Typography>
+                    </Grid>
+
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        className={classes.sendButton}
+                        // onClick={() => setPasswordFormOpen(true)}
+                        onClick={() => [setPasswordFormOpen(true)]}
+                      >
+                        Change Password
+                      </Button>
+                    </Grid>
+                    <Grid
+                      item
+                      container
+                      alignItems="center"
+                      justifyContent="center"
+                      style={{ marginTop: 20 }}
                     >
-                      Change Name
-                    </Button>
+                      <Button
+                        variant="text"
+                        onClick={() => [setNameFormOpen(true)]}
+                      >
+                        Update User Details
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid item style={{ width: "100%", marginTop: "20px" }}>
+              {" "}
+              {/*....INFORMATION BLOCK....*/}
+            </Grid>
+            <Grid item className={classes.footer}>
+              <UpperFooter />
+            </Grid>
+            {renderChangePasswordForm()}
+            {renderChangeNameForm()}
           </Grid>
-          <Grid item style={{ width: "100%", marginTop: "20px" }}>
-            {" "}
-            {/*....INFORMATION BLOCK....*/}
-          </Grid>
-          <Grid item className={classes.footer}>
-            <UpperFooter />
-          </Grid>
-          {renderChangePasswordForm()}
-          {renderChangeNameForm()}
-        </Grid>
+        )
+      ) : (
+        <></>
       )}
+      <Snackbar
+        open={alert.open}
+        message={alert.message}
+        ContentProps={{
+          style: { backgroundColor: alert.backgroundColor },
+        }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        onClose={() => setAlert({ ...alert, open: false })}
+        autoHideDuration={4000}
+      />
     </>
   );
 };
