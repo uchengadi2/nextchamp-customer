@@ -329,6 +329,20 @@ const Marketplace = (props) => {
           targetAudience: course.targetAudience,
           whatToLearn: course.whatToLearn,
           venueLink: course.venueLink,
+          track: course.track,
+          status: course.status,
+          commencementWeekdaysDate: course.commencementWeekdaysDate,
+          commencementWeekendsDate: course.commencementWeekendsDate,
+          channel: course.channel,
+          programme: course.programme,
+          showGenericWeekdayStartDateText:
+            course.showGenericWeekdayStartDateText,
+          showGenericWeekendStartDateText:
+            course.showGenericWeekendStartDateText,
+          genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+          genericWeekendStartDateText: course.genericWeekendStartDateText,
+          weekdaySessionPeriod: course.weekdaySessionPeriod,
+          weekendSessionPeriod: course.weekendSessionPeriod,
         });
       });
       setCourseList(allData);
@@ -377,6 +391,22 @@ const Marketplace = (props) => {
               targetAudience={course.targetAudience}
               whatToLearn={course.whatToLearn}
               venueLink={course.venueLink}
+              track={course.track}
+              status={course.status}
+              commencementWeekdaysDate={course.commencementWeekdaysDate}
+              commencementWeekendsDate={course.commencementWeekendsDate}
+              showGenericWeekdayStartDateText={
+                course.showGenericWeekdayStartDateText
+              }
+              showGenericWeekendStartDateText={
+                course.showGenericWeekendStartDateText
+              }
+              genericWeekdayStartDateText={course.genericWeekdayStartDateText}
+              genericWeekendStartDateText={course.genericWeekendStartDateText}
+              channel={course.channel}
+              programme={course.programme}
+              weekdaySessionPeriod={course.weekdaySessionPeriod}
+              weekendSessionPeriod={course.weekendSessionPeriod}
               image={course.image}
               courseId={course.id}
               token={props.token}
@@ -423,6 +453,22 @@ const Marketplace = (props) => {
               targetAudience={course.targetAudience}
               whatToLearn={course.whatToLearn}
               venueLink={course.venueLink}
+              track={course.track}
+              status={course.status}
+              commencementWeekdaysDate={course.commencementWeekdaysDate}
+              commencementWeekendsDate={course.commencementWeekendsDate}
+              showGenericWeekdayStartDateText={
+                course.showGenericWeekdayStartDateText
+              }
+              showGenericWeekendStartDateText={
+                course.showGenericWeekendStartDateText
+              }
+              genericWeekdayStartDateText={course.genericWeekdayStartDateText}
+              genericWeekendStartDateText={course.genericWeekendStartDateText}
+              channel={course.channel}
+              programme={course.programme}
+              weekdaySessionPeriod={course.weekdaySessionPeriod}
+              weekendSessionPeriod={course.weekendSessionPeriod}
               image={course.image}
               courseId={course.id}
               token={props.token}
