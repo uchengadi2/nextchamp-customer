@@ -564,6 +564,12 @@ export default function AllCourses(props) {
                     </span>
                   </Typography>
                 )}
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Payment Options:</strong>
+                    <span>{props.paymentOptions}</span>
+                  </span>
+                </Typography>
               </CardContent>
             </Grid>
 

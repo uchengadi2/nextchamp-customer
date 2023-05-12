@@ -343,6 +343,7 @@ const Marketplace = (props) => {
           genericWeekendStartDateText: course.genericWeekendStartDateText,
           weekdaySessionPeriod: course.weekdaySessionPeriod,
           weekendSessionPeriod: course.weekendSessionPeriod,
+          paymentOptions: course.paymentOptions,
         });
       });
       setCourseList(allData);
@@ -407,6 +408,7 @@ const Marketplace = (props) => {
               programme={course.programme}
               weekdaySessionPeriod={course.weekdaySessionPeriod}
               weekendSessionPeriod={course.weekendSessionPeriod}
+              paymentOptions={course.paymentOptions}
               image={course.image}
               courseId={course.id}
               token={props.token}
@@ -469,6 +471,7 @@ const Marketplace = (props) => {
               programme={course.programme}
               weekdaySessionPeriod={course.weekdaySessionPeriod}
               weekendSessionPeriod={course.weekendSessionPeriod}
+              paymentOptions={course.paymentOptions}
               image={course.image}
               courseId={course.id}
               token={props.token}
