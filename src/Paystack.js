@@ -72,8 +72,8 @@ function Paystack(props) {
     className: classes.checkout,
     email: props.email,
     amount: props.amount,
-    publicKey: "pk_test_a05da864e0ce9986ad6cc3ff0bbaec0caf02dd9e", //eshield test
-    //publicKey: "pk_live_d97f9c616487f5e4e9b9f2be5ce8db274a0a4fb5", //eshield live
+    //publicKey: "pk_test_9181f2dcbb5a6bf2cf56c8f2632eaa5e2fd182cb", //wholeroof test
+    publicKey: "pk_live_5700e72ac96f8aafda7af34e76b1dcfd1b6ec8b2", //wholeroof live
   };
 
   console.log("this is the props:", props);
