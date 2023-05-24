@@ -508,7 +508,7 @@ function ProductDetails(props) {
 
   return (
     <Grid container direction="row" className={classes.root}>
-      <Grid item style={{ width: "100%", marginTop: "10px" }}>
+      <Grid item style={{ marginTop: "10px" }}>
         {isLoading && (
           <CircularProgress
             size={100}

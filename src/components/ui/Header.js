@@ -625,7 +625,7 @@ const Header = (props) => {
     : [
         { name: "Home", link: "/", activeIndex: 0 },
 
-        { name: "Career", link: `/career`, activeIndex: 1 },
+        // { name: "Career", link: `/career`, activeIndex: 1 },
         // { name: "Profile", link: "/profile", activeIndex: 2 },
       ];
 

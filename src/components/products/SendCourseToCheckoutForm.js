@@ -18,7 +18,7 @@ import { FaBullseye } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 600,
+    //width: 600,
   },
   formStyles: {
     width: 600,

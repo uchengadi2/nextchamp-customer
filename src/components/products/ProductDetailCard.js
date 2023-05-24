@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     //height: 440,
     //height: 500,
 
-    marginLeft: "0.5%",
+    //marginLeft: "0.1%",
     borderRadius: 0,
     marginTop: "4em",
     padding: 0,
