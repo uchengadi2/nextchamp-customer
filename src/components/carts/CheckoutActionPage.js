@@ -207,6 +207,7 @@ function CheckoutActionPage(props) {
   const dispatch = useDispatch();
 
   const classes = useStyles();
+
   // const [total, setTotal] = useState(
   //   price
   //     ? (+props.quantity * price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
@@ -645,6 +646,7 @@ function CheckoutActionPage(props) {
       paymentStatus: "paid",
 
       orderedBy: props.userId,
+      preferredStartDate: props.preferredStartDate,
     };
     return (
       <Paystack

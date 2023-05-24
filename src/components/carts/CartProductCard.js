@@ -229,6 +229,16 @@ export default function CartProductCard(props) {
         targetAudience: course.targetAudience,
         whatToLearn: course.whatToLearn,
         venueLink: course.venueLink,
+        commencementWeekdaysDate: course.commencementWeekdaysDate,
+        commencementWeekendsDate: course.commencementWeekendsDate,
+        genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+        genericWeekendStartDateText: course.genericWeekendStartDateText,
+        showGenericWeekdayStartDateText: course.showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText: course.showGenericWeekendStartDateText,
+        weekdaySessionPeriod: course.weekdaySessionPeriod,
+        weekendSessionPeriod: course.weekendSessionPeriod,
+        paymentOptions: course.paymentOptions,
+        track: course.track,
       });
 
       if (!allData) {
@@ -262,6 +272,18 @@ export default function CartProductCard(props) {
         targetAudience: allData[0].targetAudience,
         whatToLearn: allData[0].whatToLearn,
         venueLink: allData[0].venueLink,
+        commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
+        commencementWeekendsDate: allData[0].commencementWeekendsDate,
+        genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
+        genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
+        showGenericWeekdayStartDateText:
+          allData[0].showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText:
+          allData[0].showGenericWeekendStartDateText,
+        weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
+        weekendSessionPeriod: allData[0].weekendSessionPeriod,
+        paymentOptions: allData[0].paymentOptions,
+        track: allData[0].track,
       });
     };
 
@@ -609,7 +631,6 @@ export default function CartProductCard(props) {
                             .toFixed(2)
                             .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                         : ""}
-                      /person
                     </strong>
                   </span>
                 </Typography>
@@ -620,14 +641,22 @@ export default function CartProductCard(props) {
                   style={{ marginTop: 10 }}
                 >
                   <strong>Course duration:</strong>&nbsp;&nbsp;
-                  {`${course.duration}`}&nbsp;days
+                  {`${course.duration}`}&nbsp;
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
                   <strong>Start Date: </strong>&nbsp;&nbsp;
-                  {course.commencementDate
-                    ? new Date(course.commencementDate).toDateString()
-                    : "Coming Soon"}
+                  {props.preferredStartDate
+                    ? new Date(props.preferredStartDate).toDateString()
+                    : "Will Communicate the start date to you"}
+                  {/* </span> */}
                 </Typography>
+
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Venue: </strong>&nbsp;&nbsp; {`${course.venue}`}
                 </Typography>
@@ -639,6 +668,17 @@ export default function CartProductCard(props) {
                   <strong>Reference Number : </strong>&nbsp;&nbsp;
                   {`${course.refNumber ? course.refNumber : ""}`}
                 </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
+                  <strong>Payment Options:</strong>
+                  <span>{course.paymentOptions}</span>
+                  {/* </span> */}
+                </Typography>
               </CardContent>
             </Grid>
 
@@ -649,6 +689,7 @@ export default function CartProductCard(props) {
                   minimumQuantity={course.minimumQuantity}
                   courseId={course.id}
                   currency={course.currency}
+                  preferredStartDate={props.preferredStartDate}
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}
@@ -750,6 +791,7 @@ export default function CartProductCard(props) {
                   minimumQuantity={course.minimumQuantity}
                   courseId={course.id}
                   currency={course.currency}
+                  preferredStartDate={props.preferredStartDate}
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}

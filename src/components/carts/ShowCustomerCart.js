@@ -313,8 +313,7 @@ function ShowCustomerCart(props) {
           course: cart.course,
           cartHolder: cart.cartHolder,
           dateAddedToCart: cart.dateAddedToCart,
-          // locationCountry: cart.locationCountry,
-          // productLocation: cart.productLocation,
+          preferredStartDate: cart.preferredStartDate,
           refNumber: cart.refNumber,
           quantity: cart.quantity,
         });
@@ -339,8 +338,6 @@ function ShowCustomerCart(props) {
 
   const Str = require("@supercharge/strings");
 
-  console.log("cart list is:", cartProductList);
-
   const cartList = matchesMD ? (
     <React.Fragment>
       {
@@ -352,8 +349,7 @@ function ShowCustomerCart(props) {
               cartHolder={cart.cartHolder}
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
-              // locationCountry={cart.locationCountry}
-              // productLocation={cart.productLocation}
+              preferredStartDate={cart.preferredStartDate}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               token={props.token}
@@ -388,8 +384,7 @@ function ShowCustomerCart(props) {
               cartHolder={cart.cartHolder}
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
-              // locationCountry={cart.locationCountry}
-              // productLocation={cart.productLocation}
+              preferredStartDate={cart.preferredStartDate}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               token={props.token}

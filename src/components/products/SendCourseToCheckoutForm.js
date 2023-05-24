@@ -85,6 +85,41 @@ const renderRequestedQuantityField = ({
   );
 };
 
+const renderPreferredStartDateField = ({
+  input,
+  label,
+  meta: { touched, error, invalid },
+  type,
+  id,
+  ...custom
+}) => {
+  return (
+    <TextField
+      //error={touched && invalid}
+      helperText="Enter your preferred start date"
+      variant="outlined"
+      label={label}
+      id={input.name}
+      //value={input.value}
+      fullWidth
+      //required
+      type={type}
+      {...custom}
+      //disabled
+      // defaultValue={`${minimumQuantity}`}
+      onChange={input.onChange}
+      InputProps={{
+        inputProps: {
+          min: 1,
+          style: {
+            height: 1,
+          },
+        },
+      }}
+    />
+  );
+};
+
 function SendCourseToCheckoutForm(props) {
   const { courseId, token, userId } = props;
   const [quantity, setQuantity] = useState(1);
@@ -222,42 +257,6 @@ function SendCourseToCheckoutForm(props) {
     );
   };
 
-  const renderMinimumQuantityField = ({
-    input,
-    label,
-    meta: { touched, error, invalid },
-    type,
-    id,
-    ...custom
-  }) => {
-    return (
-      <TextField
-        //error={touched && invalid}
-        helperText="Minimum number of Learner(s) slot required"
-        variant="outlined"
-        label={label}
-        id={input.name}
-        //value={input.value}
-        fullWidth
-        //required
-        type={type}
-        {...custom}
-        //disabled
-        defaultValue={`${minimumQuantity}`}
-        onChange={input.onChange}
-        InputProps={{
-          inputProps: {
-            min: 1,
-            style: {
-              height: 1,
-            },
-          },
-          readOnly: true,
-        }}
-      />
-    );
-  };
-
   const buttonContent = () => {
     return <React.Fragment> Enrol</React.Fragment>;
   };
@@ -268,6 +267,8 @@ function SendCourseToCheckoutForm(props) {
 
   const onSubmit = (formValues) => {
     setLoading(true);
+
+    console.log("preferredStartDate is:", formValues.preferredStartDate);
 
     if (props.token === undefined) {
       props.handleMakeOpenLoginFormDialogStatus();
@@ -313,6 +314,7 @@ function SendCourseToCheckoutForm(props) {
       price: price,
       currency: props.currency,
       status: "marked-for-checkout",
+      preferredStartDate: formValues.preferredStartDate,
     };
 
     //create a new cart and add the product
@@ -390,6 +392,7 @@ function SendCourseToCheckoutForm(props) {
       price: price,
       currency: props.currency,
       status: "unmarked-for-checkout",
+      preferredStartDate: formValues.preferredStartDate,
     };
 
     //create a new cart and add the product
@@ -440,15 +443,15 @@ function SendCourseToCheckoutForm(props) {
           style={{ marginTop: 10, marginBottom: 10 }}
           justifyContent="center"
         ></Grid>
-        {/* <Field
-          label=""
-          id="minimumQuantity"
-          name="minimumQuantity"
-          type="text"
-          component={renderMinimumQuantityField}
-          style={{ width: 300 }}
-        />
         <Field
+          label=""
+          id="preferredStartDate"
+          name="preferredStartDate"
+          type="date"
+          component={renderPreferredStartDateField}
+          style={{ width: 300, marginBottom: 20 }}
+        />
+        {/* <Field
           label=""
           id="quantity"
           name="quantity"

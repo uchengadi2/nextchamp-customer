@@ -309,7 +309,6 @@ function ProductDetails(props) {
         deliveryMethod: course.deliveryMethod,
         duration: course.duration,
         category: course.category,
-        commencementDate: course.commencementDate,
         price: course.price,
         currency: course.currency,
         venue: course.venue,
@@ -331,6 +330,19 @@ function ProductDetails(props) {
         capstoneProject: course.capstoneProject,
         passGrade: course.passGrade,
         successTips: course.successTips,
+        track: course.track,
+        status: course.status,
+        commencementWeekdaysDate: course.commencementWeekdaysDate,
+        commencementWeekendsDate: course.commencementWeekendsDate,
+        channel: course.channel,
+        programme: course.programme,
+        showGenericWeekdayStartDateText: course.showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText: course.showGenericWeekendStartDateText,
+        genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+        genericWeekendStartDateText: course.genericWeekendStartDateText,
+        weekdaySessionPeriod: course.weekdaySessionPeriod,
+        weekendSessionPeriod: course.weekendSessionPeriod,
+        paymentOptions: course.paymentOptions,
       });
 
       setCourse({
@@ -365,6 +377,21 @@ function ProductDetails(props) {
         capstoneProject: allData[0].capstoneProject,
         passGrade: allData[0].passGrade,
         successTips: allData[0].successTips,
+        track: allData[0].track,
+        status: allData[0].status,
+        commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
+        commencementWeekendsDate: allData[0].commencementWeekendsDate,
+        channel: allData[0].channel,
+        programme: allData[0].programme,
+        showGenericWeekdayStartDateText:
+          allData[0].showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText:
+          allData[0].showGenericWeekendStartDateText,
+        genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
+        genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
+        weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
+        weekendSessionPeriod: allData[0].weekendSessionPeriod,
+        paymentOptions: allData[0].paymentOptions,
       });
       setIsLoading(false);
     };
@@ -394,6 +421,23 @@ function ProductDetails(props) {
             capstoneProject={course.capstoneProject}
             passGrade={course.passGrade}
             successTips={course.successTips}
+            track={course.track}
+            status={course.status}
+            commencementWeekdaysDate={course.commencementWeekdaysDate}
+            commencementWeekendsDate={course.commencementWeekendsDate}
+            channel={course.channel}
+            programme={course.programme}
+            showGenericWeekdayStartDateText={
+              course.showGenericWeekdayStartDateText
+            }
+            showGenericWeekendStartDateText={
+              course.showGenericWeekendStartDateText
+            }
+            genericWeekdayStartDateText={course.genericWeekdayStartDateText}
+            genericWeekendStartDateText={course.genericWeekendStartDateText}
+            weekdaySessionPeriod={course.weekdaySessionPeriod}
+            weekendSessionPeriod={course.weekendSessionPeriod}
+            paymentOptions={course.paymentOptions}
             key={course.id}
             token={props.token}
             userId={props.userId}
@@ -430,6 +474,23 @@ function ProductDetails(props) {
             capstoneProject={course.capstoneProject}
             passGrade={course.passGrade}
             successTips={course.successTips}
+            track={course.track}
+            status={course.status}
+            commencementWeekdaysDate={course.commencementWeekdaysDate}
+            commencementWeekendsDate={course.commencementWeekendsDate}
+            channel={course.channel}
+            programme={course.programme}
+            showGenericWeekdayStartDateText={
+              course.showGenericWeekdayStartDateText
+            }
+            showGenericWeekendStartDateText={
+              course.showGenericWeekendStartDateText
+            }
+            genericWeekdayStartDateText={course.genericWeekdayStartDateText}
+            genericWeekendStartDateText={course.genericWeekendStartDateText}
+            weekdaySessionPeriod={course.weekdaySessionPeriod}
+            weekendSessionPeriod={course.weekendSessionPeriod}
+            paymentOptions={course.paymentOptions}
             key={course.id}
             token={props.token}
             userId={props.userId}

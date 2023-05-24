@@ -263,6 +263,8 @@ function CheckoutDeliveryAndPayment(props) {
   // );
   const [loading, setLoading] = useState();
 
+  console.log("props props:", props);
+
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -546,6 +548,7 @@ function CheckoutDeliveryAndPayment(props) {
               recipientName: customerName,
               recipientPhoneNumber: customerPhoneNumber,
               recipientEmailAddress: customerEmail,
+              preferredStartDate: cart.preferredStartDate,
 
               totalDeliveryCost: totalDeliveryCost
                 ? totalDeliveryCost.toFixed(2)

@@ -295,6 +295,7 @@ function CartUpdateAndDeliveryForm(props) {
         location: item[0].productLocation,
         locationCountry: item[0].locationCountry,
         cartHolder: item[0].cartHolder,
+        preferredStartDate: item[0].preferredStartDate,
       });
 
       if (allData[0].quantity) {

@@ -101,7 +101,7 @@ function CourseInfo(props) {
   };
 
   return (
-    <form id="searchActionPage">
+    <form id="courseInfo">
       <Box
         sx={{
           width: 200,

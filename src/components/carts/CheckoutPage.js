@@ -288,6 +288,7 @@ function CheckoutPage(props) {
           price: cart.price,
           currency: cart.currency,
           status: cart.status,
+          preferredStartDate: cart.preferredStartDate,
         });
       });
 
@@ -324,6 +325,7 @@ function CheckoutPage(props) {
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               price={cart.price}
+              preferredStartDate={cart.preferredStartDate}
               currency={cart.currency}
               status={cart.status}
               token={props.token}
@@ -360,6 +362,7 @@ function CheckoutPage(props) {
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               price={cart.price}
+              preferredStartDate={cart.preferredStartDate}
               currency={cart.currency}
               status={cart.status}
               token={props.token}

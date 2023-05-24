@@ -170,6 +170,8 @@ export default function CheckoutCard(props) {
         duration: course.duration,
         category: course.category,
         commencementDate: course.commencementDate,
+        commencementWeekdaysDate: course.commencementWeekdaysDate,
+        commencementWeekendsDate: course.commencementWeekendsDate,
         price: course.price,
         currency: course.currency,
         venue: course.venue,
@@ -187,6 +189,16 @@ export default function CheckoutCard(props) {
         targetAudience: course.targetAudience,
         whatToLearn: course.whatToLearn,
         venueLink: course.venueLink,
+        commencementWeekdaysDate: course.commencementWeekdaysDate,
+        commencementWeekendsDate: course.commencementWeekendsDate,
+        genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+        genericWeekendStartDateText: course.genericWeekendStartDateText,
+        showGenericWeekdayStartDateText: course.showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText: course.showGenericWeekendStartDateText,
+        weekdaySessionPeriod: course.weekdaySessionPeriod,
+        weekendSessionPeriod: course.weekendSessionPeriod,
+        paymentOptions: course.paymentOptions,
+        track: course.track,
       });
 
       if (!allData) {
@@ -220,6 +232,18 @@ export default function CheckoutCard(props) {
         targetAudience: allData[0].targetAudience,
         whatToLearn: allData[0].whatToLearn,
         venueLink: allData[0].venueLink,
+        commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
+        commencementWeekendsDate: allData[0].commencementWeekendsDate,
+        genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
+        genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
+        showGenericWeekdayStartDateText:
+          allData[0].showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText:
+          allData[0].showGenericWeekendStartDateText,
+        weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
+        weekendSessionPeriod: allData[0].weekendSessionPeriod,
+        paymentOptions: allData[0].paymentOptions,
+        track: allData[0].track,
       });
     };
 
@@ -491,18 +515,23 @@ export default function CheckoutCard(props) {
                             .toFixed(2)
                             .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                         : ""}
-                      <span style={{ fontSize: 12 }}> &nbsp; per person</span>
+                      <span style={{ fontSize: 12 }}> &nbsp;</span>
                     </strong>
                   </span>
                 </Typography>
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Course duration:</strong> &nbsp;
-                  {`${course.duration}`} &nbsp; days
+                  {`${course.duration}`} &nbsp;
                 </Typography>
                 <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Start Date: </strong> &nbsp;
-                  {new Date(course.commencementDate).toDateString()}
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
+                  <strong>Start Date: </strong>&nbsp;&nbsp;
+                  {props.preferredStartDate
+                    ? new Date(props.preferredStartDate).toDateString()
+                    : "Start date will be communicated to you"}
+                  {/* </span> */}
                 </Typography>
+
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Venue: </strong> &nbsp;{`${course.venue}`}
                 </Typography>
@@ -513,6 +542,12 @@ export default function CheckoutCard(props) {
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Reference Number : </strong> &nbsp;
                   {`${course.refNumber ? course.refNumber : ""}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
+                  <strong>Payment Options:</strong>
+                  <span>{course.paymentOptions}</span>
+                  {/* </span> */}
                 </Typography>
               </CardContent>
             </Grid>
@@ -526,6 +561,7 @@ export default function CheckoutCard(props) {
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}
+                  preferredStartDate={props.preferredStartDate}
                   cartId={props.cartId}
                   currency={course.currency}
                   dateAddedToCart={props.dateAddedToCart}
@@ -594,20 +630,23 @@ export default function CheckoutCard(props) {
                             .toFixed(2)
                             .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                         : ""}
-                      <span style={{ fontSize: 12 }}> &nbsp; per person</span>
+                      <span style={{ fontSize: 12 }}> &nbsp;</span>
                     </strong>
                   </span>
                 </Typography>
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Course duration:</strong> &nbsp;
-                  {`${course.duration}`} &nbsp; days
+                  {`${course.duration}`} &nbsp;
                 </Typography>
                 <Typography variant="h5" color="textSecondary" component="p">
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
                   <strong>Start Date: </strong>&nbsp;&nbsp;
-                  {course.commencementDate
-                    ? new Date(course.commencementDate).toDateString()
-                    : "Coming Soon"}
+                  {props.preferredStartDate
+                    ? new Date(props.preferredStartDate).toDateString()
+                    : "Start date will be communicated to you"}
+                  {/* </span> */}
                 </Typography>
+
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Venue: </strong> &nbsp;{`${course.venue}`}
                 </Typography>
@@ -618,6 +657,12 @@ export default function CheckoutCard(props) {
                 <Typography variant="h5" color="textSecondary" component="p">
                   <strong>Reference Number : </strong> &nbsp;
                   {`${course.refNumber ? course.refNumber : ""}`}
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Payment Options:</strong>
+                    <span>{props.paymentOptions}</span>
+                  </span>
                 </Typography>
               </CardContent>
             </Grid>
@@ -636,6 +681,7 @@ export default function CheckoutCard(props) {
                   price={course.price}
                   minimumQuantity={course.minimumQuantity}
                   courseId={course.id}
+                  preferredStartDate={props.preferredStartDate}
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}

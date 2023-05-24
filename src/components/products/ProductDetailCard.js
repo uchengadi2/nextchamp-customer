@@ -513,9 +513,7 @@ export default function ProductDetailCard(props) {
                   {price
                     ? price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
                     : 0}
-                  <span style={{ fontSize: 12, marginLeft: 0 }}>
-                    per learner
-                  </span>
+                  <span style={{ fontSize: 12, marginLeft: 0 }}></span>
                 </Typography>
                 <Typography
                   variant="h5"
@@ -550,7 +548,7 @@ export default function ProductDetailCard(props) {
                       {" "}
                       <strong>Duration:</strong>
                     </span>
-                    {props.course.duration} hours
+                    {props.course.duration}
                   </Typography>
                 )}
                 {props.course.commencementDate !== undefined && (
@@ -589,6 +587,46 @@ export default function ProductDetailCard(props) {
                       <strong>Venue:</strong>
                     </span>
                     {props.course.venue}
+                  </Typography>
+                )}
+                {props.course.track !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Track:</strong>
+                    </span>
+                    {props.course.track}
+                  </Typography>
+                )}
+                {props.course.commencementWeekdaysDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Weekday Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.commencementWeekdaysDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.commencementWeekendsDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Weekend Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.commencementWeekendsDate.join("|")}
+                    </span>
                   </Typography>
                 )}
                 {props.course.passGrade !== undefined && (
@@ -833,9 +871,7 @@ export default function ProductDetailCard(props) {
                   {price
                     ? price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
                     : 0}
-                  <span style={{ fontSize: 12, marginLeft: 0 }}>
-                    per person
-                  </span>
+                  <span style={{ fontSize: 12, marginLeft: 0 }}></span>
                 </Typography>
                 <Typography
                   variant="h5"
@@ -870,10 +906,10 @@ export default function ProductDetailCard(props) {
                       {" "}
                       <strong>Duration:</strong>
                     </span>
-                    {props.course.duration} hours
+                    {props.course.duration}
                   </Typography>
                 )}
-                {props.course.commencementDate !== undefined && (
+                {/* {props.course.commencementDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -886,7 +922,7 @@ export default function ProductDetailCard(props) {
                       ? new Date(props.course.commencementDate).toDateString()
                       : "Coming Soon"}
                   </Typography>
-                )}
+                )} */}
                 {props.course.deliveryMethod !== undefined && (
                   <Typography
                     variant="h5"
@@ -909,6 +945,34 @@ export default function ProductDetailCard(props) {
                       <strong>Venue:</strong>
                     </span>
                     {props.course.venue}
+                  </Typography>
+                )}
+                {props.course.commencementWeekdaysDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Weekday Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.commencementWeekdaysDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.commencementWeekendsDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Weekend Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.commencementWeekendsDate.join("|")}
+                    </span>
                   </Typography>
                 )}
                 {props.course.passGrade !== undefined && (

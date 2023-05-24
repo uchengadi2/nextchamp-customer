@@ -76,6 +76,8 @@ function Paystack(props) {
     //publicKey: "pk_live_d97f9c616487f5e4e9b9f2be5ce8db274a0a4fb5", //eshield live
   };
 
+  console.log("this is the props:", props);
+
   // you can call this function anything
   const handlePaystackSuccessAction = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
@@ -141,8 +143,7 @@ function Paystack(props) {
               recipientPhoneNumber: props.data.recipientPhoneNumber,
               recipientEmailAddress: props.data.recipientEmailAddress,
               totalDeliveryCost: props.data.totalDeliveryCost.toFixed(2),
-              //totalProductCost: totalProductCost.toFixed(2),
-              //productVendor: cart.productVendor,
+              preferredStartDate: cart.preferredStartDate,
               cartId: cart.id,
               quantityAdddedToCart: cart.quantity,
               orderedQuantity: cart.quantity,
