@@ -76,8 +76,6 @@ function Paystack(props) {
     publicKey: "pk_live_5700e72ac96f8aafda7af34e76b1dcfd1b6ec8b2", //wholeroof live
   };
 
-  console.log("this is the props:", props);
-
   // you can call this function anything
   const handlePaystackSuccessAction = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.

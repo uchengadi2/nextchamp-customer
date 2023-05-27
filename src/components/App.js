@@ -131,7 +131,7 @@ function App() {
                 setUserId={setUserId ? setUserId : {}}
               />
             </Route>
-            <Route path="/categories/:categoryId/:courseId">
+            <Route path="/categories/:catSlug/:slug">
               <ProductDetails
                 token={token}
                 userId={userId}

@@ -86,15 +86,42 @@ function CourseInfo(props) {
     venueLink,
     categoryId,
     productId,
+
+    slug,
   } = props;
 
   const params = useParams();
 
-  const user = params.userId;
+  //const user = params.userId;
 
   const classes = useStyles();
 
   const [loading, setLoading] = useState();
+  const [categorySlug, setCategorySlug] = useState();
+
+  //get the category slug
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let allData = [];
+      api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+      const response = await api.get(`/categories/${categoryId}`);
+      const items = response.data.data.data;
+
+      allData.push({
+        id: items._id,
+        slug: items.slug,
+      });
+
+      if (allData) {
+        setCategorySlug(allData[0].slug);
+      }
+    };
+
+    //call the function
+
+    fetchData().catch(console.error);
+  }, [categoryId, props]);
 
   const buttonContent = () => {
     return <React.Fragment>Show Details</React.Fragment>;
@@ -128,26 +155,29 @@ function CourseInfo(props) {
           {targetAudience}&nbsp;
         </Typography>
 
-        <Button
-          component={Link}
-          // to="/mobileapps"
-          to={`/categories/${categoryId}/${productId}`}
-          varaint="outlined"
-          className={classes.submitButton}
-          onClick={() => <ProductDetails />}
-        >
-          {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
-          {loading ? (
-            <CircularProgress size={30} color="inherit" />
-          ) : (
-            buttonContent()
-          )}
-          {/* <ButtonArrow
+        {categorySlug && (
+          <Button
+            component={Link}
+            // to="/mobileapps"
+            // to={`/categories/${categoryId}/${productId}`}
+            to={`/categories/${categorySlug}/${slug}`}
+            varaint="outlined"
+            className={classes.submitButton}
+            onClick={() => <ProductDetails />}
+          >
+            {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
+            {loading ? (
+              <CircularProgress size={30} color="inherit" />
+            ) : (
+              buttonContent()
+            )}
+            {/* <ButtonArrow
             height={10}
             width={10}
             fill={theme.palette.common.blue}
           /> */}
-        </Button>
+          </Button>
+        )}
       </Box>
     </form>
   );

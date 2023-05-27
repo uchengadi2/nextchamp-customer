@@ -232,9 +232,8 @@ function ProductDetails(props) {
     },
   };
 
-  console.log("course info:", props);
-  const categoryId = params.categoryId;
-  const courseId = params.courseId;
+  const categorySlug = params.catSlug;
+  const slug = params.slug;
 
   const handleBecomeAPartnerOpenDialogBox = () => {
     setBecomePartnerOpen(false);
@@ -291,115 +290,134 @@ function ProductDetails(props) {
   //   fetchData().catch(console.error);
   // }, []);
 
+  console.log("props is:", props);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       let allData = [];
       api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-      const response = await api.get(`/courses/${courseId}`);
+      const response = await api.get(`/courses`, {
+        params: { slug: slug },
+      });
       const course = response.data.data.data;
 
-      allData.push({
-        id: course._id,
-        title: course.title,
-        imageCover: course.imageCover,
-        shortDescription: course.shortDescription,
-        longDescription: course.longDescription,
-        features: course.features,
-        deliveryMethod: course.deliveryMethod,
-        duration: course.duration,
-        category: course.category,
-        price: course.price,
-        currency: course.currency,
-        venue: course.venue,
-        refNumber: course.refNumber,
-        sessionDuration: course.sessionDuration,
-        sessionPeriod: course.sessionPeriod,
-        studyPeriod: course.studyPeriod,
-        lectureDuration: course.lectureDuration,
-        projectDuration: course.projectDuration,
-        instructor: course.instructor,
-        image: course.imageCover,
-        createBy: course.createBy,
-        prerequisites: course.prerequisites,
-        tools: course.tools,
-        targetAudience: course.targetAudience,
-        whatToLearn: course.whatToLearn,
-        venueLink: course.venueLink,
-        contents: course.contents,
-        capstoneProject: course.capstoneProject,
-        passGrade: course.passGrade,
-        successTips: course.successTips,
-        track: course.track,
-        status: course.status,
-        commencementWeekdaysDate: course.commencementWeekdaysDate,
-        commencementWeekendsDate: course.commencementWeekendsDate,
-        channel: course.channel,
-        programme: course.programme,
-        showGenericWeekdayStartDateText: course.showGenericWeekdayStartDateText,
-        showGenericWeekendStartDateText: course.showGenericWeekendStartDateText,
-        genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-        genericWeekendStartDateText: course.genericWeekendStartDateText,
-        weekdaySessionPeriod: course.weekdaySessionPeriod,
-        weekendSessionPeriod: course.weekendSessionPeriod,
-        paymentOptions: course.paymentOptions,
-      });
+      console.log("this is commencementDate:", course[0].commencementDate);
+      console.log("this is category:", course[0].category);
+      console.log("this is image:", course[0].image);
 
-      setCourse({
-        id: allData[0].id,
-        title: allData[0].title,
-        imageCover: allData[0].imageCover,
-        shortDescription: allData[0].shortDescription,
-        longDescription: allData[0].longDescription,
-        features: allData[0].features,
-        deliveryMethod: allData[0].deliveryMethod,
-        duration: allData[0].duration,
-        category: allData[0].category,
-        commencementDate: allData[0].commencementDate,
-        price: allData[0].price,
-        currency: allData[0].currency,
-        venue: allData[0].venue,
-        refNumber: allData[0].refNumber,
-        sessionDuration: allData[0].sessionDuration,
-        sessionPeriod: allData[0].sessionPeriod,
-        studyPeriod: allData[0].studyPeriod,
-        lectureDuration: allData[0].lectureDuration,
-        projectDuration: allData[0].projectDuration,
-        instructor: allData[0].instructor,
-        image: allData[0].image,
-        createBy: allData[0].createBy,
-        prerequisites: allData[0].prerequisites,
-        tools: allData[0].tools,
-        targetAudience: allData[0].targetAudience,
-        whatToLearn: allData[0].whatToLearn,
-        venueLink: allData[0].venueLink,
-        contents: allData[0].contents,
-        capstoneProject: allData[0].capstoneProject,
-        passGrade: allData[0].passGrade,
-        successTips: allData[0].successTips,
-        track: allData[0].track,
-        status: allData[0].status,
-        commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
-        commencementWeekendsDate: allData[0].commencementWeekendsDate,
-        channel: allData[0].channel,
-        programme: allData[0].programme,
-        showGenericWeekdayStartDateText:
-          allData[0].showGenericWeekdayStartDateText,
-        showGenericWeekendStartDateText:
-          allData[0].showGenericWeekendStartDateText,
-        genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
-        genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
-        weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
-        weekendSessionPeriod: allData[0].weekendSessionPeriod,
-        paymentOptions: allData[0].paymentOptions,
-      });
-      setIsLoading(false);
+      console.log("course:", course[0]);
+
+      if (course.length >= 1) {
+        allData.push({
+          id: course[0]._id,
+          title: course[0].title,
+          imageCover: course[0].imageCover,
+          shortDescription: course[0].shortDescription,
+          longDescription: course[0].longDescription,
+          features: course[0].features,
+          deliveryMethod: course[0].deliveryMethod,
+          duration: course[0].duration,
+          category: course[0].category,
+          price: course[0].price,
+          currency: course[0].currency,
+          venue: course[0].venue,
+          refNumber: course[0].refNumber,
+          sessionDuration: course[0].sessionDuration,
+          sessionPeriod: course[0].sessionPeriod,
+          studyPeriod: course[0].studyPeriod,
+          lectureDuration: course[0].lectureDuration,
+          projectDuration: course[0].projectDuration,
+          instructor: course[0].instructor,
+          image: course[0].imageCover,
+          createBy: course[0].createBy,
+          prerequisites: course[0].prerequisites,
+          tools: course[0].tools,
+          targetAudience: course[0].targetAudience,
+          whatToLearn: course[0].whatToLearn,
+          venueLink: course[0].venueLink,
+          contents: course[0].contents,
+          capstoneProject: course[0].capstoneProject,
+          passGrade: course[0].passGrade,
+          successTips: course[0].successTips,
+          track: course[0].track,
+          status: course[0].status,
+          slug: course[0].slug,
+          commencementWeekdaysDate: course[0].commencementWeekdaysDate,
+          commencementWeekendsDate: course[0].commencementWeekendsDate,
+          channel: course[0].channel,
+          programme: course[0].programme,
+          showGenericWeekdayStartDateText:
+            course[0].showGenericWeekdayStartDateText,
+          showGenericWeekendStartDateText:
+            course[0].showGenericWeekendStartDateText,
+          genericWeekdayStartDateText: course[0].genericWeekdayStartDateText,
+          genericWeekendStartDateText: course[0].genericWeekendStartDateText,
+          weekdaySessionPeriod: course[0].weekdaySessionPeriod,
+          weekendSessionPeriod: course[0].weekendSessionPeriod,
+          paymentOptions: course[0].paymentOptions,
+        });
+
+        setCourse({
+          id: allData[0].id,
+          title: allData[0].title,
+          imageCover: allData[0].imageCover,
+          shortDescription: allData[0].shortDescription,
+          longDescription: allData[0].longDescription,
+          features: allData[0].features,
+          deliveryMethod: allData[0].deliveryMethod,
+          duration: allData[0].duration,
+          category: allData[0].category,
+          commencementDate: allData[0].commencementDate,
+          price: allData[0].price,
+          currency: allData[0].currency,
+          venue: allData[0].venue,
+          refNumber: allData[0].refNumber,
+          sessionDuration: allData[0].sessionDuration,
+          sessionPeriod: allData[0].sessionPeriod,
+          studyPeriod: allData[0].studyPeriod,
+          lectureDuration: allData[0].lectureDuration,
+          projectDuration: allData[0].projectDuration,
+          instructor: allData[0].instructor,
+          image: allData[0].image,
+          createBy: allData[0].createBy,
+          prerequisites: allData[0].prerequisites,
+          tools: allData[0].tools,
+          targetAudience: allData[0].targetAudience,
+          whatToLearn: allData[0].whatToLearn,
+          venueLink: allData[0].venueLink,
+          contents: allData[0].contents,
+          capstoneProject: allData[0].capstoneProject,
+          passGrade: allData[0].passGrade,
+          successTips: allData[0].successTips,
+          track: allData[0].track,
+          status: allData[0].status,
+          commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
+          commencementWeekendsDate: allData[0].commencementWeekendsDate,
+          channel: allData[0].channel,
+          slug: allData[0].slug,
+          programme: allData[0].programme,
+          showGenericWeekdayStartDateText:
+            allData[0].showGenericWeekdayStartDateText,
+          showGenericWeekendStartDateText:
+            allData[0].showGenericWeekendStartDateText,
+          genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
+          genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
+          weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
+          weekendSessionPeriod: allData[0].weekendSessionPeriod,
+          paymentOptions: allData[0].paymentOptions,
+        });
+
+        setIsLoading(false);
+      }
     };
 
     //call the function
 
     fetchData().catch(console.error);
-  }, []);
+  }, [slug]);
+
+  console.log("this is the course", course);
 
   const Str = require("@supercharge/strings");
 
@@ -427,6 +445,7 @@ function ProductDetails(props) {
             commencementWeekendsDate={course.commencementWeekendsDate}
             channel={course.channel}
             programme={course.programme}
+            slug={course.slug}
             showGenericWeekdayStartDateText={
               course.showGenericWeekdayStartDateText
             }
@@ -479,6 +498,7 @@ function ProductDetails(props) {
             commencementWeekdaysDate={course.commencementWeekdaysDate}
             commencementWeekendsDate={course.commencementWeekendsDate}
             channel={course.channel}
+            slug={course.slug}
             programme={course.programme}
             showGenericWeekdayStartDateText={
               course.showGenericWeekdayStartDateText

@@ -444,7 +444,7 @@ export default function AllCourses(props) {
   return (
     <>
       {matchesMDUp ? (
-        <Card className={classes.root} disableRipple>
+        <Card className={classes.root}>
           {/* <CardActionArea disableRipple> */}
           <Grid container direction="row">
             <Grid item style={{ width: "26.94%" }}>
@@ -458,7 +458,7 @@ export default function AllCourses(props) {
               />
             </Grid>
             <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
-              <CardContent disableRipple>
+              <CardContent>
                 <Typography variant="h4" color="textSecondary" component="p">
                   {props.title}
                 </Typography>
@@ -582,6 +582,8 @@ export default function AllCourses(props) {
                 venueLink={props.venueLink}
                 categoryId={props.category}
                 productId={props.courseId}
+                slug={props.slug}
+                categorySlug={props.categorySlug}
               />
             </Grid>
           </Grid>
@@ -709,6 +711,8 @@ export default function AllCourses(props) {
                   venueLink={props.venueLink}
                   categoryId={props.category}
                   productId={props.courseId}
+                  slug={props.slug}
+                  categorySlug={props.categorySlug}
                 />
               </Grid>
             </Grid>

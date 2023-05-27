@@ -344,6 +344,7 @@ const Marketplace = (props) => {
           weekdaySessionPeriod: course.weekdaySessionPeriod,
           weekendSessionPeriod: course.weekendSessionPeriod,
           paymentOptions: course.paymentOptions,
+          slug: course.slug,
         });
       });
       setCourseList(allData);
@@ -411,6 +412,7 @@ const Marketplace = (props) => {
               paymentOptions={course.paymentOptions}
               image={course.image}
               courseId={course.id}
+              slug={course.slug}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
@@ -474,6 +476,7 @@ const Marketplace = (props) => {
               paymentOptions={course.paymentOptions}
               image={course.image}
               courseId={course.id}
+              slug={course.slug}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
