@@ -411,8 +411,6 @@ function ShowCustomerCart(props) {
     return <React.Fragment>Proceed to Checkout</React.Fragment>;
   };
 
-  console.log("the userid is:", props.userId);
-
   const onSubmit = () => {
     setLoading(true);
 

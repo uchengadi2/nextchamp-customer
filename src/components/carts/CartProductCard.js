@@ -712,31 +712,8 @@ export default function CartProductCard(props) {
                   }
                 />
               )}
-              {/* <CardActions>
-              <Button
-                component={Link}
-                // to="/mobileapps"
-                to={`/categories/${props.categoryId}/${props.productId}`}
-                varaint="outlined"
-                className={classes.learnButton}
-                onClick={() => (
-                  <ProductDetails
-                    productId={props.productId}
-                    token={props.token}
-                  />
-                )}
-              >
-                <span style={{ marginRight: 10 }}>Show Details </span>
-                <ButtonArrow
-                  height={10}
-                  width={10}
-                  fill={theme.palette.common.blue}
-                />
-              </Button>
-            </CardActions> */}
             </Grid>
           </Grid>
-          {/* </CardActionArea> */}
         </Card>
       ) : (
         <Card className={classes.rootMobile} disableRipple>
@@ -754,7 +731,7 @@ export default function CartProductCard(props) {
             </Grid>
             <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
-                <Typography variant="h5" color="textSecondary" component="p">
+                <Typography variant="h4" color="textSecondary" component="p">
                   {`${course.title} `}
                 </Typography>
                 <Typography
@@ -762,7 +739,7 @@ export default function CartProductCard(props) {
                   color="textSecondary"
                   component="p"
                 >
-                  {Str(product.shortDescription).limit(200, "...").get()}
+                  {Str(course.shortDescription).limit(200, "...").get()}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -778,9 +755,53 @@ export default function CartProductCard(props) {
                             .toFixed(2)
                             .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                         : ""}
-                      /unit
                     </strong>
                   </span>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  <strong>Course duration:</strong>&nbsp;&nbsp;
+                  {`${course.duration}`}&nbsp;
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
+                  <strong>Start Date: </strong>&nbsp;&nbsp;
+                  {props.preferredStartDate
+                    ? new Date(props.preferredStartDate).toDateString()
+                    : "Will Communicate the start date to you"}
+                  {/* </span> */}
+                </Typography>
+
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Venue: </strong>&nbsp;&nbsp; {`${course.venue}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Delivery Method: </strong> &nbsp;&nbsp;
+                  {`${course.deliveryMethod}`}
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Reference Number : </strong>&nbsp;&nbsp;
+                  {`${course.refNumber ? course.refNumber : ""}`}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                  style={{ marginTop: 10 }}
+                >
+                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
+                  <strong>Payment Options:</strong>
+                  <span>{course.paymentOptions}</span>
+                  {/* </span> */}
                 </Typography>
               </CardContent>
             </Grid>
@@ -815,31 +836,8 @@ export default function CartProductCard(props) {
                   }
                 />
               )}
-              {/* <CardActions>
-              <Button
-                component={Link}
-                // to="/mobileapps"
-                to={`/categories/${props.categoryId}/${props.productId}`}
-                varaint="outlined"
-                className={classes.learnButton}
-                onClick={() => (
-                  <ProductDetails
-                    productId={props.productId}
-                    token={props.token}
-                  />
-                )}
-              >
-                <span style={{ marginRight: 10 }}>Show Details </span>
-                <ButtonArrow
-                  height={10}
-                  width={10}
-                  fill={theme.palette.common.blue}
-                />
-              </Button>
-            </CardActions> */}
             </Grid>
           </Grid>
-          {/* </CardActionArea> */}
         </Card>
       )}
       <Dialog

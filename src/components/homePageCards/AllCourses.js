@@ -605,7 +605,7 @@ export default function AllCourses(props) {
                   </Typography>
                   <Typography>
                     <span
-                      style={{ fontSize: 15, marginLeft: 10, marginTop: 20 }}
+                      style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}
                     >
                       <strong>Delivery Method:</strong> &nbsp;
                       <span>{props.deliveryMethod}</span>
@@ -613,63 +613,53 @@ export default function AllCourses(props) {
                   </Typography>
 
                   <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
                       <strong> Venue:</strong>
                       <span>{props.venue}</span>
                     </span>
                   </Typography>
                   <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
                       <strong> Total Course Duration:</strong>
-                      <span>{props.duration}</span>
+                      <span>{props.duration} </span>
                     </span>
                   </Typography>
-                  {/* <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Duration for Lectures/Teaching:</strong>
-                      <span>{props.lectureDuration} days</span>
-                    </span>
-                  </Typography> */}
-                  {/* <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Duration for Project:</strong>
-                      <span>{props.projectDuration} days</span>
-                    </span>
-                  </Typography> */}
-                  {/* <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Session Duration:</strong>
-                      <span>{props.sessionDuration} hours per day</span>
-                    </span>
-                  </Typography> */}
-                  {/* <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Session Period:</strong>
-                      <span>{props.sessionPeriod}</span>
-                    </span>
-                  </Typography> */}
-                  {/* <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Study Days:</strong>
-                      <span>{props.studyPeriod}</span>
-                    </span>
-                  </Typography> */}
 
                   <Typography>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Start Date:</strong>
-                      <span>
-                        {new Date(props.commencementDate).toDateString()}
-                      </span>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Course Track:</strong>
+                      <span>{props.track}</span>
                     </span>
                   </Typography>
+                  {(props.track === "weekdays" ||
+                    props.track === "weekdays/weekends") && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
+                        {!props.showGenericWeekdayStartDateText
+                          ? props.commencementWeekdaysDate.toString()
+                          : props.genericWeekdayStartDateText}
+                      </span>
+                    </Typography>
+                  )}
 
-                  {/* <Typography style={{ marginTop: 10 }}>
-                    <span style={{ fontSize: 15, marginLeft: 10 }}>
-                      <strong> Vendor:</strong>
-                      <span>{vendorName}</span>
+                  {(props.track === "weekends" ||
+                    props.track === "weekdays/weekends") && (
+                    <Typography>
+                      <span style={{ fontSize: 15, marginLeft: 10 }}>
+                        <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
+                        {!props.showGenericWeekendStartDateText
+                          ? props.commencementWeekendsDate.toString()
+                          : props.genericWeekendStartDateText}
+                      </span>
+                    </Typography>
+                  )}
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Payment Options:</strong>
+                      <span>{props.paymentOptions}</span>
                     </span>
-                  </Typography> */}
+                  </Typography>
                 </CardContent>
               </Grid>
 

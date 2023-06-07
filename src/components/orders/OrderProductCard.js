@@ -608,7 +608,7 @@ export default function OrderProductCard(props) {
                   variant="h5"
                   color="textSecondary"
                   component="p"
-                  style={{ marginTop: 10 }}
+                  style={{ marginTop: 20 }}
                 >
                   <strong>Course duration:</strong>&nbsp;&nbsp;
                   {`${product.duration}`}&nbsp;days
@@ -634,11 +634,20 @@ export default function OrderProductCard(props) {
                   variant="h5"
                   color="textSecondary"
                   component="p"
+                  style={{ marginTop: 15 }}
+                >
+                  <strong>Course Link : </strong>&nbsp;&nbsp;
+                  {`${product.refNumber ? product.venueLink : ""}`}
+                </Typography>
+                {/* <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
                   style={{ marginTop: 10 }}
                 >
                   <strong>Course Link : </strong>&nbsp;&nbsp;
                   {`${product.venueLink ? product.venueLink : ""}`}
-                </Typography>
+                </Typography> */}
               </CardContent>
             </Grid>
 

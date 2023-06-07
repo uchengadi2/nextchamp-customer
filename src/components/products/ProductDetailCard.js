@@ -1048,7 +1048,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.prerequisites}{" "}
+                  <ReactMarkdown>{props.course.prerequisites}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -1071,7 +1071,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.whatToLearn}{" "}
+                  <ReactMarkdown>{props.course.whatToLearn}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -1093,7 +1093,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.tools}{" "}
+                  <ReactMarkdown>{props.course.tools}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -1115,7 +1115,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.targetAudience}{" "}
+                  <ReactMarkdown>{props.course.targetAudience}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -1134,7 +1134,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.longDescription}{" "}
+                <ReactMarkdown>{props.course.longDescription}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -1152,7 +1152,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.contents}{" "}
+                <ReactMarkdown>{props.course.contents}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -1170,7 +1170,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.capstoneProject}{" "}
+                <ReactMarkdown>{props.course.capstoneProject}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -1190,7 +1190,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.successTips}{" "}
+                <ReactMarkdown>{props.course.successTips}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>

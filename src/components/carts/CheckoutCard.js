@@ -606,7 +606,7 @@ export default function CheckoutCard(props) {
               }}
             >
               <CardContent disableRipple>
-                <Typography variant="h5" color="textSecondary" component="p">
+                <Typography variant="h4" color="textSecondary" component="p">
                   {`${course.title} `}
                 </Typography>
                 <Typography
@@ -658,11 +658,9 @@ export default function CheckoutCard(props) {
                   <strong>Reference Number : </strong> &nbsp;
                   {`${course.refNumber ? course.refNumber : ""}`}
                 </Typography>
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong>Payment Options:</strong>
-                    <span>{props.paymentOptions}</span>
-                  </span>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  <strong>Payment Options: </strong> &nbsp;
+                  {`${course.paymentOptions}`}
                 </Typography>
               </CardContent>
             </Grid>
