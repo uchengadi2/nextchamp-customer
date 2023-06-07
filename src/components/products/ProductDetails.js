@@ -290,8 +290,6 @@ function ProductDetails(props) {
   //   fetchData().catch(console.error);
   // }, []);
 
-  console.log("props is:", props);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -301,12 +299,6 @@ function ProductDetails(props) {
         params: { slug: slug },
       });
       const course = response.data.data.data;
-
-      console.log("this is commencementDate:", course[0].commencementDate);
-      console.log("this is category:", course[0].category);
-      console.log("this is image:", course[0].image);
-
-      console.log("course:", course[0]);
 
       if (course.length >= 1) {
         allData.push({
@@ -417,8 +409,6 @@ function ProductDetails(props) {
     fetchData().catch(console.error);
   }, [slug]);
 
-  console.log("this is the course", course);
-
   const Str = require("@supercharge/strings");
 
   const courseData = matchesMD ? (
@@ -466,6 +456,7 @@ function ProductDetails(props) {
               props.handleSuccessfulCreateSnackbar
             }
             handleFailedSnackbar={props.handleFailedSnackbar}
+            cartCounterHandler={props.cartCounterHandler}
           />
         </Grid>
       }
@@ -520,6 +511,7 @@ function ProductDetails(props) {
               props.handleSuccessfulCreateSnackbar
             }
             handleFailedSnackbar={props.handleFailedSnackbar}
+            cartCounterHandler={props.cartCounterHandler}
           />
         </Grid>
       }

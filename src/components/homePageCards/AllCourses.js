@@ -505,42 +505,13 @@ export default function AllCourses(props) {
                     <span>{props.duration} </span>
                   </span>
                 </Typography>
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong> Duration for Coursework:</strong>
-                    <span>{props.lectureDuration}</span>
-                  </span>
-                </Typography>
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong> Duration for Project:</strong>
-                    <span>{props.projectDuration}</span>
-                  </span>
-                </Typography>
+
                 <Typography>
                   <span style={{ fontSize: 14, marginLeft: 10 }}>
                     <strong>Course Track:</strong>
                     <span>{props.track}</span>
                   </span>
                 </Typography>
-                {(props.track === "weekdays" ||
-                  props.track === "weekdays/weekends") && (
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong> Weekday Class Period:</strong>
-                      <span>{props.weekdaySessionPeriod}</span>
-                    </span>
-                  </Typography>
-                )}
-                {(props.track === "weekends" ||
-                  props.track === "weekdays/weekends") && (
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong> Weekend Class Period:</strong>
-                      <span>{props.weekendSessionPeriod}</span>
-                    </span>
-                  </Typography>
-                )}
 
                 {(props.track === "weekdays" ||
                   props.track === "weekdays/weekends") && (
@@ -653,36 +624,36 @@ export default function AllCourses(props) {
                       <span>{props.duration}</span>
                     </span>
                   </Typography>
-                  <Typography>
+                  {/* <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Duration for Lectures/Teaching:</strong>
                       <span>{props.lectureDuration} days</span>
                     </span>
-                  </Typography>
-                  <Typography>
+                  </Typography> */}
+                  {/* <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Duration for Project:</strong>
                       <span>{props.projectDuration} days</span>
                     </span>
-                  </Typography>
-                  <Typography>
+                  </Typography> */}
+                  {/* <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Session Duration:</strong>
                       <span>{props.sessionDuration} hours per day</span>
                     </span>
-                  </Typography>
-                  <Typography>
+                  </Typography> */}
+                  {/* <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Session Period:</strong>
                       <span>{props.sessionPeriod}</span>
                     </span>
-                  </Typography>
-                  <Typography>
+                  </Typography> */}
+                  {/* <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>
                       <strong> Study Days:</strong>
                       <span>{props.studyPeriod}</span>
                     </span>
-                  </Typography>
+                  </Typography> */}
 
                   <Typography>
                     <span style={{ fontSize: 15, marginLeft: 10 }}>

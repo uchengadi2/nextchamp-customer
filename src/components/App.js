@@ -29,6 +29,7 @@ import CareerPage from "./career/CareerPage";
 
 import OrderPage from "./orders/OrderPage";
 import SearchPage from "./search/SearchPage";
+import api from "./../apis/local";
 
 function App() {
   const { token, setToken } = useToken();
@@ -36,6 +37,7 @@ function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
   const [resetCookie, setResetCookie] = useState(false);
+  const [cartCounter, setCartCounter] = useState(0);
   const [cartItemForCheckout, setCartItemForCheckout] = useState(false);
   const [cartIsUpdatedAfterRemoval, setCartIsUpdatedAfterRemoval] =
     useState(false);
@@ -78,12 +80,46 @@ function App() {
     //console.log("this is performed");
   };
 
-  // useEffect(() => {
-  //   setResetCookie(false);
-  //   setToken("");
-  //   setUserId("");
-  //   //console.log("this is performed again");
-  // }, [resetCookie]);
+  useEffect(() => {
+    const fetchData = async () => {
+      //setIsLoading(true);
+      let allData = [];
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const response = await api.get(`/carts`, {
+        params: {
+          cartHolder: userId,
+          status: "unmarked-for-checkout",
+          //isDeleted: false,
+        },
+      });
+
+      const items = response.data.data.data;
+
+      if (!items) {
+        return;
+      }
+
+      items.map((cart) => {
+        allData.push({
+          id: cart._id,
+        });
+      });
+
+      if (!allData) {
+        return;
+      }
+
+      setCartCounter(allData.length);
+    };
+
+    //call the function
+
+    fetchData().catch(console.error);
+  }, [userId, token]);
+
+  const cartCounterHandler = (value) => {
+    setCartCounter((prevState) => prevState + value);
+  };
 
   return (
     <div className="wrapper">
@@ -96,8 +132,7 @@ function App() {
             setSelectedIndex={setSelectedIndex}
             token={token}
             userId={userId}
-            // setToken={setToken ? setToken : {}}
-            // setUserId={setUserId ? setUserId : {}}
+            cartCounter={cartCounter}
             setToken={setToken ? setToken : null}
             setUserId={setUserId ? setUserId : null}
           />
@@ -137,6 +172,7 @@ function App() {
                 userId={userId}
                 setToken={setToken ? setToken : {}}
                 setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
                 handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
                 handleFailedSnackbar={handleFailedSnackbar}
               />
@@ -147,6 +183,7 @@ function App() {
                 userId={userId}
                 setToken={setToken ? setToken : {}}
                 setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
                 handleCartItemForCheckoutBox={handleCartItemForCheckoutBox}
                 handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
                 handleFailedSnackbar={handleFailedSnackbar}

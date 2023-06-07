@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     width: "100%",
     height: "80vh",
-    marginTop: "0.5rem",
+    marginTop: "2.5rem",
     // height: "100%",
     position: "relative",
     "& video": {

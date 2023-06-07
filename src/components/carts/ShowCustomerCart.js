@@ -350,6 +350,7 @@ function ShowCustomerCart(props) {
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
               preferredStartDate={cart.preferredStartDate}
+              cartCounterHandler={props.cartCounterHandler}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               token={props.token}
@@ -385,6 +386,7 @@ function ShowCustomerCart(props) {
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
               preferredStartDate={cart.preferredStartDate}
+              cartCounterHandler={props.cartCounterHandler}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               token={props.token}

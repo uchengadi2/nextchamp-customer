@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import ReactMarkdown from "react-markdown";
 import { useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     width: 130,
     marginLeft: 80,
     marginTop: 30,
+    marginBottom: 20,
     color: "white",
     backgroundColor: theme.palette.common.green,
     "&:hover": {
@@ -148,12 +150,15 @@ function SearchPageAction(props) {
   const {
     price,
     productId,
+    slug,
     categoryId,
     minimumQuantity,
     remainingTotalUnits,
     weight,
     token,
     userId,
+    prerequisites,
+    targetAudience,
   } = props;
   const [quantity, setQuantity] = useState(+props.quantity);
   const [productQuantityInCart, setProductQuantityInCart] = useState();
@@ -194,85 +199,31 @@ function SearchPageAction(props) {
       : 0
   );
   const [loading, setLoading] = useState();
+  const [categorySlug, setCategorySlug] = useState();
 
-  //get the currency name
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/rates`, {
-  //       params: { product: props.productId, ratedBy: user },
-  //     });
+  //get the category slug
 
-  //     const item = response.data.data.data;
-  //     console.log("rate response:", item);
+  useEffect(() => {
+    const fetchData = async () => {
+      let allData = [];
+      api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+      const response = await api.get(`/categories/${categoryId}`);
+      const items = response.data.data.data;
 
-  //     allData.push({
-  //       id: item[0]._id,
-  //       rate: item[0].rate,
-  //       rateComment: item[0].rateComment,
-  //       dateRated: item[0].dateRated,
-  //     });
+      allData.push({
+        id: items._id,
+        slug: items.slug,
+      });
 
-  //     if (!allData) {
-  //       return;
-  //     }
+      if (allData) {
+        setCategorySlug(allData[0].slug);
+      }
+    };
 
-  //     if (allData[0].rate) {
-  //       setRate(allData[0].rate);
-  //     }
-  //     if (allData[0].rateComment) {
-  //       setRateComment(allData[0].rateComment);
-  //     }
-  //     if (allData[0].dateRated) {
-  //       setDateRated(allData[0].dateRated);
-  //     }
-  //     if (allData[0].id) {
-  //       setRateId(allData[0].id);
-  //     }
-  //     setHasRate(true);
-  //   };
+    //call the function
 
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/countries`);
-  //     const workingData = response.data.data.data;
-  //     workingData.map((state) => {
-  //       allData.push({ id: state._id, name: state.name });
-  //     });
-  //     setCountryList(allData);
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/states`, {
-  //       params: { country: country },
-  //     });
-  //     const workingData = response.data.data.data;
-  //     workingData.map((state) => {
-  //       allData.push({ id: state._id, name: state.name });
-  //     });
-  //     setStateList(allData);
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [country]);
+    fetchData().catch(console.error);
+  }, [categoryId, props]);
 
   const onChange = (e) => {
     const quantity = parseFloat(e.target.value);
@@ -672,42 +623,40 @@ function SearchPageAction(props) {
           style={{ marginTop: 10, marginBottom: 10 }}
           justifyContent="center"
         ></Grid>
-        {/* <Typography>
-          <span style={{ fontSize: 15, marginLeft: 0 }}>
-            <strong> Unit Weight:</strong>
-            <span>{weight}&nbsp;kg</span>
-          </span>
+
+        <Typography style={{ width: 300, marginTop: 15 }}>
+          <strong>Prerequisites:</strong>&nbsp;
+          <ReactMarkdown>{prerequisites}</ReactMarkdown>
         </Typography>
-        <Typography style={{ width: 300, marginTop: 15 }}>
-          <strong>Stock Quantity:</strong>&nbsp;{remainingTotalUnits}
-          &nbsp;unit(s)
-        </Typography> */}
-        <Typography style={{ width: 300, marginTop: 15 }}>
-          <strong>Minimum Learners' Slot:</strong>&nbsp;
-          {minimumQuantity}&nbsp;
+        <br />
+        <Typography style={{ width: 300, marginTop: 10 }}>
+          <strong>Who should attend:</strong>&nbsp;
+          <ReactMarkdown>{targetAudience}</ReactMarkdown>
         </Typography>
 
-        <Button
-          component={Link}
-          // to="/mobileapps"
-          to={`/categories/${categoryId}/${productId}`}
-          varaint="outlined"
-          className={classes.submitButton}
-          onClick={() => <ProductDetails />}
-          style={{ marginBottom: 10 }}
-        >
-          {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
-          {loading ? (
-            <CircularProgress size={30} color="inherit" />
-          ) : (
-            buttonContent()
-          )}
-          {/* <ButtonArrow
+        {categorySlug && (
+          <Button
+            component={Link}
+            // to="/mobileapps"
+            // to={`/categories/${categoryId}/${productId}`}
+            to={`/categories/${categorySlug}/${slug}`}
+            varaint="outlined"
+            className={classes.submitButton}
+            onClick={() => <ProductDetails />}
+          >
+            {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
+            {loading ? (
+              <CircularProgress size={30} color="inherit" />
+            ) : (
+              buttonContent()
+            )}
+            {/* <ButtonArrow
             height={10}
             width={10}
             fill={theme.palette.common.blue}
           /> */}
-        </Button>
+          </Button>
+        )}
       </Box>
     </form>
   );

@@ -175,6 +175,20 @@ export default function SearchProductCard(props) {
         targetAudience: course.targetAudience,
         whatToLearn: course.whatToLearn,
         venueLink: course.venueLink,
+        track: course.track,
+        status: course.status,
+        commencementWeekdaysDate: course.commencementWeekdaysDate,
+        commencementWeekendsDate: course.commencementWeekendsDate,
+        channel: course.channel,
+        programme: course.programme,
+        showGenericWeekdayStartDateText: course.showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText: course.showGenericWeekendStartDateText,
+        genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+        genericWeekendStartDateText: course.genericWeekendStartDateText,
+        weekdaySessionPeriod: course.weekdaySessionPeriod,
+        weekendSessionPeriod: course.weekendSessionPeriod,
+        paymentOptions: course.paymentOptions,
+        slug: course.slug,
       });
 
       if (!allData) {
@@ -208,6 +222,22 @@ export default function SearchProductCard(props) {
         targetAudience: allData[0].targetAudience,
         whatToLearn: allData[0].whatToLearn,
         venueLink: allData[0].venueLink,
+        track: allData[0].track,
+        status: allData[0].status,
+        commencementWeekdaysDate: allData[0].commencementWeekdaysDate,
+        commencementWeekendsDate: allData[0].commencementWeekendsDate,
+        channel: allData[0].channel,
+        programme: allData[0].programme,
+        showGenericWeekdayStartDateText:
+          allData[0].showGenericWeekdayStartDateText,
+        showGenericWeekendStartDateText:
+          allData[0].showGenericWeekendStartDateText,
+        genericWeekdayStartDateText: allData[0].genericWeekdayStartDateText,
+        genericWeekendStartDateText: allData[0].genericWeekendStartDateText,
+        weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
+        weekendSessionPeriod: allData[0].weekendSessionPeriod,
+        paymentOptions: allData[0].paymentOptions,
+        slug: allData[0].slug,
       });
     };
 
@@ -478,30 +508,63 @@ export default function SearchProductCard(props) {
                             .toFixed(2)
                             .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                         : 0}
-                      /person
                     </strong>
                   </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Course duration:</strong>&nbsp;&nbsp;
-                  {`${product.duration}`} days
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}>
+                    <strong>Delivery Method:</strong> &nbsp;
+                    <span>{product.deliveryMethod}</span>
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Start Date: </strong>&nbsp;&nbsp;
-                  {product.commencementDate
-                    ? new Date(product.commencementDate).toDateString()
-                    : "Coming Soon"}
+
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong> Venue:</strong>
+                    <span>{product.venue}</span>
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong> Total Course Duration:</strong>
+                    <span>{product.duration} </span>
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Delivery Method: </strong> &nbsp; &nbsp;
-                  {`${product.deliveryMethod}`}
+
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Course Track:</strong>
+                    <span>{product.track}</span>
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Reference Number : </strong> &nbsp;
-                  {`${product.refNumber ? product.refNumber : ""}`}
+
+                {(product.track === "weekdays" ||
+                  product.track === "weekdays/weekends") && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
+                      {!product.showGenericWeekdayStartDateText
+                        ? product.commencementWeekdaysDate.toString()
+                        : product.genericWeekdayStartDateText}
+                    </span>
+                  </Typography>
+                )}
+                {(product.track === "weekends" ||
+                  product.track === "weekdays/weekends") && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
+                      {!product.showGenericWeekendStartDateText
+                        ? product.commencementWeekendsDate.toString()
+                        : product.genericWeekendStartDateText}
+                    </span>
+                  </Typography>
+                )}
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Payment Options:</strong>
+                    <span>{product.paymentOptions}</span>
+                  </span>
                 </Typography>
               </CardContent>
             </Grid>
@@ -511,6 +574,9 @@ export default function SearchProductCard(props) {
                 price={product.price}
                 minimumQuantity={minLearnerSlot}
                 productId={product.id}
+                slug={product.slug}
+                prerequisites={product.prerequisites}
+                targetAudience={product.targetAudience}
                 categoryId={product.category}
                 token={props.token}
                 userId={props.userId}
@@ -570,30 +636,65 @@ export default function SearchProductCard(props) {
                               .toFixed(2)
                               .replace(/\d(?=(\d{3})+\.)/g, "$&,")
                           : 0}
-                        /person
                       </strong>
                     </span>
                   </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Course duration:</strong>&nbsp;&nbsp;
-                    {`${product.duration}`} days
+                  <Typography>
+                    <span
+                      style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}
+                    >
+                      <strong>Delivery Method:</strong> &nbsp;
+                      <span>{product.deliveryMethod}</span>
+                    </span>
                   </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Start Date: </strong>&nbsp;&nbsp;
-                    {product.commencementDate
-                      ? new Date(product.commencementDate).toDateString()
-                      : "Coming Soon"}
+
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong> Venue:</strong>
+                      <span>{product.venue}</span>
+                    </span>
                   </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Venue: </strong>&nbsp;&nbsp; {`${product.venue}`}
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong> Total Course Duration:</strong>
+                      <span>{product.duration} </span>
+                    </span>
                   </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Delivery Method: </strong> &nbsp; &nbsp;
-                    {`${product.deliveryMethod}`}
+
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Course Track:</strong>
+                      <span>{product.track}</span>
+                    </span>
                   </Typography>
-                  <Typography variant="h5" color="textSecondary" component="p">
-                    <strong>Reference Number : </strong> &nbsp;
-                    {`${product.refNumber ? product.refNumber : ""}`}
+
+                  {(product.track === "weekdays" ||
+                    product.track === "weekdays/weekends") && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
+                        {!product.showGenericWeekdayStartDateText
+                          ? product.commencementWeekdaysDate.toString()
+                          : product.genericWeekdayStartDateText}
+                      </span>
+                    </Typography>
+                  )}
+                  {(product.track === "weekends" ||
+                    product.track === "weekdays/weekends") && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
+                        {!product.showGenericWeekendStartDateText
+                          ? product.commencementWeekendsDate.toString()
+                          : product.genericWeekendStartDateText}
+                      </span>
+                    </Typography>
+                  )}
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Payment Options:</strong>
+                      <span>{product.paymentOptions}</span>
+                    </span>
                   </Typography>
                 </CardContent>
               </Grid>
@@ -606,6 +707,9 @@ export default function SearchProductCard(props) {
                   weight={product.weightPerUnit}
                   productId={product.id}
                   categoryId={product.category}
+                  slug={product.slug}
+                  prerequisites={product.prerequisites}
+                  targetAudience={product.targetAudience}
                   token={props.token}
                   userId={props.userId}
                   currency={product.currency}
@@ -667,11 +771,11 @@ export default function SearchProductCard(props) {
             </CardActionArea>
           </Card>
 
-          <Bookings
+          {/* <Bookings
             token={props.token}
             userId={props.userId}
             handleBookingsOpenDialogStatus={handleBookingsOpenDialogStatus}
-          />
+          /> */}
         </DialogContent>
       </Dialog>
       {renderLoginForm()}

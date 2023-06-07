@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
+import ReactMarkdown from "react-markdown";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
@@ -147,12 +148,12 @@ function CourseInfo(props) {
 
         <Typography style={{ width: 300, marginTop: 15 }}>
           <strong>Prerequisites:</strong>&nbsp;
-          {prerequisites}&nbsp;
+          <ReactMarkdown>{prerequisites}</ReactMarkdown>
         </Typography>
         <br />
         <Typography style={{ width: 300, marginTop: 10 }}>
           <strong>Who should attend:</strong>&nbsp;
-          {targetAudience}&nbsp;
+          <ReactMarkdown>{targetAudience}</ReactMarkdown>
         </Typography>
 
         {categorySlug && (

@@ -635,6 +635,7 @@ function CartUpdateAndDeliveryForm(props) {
         );
 
         setLoadingRemoval(false);
+        props.cartCounterHandler(-1);
         props.renderCartUpdate(props.cartId);
         // } else {
         //   props.handleFailedSnackbar(

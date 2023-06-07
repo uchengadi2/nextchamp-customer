@@ -82,9 +82,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
-    height: "5em",
-    width: "4em",
-    marginLeft: -10,
+    height: "11em",
+    width: "12em",
+    marginLeft: -16,
+    //marginLeft: 0,
     marginRight: 50,
     padding: 0,
     [theme.breakpoints.down("md")]: {
@@ -578,7 +579,7 @@ const Header = (props) => {
             className={classes.checkout}
           >
             {/* <img alt="company logo" src={logo} className={classes.logo} /> */}
-            Cart
+            {`Cart` + `(${props.cartCounter})`}
           </Button>
           <Button
             onClick={() => <CheckoutPage />}

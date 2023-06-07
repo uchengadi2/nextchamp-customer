@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import ReactMarkdown from "react-markdown";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
     //marginLeft: "0.1%",
     borderRadius: 0,
-    marginTop: "4em",
+    marginTop: "6em",
     padding: 0,
     // "&:hover": {
     //   border: "solid",
@@ -524,7 +525,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.shortDescription}
+                  <ReactMarkdown>{props.course.shortDescription}</ReactMarkdown>
                 </Typography>
 
                 {props.course.refNumber !== undefined && (
@@ -607,10 +608,10 @@ export default function ProductDetailCard(props) {
                     style={{ color: "black", fontSize: 15 }}
                   >
                     <span style={{ marginRight: 20 }}>
-                      {" "}
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {" "}
                       {props.course.commencementWeekdaysDate.join("|")}
                     </span>
                   </Typography>
@@ -670,6 +671,7 @@ export default function ProductDetailCard(props) {
                   handleFailedSignUpDialogOpenStatusWithSnackbar={
                     handleFailedSignUpDialogOpenStatusWithSnackbar
                   }
+                  cartCounterHandler={props.cartCounterHandler}
                 />
               </Box>
             </Grid>
@@ -699,7 +701,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.prerequisites}{" "}
+                  <ReactMarkdown>{props.course.prerequisites}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -722,7 +724,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.whatToLearn}{" "}
+                  <ReactMarkdown>{props.course.whatToLearn}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -744,7 +746,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.tools}{" "}
+                  <ReactMarkdown>{props.course.tools}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -766,7 +768,7 @@ export default function ProductDetailCard(props) {
                     justifyContent: "center",
                   }}
                 >
-                  {props.course.targetAudience}{" "}
+                  <ReactMarkdown>{props.course.targetAudience}</ReactMarkdown>
                 </Typography>
               </Box>
             </Grid>
@@ -785,7 +787,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.longDescription}{" "}
+                <ReactMarkdown>{props.course.longDescription}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -803,7 +805,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.contents}{" "}
+                <ReactMarkdown>{props.course.contents}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -821,7 +823,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.capstoneProject}{" "}
+                <ReactMarkdown>{props.course.capstoneProject}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -841,7 +843,7 @@ export default function ProductDetailCard(props) {
                   justifyContent: "center",
                 }}
               >
-                {props.course.successTips}{" "}
+                <ReactMarkdown>{props.course.successTips}</ReactMarkdown>
               </Typography>
             </Box>
           </Grid>
@@ -1016,6 +1018,7 @@ export default function ProductDetailCard(props) {
                   handleFailedSignUpDialogOpenStatusWithSnackbar={
                     handleFailedSignUpDialogOpenStatusWithSnackbar
                   }
+                  cartCounterHandler={props.cartCounterHandler}
                 />
               </Box>
             </Grid>

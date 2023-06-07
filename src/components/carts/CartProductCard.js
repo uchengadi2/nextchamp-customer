@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "1em",
+    marginTop: "2em",
     marginBottom: "3em",
     padding: 0,
     // "&:hover": {
@@ -690,6 +690,7 @@ export default function CartProductCard(props) {
                   courseId={course.id}
                   currency={course.currency}
                   preferredStartDate={props.preferredStartDate}
+                  cartCounterHandler={props.cartCounterHandler}
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}
@@ -792,6 +793,7 @@ export default function CartProductCard(props) {
                   courseId={course.id}
                   currency={course.currency}
                   preferredStartDate={props.preferredStartDate}
+                  cartCounterHandler={props.cartCounterHandler}
                   token={props.token}
                   userId={props.userId}
                   quantity={props.quantity}

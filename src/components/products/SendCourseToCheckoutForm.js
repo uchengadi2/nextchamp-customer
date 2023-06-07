@@ -410,6 +410,8 @@ function SendCourseToCheckoutForm(props) {
           // props.handleSuccessfulCreateSnackbar(
           //   `item(s) successfully added to cart. Please visit the cart to continue to checkout and payment`
           // );
+          props.cartCounterHandler(1);
+
           history.push(`/`);
           setIsLoading(false);
         } else {
