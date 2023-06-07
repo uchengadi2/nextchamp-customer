@@ -445,24 +445,7 @@ function SendCourseToCheckoutForm(props) {
           style={{ marginTop: 10, marginBottom: 10 }}
           justifyContent="center"
         ></Grid>
-        <Field
-          label=""
-          id="preferredStartDate"
-          name="preferredStartDate"
-          type="date"
-          component={renderPreferredStartDateField}
-          style={{ width: 300, marginBottom: 20 }}
-        />
-        {/* <Field
-          label=""
-          id="quantity"
-          name="quantity"
-          type="number"
-          defaultValue={quantity}
-          onChange={onQuantityChange}
-          component={renderRequestedQuantityField}
-          style={{ width: 300, marginTop: 10 }}
-        /> */}
+
         <Grid container direction="row">
           <Grid item style={{ width: 50, marginTop: 45, fontSize: 45 }}>
             <span style={{ color: "grey" }}>&#8358;</span>
@@ -476,6 +459,20 @@ function SendCourseToCheckoutForm(props) {
               type="text"
               component={renderTotalField}
               style={{ width: 100 }}
+            />
+          </Grid>
+          <Grid
+            item
+            style={{ marginTop: 10, marginBottom: 10 }}
+            justifyContent="center"
+          >
+            <Field
+              label=""
+              id="preferredStartDate"
+              name="preferredStartDate"
+              type="date"
+              component={renderPreferredStartDateField}
+              style={{ width: 300, marginBottom: 20 }}
             />
           </Grid>
         </Grid>
