@@ -128,7 +128,7 @@ export default function LearningPath() {
   const [stateName, setStateName] = useState();
   const [product, setProduct] = useState({});
 
-  const [learningPath, setLearningPath] = useState("courses");
+  const [learningPath, setLearningPath] = useState("crash-courses");
 
   // const { token, setToken } = useToken();
   // const { userId, setUserId } = useUserId();
@@ -173,10 +173,13 @@ export default function LearningPath() {
               marginLeft: 10,
             }}
           >
-            <MenuItem value={"courses"}>Courses</MenuItem>
-            {/* <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
-            <MenuItem value={"bank-transfer"}>Bank Transfer</MenuItem>
-            <MenuItem value={"cash"}>Cash</MenuItem> */}
+            <MenuItem value={"crash-courses"}>Crash Courses</MenuItem>
+            {/* <MenuItem value={"courses"}>Courses</MenuItem>
+            <MenuItem value={"programmes"}>Programmes</MenuItem>
+            <MenuItem value={"channels"}>Channels</MenuItem>
+            <MenuItem value={"mocks"}>Mocks</MenuItem>
+            <MenuItem value={"assessments"}>Assessments</MenuItem>
+            <MenuItem value={"mentoring"}>Mentoring</MenuItem> */}
           </Select>
           <FormHelperText>Choose Path</FormHelperText>
         </FormControl>
