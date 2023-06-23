@@ -232,7 +232,7 @@ function App() {
                 handleFailedSnackbar={handleFailedSnackbar}
               />
             </Route>
-            <Route exact path="/thankyou">
+            <Route path="/thankyou">
               <ThankYou
                 token={token}
                 userId={userId}

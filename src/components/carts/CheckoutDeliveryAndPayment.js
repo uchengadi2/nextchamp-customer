@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch } from "react-redux";
+
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import { useParams } from "react-router-dom";
@@ -31,6 +32,7 @@ import {
 import CheckoutPage from "./CheckoutPage";
 import Paystack from "../../Paystack";
 import history from "../../history";
+import ThankYou from "../thankyou/ThankYou";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -248,6 +250,7 @@ function CheckoutDeliveryAndPayment(props) {
   const [total, setTotal] = useState();
   const [ukRate, setUkRate] = useState(650);
   const [usRate, setUsRate] = useState(560);
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
   const [orderNumber, setOrderNumber] = useState(
     "OR-" + Math.floor(Math.random() * 10000000000000) + "-" + "ES"
@@ -262,8 +265,6 @@ function CheckoutDeliveryAndPayment(props) {
   //     : 0
   // );
   const [loading, setLoading] = useState();
-
-  console.log("props props:", props);
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -458,24 +459,6 @@ function CheckoutDeliveryAndPayment(props) {
 
   let totalDeliveryCost = 0;
 
-  //   const diff = +quantity - +props.maxmumQuantityForBaselineDelivery;
-
-  //   if (diff <= 0) {
-  //     totalDeliveryCost = 0;
-  //     // parseFloat(
-  //     //   props.baselineDeliveryCostWithinProductLocation
-  //     // );
-  //   } else {
-  //     const quantityUnitsForNonBaselineDelivery =
-  //       parseInt(quantity) - parseInt(props.maxmumQuantityForBaselineDelivery);
-  //     const costforNonBaselineDelivery =
-  //       +quantityUnitsForNonBaselineDelivery *
-  //       parseFloat(props.deliveryCostPerUnitWithinProductLocation);
-  //     totalDeliveryCost = 0;
-  //     // +costforNonBaselineDelivery +
-  //     // parseFloat(props.baselineDeliveryCostWithinProductLocation);
-  //   }
-
   const totalProductCost = parseFloat(totalCost) + totalDeliveryCost;
   const totalProductCostForUk = totalProductCost / +ukRate;
   const totalProductCostForUS = totalProductCost / +usRate;
@@ -496,6 +479,10 @@ function CheckoutDeliveryAndPayment(props) {
 
   const buttonContent = () => {
     return <React.Fragment>Make Payment</React.Fragment>;
+  };
+
+  const renderThankYou = () => {
+    return <ThankYou />;
   };
 
   const onSubmit = () => {
@@ -643,8 +630,7 @@ function CheckoutDeliveryAndPayment(props) {
   ) => {
     const data = {
       orderNumber: orderNumber,
-      //   product: props.productId,
-      //   orderedPrice: props.price,
+
       recipientName: name,
       recipientPhoneNumber: phoneNumber,
       recipientEmailAddress: email,
@@ -695,19 +681,6 @@ function CheckoutDeliveryAndPayment(props) {
               style={{ marginTop: 10, marginBottom: 10 }}
               justifyContent="center"
             >
-              {/* <Grid item container style={{ marginTop: 20, width: 600 }}>
-                <FormLabel
-                  style={{
-                    color: "blue",
-                    marginBottom: 30,
-                    marginLeft: 300,
-                    fontSize: 20,
-                  }}
-                  component="legend"
-                >
-                  Delivery Details
-                </FormLabel>
-              </Grid> */}
               <Box
                 sx={{
                   //width: 1200,
@@ -802,10 +775,6 @@ function CheckoutDeliveryAndPayment(props) {
 
             {renderPaymentMethodField()}
             {!isOnlinePayment && paymentMethod && (
-              // <Typography className={classes.bankDetails}>
-              //   Bank: Ecobank; Name: E-Shield Africa Limited; Account number:
-              //   5140090808
-              // </Typography>
               <Typography className={classes.bankDetails}>
                 Make payment to the accounts as detailed on the adjacent blocks
               </Typography>
@@ -823,18 +792,7 @@ function CheckoutDeliveryAndPayment(props) {
                 )}
               </Button>
             )}
-            {/* {isOnlinePayment &&
-              paymentMethod == "card" &&
-              !recipientName &&
-              !recipientPhoneNumber &&
-              !recipientAddress &&
-              !country &&
-              !location && (
-                <Typography className={classes.info}>
-                  Please complete the recipient delivery detail form before
-                  making payment
-                </Typography>
-              )} */}
+
             {isOnlinePayment &&
               renderOnlinePayment(
                 customerEmail,
@@ -864,19 +822,6 @@ function CheckoutDeliveryAndPayment(props) {
               style={{ marginTop: 10, marginBottom: 10 }}
               justifyContent="center"
             >
-              {/* <Grid item container style={{ marginTop: 20, width: 600 }}>
-                <FormLabel
-                  style={{
-                    color: "blue",
-                    marginBottom: 30,
-                    marginLeft: 300,
-                    fontSize: 20,
-                  }}
-                  component="legend"
-                >
-                  Delivery Details
-                </FormLabel>
-              </Grid> */}
               <Box
                 sx={{
                   //width: 1200,
@@ -978,7 +923,7 @@ function CheckoutDeliveryAndPayment(props) {
               <Button
                 variant="contained"
                 className={classes.submitButtonMobile}
-                onClick={onSubmit}
+                onClick={[onSubmit, <ThankYou />]}
               >
                 {loading ? (
                   <CircularProgress size={30} color="inherit" />
@@ -987,20 +932,10 @@ function CheckoutDeliveryAndPayment(props) {
                 )}
               </Button>
             )}
-            {/* {isOnlinePayment &&
-              paymentMethod == "card" &&
-              !recipientName &&
-              !recipientPhoneNumber &&
-              !recipientAddress &&
-              !country &&
-              !location && (
-                <Typography className={classes.info}>
-                  Please complete the recipient delivery detail form before
-                  making payment
-                </Typography>
-              )} */}
+
             {isOnlinePayment &&
               renderOnlinePayment(customerEmail, amountForPayment, orderNumber)}
+            {isSuccessful && <ThankYou />}
           </Grid>
         </Grid>
       )}

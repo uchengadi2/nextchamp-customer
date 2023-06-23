@@ -147,6 +147,11 @@ export default function ThankYou() {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesMDUp = useMediaQuery(theme.breakpoints.up("md"));
 
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   let imageUrl = "";
   if (product) {
     imageUrl = `${baseURL}/images/courses/${product.imageCover}`;
