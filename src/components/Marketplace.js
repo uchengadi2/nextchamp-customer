@@ -510,23 +510,6 @@ const Marketplace = (props) => {
               //alignItems="center"
               direction="row"
             >
-              {/* <ReactPlayer
-                url={matchesSM ? heroVideoMobile : heroVideo}
-                playing
-                loop
-                muted
-                // width="100%"
-                // height="100%"
-                width="99rem"
-                height="49rem"
-              /> */}
-              {/* <div className={classes.overlay}> */}
-              {/* <img
-                src={logo}
-                alt="Udaraa Marketplace"
-                width={180}
-                height={150}
-              /> */}
               <Box
                 width="100%"
                 height="100%"
@@ -561,45 +544,8 @@ const Marketplace = (props) => {
                         and experts from professionals
                       </span>
                       <br />
-                      {/* <span style={{ marginLeft: matchesSM ? 20 : 130 }}></span> */}
-                      {/* <span style={{ marginLeft: matchesSM ? 20 : 100 }}>
-                        experts from professionals
-                      </span> */}
                     </Typography>
                   ) : (
-                    // <Typography
-                    //   variant={matchesSM ? "subtitle2" : "h2"}
-                    //   align="left"
-                    //   style={{ marginTop: "16rem" }}
-                    //   //justifyContent="center"
-                    //   //alignItems="center"
-                    // >
-                    //   <span
-                    //     style={{
-                    //       marginLeft: matchesSM ? 20 : 5,
-                    //     }}
-                    //   >
-                    //     {" "}
-                    //     E-Shield Africa is an online/e-commerce
-                    //     Marketplace(B2B). <br />
-                    //   </span>{" "}
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 20 }}>
-                    //     Our business is to provide a trusted and unified online
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 50 }}>
-                    //     portal for multiple manufacturers, distributors
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 130 }}>
-                    //     and vendors. We connect them to
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 130 }}>
-                    //     retailers for trade and services.
-                    //   </span>
-                    // </Typography>
-                    // <Typography></Typography>
                     <Typography
                       variant={matchesSM ? "subtitle2" : "h2"}
                       align="left"

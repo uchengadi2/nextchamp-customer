@@ -26,6 +26,7 @@ import VendorPartner from "./VendorPartner";
 import LogisticsPartner from "./LogisticsPartner";
 import Footer from "./ui/Footer";
 import CareerPage from "./career/CareerPage";
+import ThankYou from "./thankyou/ThankYou";
 
 import OrderPage from "./orders/OrderPage";
 import SearchPage from "./search/SearchPage";
@@ -231,8 +232,8 @@ function App() {
                 handleFailedSnackbar={handleFailedSnackbar}
               />
             </Route>
-            <Route exact path="/logistics">
-              <LogisticsPartner
+            <Route exact path="/thankyou">
+              <ThankYou
                 token={token}
                 userId={userId}
                 setToken={setToken ? setToken : {}}

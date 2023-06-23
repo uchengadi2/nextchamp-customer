@@ -10,6 +10,7 @@ import {
   FETCH_TRANSACTION,
 } from "./actions/types";
 import history from "./history";
+import ThankYou from "./components/thankyou/ThankYou";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,13 +73,14 @@ function Paystack(props) {
     className: classes.checkout,
     email: props.email,
     amount: props.amount,
-    //publicKey: "pk_test_9181f2dcbb5a6bf2cf56c8f2632eaa5e2fd182cb", //wholeroof test
-    publicKey: "pk_live_5700e72ac96f8aafda7af34e76b1dcfd1b6ec8b2", //wholeroof live
+    publicKey: "pk_test_9181f2dcbb5a6bf2cf56c8f2632eaa5e2fd182cb", //wholeroof test
+    // publicKey: "pk_live_5700e72ac96f8aafda7af34e76b1dcfd1b6ec8b2", //wholeroof live
   };
 
   // you can call this function anything
   const handlePaystackSuccessAction = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
+
     if (reference.status == "success") {
       setIsSuccess(true);
     } else {
@@ -210,7 +212,7 @@ function Paystack(props) {
     props.handleSuccessfulCreateSnackbar(
       `Thank you for your patronage, we will process your request as soon as possible`
     );
-    history.push("/");
+    history.push("/thankyou");
   };
 
   return (

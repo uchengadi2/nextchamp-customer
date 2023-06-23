@@ -631,7 +631,7 @@ function CheckoutDeliveryAndPayment(props) {
     props.handleSuccessfulCreateSnackbar(
       `Thank you for your patronage, we will process your request as soon as possible`
     );
-    history.push("/");
+    history.push("/thankyou");
   };
 
   const renderOnlinePayment = (
