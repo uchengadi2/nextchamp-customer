@@ -611,7 +611,6 @@ export default function ProductDetailCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {" "}
                       {props.course.commencementWeekdaysDate.join("|")}
                     </span>
                   </Typography>
@@ -622,7 +621,6 @@ export default function ProductDetailCard(props) {
                     style={{ color: "black", fontSize: 15 }}
                   >
                     <span style={{ marginRight: 20 }}>
-                      {" "}
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
