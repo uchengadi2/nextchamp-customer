@@ -301,7 +301,7 @@ const Marketplace = (props) => {
       setIsLoading(true);
       let allData = [];
       //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const response = await data.get("/courses?sort=asc");
+      const response = await data.get("/courses?sort=desc");
       const workingData = response.data.data.data;
       workingData.map((course) => {
         allData.push({
@@ -345,6 +345,17 @@ const Marketplace = (props) => {
           weekendSessionPeriod: course.weekendSessionPeriod,
           paymentOptions: course.paymentOptions,
           slug: course.slug,
+          isCourseAuditable: course.isCourseAuditable,
+          weekdayAuditDays: course.weekdayAuditDays,
+          weekendAuditDays: course.weekendAuditDays,
+          hasMentorshipCredit: course.hasMentorshipCredit,
+          mentorshipCredit: course.mentorshipCredit,
+          mentorshipDuration: course.mentorshipDuration,
+          hasSeries: course.hasSeries,
+          series: course.series,
+          costPerMentorshipCredit: course.costPerMentorshipCredit,
+          isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
+          maximumInstallmentalPayment: course.maximumInstallmentalPayment,
         });
       });
       setCourseList(allData);
@@ -413,6 +424,19 @@ const Marketplace = (props) => {
               image={course.image}
               courseId={course.id}
               slug={course.slug}
+              isCourseAuditable={course.isCourseAuditable}
+              weekdayAuditDays={course.weekdayAuditDays}
+              weekendAuditDays={course.weekendAuditDays}
+              hasMentorshipCredit={course.hasMentorshipCredit}
+              mentorshipCredit={course.mentorshipCredit}
+              mentorshipDuration={course.mentorshipDuration}
+              hasSeries={course.hasSeries}
+              costPerMentorshipCredit={course.costPerMentorshipCredit}
+              isInstallmentalPaymentAllowed={
+                course.isInstallmentalPaymentAllowed
+              }
+              maximumInstallmentalPayment={course.maximumInstallmentalPayment}
+              series={course.series}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
@@ -476,6 +500,19 @@ const Marketplace = (props) => {
               paymentOptions={course.paymentOptions}
               image={course.image}
               courseId={course.id}
+              isCourseAuditable={course.isCourseAuditable}
+              weekdayAuditDays={course.weekdayAuditDays}
+              weekendAuditDays={course.weekendAuditDays}
+              hasMentorshipCredit={course.hasMentorshipCredit}
+              mentorshipCredit={course.mentorshipCredit}
+              mentorshipDuration={course.mentorshipDuration}
+              hasSeries={course.hasSeries}
+              costPerMentorshipCredit={course.costPerMentorshipCredit}
+              series={course.series}
+              isInstallmentalPaymentAllowed={
+                course.isInstallmentalPaymentAllowed
+              }
+              maximumInstallmentalPayment={course.maximumInstallmentalPayment}
               slug={course.slug}
               token={props.token}
               userId={props.userId}

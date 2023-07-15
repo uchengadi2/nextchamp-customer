@@ -56,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     //height: 440,
     //height: 800,
-    width: "100%",
+    width: "80%",
 
     marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "2em",
+    marginTop: "3.5em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   },
   secondRowMobile: {
     marginLeft: 0,
-    marginTop: 30,
+    marginTop: 50,
     width: 380,
     border: "1px dotted",
     padding: 10,
@@ -506,9 +506,18 @@ export default function ProductDetailCard(props) {
             </Grid>
             <Grid item className={classes.secondRow}>
               <Box>
-                <Typography variant="h4" style={{ fontSize: "2.5em" }}>
-                  {props.course.title}
-                </Typography>
+                {props.course.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.course.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({props.course.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.course.title}
+                  </Typography>
+                )}
                 <Typography variant="h4" style={{ marginTop: 10 }}>
                   {getCurrencyCode()}
                   {price
@@ -527,7 +536,6 @@ export default function ProductDetailCard(props) {
                 >
                   <ReactMarkdown>{props.course.shortDescription}</ReactMarkdown>
                 </Typography>
-
                 {props.course.refNumber !== undefined && (
                   <Typography
                     variant="h5"
@@ -608,7 +616,7 @@ export default function ProductDetailCard(props) {
                     style={{ color: "black", fontSize: 15 }}
                   >
                     <span style={{ marginRight: 20 }}>
-                      <strong>Weekday Start Date(s):</strong>
+                      <strong>Weekday Start Date():</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
                       {props.course.commencementWeekdaysDate.join("|")}
@@ -628,6 +636,106 @@ export default function ProductDetailCard(props) {
                     </span>
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {props.course.weekdaySessionPeriod}
+                  </span>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {props.course.weekendSessionPeriod}
+                  </span>
+                </Typography>
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.mentorshipCredit}&nbsp; Units &nbsp; (to be
+                      used after graduation)
+                    </span>
+                  </Typography>
+                )}
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Total Value of Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {getCurrencyCode()}
+                      {(
+                        props.course.mentorshipCredit *
+                        props.course.costPerMentorshipCredit
+                      )
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Duration:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.mentorshipDuration}&nbsp;&nbsp; ( from the
+                      day of graduation)
+                    </span>
+                  </Typography>
+                )}
+                {props.course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Is Installmental Payment Allowed :</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.isInstallmentalPaymentAllowed
+                        .charAt(0)
+                        .toUpperCase() +
+                        props.course.isInstallmentalPaymentAllowed.slice(1)}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>
+                        Maximum Number of Installmental Payment Allowed :
+                      </strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.maximumInstallmentalPayment}&nbsp;times
+                    </span>
+                  </Typography>
+                )}
                 {props.course.passGrade !== undefined && (
                   <Typography
                     variant="h5"
@@ -638,6 +746,25 @@ export default function ProductDetailCard(props) {
                       <strong>Minimum NextChamp Grade:</strong>
                     </span>
                     {props.course.passGrade}
+                  </Typography>
+                )}
+                <br /> <br />
+                {props.course.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{props.course.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
                   </Typography>
                 )}
               </Box>
@@ -863,9 +990,18 @@ export default function ProductDetailCard(props) {
             </Grid>
             <Grid item className={classes.secondRowMobile}>
               <Box>
-                <Typography variant="h5" style={{ fontSize: "2.0em" }}>
-                  {props.course.title}
-                </Typography>
+                {props.course.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.course.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({props.course.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.course.title}
+                  </Typography>
+                )}
                 <Typography variant="h5">
                   {getCurrencyCode()}
                   {price
@@ -884,7 +1020,6 @@ export default function ProductDetailCard(props) {
                 >
                   {props.course.shortDescription}
                 </Typography>
-
                 {props.course.refNumber !== "undefined" && (
                   <Typography
                     variant="h5"
@@ -909,20 +1044,6 @@ export default function ProductDetailCard(props) {
                     {props.course.duration}
                   </Typography>
                 )}
-                {/* {props.course.commencementDate !== undefined && (
-                  <Typography
-                    variant="h5"
-                    style={{ color: "black", fontSize: 15 }}
-                  >
-                    <span style={{ marginRight: 20 }}>
-                      {" "}
-                      <strong>Start date:</strong>
-                    </span>
-                    {props.course.commencementDate
-                      ? new Date(props.course.commencementDate).toDateString()
-                      : "Coming Soon"}
-                  </Typography>
-                )} */}
                 {props.course.deliveryMethod !== undefined && (
                   <Typography
                     variant="h5"
@@ -975,6 +1096,106 @@ export default function ProductDetailCard(props) {
                     </span>
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {props.course.weekdaySessionPeriod}
+                  </span>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {props.course.weekendSessionPeriod}
+                  </span>
+                </Typography>
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.mentorshipCredit}&nbsp; Units &nbsp; (to be
+                      used after graduation)
+                    </span>
+                  </Typography>
+                )}
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Total Value of Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {getCurrencyCode()}
+                      {(
+                        props.course.mentorshipCredit *
+                        props.course.costPerMentorshipCredit
+                      )
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Duration:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.mentorshipDuration}&nbsp;&nbsp; ( from the
+                      day of graduation)
+                    </span>
+                  </Typography>
+                )}
+                {props.course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Is Installmental Payment Allowed :</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.isInstallmentalPaymentAllowed
+                        .charAt(0)
+                        .toUpperCase() +
+                        props.course.isInstallmentalPaymentAllowed.slice(1)}
+                    </span>
+                  </Typography>
+                )}
+                {props.course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>
+                        Maximum Number of Installmental Payment Allowed :
+                      </strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {props.course.maximumInstallmentalPayment}&nbsp;times
+                    </span>
+                  </Typography>
+                )}
                 {props.course.passGrade !== undefined && (
                   <Typography
                     variant="h5"
@@ -985,6 +1206,25 @@ export default function ProductDetailCard(props) {
                       <strong>Minimum NextChamp Grade:</strong>
                     </span>
                     {props.course.passGrade}
+                  </Typography>
+                )}
+                <br /> <br />
+                {props.course.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{props.course.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
                   </Typography>
                 )}
               </Box>

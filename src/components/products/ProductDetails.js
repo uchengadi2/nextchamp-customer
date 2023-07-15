@@ -348,6 +348,18 @@ function ProductDetails(props) {
           weekdaySessionPeriod: course[0].weekdaySessionPeriod,
           weekendSessionPeriod: course[0].weekendSessionPeriod,
           paymentOptions: course[0].paymentOptions,
+          isCourseAuditable: course[0].isCourseAuditable,
+          weekdayAuditDays: course[0].weekdayAuditDays,
+          weekendAuditDays: course[0].weekendAuditDays,
+          hasMentorshipCredit: course[0].hasMentorshipCredit,
+          mentorshipCredit: course[0].mentorshipCredit,
+          mentorshipDuration: course[0].mentorshipDuration,
+          hasSeries: course[0].hasSeries,
+          series: course[0].series,
+          costPerMentorshipCredit: course[0].costPerMentorshipCredit,
+          isInstallmentalPaymentAllowed:
+            course[0].isInstallmentalPaymentAllowed,
+          maximumInstallmentalPayment: course[0].maximumInstallmentalPayment,
         });
 
         setCourse({
@@ -398,6 +410,18 @@ function ProductDetails(props) {
           weekdaySessionPeriod: allData[0].weekdaySessionPeriod,
           weekendSessionPeriod: allData[0].weekendSessionPeriod,
           paymentOptions: allData[0].paymentOptions,
+          isCourseAuditable: allData[0].isCourseAuditable,
+          weekdayAuditDays: allData[0].weekdayAuditDays,
+          weekendAuditDays: allData[0].weekendAuditDays,
+          hasMentorshipCredit: allData[0].hasMentorshipCredit,
+          mentorshipCredit: allData[0].mentorshipCredit,
+          mentorshipDuration: allData[0].mentorshipDuration,
+          hasSeries: allData[0].hasSeries,
+          series: allData[0].series,
+          costPerMentorshipCredit: allData[0].costPerMentorshipCredit,
+          isInstallmentalPaymentAllowed:
+            allData[0].isInstallmentalPaymentAllowed,
+          maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
         });
 
         setIsLoading(false);
@@ -447,6 +471,17 @@ function ProductDetails(props) {
             weekdaySessionPeriod={course.weekdaySessionPeriod}
             weekendSessionPeriod={course.weekendSessionPeriod}
             paymentOptions={course.paymentOptions}
+            isCourseAuditable={course.isCourseAuditable}
+            weekdayAuditDays={course.weekdayAuditDays}
+            weekendAuditDays={course.weekendAuditDays}
+            hasMentorshipCredit={course.hasMentorshipCredit}
+            mentorshipCredit={course.mentorshipCredit}
+            mentorshipDuration={course.mentorshipDuration}
+            hasSeries={course.hasSeries}
+            costPerMentorshipCredit={course.costPerMentorshipCredit}
+            isInstallmentalPaymentAllowed={course.isInstallmentalPaymentAllowed}
+            maximumInstallmentalPayment={course.maximumInstallmentalPayment}
+            series={course.series}
             key={course.id}
             token={props.token}
             userId={props.userId}
@@ -502,6 +537,17 @@ function ProductDetails(props) {
             weekdaySessionPeriod={course.weekdaySessionPeriod}
             weekendSessionPeriod={course.weekendSessionPeriod}
             paymentOptions={course.paymentOptions}
+            isCourseAuditable={course.isCourseAuditable}
+            weekdayAuditDays={course.weekdayAuditDays}
+            weekendAuditDays={course.weekendAuditDays}
+            hasMentorshipCredit={course.hasMentorshipCredit}
+            mentorshipCredit={course.mentorshipCredit}
+            mentorshipDuration={course.mentorshipDuration}
+            hasSeries={course.hasSeries}
+            costPerMentorshipCredit={course.costPerMentorshipCredit}
+            isInstallmentalPaymentAllowed={course.isInstallmentalPaymentAllowed}
+            maximumInstallmentalPayment={course.maximumInstallmentalPayment}
+            series={course.series}
             key={course.id}
             token={props.token}
             userId={props.userId}

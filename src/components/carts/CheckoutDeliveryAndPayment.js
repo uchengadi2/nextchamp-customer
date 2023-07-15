@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
     height: 350,
   },
   rootMobile: {
-    maxWidth: 370,
+    maxWidth: "100%",
     //height: 440,
     height: 950,
-    width: 370,
+    width: "100%",
 
-    marginLeft: "-10px",
+    //marginLeft: "-10px",
     //borderRadius: 30,
     marginTop: "2em",
     marginBottom: "3em",
@@ -74,11 +74,36 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.common.green,
     },
   },
+  submitAuditButton: {
+    borderRadius: 10,
+    height: 40,
+    width: 280,
+    marginLeft: 150,
+    marginTop: 10,
+    color: "white",
+    backgroundColor: theme.palette.common.green,
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+    },
+  },
   submitButtonMobile: {
     borderRadius: 10,
     height: 40,
     width: 180,
     marginLeft: 150,
+    marginTop: 10,
+    color: "white",
+    backgroundColor: theme.palette.common.green,
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+    },
+  },
+
+  submitAuditButtonMobile: {
+    borderRadius: 10,
+    height: 40,
+    width: 250,
+    marginLeft: 70,
     marginTop: 10,
     color: "white",
     backgroundColor: theme.palette.common.green,
@@ -235,7 +260,7 @@ function CheckoutDeliveryAndPayment(props) {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
   const [isVisible, setIsVisible] = useState(true);
-  const [paymentMethod, setPaymentMethod] = useState();
+  const [paymentMethod, setPaymentMethod] = useState("audit");
   const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
   const [provideDeliveryCost, setProvideDeliveryCost] = useState(false);
   const [countryList, setCountryList] = useState([]);
@@ -294,6 +319,8 @@ function CheckoutDeliveryAndPayment(props) {
 
     fetchData().catch(console.error);
   }, []);
+
+  console.log("props.courseList.length:", props.courseList.length);
 
   const onRecipientNameChange = (e) => {
     setRecipientName(e.target.value);
@@ -444,8 +471,8 @@ function CheckoutDeliveryAndPayment(props) {
             label="Payment Method"
             style={{ height: 38, width: 300, marginTop: 0, marginLeft: 10 }}
           >
+            <MenuItem value={"audit"}>Audit Course(s) for Free</MenuItem>
             <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
-            {/* <MenuItem value={"bank-transfer"}>Bank Transfer</MenuItem> */}
             <MenuItem value={"foreigner"}>Foreigner</MenuItem>
           </Select>
           <FormHelperText>
@@ -479,6 +506,16 @@ function CheckoutDeliveryAndPayment(props) {
 
   const buttonContent = () => {
     return <React.Fragment>Make Payment</React.Fragment>;
+  };
+
+  const buttonAuditContent = () => {
+    return (
+      <React.Fragment>
+        {props.courseList.length === 1
+          ? "Audit this Course for FREE"
+          : "Audit these Courses for FREE"}
+      </React.Fragment>
+    );
   };
 
   const renderThankYou = () => {
@@ -617,6 +654,142 @@ function CheckoutDeliveryAndPayment(props) {
     });
     props.handleSuccessfulCreateSnackbar(
       `Thank you for your patronage, we will process your request as soon as possible`
+    );
+    history.push("/thankyou");
+  };
+
+  const onAuditSubmit = () => {
+    setLoading(true);
+
+    if (!paymentMethod) {
+      props.handleFailedSnackbar("the payment method field cannot be empty");
+      setLoading(false);
+      return;
+    }
+
+    const transData = {
+      orderNumber: orderNumber,
+      recipientName: customerName,
+      recipientPhoneNumber: customerPhoneNumber,
+      recipientEmailAddress: customerEmail,
+      totalDeliveryCost: totalDeliveryCost ? totalDeliveryCost.toFixed(2) : 0,
+      totalProductCost: totalProductCost,
+      totalProductCostUk: totalProductCostForUk,
+      totalProductCostUs: totalProductCostForUS,
+
+      paymentMethod: paymentMethod,
+      paymentStatus: "to-be-confirmed",
+      orderedBy: props.userId,
+      productCurrency: "any",
+    };
+
+    //write to the transaction table first
+    if (transData) {
+      const createForm = async () => {
+        api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+        const response = await api.post(`/transactions`, transData);
+
+        const transId = response.data.data.data.id;
+
+        if (response.data.status === "success") {
+          dispatch({
+            type: CREATE_TRANSACTION,
+            payload: response.data.data.data,
+          });
+
+          setLoading(false);
+
+          props.courseList.map((cart, index) => {
+            const data = {
+              orderNumber: orderNumber,
+              transactionId: transId,
+              product: cart.course,
+              orderedPrice: cart.price,
+              recipientName: customerName,
+              recipientPhoneNumber: customerPhoneNumber,
+              recipientEmailAddress: customerEmail,
+              //preferredStartDate: cart.preferredStartDate,
+
+              totalDeliveryCost: totalDeliveryCost
+                ? totalDeliveryCost.toFixed(2)
+                : 0,
+              totalProductCostUk: totalProductCostForUk,
+              totalProductCostUs: totalProductCostForUS,
+
+              totalProductCost: totalProductCost,
+
+              cartId: cart.id,
+              quantityAdddedToCart: cart.quantity,
+              orderedQuantity: cart.quantity,
+              dateAddedToCart: cart.dateAddedToCart,
+              productCurrency: "any",
+              paymentMethod: paymentMethod,
+              paymentStatus: "to-be-confirmed",
+              orderedBy: cart.cartHolder,
+            };
+
+            if (data) {
+              const createForm = async () => {
+                api.defaults.headers.common[
+                  "Authorization"
+                ] = `Bearer ${props.token}`;
+                const response2 = await api.post(`/orders`, data);
+
+                if (response2.data.status === "success") {
+                  dispatch({
+                    type: CREATE_ORDER,
+                    payload: response2.data.data.data,
+                  });
+
+                  setLoading(false);
+                } else {
+                  props.handleFailedSnackbar(
+                    "Something went wrong, please try again!!!"
+                  );
+                }
+              };
+              createForm().catch((err) => {
+                //props.handleFailedSnackbar();
+                console.log("err:", err.message);
+              });
+            } else {
+              //props.handleFailedSnackbar("Something went wrong, please try again!!!");
+            }
+          });
+        } else {
+          // props.handleFailedSnackbar(
+          //   "Something went wrong, please try again!!!"
+          // );
+        }
+      };
+      createForm().catch((err) => {
+        //props.handleFailedSnackbar();
+        console.log("err:", err.message);
+      });
+    }
+
+    const cartData = {
+      status: "checkedout",
+    };
+
+    //change the status of this cart items
+    props.courseList.map((cart, index) => {
+      const createForm = async () => {
+        api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+        await api.delete(`/carts/${cart.id}`);
+
+        dispatch({
+          type: DELETE_CART,
+          //payload: response2.data.data.data,
+        });
+      };
+      createForm().catch((err) => {
+        props.handleFailedSnackbar();
+        console.log("err:", err.message);
+      });
+    });
+    props.handleSuccessfulCreateSnackbar(
+      `Thank you for your patronage, see you in class `
     );
     history.push("/thankyou");
   };
@@ -774,12 +947,12 @@ function CheckoutDeliveryAndPayment(props) {
             </Typography>
 
             {renderPaymentMethodField()}
-            {!isOnlinePayment && paymentMethod && (
+            {!isOnlinePayment && paymentMethod === "foreigner" && (
               <Typography className={classes.bankDetails}>
                 Make payment to the accounts as detailed on the adjacent blocks
               </Typography>
             )}
-            {!isOnlinePayment && (
+            {!isOnlinePayment && paymentMethod === "foreigner" && (
               <Button
                 variant="contained"
                 className={classes.submitButton}
@@ -789,6 +962,20 @@ function CheckoutDeliveryAndPayment(props) {
                   <CircularProgress size={30} color="inherit" />
                 ) : (
                   buttonContent()
+                )}
+              </Button>
+            )}
+
+            {!isOnlinePayment && paymentMethod === "audit" && (
+              <Button
+                variant="contained"
+                className={classes.submitAuditButton}
+                onClick={onAuditSubmit}
+              >
+                {loading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonAuditContent()
                 )}
               </Button>
             )}
@@ -919,7 +1106,7 @@ function CheckoutDeliveryAndPayment(props) {
                 Make payment to the accounts as detailed on the adjacent blocks
               </Typography>
             )}
-            {!isOnlinePayment && (
+            {!isOnlinePayment && paymentMethod === "foreigner" && (
               <Button
                 variant="contained"
                 className={classes.submitButtonMobile}
@@ -929,6 +1116,19 @@ function CheckoutDeliveryAndPayment(props) {
                   <CircularProgress size={30} color="inherit" />
                 ) : (
                   buttonContent()
+                )}
+              </Button>
+            )}
+            {!isOnlinePayment && paymentMethod === "audit" && (
+              <Button
+                variant="contained"
+                className={classes.submitAuditButtonMobile}
+                onClick={onAuditSubmit}
+              >
+                {loading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonAuditContent()
                 )}
               </Button>
             )}

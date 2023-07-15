@@ -440,6 +440,7 @@ export default function AllCourses(props) {
   if (!product) {
     return <></>;
   }
+  console.log("props.hasSeries:", props.hasSeries);
 
   return (
     <>
@@ -459,9 +460,18 @@ export default function AllCourses(props) {
             </Grid>
             <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
               <CardContent>
-                <Typography variant="h4" color="textSecondary" component="p">
-                  {props.title}
-                </Typography>
+                {props.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({props.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {props.title}
+                  </Typography>
+                )}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -492,7 +502,6 @@ export default function AllCourses(props) {
                     <span>{props.deliveryMethod}</span>
                   </span>
                 </Typography>
-
                 <Typography>
                   <span style={{ fontSize: 14, marginLeft: 10 }}>
                     <strong> Venue:</strong>
@@ -505,19 +514,29 @@ export default function AllCourses(props) {
                     <span>{props.duration} </span>
                   </span>
                 </Typography>
-
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                    <span>{props.weekdaySessionPeriod} </span>
+                  </span>
+                </Typography>
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                    <span>{props.weekendSessionPeriod} </span>
+                  </span>
+                </Typography>
                 <Typography>
                   <span style={{ fontSize: 14, marginLeft: 10 }}>
                     <strong>Course Track:</strong>
                     <span>{props.track}</span>
                   </span>
                 </Typography>
-
                 {(props.track === "weekdays" ||
                   props.track === "weekdays/weekends") && (
                   <Typography>
                     <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
+                      <strong>Weekday Start Date(s): </strong>&nbsp;&nbsp;
                       {!props.showGenericWeekdayStartDateText
                         ? props.commencementWeekdaysDate.toString()
                         : props.genericWeekdayStartDateText}
@@ -528,10 +547,47 @@ export default function AllCourses(props) {
                   props.track === "weekdays/weekends") && (
                   <Typography>
                     <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
+                      <strong>Weekend Start Date(s): </strong>&nbsp;&nbsp;
                       {!props.showGenericWeekendStartDateText
                         ? props.commencementWeekendsDate.toString()
                         : props.genericWeekendStartDateText}
+                    </span>
+                  </Typography>
+                )}
+                {props.hasMentorshipCredit && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Mentorship Credit:</strong>
+                      <span>
+                        {props.mentorshipCredit}&nbsp;Units&nbsp;&nbsp; (to be
+                        used after graduation)
+                      </span>
+                    </span>
+                  </Typography>
+                )}
+                {props.hasMentorshipCredit && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Total Value of Mentorship Credit:</strong>
+                      <span>
+                        {getCurrencyCode()}
+                        {(
+                          props.mentorshipCredit * props.costPerMentorshipCredit
+                        )
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                      </span>
+                    </span>
+                  </Typography>
+                )}
+                {props.hasMentorshipCredit && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Mentorship Duration:</strong>
+                      <span>
+                        {props.mentorshipDuration}&nbsp;&nbsp; (from the day of
+                        graduation )
+                      </span>
                     </span>
                   </Typography>
                 )}
@@ -541,6 +597,50 @@ export default function AllCourses(props) {
                     <span>{props.paymentOptions}</span>
                   </span>
                 </Typography>
+                {props.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>Is installmental Payment Allowed?:</strong>
+                      <span>
+                        {props.isInstallmentalPaymentAllowed
+                          .charAt(0)
+                          .toUpperCase() +
+                          props.isInstallmentalPaymentAllowed.slice(1)}
+                      </span>
+                    </span>
+                  </Typography>
+                )}
+                {props.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>
+                        Maximum Number of Installmental Payment Allowed:
+                      </strong>
+                      <span>
+                        {props.maximumInstallmentalPayment}&nbsp;times
+                      </span>
+                    </span>
+                  </Typography>
+                )}
+                <br /> <br />
+                {props.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{props.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
+                  </Typography>
+                )}
               </CardContent>
             </Grid>
 
@@ -576,9 +676,26 @@ export default function AllCourses(props) {
               </Grid>
               <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {props.title}
-                  </Typography>
+                  {props.hasSeries ? (
+                    <Typography
+                      variant="h4"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {props.title}
+                      <span style={{ fontSize: 16, fontWeight: 700 }}>
+                        <em> ({props.series})</em>
+                      </span>
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="h4"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {props.title}
+                    </Typography>
+                  )}
                   <Typography
                     variant="subtitle1"
                     color="textSecondary"
@@ -624,6 +741,18 @@ export default function AllCourses(props) {
                       <span>{props.duration} </span>
                     </span>
                   </Typography>
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong> Weekday Lecture Period:</strong>
+                      <span>{props.weekdaySessionPeriod} </span>
+                    </span>
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong> Weekend Lecture Period:</strong>
+                      <span>{props.weekendSessionPeriod} </span>
+                    </span>
+                  </Typography>
 
                   <Typography>
                     <span style={{ fontSize: 14, marginLeft: 10 }}>
@@ -635,7 +764,7 @@ export default function AllCourses(props) {
                     props.track === "weekdays/weekends") && (
                     <Typography>
                       <span style={{ fontSize: 14, marginLeft: 10 }}>
-                        <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
+                        <strong>Weekday Start Date(s): </strong>&nbsp;&nbsp;
                         {!props.showGenericWeekdayStartDateText
                           ? props.commencementWeekdaysDate.toString()
                           : props.genericWeekdayStartDateText}
@@ -647,10 +776,48 @@ export default function AllCourses(props) {
                     props.track === "weekdays/weekends") && (
                     <Typography>
                       <span style={{ fontSize: 15, marginLeft: 10 }}>
-                        <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
+                        <strong>Weekend Start Date(s): </strong>&nbsp;&nbsp;
                         {!props.showGenericWeekendStartDateText
                           ? props.commencementWeekendsDate.toString()
                           : props.genericWeekendStartDateText}
+                      </span>
+                    </Typography>
+                  )}
+                  {props.hasMentorshipCredit && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Mentorship Credit:</strong>
+                        <span>
+                          {props.mentorshipCredit}&nbsp;Units&nbsp;&nbsp; (to be
+                          used after graduation)
+                        </span>
+                      </span>
+                    </Typography>
+                  )}
+                  {props.hasMentorshipCredit && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Total Value of Mentorship Credit:</strong>
+                        <span>
+                          {getCurrencyCode()}
+                          {(
+                            props.mentorshipCredit *
+                            props.costPerMentorshipCredit
+                          )
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                        </span>
+                      </span>
+                    </Typography>
+                  )}
+                  {props.hasMentorshipCredit && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Mentorship Duration:</strong>
+                        <span>
+                          {props.mentorshipDuration}&nbsp;&nbsp; (from the day
+                          of graduation )
+                        </span>
                       </span>
                     </Typography>
                   )}
@@ -660,6 +827,51 @@ export default function AllCourses(props) {
                       <span>{props.paymentOptions}</span>
                     </span>
                   </Typography>
+                  {props.isInstallmentalPaymentAllowed === "yes" && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>Is installmental Payment Allowed?:</strong>
+                        <span>
+                          {props.isInstallmentalPaymentAllowed
+                            .charAt(0)
+                            .toUpperCase() +
+                            props.isInstallmentalPaymentAllowed.slice(1)}
+                        </span>
+                      </span>
+                    </Typography>
+                  )}
+                  {props.isInstallmentalPaymentAllowed === "yes" && (
+                    <Typography>
+                      <span style={{ fontSize: 14, marginLeft: 10 }}>
+                        <strong>
+                          Maximum Number of Installmental Payment Allowed:
+                        </strong>
+                        <span>
+                          {props.maximumInstallmentalPayment}&nbsp;times
+                        </span>
+                      </span>
+                    </Typography>
+                  )}
+                  <br />
+                  <br />
+                  {props.isCourseAuditable && (
+                    <Typography>
+                      <span
+                        style={{
+                          fontSize: 18,
+                          marginLeft: 14,
+                          //textAlign: "center",
+                        }}
+                      >
+                        You can audit this course for FREE for up to
+                        <strong>
+                          <span>{props.weekdayAuditDays}</span>
+                        </strong>
+                        &nbsp;. You only make payment afterwards when you are
+                        sure the course is a good fit for you
+                      </span>
+                    </Typography>
+                  )}
                 </CardContent>
               </Grid>
 

@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "3px",
     //borderRadius: 30,
     marginTop: "3.5em",
     marginBottom: "3em",
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     //width: 400,
     width: "100%",
 
-    marginLeft: "10px",
+    marginLeft: "3px",
     //borderRadius: 30,
     marginTop: "1.5em",
     marginBottom: "3em",
@@ -199,6 +199,17 @@ export default function CheckoutCard(props) {
         weekendSessionPeriod: course.weekendSessionPeriod,
         paymentOptions: course.paymentOptions,
         track: course.track,
+        isCourseAuditable: course.isCourseAuditable,
+        weekdayAuditDays: course.weekdayAuditDays,
+        weekendAuditDays: course.weekendAuditDays,
+        hasMentorshipCredit: course.hasMentorshipCredit,
+        mentorshipCredit: course.mentorshipCredit,
+        mentorshipDuration: course.mentorshipDuration,
+        hasSeries: course.hasSeries,
+        series: course.series,
+        costPerMentorshipCredit: course.costPerMentorshipCredit,
+        isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
+        maximumInstallmentalPayment: course.maximumInstallmentalPayment,
       });
 
       if (!allData) {
@@ -244,6 +255,17 @@ export default function CheckoutCard(props) {
         weekendSessionPeriod: allData[0].weekendSessionPeriod,
         paymentOptions: allData[0].paymentOptions,
         track: allData[0].track,
+        isCourseAuditable: allData[0].isCourseAuditable,
+        weekdayAuditDays: allData[0].weekdayAuditDays,
+        weekendAuditDays: allData[0].weekendAuditDays,
+        hasMentorshipCredit: allData[0].hasMentorshipCredit,
+        mentorshipCredit: allData[0].mentorshipCredit,
+        mentorshipDuration: allData[0].mentorshipDuration,
+        hasSeries: allData[0].hasSeries,
+        series: allData[0].series,
+        costPerMentorshipCredit: allData[0].costPerMentorshipCredit,
+        isInstallmentalPaymentAllowed: allData[0].isInstallmentalPaymentAllowed,
+        maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
       });
     };
 
@@ -490,9 +512,18 @@ export default function CheckoutCard(props) {
             </Grid>
             <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
-                <Typography variant="h4" color="textSecondary" component="p">
-                  {`${course.title} `}
-                </Typography>
+                {course.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {course.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({course.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {course.title}
+                  </Typography>
+                )}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -519,36 +550,236 @@ export default function CheckoutCard(props) {
                     </strong>
                   </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Course duration:</strong> &nbsp;
-                  {`${course.duration}`} &nbsp;
+                {course.refNumber !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Reference Number:</strong>
+                    </span>
+                    {course.refNumber}
+                  </Typography>
+                )}
+                {course.duration !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Duration:</strong>
+                    </span>
+                    {course.duration}
+                  </Typography>
+                )}
+                {course.commencementDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Start date:</strong>
+                    </span>
+                    {course.commencementDate
+                      ? new Date(course.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </Typography>
+                )}
+                {course.deliveryMethod !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Delivery Method:</strong>
+                    </span>
+                    {course.deliveryMethod}
+                  </Typography>
+                )}
+                {course.venue !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Venue:</strong>
+                    </span>
+                    {course.venue}
+                  </Typography>
+                )}
+                {course.track !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Track:</strong>
+                    </span>
+                    {course.track}
+                  </Typography>
+                )}
+                {course.commencementWeekdaysDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekday Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.commencementWeekdaysDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                {course.commencementWeekendsDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekend Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.commencementWeekendsDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {course.weekdaySessionPeriod}
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
-                  <strong>Start Date: </strong>&nbsp;&nbsp;
-                  {props.preferredStartDate
-                    ? new Date(props.preferredStartDate).toDateString()
-                    : "Start date will be communicated to you"}
-                  {/* </span> */}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {course.weekendSessionPeriod}
+                  </span>
                 </Typography>
-
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Venue: </strong> &nbsp;{`${course.venue}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Delivery Method: </strong> &nbsp;
-                  {`${course.deliveryMethod}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Reference Number : </strong> &nbsp;
-                  {`${course.refNumber ? course.refNumber : ""}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
-                  <strong>Payment Options:</strong>
-                  <span>{course.paymentOptions}</span>
-                  {/* </span> */}
-                </Typography>
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.mentorshipCredit}&nbsp; Units &nbsp; (to be used
+                      after graduation)
+                    </span>
+                  </Typography>
+                )}
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Total Value of Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {getCurrencyCode()}
+                      {(
+                        course.mentorshipCredit * course.costPerMentorshipCredit
+                      )
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                    </span>
+                  </Typography>
+                )}
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Duration:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.mentorshipDuration}&nbsp;&nbsp; ( from the day of
+                      graduation)
+                    </span>
+                  </Typography>
+                )}
+                {course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Is Installmental Payment Allowed :</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.isInstallmentalPaymentAllowed
+                        .charAt(0)
+                        .toUpperCase() +
+                        course.isInstallmentalPaymentAllowed.slice(1)}
+                    </span>
+                  </Typography>
+                )}
+                {course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>
+                        Maximum Number of Installmental Payment Allowed :
+                      </strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.maximumInstallmentalPayment}&nbsp;times
+                    </span>
+                  </Typography>
+                )}
+                {course.passGrade !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Minimum NextChamp Grade:</strong>
+                    </span>
+                    {course.passGrade}
+                  </Typography>
+                )}
+                <br /> <br />
+                {course.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{course.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
+                  </Typography>
+                )}
               </CardContent>
             </Grid>
 
@@ -606,9 +837,18 @@ export default function CheckoutCard(props) {
               }}
             >
               <CardContent disableRipple>
-                <Typography variant="h4" color="textSecondary" component="p">
-                  {`${course.title} `}
-                </Typography>
+                {course.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {course.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({course.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {course.title}
+                  </Typography>
+                )}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -634,34 +874,232 @@ export default function CheckoutCard(props) {
                     </strong>
                   </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Course duration:</strong> &nbsp;
-                  {`${course.duration}`} &nbsp;
+                {course.refNumber !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Reference Number:</strong>
+                    </span>
+                    {course.refNumber}
+                  </Typography>
+                )}
+                {course.duration !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Duration:</strong>
+                    </span>
+                    {course.duration}
+                  </Typography>
+                )}
+                {course.commencementDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Start date:</strong>
+                    </span>
+                    {course.commencementDate
+                      ? new Date(course.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </Typography>
+                )}
+                {course.deliveryMethod !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Delivery Method:</strong>
+                    </span>
+                    {course.deliveryMethod}
+                  </Typography>
+                )}
+                {course.venue !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Venue:</strong>
+                    </span>
+                    {course.venue}
+                  </Typography>
+                )}
+                {course.track !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Track:</strong>
+                    </span>
+                    {course.track}
+                  </Typography>
+                )}
+                {course.commencementWeekdaysDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekday Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.commencementWeekdaysDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                {course.commencementWeekendsDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekend Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.commencementWeekendsDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {course.weekdaySessionPeriod}
+                  </span>
                 </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  {/* <span style={{ fontSize: 14, marginLeft: 10 }}> */}
-                  <strong>Start Date: </strong>&nbsp;&nbsp;
-                  {props.preferredStartDate
-                    ? new Date(props.preferredStartDate).toDateString()
-                    : "Start date will be communicated to you"}
-                  {/* </span> */}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {course.weekendSessionPeriod}
+                  </span>
                 </Typography>
-
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Venue: </strong> &nbsp;{`${course.venue}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Delivery Method: </strong> &nbsp;
-                  {`${course.deliveryMethod}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Reference Number : </strong> &nbsp;
-                  {`${course.refNumber ? course.refNumber : ""}`}
-                </Typography>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  <strong>Payment Options: </strong> &nbsp;
-                  {`${course.paymentOptions}`}
-                </Typography>
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.mentorshipCredit}&nbsp; Units &nbsp;
+                    </span>
+                  </Typography>
+                )}
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit Value:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {getCurrencyCode()}
+                      {(
+                        course.mentorshipCredit * course.costPerMentorshipCredit
+                      )
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                    </span>
+                  </Typography>
+                )}
+                {course.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Duration:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.mentorshipDuration}&nbsp;&nbsp;
+                    </span>
+                  </Typography>
+                )}
+                {course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Installmental Payment Allowed?:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.isInstallmentalPaymentAllowed
+                        .charAt(0)
+                        .toUpperCase() +
+                        course.isInstallmentalPaymentAllowed.slice(1)}
+                    </span>
+                  </Typography>
+                )}
+                {course.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>No. of Installmental Payment:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {course.maximumInstallmentalPayment}&nbsp;times
+                    </span>
+                  </Typography>
+                )}
+                {course.passGrade !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Minimum NextChamp Grade:</strong>
+                    </span>
+                    {course.passGrade}
+                  </Typography>
+                )}
+                <br /> <br />
+                {course.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{course.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
+                  </Typography>
+                )}
               </CardContent>
             </Grid>
 

@@ -249,16 +249,7 @@ function CartUpdateAndDeliveryForm(props) {
   const dispatch = useDispatch();
 
   const classes = useStyles();
-  // const [total, setTotal] = useState(
-  //   price
-  //     ? (+props.quantity * price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
-  //     : 0
-  // );
-  // const [total, setTotal] = useState(
-  //   price
-  //     ? (+props.quantity * price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
-  //     : 0
-  // );
+
   const [loading, setLoading] = useState();
   const [loadingRemoval, setLoadingRemoval] = useState();
 
@@ -321,42 +312,6 @@ function CartUpdateAndDeliveryForm(props) {
 
     fetchData().catch(console.error);
   }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/countries`);
-  //     const workingData = response.data.data.data;
-  //     workingData.map((state) => {
-  //       allData.push({ id: state._id, name: state.name });
-  //     });
-  //     setCountryList(allData);
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let allData = [];
-  //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-  //     const response = await api.get(`/states`, {
-  //       params: { country: country },
-  //     });
-  //     const workingData = response.data.data.data;
-  //     workingData.map((state) => {
-  //       allData.push({ id: state._id, name: state.name });
-  //     });
-  //     setStateList(allData);
-  //   };
-
-  //   //call the function
-
-  //   fetchData().catch(console.error);
-  // }, [country]);
 
   const onChange = (e) => {
     const quantity = parseFloat(e.target.value);
@@ -552,23 +507,6 @@ function CartUpdateAndDeliveryForm(props) {
     );
   };
 
-  // const quantityUnitsForNonBaselineDelivery =
-  //   parseInt(quantity) - parseInt(props.maxmumQuantityForBaselineDelivery);
-  // const costforNonBaselineDelivery =
-  //   +quantityUnitsForNonBaselineDelivery *
-  //   parseFloat(props.deliveryCostPerUnitWithinProductLocation);
-  // const totalDeliveryCost =
-  //   +costforNonBaselineDelivery +
-  //   parseFloat(props.baselineDeliveryCostWithinProductLocation);
-
-  // const totalProductCost = price * quantity + totalDeliveryCost;
-  // const totalProductCostForDisplay = totalProductCost
-  //   .toFixed(2)
-  //   .replace(/\d(?=(\d{3})+\.)/g, "$&,");
-  // const totalDeliveryCostForDisplay = totalDeliveryCost
-  //   .toFixed(2)
-  //   .replace(/\d(?=(\d{3})+\.)/g, "$&,");
-
   let totalDeliveryCost;
 
   const diff = +quantity - +props.maxmumQuantityForBaselineDelivery;
@@ -637,11 +575,6 @@ function CartUpdateAndDeliveryForm(props) {
         setLoadingRemoval(false);
         props.cartCounterHandler(-1);
         props.renderCartUpdate(props.cartId);
-        // } else {
-        //   props.handleFailedSnackbar(
-        //     "Something went wrong, please try again!!!"
-        //   );
-        // }
       };
       createForm().catch((err) => {
         props.handleFailedSnackbar();
@@ -674,22 +607,6 @@ function CartUpdateAndDeliveryForm(props) {
       setLoading(false);
       return;
     }
-
-    // if (+formValues["quantity"] < +props.minimumQuantity) {
-    //   props.handleFailedSnackbar(
-    //     "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
-    //   );
-    //   setLoading(false);
-    //   return;
-    // }
-
-    // if (+quantity < +props.minimumQuantity) {
-    //   props.handleFailedSnackbar(
-    //     "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
-    //   );
-    //   setLoading(false);
-    //   return;
-    // }
 
     if (+quantity < +props.minimumQuantity) {
       props.handleFailedSnackbar(
@@ -794,113 +711,7 @@ function CartUpdateAndDeliveryForm(props) {
             />
           </Grid>
         </Grid>
-        {/* <Grid item container style={{ marginTop: 20 }}>
-          <FormLabel style={{ color: "blue" }} component="legend">
-            Delivery Details
-          </FormLabel>
-        </Grid>
-        <Field
-          label=""
-          id="recipient"
-          name="recipient"
-          onChange={onRecipientNameChange}
-          type="text"
-          component={renderRecipientNameField}
-          style={{ width: 300 }}
-        />
-        <Field
-          label=""
-          id="recipientPhoneNumber"
-          name="recipientPhoneNumber"
-          onChange={onRecipientPhoneNumberChange}
-          type="text"
-          component={renderRecipientPhoneNumberField}
-          style={{ width: 300 }}
-        />
 
-        <Grid container direction="row" style={{ marginTop: 10 }}>
-          <Grid item style={{ width: "55%" }}>
-            <Field
-              label=""
-              id="locationCountry"
-              name="locationCountry"
-              type="text"
-              component={renderProductCountryField}
-            />
-          </Grid>
-          <Grid item style={{ width: "40%", marginLeft: 10 }}>
-            <Field
-              label=""
-              id="location"
-              name="location"
-              type="text"
-              component={renderProductLocationField}
-            />
-          </Grid>
-        </Grid>
-        <Field
-          label=""
-          id="recipientAddress"
-          name="recipientAddress"
-          onChange={onRecipientAddressChange}
-          type="text"
-          component={renderRecipientAddressField}
-          style={{ width: 300 }}
-        />
-        {isVisible && (
-          <Typography style={{ marginTop: 5, fontSize: 17, width: 300 }}>
-            Total Delivery Cost:{props.getCurrencyCode()}
-            {totalDeliveryCostForDisplay}
-          </Typography>
-        )}
-        {isVisible && (
-          <Typography style={{ marginTop: 5, fontSize: 17, width: 300 }}>
-            Total Cost:{props.getCurrencyCode()}
-            {totalProductCostForDisplay}
-          </Typography>
-        )}
-
-        {isVisible && !isCheckoutVisible && (
-          <Button
-            variant="contained"
-            className={classes.submitButton}
-            onClick={onSubmit}
-          >
-            {loading ? (
-              <CircularProgress size={30} color="inherit" />
-            ) : (
-              buttonContent()
-            )}
-          </Button>
-        )}
-        {isVisible && isCheckoutVisible && (
-          <Button
-            variant="contained"
-            component={Link}
-            // to="/mobileapps"
-            to={`/checkouts/${userId}`}
-            className={classes.checkout}
-            onClick={() => <CheckoutPage />}
-          >
-            {loading ? (
-              <CircularProgress size={30} color="inherit" />
-            ) : (
-              checkoutButtonContent()
-            )}
-          </Button>
-            )} */}
-        {/* {isVisible && !isCheckoutVisible && ( */}
-        {/* <Button
-          variant="contained"
-          className={classes.submitButton}
-          onClick={onSubmit}
-        >
-          {loading ? (
-            <CircularProgress size={30} color="inherit" />
-          ) : (
-            buttonContent()
-          )}
-        </Button> */}
         <Button
           variant="outlined"
           //component={Link}
@@ -915,20 +726,6 @@ function CartUpdateAndDeliveryForm(props) {
             checkoutButtonContent()
           )}
         </Button>
-        {/* )} */}
-        {/* {provideDeliveryCost && (
-          <Button
-            variant="contained"
-            className={classes.offDeliveryLocationButton}
-            onClick={onSubmit}
-          >
-            {loading ? (
-              <CircularProgress size={30} color="inherit" />
-            ) : (
-              offLocationButtonContent()
-            )}
-          </Button>
-        )} */}
       </Box>
     </form>
   );

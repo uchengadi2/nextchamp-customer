@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
     // marginLeft: "10px",
     //borderRadius: 30,
-    marginTop: "0.5em",
+    marginTop: "0.2em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -189,6 +189,17 @@ export default function SearchProductCard(props) {
         weekendSessionPeriod: course.weekendSessionPeriod,
         paymentOptions: course.paymentOptions,
         slug: course.slug,
+        isCourseAuditable: course.isCourseAuditable,
+        weekdayAuditDays: course.weekdayAuditDays,
+        weekendAuditDays: course.weekendAuditDays,
+        hasMentorshipCredit: course.hasMentorshipCredit,
+        mentorshipCredit: course.mentorshipCredit,
+        mentorshipDuration: course.mentorshipDuration,
+        hasSeries: course.hasSeries,
+        series: course.series,
+        costPerMentorshipCredit: course.costPerMentorshipCredit,
+        isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
+        maximumInstallmentalPayment: course.maximumInstallmentalPayment,
       });
 
       if (!allData) {
@@ -238,6 +249,17 @@ export default function SearchProductCard(props) {
         weekendSessionPeriod: allData[0].weekendSessionPeriod,
         paymentOptions: allData[0].paymentOptions,
         slug: allData[0].slug,
+        isCourseAuditable: allData[0].isCourseAuditable,
+        weekdayAuditDays: allData[0].weekdayAuditDays,
+        weekendAuditDays: allData[0].weekendAuditDays,
+        hasMentorshipCredit: allData[0].hasMentorshipCredit,
+        mentorshipCredit: allData[0].mentorshipCredit,
+        mentorshipDuration: allData[0].mentorshipDuration,
+        hasSeries: allData[0].hasSeries,
+        series: allData[0].series,
+        costPerMentorshipCredit: allData[0].costPerMentorshipCredit,
+        isInstallmentalPaymentAllowed: allData[0].isInstallmentalPaymentAllowed,
+        maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
       });
     };
 
@@ -484,9 +506,18 @@ export default function SearchProductCard(props) {
             </Grid>
             <Grid item style={{ width: "46.19%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
-                <Typography variant="h4" color="textSecondary" component="p">
-                  {product.title}
-                </Typography>
+                {product.hasSeries ? (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {product.title}
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>
+                      <em> ({product.series})</em>
+                    </span>
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="textSecondary" component="p">
+                    {product.title}
+                  </Typography>
+                )}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -511,53 +542,216 @@ export default function SearchProductCard(props) {
                     </strong>
                   </span>
                 </Typography>
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}>
-                    <strong>Delivery Method:</strong> &nbsp;
-                    <span>{product.deliveryMethod}</span>
-                  </span>
-                </Typography>
-
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong> Venue:</strong>
-                    <span>{product.venue}</span>
-                  </span>
-                </Typography>
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong> Total Course Duration:</strong>
-                    <span>{product.duration} </span>
-                  </span>
-                </Typography>
-
-                <Typography>
-                  <span style={{ fontSize: 14, marginLeft: 10 }}>
-                    <strong>Course Track:</strong>
-                    <span>{product.track}</span>
-                  </span>
-                </Typography>
-
-                {(product.track === "weekdays" ||
-                  product.track === "weekdays/weekends") && (
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
-                      {!product.showGenericWeekdayStartDateText
-                        ? product.commencementWeekdaysDate.toString()
-                        : product.genericWeekdayStartDateText}
+                {product.refNumber !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Reference Number:</strong>
+                    </span>
+                    {product.refNumber}
+                  </Typography>
+                )}
+                {product.duration !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Duration:</strong>
+                    </span>
+                    {product.duration}
+                  </Typography>
+                )}
+                {product.commencementDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Start date:</strong>
+                    </span>
+                    {product.commencementDate
+                      ? new Date(product.commencementDate).toDateString()
+                      : "Coming Soon"}
+                  </Typography>
+                )}
+                {product.deliveryMethod !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Delivery Method:</strong>
+                    </span>
+                    {product.deliveryMethod}
+                  </Typography>
+                )}
+                {product.venue !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Venue:</strong>
+                    </span>
+                    {product.venue}
+                  </Typography>
+                )}
+                {product.track !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Track:</strong>
+                    </span>
+                    {product.track}
+                  </Typography>
+                )}
+                {product.commencementWeekdaysDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekday Start Date(s):</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.commencementWeekdaysDate.join("|")}
                     </span>
                   </Typography>
                 )}
-                {(product.track === "weekends" ||
-                  product.track === "weekdays/weekends") && (
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
-                      {!product.showGenericWeekendStartDateText
-                        ? product.commencementWeekendsDate.toString()
-                        : product.genericWeekendStartDateText}
+                {product.commencementWeekendsDate !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekend Start Date(s):</strong>
                     </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.commencementWeekendsDate.join("|")}
+                    </span>
+                  </Typography>
+                )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekday Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {product.weekdaySessionPeriod}
+                  </span>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    <strong>Weekend Lecture Period:</strong>
+                  </span>
+                  <span style={{ marginLeft: 3, textAlign: "center" }}>
+                    {product.weekendSessionPeriod}
+                  </span>
+                </Typography>
+                {product.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.mentorshipCredit}&nbsp; Units &nbsp; (to be used
+                      after graduation)
+                    </span>
+                  </Typography>
+                )}
+                {product.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Total Value of Mentorship Credit:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {getCurrencyCode()}
+                      {(
+                        product.mentorshipCredit *
+                        product.costPerMentorshipCredit
+                      )
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                    </span>
+                  </Typography>
+                )}
+                {product.hasMentorshipCredit && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Mentorship Duration:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.mentorshipDuration}&nbsp;&nbsp; ( from the day of
+                      graduation)
+                    </span>
+                  </Typography>
+                )}
+                {product.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Is Installmental Payment Allowed :</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.isInstallmentalPaymentAllowed
+                        .charAt(0)
+                        .toUpperCase() +
+                        product.isInstallmentalPaymentAllowed.slice(1)}
+                    </span>
+                  </Typography>
+                )}
+                {product.isInstallmentalPaymentAllowed === "yes" && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>
+                        Maximum Number of Installmental Payment Allowed :
+                      </strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.maximumInstallmentalPayment}&nbsp;times
+                    </span>
+                  </Typography>
+                )}
+                {product.passGrade !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      {" "}
+                      <strong>Minimum NextChamp Grade:</strong>
+                    </span>
+                    {product.passGrade}
                   </Typography>
                 )}
                 <Typography>
@@ -566,6 +760,25 @@ export default function SearchProductCard(props) {
                     <span>{product.paymentOptions}</span>
                   </span>
                 </Typography>
+                <br /> <br />
+                {product.isCourseAuditable && (
+                  <Typography>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        marginLeft: 14,
+                        //textAlign: "center",
+                      }}
+                    >
+                      You can audit this course for FREE for up to
+                      <strong>
+                        <span>{product.weekdayAuditDays}</span>
+                      </strong>
+                      &nbsp;. You only make payment afterwards when you are sure
+                      the course is a good fit for you
+                    </span>
+                  </Typography>
+                )}
               </CardContent>
             </Grid>
 
@@ -611,9 +824,26 @@ export default function SearchProductCard(props) {
               </Grid>
               <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
                 <CardContent disableRipple>
-                  <Typography variant="h4" color="textSecondary" component="p">
-                    {product.name}
-                  </Typography>
+                  {product.hasSeries ? (
+                    <Typography
+                      variant="h4"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {product.title}
+                      <span style={{ fontSize: 16, fontWeight: 700 }}>
+                        <em> ({product.series})</em>
+                      </span>
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="h4"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {product.title}
+                    </Typography>
+                  )}
                   <Typography
                     variant="subtitle1"
                     color="textSecondary"
@@ -639,55 +869,212 @@ export default function SearchProductCard(props) {
                       </strong>
                     </span>
                   </Typography>
-                  <Typography>
-                    <span
-                      style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}
+                  {product.refNumber !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
                     >
-                      <strong>Delivery Method:</strong> &nbsp;
-                      <span>{product.deliveryMethod}</span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong> Venue:</strong>
-                      <span>{product.venue}</span>
-                    </span>
-                  </Typography>
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong> Total Course Duration:</strong>
-                      <span>{product.duration} </span>
-                    </span>
-                  </Typography>
-
-                  <Typography>
-                    <span style={{ fontSize: 14, marginLeft: 10 }}>
-                      <strong>Course Track:</strong>
-                      <span>{product.track}</span>
-                    </span>
-                  </Typography>
-
-                  {(product.track === "weekdays" ||
-                    product.track === "weekdays/weekends") && (
-                    <Typography>
-                      <span style={{ fontSize: 14, marginLeft: 10 }}>
-                        <strong>Weekdays Start Dates: </strong>&nbsp;&nbsp;
-                        {!product.showGenericWeekdayStartDateText
-                          ? product.commencementWeekdaysDate.toString()
-                          : product.genericWeekdayStartDateText}
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Reference Number:</strong>
+                      </span>
+                      {product.refNumber}
+                    </Typography>
+                  )}
+                  {product.duration !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Duration:</strong>
+                      </span>
+                      {product.duration}
+                    </Typography>
+                  )}
+                  {product.commencementDate !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Start date:</strong>
+                      </span>
+                      {product.commencementDate
+                        ? new Date(product.commencementDate).toDateString()
+                        : "Coming Soon"}
+                    </Typography>
+                  )}
+                  {product.deliveryMethod !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Delivery Method:</strong>
+                      </span>
+                      {product.deliveryMethod}
+                    </Typography>
+                  )}
+                  {product.venue !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Venue:</strong>
+                      </span>
+                      {product.venue}
+                    </Typography>
+                  )}
+                  {product.track !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Track:</strong>
+                      </span>
+                      {product.track}
+                    </Typography>
+                  )}
+                  {product.commencementWeekdaysDate !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Weekday Start Date(s):</strong>
+                      </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.commencementWeekdaysDate.join("|")}
                       </span>
                     </Typography>
                   )}
-                  {(product.track === "weekends" ||
-                    product.track === "weekdays/weekends") && (
-                    <Typography>
-                      <span style={{ fontSize: 14, marginLeft: 10 }}>
-                        <strong>Weekends Start Dates: </strong>&nbsp;&nbsp;
-                        {!product.showGenericWeekendStartDateText
-                          ? product.commencementWeekendsDate.toString()
-                          : product.genericWeekendStartDateText}
+                  {product.commencementWeekendsDate !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Weekend Start Date(s):</strong>
                       </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.commencementWeekendsDate.join("|")}
+                      </span>
+                    </Typography>
+                  )}
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekday Lecture Period:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.weekdaySessionPeriod}
+                    </span>
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    style={{ color: "black", fontSize: 15 }}
+                  >
+                    <span style={{ marginRight: 20 }}>
+                      <strong>Weekend Lecture Period:</strong>
+                    </span>
+                    <span style={{ marginLeft: 3, textAlign: "center" }}>
+                      {product.weekendSessionPeriod}
+                    </span>
+                  </Typography>
+                  {product.hasMentorshipCredit && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Mentorship Credit:</strong>
+                      </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.mentorshipCredit}&nbsp; Units &nbsp;
+                      </span>
+                    </Typography>
+                  )}
+                  {product.hasMentorshipCredit && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Mentorship Credit Value:</strong>
+                      </span>
+                      <span style={{ marginLeft: 1, textAlign: "center" }}>
+                        {getCurrencyCode()}
+                        {(
+                          product.mentorshipCredit *
+                          product.costPerMentorshipCredit
+                        )
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                      </span>
+                    </Typography>
+                  )}
+                  {product.hasMentorshipCredit && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Mentorship Duration:</strong>
+                      </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.mentorshipDuration}&nbsp;&nbsp;
+                      </span>
+                    </Typography>
+                  )}
+                  {product.isInstallmentalPaymentAllowed === "yes" && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>Installmental Payment Allowed?:</strong>
+                      </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.isInstallmentalPaymentAllowed
+                          .charAt(0)
+                          .toUpperCase() +
+                          product.isInstallmentalPaymentAllowed.slice(1)}
+                      </span>
+                    </Typography>
+                  )}
+                  {product.isInstallmentalPaymentAllowed === "yes" && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        <strong>No. of Installmental Payment:</strong>
+                      </span>
+                      <span style={{ marginLeft: 3, textAlign: "center" }}>
+                        {product.maximumInstallmentalPayment}&nbsp;times
+                      </span>
+                    </Typography>
+                  )}
+                  {product.passGrade !== undefined && (
+                    <Typography
+                      variant="h5"
+                      style={{ color: "black", fontSize: 15 }}
+                    >
+                      <span style={{ marginRight: 20 }}>
+                        {" "}
+                        <strong>Minimum NextChamp Grade:</strong>
+                      </span>
+                      {product.passGrade}
                     </Typography>
                   )}
                   <Typography>
@@ -696,6 +1083,25 @@ export default function SearchProductCard(props) {
                       <span>{product.paymentOptions}</span>
                     </span>
                   </Typography>
+                  <br /> <br />
+                  {product.isCourseAuditable && (
+                    <Typography>
+                      <span
+                        style={{
+                          fontSize: 18,
+                          marginLeft: 14,
+                          //textAlign: "center",
+                        }}
+                      >
+                        You can audit this course for FREE for up to
+                        <strong>
+                          <span>{product.weekdayAuditDays}</span>
+                        </strong>
+                        &nbsp;. You only make payment afterwards when you are
+                        sure the course is a good fit for you
+                      </span>
+                    </Typography>
+                  )}
                 </CardContent>
               </Grid>
 
@@ -770,12 +1176,6 @@ export default function SearchProductCard(props) {
               />
             </CardActionArea>
           </Card>
-
-          {/* <Bookings
-            token={props.token}
-            userId={props.userId}
-            handleBookingsOpenDialogStatus={handleBookingsOpenDialogStatus}
-          /> */}
         </DialogContent>
       </Dialog>
       {renderLoginForm()}

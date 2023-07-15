@@ -1301,7 +1301,7 @@ const Header = (props) => {
                     className={classes.searchMobile}
                     style={{ width: "15%" }}
                   >
-                    <span style={{ fontSize: 12, marginLeft: "-10px" }}>
+                    <span style={{ fontSize: 12, marginLeft: "-5px" }}>
                       Search
                     </span>
                   </Button>

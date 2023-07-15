@@ -265,10 +265,12 @@ function SendCourseToCheckoutForm(props) {
     return <React.Fragment>Add to Cart</React.Fragment>;
   };
 
+  console.log("props.token:", props.token);
+
   const onSubmit = (formValues) => {
     setLoading(true);
 
-    console.log("preferredStartDate is:", formValues.preferredStartDate);
+    //console.log("preferredStartDate is:", formValues.preferredStartDate);
 
     if (props.token === undefined) {
       props.handleMakeOpenLoginFormDialogStatus();
@@ -314,7 +316,7 @@ function SendCourseToCheckoutForm(props) {
       price: price,
       currency: props.currency,
       status: "marked-for-checkout",
-      preferredStartDate: formValues.preferredStartDate,
+      //preferredStartDate: formValues.preferredStartDate,
     };
 
     //create a new cart and add the product
@@ -392,7 +394,7 @@ function SendCourseToCheckoutForm(props) {
       price: price,
       currency: props.currency,
       status: "unmarked-for-checkout",
-      preferredStartDate: formValues.preferredStartDate,
+      //preferredStartDate: formValues.preferredStartDate,
     };
 
     //create a new cart and add the product
@@ -407,9 +409,9 @@ function SendCourseToCheckoutForm(props) {
             payload: response.data.data.data,
           });
 
-          // props.handleSuccessfulCreateSnackbar(
-          //   `item(s) successfully added to cart. Please visit the cart to continue to checkout and payment`
-          // );
+          props.handleSuccessfulCreateSnackbar(
+            `item(s) successfully added to cart. Please visit the cart to continue to checkout and payment`
+          );
           props.cartCounterHandler(1);
 
           history.push(`/`);
@@ -461,7 +463,7 @@ function SendCourseToCheckoutForm(props) {
               style={{ width: 100 }}
             />
           </Grid>
-          <Grid
+          {/* <Grid
             item
             style={{ marginTop: 10, marginBottom: 10 }}
             justifyContent="center"
@@ -474,7 +476,7 @@ function SendCourseToCheckoutForm(props) {
               component={renderPreferredStartDateField}
               style={{ width: 300, marginBottom: 20 }}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Button
