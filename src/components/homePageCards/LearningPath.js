@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LearningPath() {
+export default function LearningPath(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openLoginForm, setOpenLoginForm] = useState(false);
@@ -128,7 +128,7 @@ export default function LearningPath() {
   const [stateName, setStateName] = useState();
   const [product, setProduct] = useState({});
 
-  const [learningPath, setLearningPath] = useState("crash-courses");
+  const [learningPath, setLearningPath] = useState("crash-course");
 
   // const { token, setToken } = useToken();
   // const { userId, setUserId } = useUserId();
@@ -153,6 +153,9 @@ export default function LearningPath() {
 
   const changeLearningPathHandler = (event) => {
     setLearningPath(event.target.value);
+
+    props.updatePathHandler(event.target.value);
+    props.updateLearningPathInfoInfo();
   };
 
   const renderLearningPathField = () => {
@@ -173,13 +176,17 @@ export default function LearningPath() {
               marginLeft: 10,
             }}
           >
-            <MenuItem value={"crash-courses"}>Crash Courses</MenuItem>
-            {/* <MenuItem value={"courses"}>Courses</MenuItem>
+            <MenuItem value={"crash-course"}>Crash Courses</MenuItem>
+            <MenuItem value={"regular-course"}>Regular Courses</MenuItem>
             <MenuItem value={"programmes"}>Programmes</MenuItem>
             <MenuItem value={"channels"}>Channels</MenuItem>
-            <MenuItem value={"mocks"}>Mocks</MenuItem>
             <MenuItem value={"assessments"}>Assessments</MenuItem>
-            <MenuItem value={"mentoring"}>Mentoring</MenuItem> */}
+            <MenuItem value={"mentoring"}>Mentoring</MenuItem>
+            <MenuItem value={"mocks"}>Mocks</MenuItem>
+            <MenuItem value={"live-interviews-preps"}>
+              Live Interview Preps
+            </MenuItem>
+            <MenuItem value={"talk-to-expert"}>Engage An Expert</MenuItem>
           </Select>
           <FormHelperText>Choose Path</FormHelperText>
         </FormControl>

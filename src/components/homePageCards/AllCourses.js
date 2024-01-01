@@ -440,7 +440,6 @@ export default function AllCourses(props) {
   if (!product) {
     return <></>;
   }
-  console.log("props.hasSeries:", props.hasSeries);
 
   return (
     <>
@@ -655,6 +654,7 @@ export default function AllCourses(props) {
                 productId={props.courseId}
                 slug={props.slug}
                 categorySlug={props.categorySlug}
+                updateLearningPathInfoInfo={props.updateLearningPathInfoInfo}
               />
             </Grid>
           </Grid>
@@ -886,6 +886,7 @@ export default function AllCourses(props) {
                   productId={props.courseId}
                   slug={props.slug}
                   categorySlug={props.categorySlug}
+                  updateLearningPathInfoInfo={props.updateLearningPathInfoInfo}
                 />
               </Grid>
             </Grid>
