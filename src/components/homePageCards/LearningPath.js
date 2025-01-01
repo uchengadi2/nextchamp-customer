@@ -187,6 +187,7 @@ export default function LearningPath(props) {
               Live Interview Preps
             </MenuItem>
             <MenuItem value={"talk-to-expert"}>Engage An Expert</MenuItem>
+            <MenuItem value={"books"}>Books</MenuItem>
           </Select>
           <FormHelperText>Choose Path</FormHelperText>
         </FormControl>
