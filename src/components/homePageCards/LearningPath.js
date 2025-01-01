@@ -176,9 +176,11 @@ export default function LearningPath(props) {
               marginLeft: 10,
             }}
           >
-            <MenuItem value={"crash-course"}>Crash Courses</MenuItem>
+            <MenuItem value={"crash-course"}>Nuggets(Short Courses)</MenuItem>
             <MenuItem value={"regular-course"}>Regular Courses</MenuItem>
-            <MenuItem value={"programmes"}>Programmes</MenuItem>
+            <MenuItem value={"programmes"}>
+              Programmes & Certifications
+            </MenuItem>
             <MenuItem value={"channels"}>Channels</MenuItem>
             <MenuItem value={"assessments"}>Assessments</MenuItem>
             <MenuItem value={"mentoring"}>Mentoring</MenuItem>
@@ -188,6 +190,7 @@ export default function LearningPath(props) {
             </MenuItem>
             <MenuItem value={"talk-to-expert"}>Engage An Expert</MenuItem>
             <MenuItem value={"books"}>Books</MenuItem>
+            <MenuItem value={"life"}>Life Courses</MenuItem>
           </Select>
           <FormHelperText>Choose Path</FormHelperText>
         </FormControl>
