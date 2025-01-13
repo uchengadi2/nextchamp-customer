@@ -53,6 +53,7 @@ import api from "./../../apis/local";
 import { FaLaptopHouse } from "react-icons/fa";
 import OrderPage from "../orders/OrderPage";
 import ProfileLayout from "../ProfileLayout";
+import MainDashboard from "../Dashboard/MainDashboard";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -149,12 +150,12 @@ const useStyles = makeStyles((theme) => ({
   cart: {
     ...theme.typography.estimate,
     borderRadius: "250px",
-    marginLeft: "3px",
-    marginRight: "2px",
+    marginLeft: "2px",
+    marginRight: "1px",
     height: "45px",
     fontSize: "13px",
     fontWeight: "500px",
-    width: "140px",
+    width: "60px",
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
       color: "white",
@@ -191,10 +192,10 @@ const useStyles = makeStyles((theme) => ({
   checkout: {
     ...theme.typography.estimate,
     borderRadius: "250px",
-    marginLeft: "3px",
+    marginLeft: "2px",
     marginRight: "2px",
     height: "45px",
-    width: "70px",
+    width: "60px",
     fontSize: "13px",
     fontWeight: "500px",
     "&:hover": {
@@ -295,6 +296,34 @@ const useStyles = makeStyles((theme) => ({
   },
   socialPosUnlogged: {
     marginLeft: "45em",
+  },
+  dashboard: {
+    ...theme.typography.estimate,
+    borderRadius: "250px",
+    marginLeft: "2px",
+    marginRight: "2px",
+    height: "45px",
+    fontSize: "13px",
+    fontWeight: "500px",
+    width: "90px",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+      color: "white",
+    },
+  },
+  learningcenter: {
+    ...theme.typography.estimate,
+    borderRadius: "250px",
+    marginLeft: "2px",
+    marginRight: "2px",
+    height: "45px",
+    fontSize: "13px",
+    fontWeight: "500px",
+    width: "135px",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+      color: "white",
+    },
   },
 }));
 
@@ -559,12 +588,22 @@ const Header = (props) => {
             Career
           </Button> */}
           <Button
+            onClick={() => <MainDashboard />}
+            disableRipple
+            component={Link}
+            to={`/dashboard/maindashboard`}
+            className={classes.dashboard}
+          >
+            Dashboard
+          </Button>
+          <Button
             onClick={() => <OrderPage />}
             disableRipple
             component={Link}
             // to={`/carts/${props.userId}`}
-            to={`/orders`}
-            className={classes.cart}
+            // to={`/orders`}
+            to={`/my-learningcenter`}
+            className={classes.learningcenter}
           >
             {/* <img alt="company logo" src={logo} className={classes.logo} /> */}
             Learning Center
@@ -950,7 +989,8 @@ const Header = (props) => {
                 button
                 component={Link}
                 // to={`/orders/${props.userId}`}
-                to={`/orders`}
+                //to={`/orders`}
+                to={`/my-learningcenter`}
                 classes={{
                   root: classes.drawerItem,
                   selected: classes.drawerItemSelected,

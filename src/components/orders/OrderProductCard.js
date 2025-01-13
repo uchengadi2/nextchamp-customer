@@ -198,6 +198,10 @@ export default function OrderProductCard(props) {
         costPerMentorshipCredit: course.costPerMentorshipCredit,
         isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
         maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+
+        videoId: course.videoId,
+        videoType: course.videoType,
+        previewVideoId: course.previewVideoId,
       });
 
       if (!allData) {
@@ -254,13 +258,19 @@ export default function OrderProductCard(props) {
         costPerMentorshipCredit: allData[0].costPerMentorshipCredit,
         isInstallmentalPaymentAllowed: allData[0].isInstallmentalPaymentAllowed,
         maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
+
+        videoId: allData[0].videoId,
+        videoType: allData[0].videoType,
+        previewVideoId: allData[0].previewVideoId,
       });
     };
 
     //call the function
 
     fetchData().catch(console.error);
-  }, []);
+  }, [props.product]);
+
+  console.log("order cards props:", props);
 
   //get the currency name
 
@@ -540,7 +550,7 @@ export default function OrderProductCard(props) {
                     </strong>
                   </span>
                 </Typography>
-                {product.refNumber !== undefined && (
+                {props.refNumber !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -549,10 +559,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Reference Number:</strong>
                     </span>
-                    {product.refNumber}
+                    {props.refNumber}
                   </Typography>
                 )}
-                {product.duration !== undefined && (
+                {props.duration !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -561,10 +571,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Duration:</strong>
                     </span>
-                    {product.duration}
+                    {props.duration}
                   </Typography>
                 )}
-                {product.commencementDate !== undefined && (
+                {props.commencementDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -573,12 +583,12 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Start date:</strong>
                     </span>
-                    {product.commencementDate
+                    {props.commencementDate
                       ? new Date(product.commencementDate).toDateString()
                       : "Coming Soon"}
                   </Typography>
                 )}
-                {product.deliveryMethod !== undefined && (
+                {props.deliveryMethod !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -587,10 +597,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Delivery Method:</strong>
                     </span>
-                    {product.deliveryMethod}
+                    {props.deliveryMethod}
                   </Typography>
                 )}
-                {product.venue !== undefined && (
+                {props.venue !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -599,10 +609,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Venue:</strong>
                     </span>
-                    {product.venue}
+                    {props.venue}
                   </Typography>
                 )}
-                {product.track !== undefined && (
+                {props.track !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -611,10 +621,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Track:</strong>
                     </span>
-                    {product.track}
+                    {props.track}
                   </Typography>
                 )}
-                {product.commencementWeekdaysDate !== undefined && (
+                {props.commencementWeekdaysDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -623,11 +633,12 @@ export default function OrderProductCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekdaysDate.join("|")}
+                      {/* {product.commencementWeekdaysDate.join("|")} */}
+                      {props.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
-                {product.commencementWeekendsDate !== undefined && (
+                {props.commencementWeekendsDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -636,7 +647,8 @@ export default function OrderProductCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekendsDate.join("|")}
+                      {/* {product.commencementWeekendsDate.join("|")} */}
+                      {props.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -648,7 +660,7 @@ export default function OrderProductCard(props) {
                     <strong>Weekday Lecture Period:</strong>
                   </span>
                   <span style={{ marginLeft: 3, textAlign: "center" }}>
-                    {product.weekdaySessionPeriod}
+                    {props.weekdaySessionPeriod}
                   </span>
                 </Typography>
                 <Typography
@@ -659,10 +671,10 @@ export default function OrderProductCard(props) {
                     <strong>Weekend Lecture Period:</strong>
                   </span>
                   <span style={{ marginLeft: 3, textAlign: "center" }}>
-                    {product.weekendSessionPeriod}
+                    {props.weekendSessionPeriod}
                   </span>
                 </Typography>
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -671,12 +683,12 @@ export default function OrderProductCard(props) {
                       <strong>Mentorship Credit:</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.mentorshipCredit}&nbsp; Units &nbsp; (to be used
+                      {props.mentorshipCredit}&nbsp; Units &nbsp; (to be used
                       after graduation)
                     </span>
                   </Typography>
                 )}
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -686,16 +698,13 @@ export default function OrderProductCard(props) {
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
                       {getCurrencyCode()}
-                      {(
-                        product.mentorshipCredit *
-                        product.costPerMentorshipCredit
-                      )
+                      {(props.mentorshipCredit * props.costPerMentorshipCredit)
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
                     </span>
                   </Typography>
                 )}
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -704,12 +713,12 @@ export default function OrderProductCard(props) {
                       <strong>Mentorship Duration:</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.mentorshipDuration}&nbsp;&nbsp; ( from the day of
+                      {props.mentorshipDuration}&nbsp;&nbsp; ( from the day of
                       graduation)
                     </span>
                   </Typography>
                 )}
-                {product.isInstallmentalPaymentAllowed === "yes" && (
+                {props.isInstallmentalPaymentAllowed === "yes" && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -718,14 +727,14 @@ export default function OrderProductCard(props) {
                       <strong>Is Installmental Payment Allowed :</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.isInstallmentalPaymentAllowed
+                      {props.isInstallmentalPaymentAllowed
                         .charAt(0)
                         .toUpperCase() +
-                        product.isInstallmentalPaymentAllowed.slice(1)}
+                        props.isInstallmentalPaymentAllowed.slice(1)}
                     </span>
                   </Typography>
                 )}
-                {product.isInstallmentalPaymentAllowed === "yes" && (
+                {props.isInstallmentalPaymentAllowed === "yes" && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -736,11 +745,11 @@ export default function OrderProductCard(props) {
                       </strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.maximumInstallmentalPayment}&nbsp;times
+                      {props.maximumInstallmentalPayment}&nbsp;times
                     </span>
                   </Typography>
                 )}
-                {product.passGrade !== undefined && (
+                {props.passGrade !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -749,9 +758,33 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Minimum NextChamp Grade:</strong>
                     </span>
-                    {product.passGrade}
+                    {props.passGrade}
                   </Typography>
                 )}
+
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>
+                      Is Life Time Access To This Course Allowed?:
+                    </strong>
+                  </span>
+                  {props.allowLifeTimeAccess ? "Yes" : "No"}
+                </Typography>
+                {/* <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>Course Video Type:</strong>
+                  </span>
+                  {props.videoType}
+                </Typography> */}
+
                 <Typography
                   variant="h5"
                   color="textSecondary"
@@ -760,7 +793,7 @@ export default function OrderProductCard(props) {
                 >
                   <strong>Course Link : </strong>&nbsp;&nbsp;
                   {/* {`${product.refNumber ? product.venueLink : ""}`} */}
-                  {product.venueLink}
+                  {props.venueLink}
                 </Typography>
               </CardContent>
             </Grid>
@@ -769,6 +802,16 @@ export default function OrderProductCard(props) {
               <OrderPageAction
                 price={props.orderedPrice}
                 productId={props.product}
+                courseId={product.id}
+                orderId={props.orderId}
+                currentCourseVideoId={product.videoId}
+                purchasedCourseVideoId={props.videoId}
+                currentCourseVideoType={product.videoType}
+                purchasedCourseVideoType={props.videoType}
+                allowLifeTimeAccess={props.allowLifeTimeAccess}
+                venueLink={props.venueLink}
+                deliveryMethod={props.deliveryMethod}
+                type={product.type}
                 token={props.token}
                 userId={props.userId}
                 location={props.productLocation}
@@ -853,7 +896,7 @@ export default function OrderProductCard(props) {
                     </strong>
                   </span>
                 </Typography>
-                {product.refNumber !== undefined && (
+                {props.refNumber !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -862,10 +905,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Reference Number:</strong>
                     </span>
-                    {product.refNumber}
+                    {props.refNumber}
                   </Typography>
                 )}
-                {product.duration !== undefined && (
+                {props.duration !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -874,10 +917,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Duration:</strong>
                     </span>
-                    {product.duration}
+                    {props.duration}
                   </Typography>
                 )}
-                {product.commencementDate !== undefined && (
+                {props.commencementDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -886,12 +929,12 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Start date:</strong>
                     </span>
-                    {product.commencementDate
-                      ? new Date(product.commencementDate).toDateString()
+                    {props.commencementDate
+                      ? new Date(props.commencementDate).toDateString()
                       : "Coming Soon"}
                   </Typography>
                 )}
-                {product.deliveryMethod !== undefined && (
+                {props.deliveryMethod !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -900,10 +943,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Delivery Method:</strong>
                     </span>
-                    {product.deliveryMethod}
+                    {props.deliveryMethod}
                   </Typography>
                 )}
-                {product.venue !== undefined && (
+                {props.venue !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -912,10 +955,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Venue:</strong>
                     </span>
-                    {product.venue}
+                    {props.venue}
                   </Typography>
                 )}
-                {product.track !== undefined && (
+                {props.track !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -924,10 +967,10 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Track:</strong>
                     </span>
-                    {product.track}
+                    {props.track}
                   </Typography>
                 )}
-                {product.commencementWeekdaysDate !== undefined && (
+                {props.commencementWeekdaysDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -936,11 +979,12 @@ export default function OrderProductCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekdaysDate.join("|")}
+                      {/* {product.commencementWeekdaysDate.join("|")} */}
+                      {props.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
-                {product.commencementWeekendsDate !== undefined && (
+                {props.commencementWeekendsDate !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -949,7 +993,8 @@ export default function OrderProductCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekendsDate.join("|")}
+                      {/* {product.commencementWeekendsDate.join("|")} */}
+                      {props.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -961,7 +1006,7 @@ export default function OrderProductCard(props) {
                     <strong>Weekday Lecture Period:</strong>
                   </span>
                   <span style={{ marginLeft: 3, textAlign: "center" }}>
-                    {product.weekdaySessionPeriod}
+                    {props.weekdaySessionPeriod}
                   </span>
                 </Typography>
                 <Typography
@@ -972,10 +1017,10 @@ export default function OrderProductCard(props) {
                     <strong>Weekend Lecture Period:</strong>
                   </span>
                   <span style={{ marginLeft: 3, textAlign: "center" }}>
-                    {product.weekendSessionPeriod}
+                    {props.weekendSessionPeriod}
                   </span>
                 </Typography>
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -984,11 +1029,11 @@ export default function OrderProductCard(props) {
                       <strong>Mentorship Credit:</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.mentorshipCredit}&nbsp; Units &nbsp;
+                      {props.mentorshipCredit}&nbsp; Units &nbsp;
                     </span>
                   </Typography>
                 )}
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -998,16 +1043,13 @@ export default function OrderProductCard(props) {
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
                       {getCurrencyCode()}
-                      {(
-                        product.mentorshipCredit *
-                        product.costPerMentorshipCredit
-                      )
+                      {(props.mentorshipCredit * props.costPerMentorshipCredit)
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
                     </span>
                   </Typography>
                 )}
-                {product.hasMentorshipCredit && (
+                {props.hasMentorshipCredit && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -1016,11 +1058,11 @@ export default function OrderProductCard(props) {
                       <strong>Mentorship Duration:</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.mentorshipDuration}&nbsp;&nbsp;
+                      {props.mentorshipDuration}&nbsp;&nbsp;
                     </span>
                   </Typography>
                 )}
-                {product.isInstallmentalPaymentAllowed === "yes" && (
+                {props.isInstallmentalPaymentAllowed === "yes" && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -1029,14 +1071,14 @@ export default function OrderProductCard(props) {
                       <strong>Installmental Payment Allowed? :</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.isInstallmentalPaymentAllowed
+                      {props.isInstallmentalPaymentAllowed
                         .charAt(0)
                         .toUpperCase() +
-                        product.isInstallmentalPaymentAllowed.slice(1)}
+                        props.isInstallmentalPaymentAllowed.slice(1)}
                     </span>
                   </Typography>
                 )}
-                {product.isInstallmentalPaymentAllowed === "yes" && (
+                {props.isInstallmentalPaymentAllowed === "yes" && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -1045,11 +1087,11 @@ export default function OrderProductCard(props) {
                       <strong>No. of Installmental Payment:</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.maximumInstallmentalPayment}&nbsp;times
+                      {props.maximumInstallmentalPayment}&nbsp;times
                     </span>
                   </Typography>
                 )}
-                {product.passGrade !== undefined && (
+                {props.passGrade !== undefined && (
                   <Typography
                     variant="h5"
                     style={{ color: "black", fontSize: 15 }}
@@ -1058,9 +1100,21 @@ export default function OrderProductCard(props) {
                       {" "}
                       <strong>Minimum NextChamp Grade:</strong>
                     </span>
-                    {product.passGrade}
+                    {props.passGrade}
                   </Typography>
                 )}
+
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>Is Life Time Access To This Course Allowed:</strong>
+                  </span>
+                  {props.allowLifeTimeAccess ? "Yes" : "No"}
+                </Typography>
+
                 <Typography
                   variant="h5"
                   color="textSecondary"
@@ -1069,7 +1123,7 @@ export default function OrderProductCard(props) {
                 >
                   <strong>Course Link : </strong>&nbsp;&nbsp;
                   {/* {`${product.refNumber ? product.venueLink : ""}`} */}
-                  {product.venueLink}
+                  {props.venueLink}
                 </Typography>
               </CardContent>
             </Grid>
@@ -1078,6 +1132,16 @@ export default function OrderProductCard(props) {
               <OrderPageAction
                 price={props.orderedPrice}
                 productId={props.product}
+                courseId={product.id}
+                orderId={props.orderId}
+                currentCourseVideoId={product.videoId}
+                purchasedCourseVideoId={props.videoId}
+                currentCourseVideoType={product.videoType}
+                purchasedCourseVideoType={props.videoType}
+                allowLifeTimeAccess={props.allowLifeTimeAccess}
+                venueLink={props.venueLink}
+                deliveryMethod={props.deliveryMethod}
+                type={product.type}
                 token={props.token}
                 userId={props.userId}
                 location={props.productLocation}

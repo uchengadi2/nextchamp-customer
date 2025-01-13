@@ -81,6 +81,36 @@ import {
   FETCH_TRANSACTION,
   DELETE_TRANSACTION,
   EDIT_TRANSACTION,
+  CREATE_COUNTRY,
+  FETCH_COUNTRIES,
+  FETCH_COUNTRY,
+  DELETE_COUNTRY,
+  EDIT_COUNTRY,
+  CREATE_STATE,
+  FETCH_STATES,
+  FETCH_STATE,
+  DELETE_STATE,
+  EDIT_STATE,
+  CREATE_CURRENCY,
+  FETCH_CURRENCIES,
+  FETCH_CURRENCY,
+  DELETE_CURRENCY,
+  EDIT_CURRENCY,
+  CREATE_LOCATION,
+  FETCH_LOCATIONS,
+  FETCH_LOCATION,
+  DELETE_LOCATION,
+  EDIT_LOCATION,
+  CREATE_CHANNEL,
+  FETCH_CHANNEL,
+  FETCH_CHANNELS,
+  DELETE_CHANNEL,
+  EDIT_CHANNEL,
+  CREATE_PROGRAMME,
+  FETCH_PROGRAMME,
+  FETCH_PROGRAMMES,
+  DELETE_PROGRAMME,
+  EDIT_PROGRAMME,
 } from "./types";
 
 //authentication and authorization  operations
@@ -329,7 +359,7 @@ export const deleteVendor = (id) => {
 export const createProduct = (formValues) => {
   return async (dispatch, getState) => {
     const { userId } = getState().auth;
-    const response = await data.post("/products", {
+    const response = await data.post("/courses", {
       ...formValues,
       userId,
     });
@@ -342,21 +372,21 @@ export const createProduct = (formValues) => {
 
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const response = await data.get("/products");
+    const response = await data.get("/courses");
     dispatch({ type: FETCH_PRODUCTS, payload: response.data.data.data });
   };
 };
 
 export const fetchProduct = (id) => {
   return async (dispatch) => {
-    const response = await data.get(`/products/${id}`);
+    const response = await data.get(`/courses/${id}`);
     dispatch({ type: FETCH_PRODUCT, payload: response.data });
   };
 };
 
 export const editProduct = (id, formValues) => {
   return async (dispatch) => {
-    const response = await data.patch(`/products/${id}`, formValues);
+    const response = await data.patch(`/courses/${id}`, formValues);
     dispatch({ type: EDIT_PRODUCT, payload: response.data });
     history.push("/");
   };
@@ -364,7 +394,7 @@ export const editProduct = (id, formValues) => {
 
 export const deleteProduct = (id) => {
   return async (dispatch) => {
-    await data.delete(`/products/${id}`);
+    await data.delete(`/courses/${id}`);
     dispatch({ type: DELETE_PRODUCT, payload: id });
     history.push("/");
   };
@@ -866,5 +896,281 @@ export const deleteTransaction = (id) => {
   return async (dispatch) => {
     await data.delete(`/transactions/${id}`);
     dispatch({ type: DELETE_TRANSACTION, payload: id });
+  };
+};
+
+////////////////////////////////////////Country///////////////////////////////
+//country resources crud operations
+export const createCountry = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/countries", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COUNTRY, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCountries = () => {
+  return async (dispatch) => {
+    const response = await data.get("/countries");
+    dispatch({ type: FETCH_COUNTRIES, payload: response.data.data.data });
+  };
+};
+
+export const fetchCountry = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/countries/${id}`);
+    dispatch({ type: FETCH_COUNTRY, payload: response.data.data });
+  };
+};
+
+export const editCountry = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/categories/${id}`, formValues);
+    dispatch({ type: EDIT_COUNTRY, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCountry = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/countries/${id}`);
+    dispatch({ type: DELETE_COUNTRY, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////State///////////////////////////////
+//state resources crud operations
+export const createState = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/states", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_STATE, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchStates = () => {
+  return async (dispatch) => {
+    const response = await data.get("/states");
+    dispatch({ type: FETCH_STATES, payload: response.data.data.data });
+  };
+};
+
+export const fetchState = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/states/${id}`);
+    dispatch({ type: FETCH_STATE, payload: response.data.data });
+  };
+};
+
+export const editState = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/states/${id}`, formValues);
+    dispatch({ type: EDIT_STATE, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteState = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/states/${id}`);
+    dispatch({ type: DELETE_STATE, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////currencies///////////////////////////////
+//currencies resources crud operations
+export const createCurrency = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/currencies", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_CURRENCY, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCurrencies = () => {
+  return async (dispatch) => {
+    const response = await data.get("/currencies");
+    dispatch({ type: FETCH_CURRENCIES, payload: response.data.data.data });
+  };
+};
+
+export const fetchCurrency = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/currencies/${id}`);
+    dispatch({ type: FETCH_CURRENCY, payload: response.data.data });
+  };
+};
+
+export const editCurrency = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/currencies/${id}`, formValues);
+    dispatch({ type: EDIT_CURRENCY, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCurrency = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/currencies/${id}`);
+    dispatch({ type: DELETE_CURRENCY, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////Location///////////////////////////////
+//location resources crud operations
+export const createLocation = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/locations", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_LOCATION, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchLocations = () => {
+  return async (dispatch) => {
+    const response = await data.get("/locations");
+    dispatch({ type: FETCH_LOCATIONS, payload: response.data.data.data });
+  };
+};
+
+export const fetchLocation = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/locations/${id}`);
+    dispatch({ type: FETCH_LOCATION, payload: response.data.data });
+  };
+};
+
+export const editLocation = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/locations/${id}`, formValues);
+    dispatch({ type: EDIT_LOCATION, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteLocation = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/locations/${id}`);
+    dispatch({ type: DELETE_LOCATION, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////CHANNEL///////////////////////////////
+//CHANNEL resources crud operations
+export const createChannel = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/channels", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_CHANNEL, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchChannels = () => {
+  return async (dispatch) => {
+    const response = await data.get("/channels");
+    dispatch({ type: FETCH_CHANNELS, payload: response.data.data.data });
+  };
+};
+
+export const fetchChannel = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/channels/${id}`);
+    dispatch({ type: FETCH_CHANNEL, payload: response.data.data });
+  };
+};
+
+export const editChannel = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/channels/${id}`, formValues);
+    dispatch({ type: EDIT_CHANNEL, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteChannel = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/channels/${id}`);
+    dispatch({ type: DELETE_CHANNEL, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////PROGRAMME///////////////////////////////
+//PROGRAMME resources crud operations
+export const createProgramme = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/programmes", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_PROGRAMME, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchProgrammes = () => {
+  return async (dispatch) => {
+    const response = await data.get("/programmes");
+    dispatch({ type: FETCH_PROGRAMMES, payload: response.data.data.data });
+  };
+};
+
+export const fetchProgramme = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/programmes/${id}`);
+    dispatch({ type: FETCH_PROGRAMME, payload: response.data.data });
+  };
+};
+
+export const editProgramme = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/programmes/${id}`, formValues);
+    dispatch({ type: EDIT_PROGRAMME, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteProgramme = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/programmes/${id}`);
+    dispatch({ type: DELETE_PROGRAMME, payload: id });
+    //history.push("/");
   };
 };

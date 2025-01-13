@@ -220,6 +220,24 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     width: "98%",
   },
+  seventhColumn: {
+    marginTop: 20,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 20,
+    width: "98%",
+  },
+  seventhColumnMobile: {
+    marginTop: 15,
+    marginBottom: 50,
+    border: "1px dotted",
+    padding: 10,
+    width: "98%",
+  },
+  videoMedia: {
+    height: 400,
+    width: "100%",
+  },
 }));
 
 export default function ProductDetailCard(props) {
@@ -258,6 +276,8 @@ export default function ProductDetailCard(props) {
   //   Str(props.description).limit(100, "...").get()
   // );
 
+  console.log("currency name is:", currencyName);
+
   useEffect(() => {
     setPrice(props.course.price);
   }, [props.course]);
@@ -271,6 +291,25 @@ export default function ProductDetailCard(props) {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let allData = [];
+      api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+      const response = await api.get(`/currencies/${props.course.currency}`);
+      const item = response.data.data.data;
+      //workingData.map((vendor) => {
+      allData.push({ name: item.name });
+      //});
+
+      console.log("currency name is :", allData[0].name);
+      setCurrencyName(allData[0].name);
+    };
+
+    //call the function
+
+    fetchData().catch(console.error);
+  }, [props.course.currency]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -525,6 +564,19 @@ export default function ProductDetailCard(props) {
                     : 0}
                   <span style={{ fontSize: 12, marginLeft: 0 }}></span>
                 </Typography>
+                {props.course.priceLabel !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{
+                      color: "black",
+                      fontSize: 15,
+                      color: "red",
+                      marginLeft: 20,
+                    }}
+                  >
+                    {props.course.priceLabel}
+                  </Typography>
+                )}
                 <Typography
                   variant="h5"
                   style={{
@@ -619,7 +671,8 @@ export default function ProductDetailCard(props) {
                       <strong>Weekday Start Date():</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {props.course.commencementWeekdaysDate.join("|")}
+                      {/* {props.course.commencementWeekdaysDate.join("|")} */}
+                      {props.course.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
@@ -632,7 +685,8 @@ export default function ProductDetailCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {props.course.commencementWeekendsDate.join("|")}
+                      {/* {props.course.commencementWeekendsDate.join("|")} */}
+                      {props.course.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -748,6 +802,18 @@ export default function ProductDetailCard(props) {
                     {props.course.passGrade}
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>
+                      Is Life Time Access To This Course Allowed?:
+                    </strong>
+                  </span>
+                  {props.course.allowLifeTimeAccess ? "Yes" : "No"}
+                </Typography>
                 <br /> <br />
                 {props.course.isCourseAuditable && (
                   <Typography>
@@ -775,6 +841,7 @@ export default function ProductDetailCard(props) {
                   price={price}
                   currency={props.course.currency}
                   courseId={props.course.id}
+                  course={props.course}
                   token={props.token}
                   userId={props.userId}
                   handleMakeOpenSignUpDialogStatus={
@@ -972,6 +1039,30 @@ export default function ProductDetailCard(props) {
               </Typography>
             </Box>
           </Grid>
+          {props.course.previewVideoId && (
+            <Typography
+              variant="h5"
+              style={{ color: "black", fontSize: 15, marginLeft: 30 }}
+            >
+              <strong>`"{props.course.title}" Course Preview`</strong>
+            </Typography>
+          )}
+          {props.course.previewVideoId && (
+            <Grid item className={classes.seventhColumn}>
+              <Card>
+                <CardMedia
+                  className={classes.videoMedia}
+                  component="iframe"
+                  alt={props.course.title}
+                  height="140"
+                  src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
+                  //allow="autoPlay"
+                  allowfullscreen="allowfullscreen"
+                  controls
+                />
+              </Card>
+            </Grid>
+          )}
         </Grid>
       ) : (
         <Grid container direction="column" className={classes.rootMobile}>
@@ -1009,6 +1100,19 @@ export default function ProductDetailCard(props) {
                     : 0}
                   <span style={{ fontSize: 12, marginLeft: 0 }}></span>
                 </Typography>
+                {props.course.priceLabel !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{
+                      color: "black",
+                      fontSize: 15,
+                      color: "red",
+                      marginLeft: 20,
+                    }}
+                  >
+                    {props.course.priceLabel}
+                  </Typography>
+                )}
                 <Typography
                   variant="h5"
                   style={{
@@ -1078,7 +1182,8 @@ export default function ProductDetailCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {props.course.commencementWeekdaysDate.join("|")}
+                      {/* {props.course.commencementWeekdaysDate.join("|")} */}
+                      {props.course.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
@@ -1092,7 +1197,8 @@ export default function ProductDetailCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {props.course.commencementWeekendsDate.join("|")}
+                      {/* {props.course.commencementWeekendsDate.join("|")} */}
+                      {props.course.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -1208,6 +1314,18 @@ export default function ProductDetailCard(props) {
                     {props.course.passGrade}
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>
+                      Is Life Time Access To This Course Allowed?:
+                    </strong>
+                  </span>
+                  {props.course.allowLifeTimeAccess ? "Yes" : "No"}
+                </Typography>
                 <br /> <br />
                 {props.course.isCourseAuditable && (
                   <Typography>
@@ -1235,6 +1353,7 @@ export default function ProductDetailCard(props) {
                   price={price}
                   currency={props.course.currency}
                   courseId={props.course.id}
+                  course={props.course}
                   token={props.token}
                   userId={props.userId}
                   handleMakeOpenSignUpDialogStatus={
@@ -1432,6 +1551,31 @@ export default function ProductDetailCard(props) {
               </Typography>
             </Box>
           </Grid>
+          {props.course.previewVideoId && (
+            <Typography
+              variant="h5"
+              style={{ color: "black", fontSize: 15, marginLeft: 30 }}
+            >
+              <strong>`"{props.course.title}" Course Preview`</strong>
+            </Typography>
+          )}
+          {props.course.previewVideoId && (
+            <Grid item className={classes.seventhColumn}>
+              <Card>
+                <CardMedia
+                  className={classes.videoMedia}
+                  component="iframe"
+                  alt={props.course.title}
+                  height="140"
+                  src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
+                  //allow="autoPlay"
+                  allowfullscreen="allowfullscreen"
+                  controls
+                />
+              </Card>
+            </Grid>
+          )}
+
           {/* </Grid> */}
         </Grid>
       )}

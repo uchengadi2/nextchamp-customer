@@ -216,6 +216,8 @@ export default function CartProductCard(props) {
         costPerMentorshipCredit: course.costPerMentorshipCredit,
         isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
         maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+        allowLifeTimeAccess: course.allowLifeTimeAccess,
+        priceLabel: course.priceLabel,
       });
 
       if (!allData) {
@@ -272,6 +274,8 @@ export default function CartProductCard(props) {
         costPerMentorshipCredit: allData[0].costPerMentorshipCredit,
         isInstallmentalPaymentAllowed: allData[0].isInstallmentalPaymentAllowed,
         maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
+        allowLifeTimeAccess: allData[0].allowLifeTimeAccess,
+        priceLabel: allData[0].priceLabel,
       });
     };
 
@@ -555,6 +559,20 @@ export default function CartProductCard(props) {
                     </strong>
                   </span>
                 </Typography>
+                {course.priceLabel !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{
+                      fontSize: 15,
+                      color: "red",
+                      marginTop: 9,
+                      marginBottom: 15,
+                      marginLeft: 10,
+                    }}
+                  >
+                    {course.priceLabel}
+                  </Typography>
+                )}
                 {course.refNumber !== undefined && (
                   <Typography
                     variant="h5"
@@ -638,7 +656,8 @@ export default function CartProductCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {course.commencementWeekdaysDate.join("|")}
+                      {/* {course.commencementWeekdaysDate.join("|")} */}
+                      {course.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
@@ -651,7 +670,8 @@ export default function CartProductCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {course.commencementWeekendsDate.join("|")}
+                      {/* {course.commencementWeekendsDate.join("|")} */}
+                      {course.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -766,6 +786,18 @@ export default function CartProductCard(props) {
                     {course.passGrade}
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>
+                      Is Life Time Access To This Course Allowed?:
+                    </strong>
+                  </span>
+                  {course.allowLifeTimeAccess}
+                </Typography>
                 <br /> <br />
                 {course.isCourseAuditable && (
                   <Typography>
@@ -873,6 +905,20 @@ export default function CartProductCard(props) {
                     </strong>
                   </span>
                 </Typography>
+                {course.priceLabel !== undefined && (
+                  <Typography
+                    variant="h5"
+                    style={{
+                      fontSize: 15,
+                      color: "red",
+                      marginTop: 9,
+                      marginBottom: 15,
+                      marginLeft: 10,
+                    }}
+                  >
+                    {course.priceLabel}
+                  </Typography>
+                )}
                 {course.refNumber !== undefined && (
                   <Typography
                     variant="h5"
@@ -956,7 +1002,8 @@ export default function CartProductCard(props) {
                       <strong>Weekday Start Date():</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {course.commencementWeekdaysDate.join("|")}
+                      {/* {course.commencementWeekdaysDate.join("|")} */}
+                      {course.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
@@ -969,7 +1016,8 @@ export default function CartProductCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {course.commencementWeekendsDate.join("|")}
+                      {/* {course.commencementWeekendsDate.join("|")} */}
+                      {course.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -1080,6 +1128,18 @@ export default function CartProductCard(props) {
                     {course.passGrade}
                   </Typography>
                 )}
+                <Typography
+                  variant="h5"
+                  style={{ color: "black", fontSize: 15 }}
+                >
+                  <span style={{ marginRight: 20 }}>
+                    {" "}
+                    <strong>
+                      Is Life Time Access To This Course Allowed?:
+                    </strong>
+                  </span>
+                  {course.allowLifeTimeAccess}
+                </Typography>
                 <br /> <br />
                 {course.isCourseAuditable && (
                   <Typography>

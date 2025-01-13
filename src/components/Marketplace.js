@@ -27,6 +27,8 @@ import background from "./../assets/images/covers/cover_1_image.jpg";
 import UpperFooter from "./ui/UpperFooter";
 import TopCover from "./homePageCards/TopCover";
 import LearningPath from "./homePageCards/LearningPath";
+import TopCoverNew from "./homePageCards/TopCoverNew";
+import TopCoverServices from "./homePageCards/TopCoverServices";
 
 //import mobileBackground from "./../../assets/mobileBackground.jpg";
 
@@ -221,6 +223,19 @@ const useStyles = makeStyles((theme) => ({
       backgroundAttachment: "inherit",
     },
   },
+  backgroundMobile: {
+    backgroundImage: `url(${background})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    //backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat",
+    height: "50em",
+    width: "100%",
+    [theme.breakpoints.down("md")]: {
+      // backgroundImage: `url(${mobileBackground})`,
+      backgroundAttachment: "inherit",
+    },
+  },
   footer: {
     width: "100%",
     marginTop: "10rem",
@@ -260,7 +275,8 @@ const Marketplace = (props) => {
   const [coursesList, setCourseList] = useState([]);
   const [isLoading, setIsLoading] = useState(null);
   const [updateLearningPath, setUpdateLearningPath] = useState(false);
-  const [path, setPath] = useState("crash-course");
+  //const [path, setPath] = useState("crash-course");
+  const [path, setPath] = useState("certification");
 
   const [alert, setAlert] = useState({
     open: false,
@@ -307,6 +323,8 @@ const Marketplace = (props) => {
     setBecomePartnerOpen(true);
   };
 
+  console.log("path is:", path);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -315,7 +333,7 @@ const Marketplace = (props) => {
       if (path === "crash-course") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: "crash-course" },
+          params: { type: path },
         });
         const workingData = response.data.data.data;
         workingData.map((course) => {
@@ -330,6 +348,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -337,7 +356,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category,
+            category: course.category[0].id,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -348,8 +367,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel,
-            programme: course.programme,
+            channel: course.channel[0].id,
+            programme: course.programme[0].id,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -371,6 +390,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -380,9 +400,11 @@ const Marketplace = (props) => {
       if (path === "regular-course") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: "regular-course" },
+          params: { type: path },
         });
+        console.log("regular courses response is:", response);
         const workingData = response.data.data.data;
+        console.log("regular courses workingData is:", workingData);
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -395,6 +417,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -402,7 +425,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category,
+            category: course.category[0].id,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -413,8 +436,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel,
-            programme: course.programme,
+            channel: course.channel[0].id,
+            programme: course.programme[0].id,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -436,18 +459,21 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
         setIsLoading(false);
       } //ends here
 
-      if (path === "assessments") {
+      if (path === "certification") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: "assessments" },
+          params: { type: path },
         });
+        console.log("certification response is:", response);
         const workingData = response.data.data.data;
+        console.log("workingData is:", workingData);
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -460,6 +486,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -467,7 +494,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category,
+            category: course.category[0].id,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -478,8 +505,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel,
-            programme: course.programme,
+            channel: course.channel[0].id,
+            programme: course.programme[0].id,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -501,16 +528,17 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
         setIsLoading(false);
       } //ends here
 
-      if (path === "mentoring") {
+      if (path === "vocational") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: "mentoring" },
+          params: { type: "vocational" },
         });
         const workingData = response.data.data.data;
         workingData.map((course) => {
@@ -525,6 +553,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -566,6 +595,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -590,6 +620,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -631,6 +662,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -655,6 +687,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -696,6 +729,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -718,6 +752,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -759,6 +794,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -781,6 +817,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -822,6 +859,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -846,6 +884,7 @@ const Marketplace = (props) => {
             duration: course.duration,
             commencementDate: course.commencementDate,
             price: course.price,
+            priceLabel: course.priceLabel,
             venue: course.venue,
             instructor: course.instructor,
             sessionDuration: course.sessionDuration,
@@ -887,6 +926,7 @@ const Marketplace = (props) => {
             costPerMentorshipCredit: course.costPerMentorshipCredit,
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
           });
         });
         setCourseList(allData);
@@ -923,6 +963,7 @@ const Marketplace = (props) => {
               duration={course.duration}
               commencementDate={course.commencementDate}
               price={course.price}
+              priceLabel={course.priceLabel}
               instructor={course.instructor}
               venue={course.venue}
               sessionDuration={course.sessionDuration}
@@ -969,6 +1010,7 @@ const Marketplace = (props) => {
               }
               maximumInstallmentalPayment={course.maximumInstallmentalPayment}
               series={course.series}
+              allowLifeTimeAccess={course.allowLifeTimeAccess}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
@@ -1002,6 +1044,7 @@ const Marketplace = (props) => {
               duration={course.duration}
               commencementDate={course.commencementDate}
               price={course.price}
+              priceLabel={course.priceLabel}
               venue={course.venue}
               instructor={course.instructor}
               sessionDuration={course.sessionDuration}
@@ -1048,6 +1091,7 @@ const Marketplace = (props) => {
               }
               maximumInstallmentalPayment={course.maximumInstallmentalPayment}
               slug={course.slug}
+              allowLifeTimeAccess={course.allowLifeTimeAccess}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
@@ -1069,7 +1113,7 @@ const Marketplace = (props) => {
         <Grid
           container
           alignItems="center"
-          className={classes.background}
+          className={classes.backgroundMobile}
           justifyContent={matchesSM ? "center" : "space-between"}
           direction={matchesSM ? "column" : "row"}
           style={{ marginTop: -100 }}
@@ -1097,7 +1141,7 @@ const Marketplace = (props) => {
                     <Typography
                       variant={matchesSM ? "subtitle2" : "h2"}
                       align="left"
-                      style={{ marginTop: "16rem" }}
+                      style={{ marginTop: "22rem" }}
                       //justifyContent="center"
                       //alignItems="center"
                     >
@@ -1107,14 +1151,14 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        NextChamp is a learn-by-doing learning platform <br />
+                        Nextchamp is a learning platform where seasoned <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        that makes professionals from novices
+                        experts and academicians train and mentor novices,
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 20 : 110 }}>
-                        and experts from professionals
+                        transforming them into future champions in their fields
                       </span>
                       <br />
                     </Typography>
@@ -1122,7 +1166,7 @@ const Marketplace = (props) => {
                     <Typography
                       variant={matchesSM ? "subtitle2" : "h2"}
                       align="left"
-                      style={{ marginTop: "16rem", fontSize: "1.2rem" }}
+                      style={{ marginTop: "18rem", fontSize: "1.2rem" }}
                       justifyContent="center"
                       alignItems="center"
                     >
@@ -1132,14 +1176,18 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        NextChamp is a learn-by-doing learning platform <br />
+                        Nextchamp is a learning platform where <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        that makes professionals from novices
+                        seasoned experts and academicians train
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 30 : 110 }}>
-                        and experts from professionals
+                        and mentor novices,transforming them
+                      </span>
+                      <br />
+                      <span style={{ marginLeft: matchesSM ? 50 : 140 }}>
+                        into future champions in their fields
                       </span>
                     </Typography>
                   )}
@@ -1168,6 +1216,9 @@ const Marketplace = (props) => {
         {/* </section> */}
 
         <TopCover />
+        <TopCoverNew />
+        {/* <TopCover /> */}
+        <TopCoverServices />
         <LearningPath
           updatePathHandler={updatePathHandler}
           updateLearningPathInfoInfo={updateLearningPathInfoInfo}
@@ -1185,10 +1236,10 @@ const Marketplace = (props) => {
         {!isLoading && path === "regular-course" && (
           <Grid item>{allCoursesList}</Grid>
         )}
-        {!isLoading && path === "mentoring" && (
+        {!isLoading && path === "vocational" && (
           <Grid item>{allCoursesList}</Grid>
         )}
-        {!isLoading && path === "assessments" && (
+        {!isLoading && path === "certification" && (
           <Grid item>{allCoursesList}</Grid>
         )}
         {!isLoading && path === "mocks" && <Grid item>{allCoursesList}</Grid>}

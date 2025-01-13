@@ -495,6 +495,20 @@ export default function AllCourses(props) {
                     </strong>
                   </span>
                 </Typography>
+                {props.priceLabel && (
+                  <Typography
+                    style={{
+                      fontSize: 14,
+                      marginLeft: 100,
+                      marginTop: 9,
+                      color: "red",
+                      marginBottom: 15,
+                    }}
+                  >
+                    {/* <strong>Delivery Method:</strong> &nbsp; */}
+                    <span>{props.priceLabel}</span>
+                  </Typography>
+                )}
                 <Typography>
                   <span style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}>
                     <strong>Delivery Method:</strong> &nbsp;
@@ -621,6 +635,14 @@ export default function AllCourses(props) {
                     </span>
                   </Typography>
                 )}
+                <Typography>
+                  <span style={{ fontSize: 14, marginLeft: 10 }}>
+                    <strong>
+                      Is a lifetime Access To This Course Allowed?:
+                    </strong>
+                    <span>{props.allowLifeTimeAccess ? "Yes" : "No"} </span>
+                  </span>
+                </Typography>
                 <br /> <br />
                 {props.isCourseAuditable && (
                   <Typography>
@@ -720,6 +742,18 @@ export default function AllCourses(props) {
                       </strong>
                     </span>
                   </Typography>
+                  {props.priceLabel && (
+                    <Typography
+                      style={{ marginTop: 9, color: "red", marginBottom: 15 }}
+                    >
+                      <span
+                        style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}
+                      >
+                        {/* <strong>Delivery Method:</strong> &nbsp; */}
+                        <span>{props.priceLabel}</span>
+                      </span>
+                    </Typography>
+                  )}
                   <Typography>
                     <span
                       style={{ fontSize: 14, marginLeft: 10, marginTop: 20 }}
@@ -852,6 +886,14 @@ export default function AllCourses(props) {
                       </span>
                     </Typography>
                   )}
+                  <Typography>
+                    <span style={{ fontSize: 14, marginLeft: 10 }}>
+                      <strong>
+                        Is a lifetime Access To This Course Allowed?:
+                      </strong>
+                      <span>{props.allowLifeTimeAccess ? "Yes" : "No"} </span>
+                    </span>
+                  </Typography>
                   <br />
                   <br />
                   {props.isCourseAuditable && (

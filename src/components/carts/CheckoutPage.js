@@ -217,6 +217,7 @@ function CheckoutPage(props) {
   const [updateCheckout, setUpdateCheckout] = useState();
   const [totalCost, setTotalCost] = useState();
   const [currency, setCurrency] = useState();
+  const [isCourseAuditable, setIsCourseAuditable] = useState();
   const [isLoading, setIsLoading] = useState(null);
 
   const [alert, setAlert] = useState({
@@ -289,6 +290,47 @@ function CheckoutPage(props) {
           currency: cart.currency,
           status: cart.status,
           preferredStartDate: cart.preferredStartDate,
+          isCourseAuditable: cart.isCourseAuditable,
+
+          weekdayAuditDays: cart.weekdayAuditDays,
+          weekendAuditDays: cart.weekendAuditDays,
+          venue: cart.venue,
+          venueLink: cart.venueLink,
+          weekdaySessionPeriod: cart.weekdaySessionPeriod,
+          weekendSessionPeriod: cart.weekendSessionPeriod,
+          type: cart.type,
+          lectureDuration: cart.lectureDuration,
+          projectDuration: cart.projectDuration,
+          capstoneProject: cart.capstoneProject,
+          passGrade: cart.passGrade,
+          hasMentorshipCredit: cart.hasMentorshipCredit,
+          mentorshipCredit: cart.mentorshipCredit,
+          mentorshipDuration: cart.mentorshipDuration,
+          costPerMentorshipCredit: cart.costPerMentorshipCredit,
+          videoId: cart.videoId,
+          previewVideoId: cart.previewVideoId,
+          deliveryMethod: cart.deliveryMethod,
+          duration: cart.duration,
+          category: cart.category[0].id,
+          channel: cart.channel[0].id,
+          programme: cart.programme[0].id,
+          hasMentorshipCredit: cart.hasMentorshipCredit,
+          mentorshipCredit: cart.mentorshipCredit,
+          mentorshipDuration: cart.mentorshipDuration,
+          costPerMentorshipCredit: cart.costPerMentorshipCredit,
+          series: cart.series,
+          hasSeries: cart.hasSeries,
+          commencementWeekdaysDate: cart.commencementWeekdaysDate,
+          commencementWeekendsDate: cart.commencementWeekendsDate,
+          isInstallmentalPaymentAllowed: cart.isInstallmentalPaymentAllowed,
+          maximumInstallmentalPayment: cart.maximumInstallmentalPayment,
+          paymentOptions: cart.paymentOptions,
+          slug: cart.slug,
+          category: cart.category[0].id,
+          channel: cart.channel[0].id,
+          programme: cart.programme[0].id,
+          allowLifeTimeAccess: cart.allowLifeTimeAccess,
+          priceLabel: cart.priceLabel,
         });
       });
 
@@ -300,7 +342,12 @@ function CheckoutPage(props) {
         return;
       }
 
+      if (allData.length >= 1) {
+        setIsCourseAuditable(allData[0].isCourseAuditable);
+      }
+
       setCartProductList(allData);
+
       setIsLoading(false);
     };
 
@@ -320,6 +367,7 @@ function CheckoutPage(props) {
               course={cart.course}
               key={`${cart.id}${index}`}
               cartHolder={cart.cartHolder}
+              priceLabel={cart.priceLabel}
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
               refNumber={cart.refNumber}
@@ -327,6 +375,7 @@ function CheckoutPage(props) {
               price={cart.price}
               preferredStartDate={cart.preferredStartDate}
               currency={cart.currency}
+              isCourseAuditable={isCourseAuditable}
               status={cart.status}
               token={props.token}
               userId={props.userId}
@@ -361,7 +410,9 @@ function CheckoutPage(props) {
               dateAddedToCart={cart.dateAddedToCart}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
+              isCourseAuditable={isCourseAuditable}
               price={cart.price}
+              priceLabel={cart.priceLabel}
               preferredStartDate={cart.preferredStartDate}
               currency={cart.currency}
               status={cart.status}
@@ -416,6 +467,7 @@ function CheckoutPage(props) {
           ) : (
             <CheckoutDeliveryAndPayment
               courseList={cartProductList}
+              isCourseAuditable={isCourseAuditable}
               totalCost={total}
               currency="naira"
               token={props.token}

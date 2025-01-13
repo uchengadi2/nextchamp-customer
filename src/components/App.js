@@ -31,6 +31,7 @@ import ThankYou from "./thankyou/ThankYou";
 import OrderPage from "./orders/OrderPage";
 import SearchPage from "./search/SearchPage";
 import api from "./../apis/local";
+import BundledClassRoom from "./orders/BundledClassRoom";
 
 function App() {
   const { token, setToken } = useToken();
@@ -178,6 +179,19 @@ function App() {
                 handleFailedSnackbar={handleFailedSnackbar}
               />
             </Route>
+
+            <Route path="/classroom/bundled/:life/:orderId/:courseId">
+              <BundledClassRoom
+                token={token}
+                userId={userId}
+                setToken={setToken ? setToken : {}}
+                setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                handleFailedSnackbar={handleFailedSnackbar}
+              />
+            </Route>
+
             <Route path="/carts">
               <ShowCustomerCart
                 token={token}
@@ -203,7 +217,8 @@ function App() {
                 handleFailedSnackbar={handleFailedSnackbar}
               />
             </Route>
-            <Route path="/orders">
+            {/* <Route path="/orders"> */}
+            <Route path="/my-learningcenter">
               <OrderPage
                 token={token}
                 userId={userId}
@@ -252,6 +267,14 @@ function App() {
             </Route>
             <Route path="/career">
               <CareerPage />
+            </Route>
+            <Route path="/dashboard/:slug">
+              <Dashboard
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
             </Route>
             {/* <Route path="/preferences">
               <Preferences />

@@ -262,10 +262,8 @@ function SendCourseToCheckoutForm(props) {
   };
 
   const cartButtonContent = () => {
-    return <React.Fragment>Add to Cart</React.Fragment>;
+    return <React.Fragment>Add to Cartt</React.Fragment>;
   };
-
-  console.log("props.token:", props.token);
 
   const onSubmit = (formValues) => {
     setLoading(true);
@@ -295,14 +293,14 @@ function SendCourseToCheckoutForm(props) {
       return;
     }
 
-    if (newQuantity < +minimumQuantity) {
-      props.handleFailedSnackbar(
-        "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
-      );
-      setLoading(false);
+    // if (newQuantity < +minimumQuantity) {
+    //   props.handleFailedSnackbar(
+    //     "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
+    //   );
+    //   setLoading(false);
 
-      return;
-    }
+    //   return;
+    // }
 
     const data = {
       course: props.courseId,
@@ -316,7 +314,44 @@ function SendCourseToCheckoutForm(props) {
       price: price,
       currency: props.currency,
       status: "marked-for-checkout",
-      //preferredStartDate: formValues.preferredStartDate,
+      isCourseAuditable: props.course.isCourseAuditable,
+      weekdayAuditDays: props.course.weekdayAuditDays,
+      weekendAuditDays: props.course.weekendAuditDays,
+      venue: props.course.venue,
+      venueLink: props.course.venueLink,
+      weekdaySessionPeriod: props.course.weekdaySessionPeriod,
+      weekendSessionPeriod: props.course.weekendSessionPeriod,
+      type: props.course.type,
+      lectureDuration: props.course.lectureDuration,
+      projectDuration: props.course.projectDuration,
+      capstoneProject: props.course.capstoneProject,
+      passGrade: props.course.passGrade,
+      hasMentorshipCredit: props.course.hasMentorshipCredit,
+      mentorshipCredit: props.course.mentorshipCredit,
+      mentorshipDuration: props.course.mentorshipDuration,
+      costPerMentorshipCredit: props.course.costPerMentorshipCredit,
+      videoId: props.course.videoId,
+      previewVideoId: props.course.previewVideoId,
+      deliveryMethod: props.course.deliveryMethod,
+      duration: props.course.duration,
+      category: props.course.category[0].id,
+      channel: props.course.channel[0].id,
+      programme: props.course.programme[0].id,
+      hasMentorshipCredit: props.course.hasMentorshipCredit,
+      mentorshipCredit: props.course.mentorshipCredit,
+      mentorshipDuration: props.course.mentorshipDuration,
+      costPerMentorshipCredit: props.course.costPerMentorshipCredit,
+      series: props.course.series,
+      hasSeries: props.course.hasSeries,
+      commencementWeekdaysDate: props.course.commencementWeekdaysDate,
+      commencementWeekendsDate: props.course.commencementWeekendsDate,
+      isInstallmentalPaymentAllowed: props.course.isInstallmentalPaymentAllowed,
+      maximumInstallmentalPayment: props.course.maximumInstallmentalPayment,
+      paymentOptions: props.course.paymentOptions,
+      slug: props.course.slug,
+      allowLifeTimeAccess: props.course.allowLifeTimeAccess,
+      videoType: props.course.videoType,
+      priceLabel: props.course.priceLabel,
     };
 
     //create a new cart and add the product
@@ -374,13 +409,13 @@ function SendCourseToCheckoutForm(props) {
       return;
     }
 
-    if (newQuantity < +minimumQuantity) {
-      props.handleFailedSnackbar(
-        "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
-      );
-      setIsLoading(false);
-      return;
-    }
+    // if (newQuantity < +minimumQuantity) {
+    //   props.handleFailedSnackbar(
+    //     "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
+    //   );
+    //   setIsLoading(false);
+    //   return;
+    // }
 
     const data = {
       course: props.courseId,
@@ -395,6 +430,44 @@ function SendCourseToCheckoutForm(props) {
       currency: props.currency,
       status: "unmarked-for-checkout",
       //preferredStartDate: formValues.preferredStartDate,
+      isCourseAuditable: props.course.isCourseAuditable,
+      weekdayAuditDays: props.course.weekdayAuditDays,
+      weekendAuditDays: props.course.weekendAuditDays,
+      venue: props.course.venue,
+      venueLink: props.course.venueLink,
+      weekdaySessionPeriod: props.course.weekdaySessionPeriod,
+      weekendSessionPeriod: props.course.weekendSessionPeriod,
+      type: props.course.type,
+      lectureDuration: props.course.lectureDuration,
+      projectDuration: props.course.projectDuration,
+      capstoneProject: props.course.capstoneProject,
+      passGrade: props.course.passGrade,
+      hasMentorshipCredit: props.course.hasMentorshipCredit,
+      mentorshipCredit: props.course.mentorshipCredit,
+      mentorshipDuration: props.course.mentorshipDuration,
+      costPerMentorshipCredit: props.course.costPerMentorshipCredit,
+      videoId: props.course.videoId,
+      previewVideoId: props.course.previewVideoId,
+      //deliveryMethod: props.course.deliveryMethod,
+      duration: props.course.duration,
+      category: props.course.category[0].id,
+      channel: props.course.channel[0].id,
+      programme: props.course.programme[0].id,
+      hasMentorshipCredit: props.course.hasMentorshipCredit,
+      mentorshipCredit: props.course.mentorshipCredit,
+      mentorshipDuration: props.course.mentorshipDuration,
+      costPerMentorshipCredit: props.course.costPerMentorshipCredit,
+      series: props.course.series,
+      hasSeries: props.course.hasSeries,
+      commencementWeekdaysDate: props.course.commencementWeekdaysDate,
+      commencementWeekendsDate: props.course.commencementWeekendsDate,
+      isInstallmentalPaymentAllowed: props.course.isInstallmentalPaymentAllowed,
+      maximumInstallmentalPayment: props.course.maximumInstallmentalPayment,
+      paymentOptions: props.course.paymentOptions,
+      slug: props.course.slug,
+      allowLifeTimeAccess: props.course.allowLifeTimeAccess,
+      videoType: props.course.videoType,
+      priceLabel: props.course.priceLabel,
     };
 
     //create a new cart and add the product

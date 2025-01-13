@@ -23,6 +23,8 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import api from "./../../apis/local";
 import { CREATE_RATE, EDIT_RATE } from "../../actions/types";
+import history from "../../history";
+import BundledClassRoom from "./BundledClassRoom";
 //import CheckoutPage from "./CheckoutPage";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +51,33 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.common.green,
     },
   },
+
+  submitLiveClassButton: {
+    borderRadius: 10,
+    height: 40,
+    width: 200,
+    marginLeft: 70,
+    marginTop: 30,
+    color: "white",
+    backgroundColor: theme.palette.common.green,
+    "&:hover": {
+      backgroundColor: theme.palette.common.orange,
+    },
+  },
+
+  submitClassRoomButton: {
+    borderRadius: 10,
+    height: 40,
+    width: 200,
+    marginLeft: 70,
+    marginTop: 30,
+    color: "white",
+    backgroundColor: theme.palette.common.orange,
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+    },
+  },
+
   offDeliveryLocationButton: {
     borderRadius: 10,
     height: 40,
@@ -171,6 +200,10 @@ function OrderPageAction(props) {
   const [rateId, setRateId] = useState();
   const [dateRated, setDateRated] = useState();
   const [hasRate, setHasRate] = useState(false);
+  const [videoType, setVideoType] = useState();
+  const [videoId, setVideoId] = useState();
+  const [lifeAccess, setLifeAccess] = useState();
+  const [isLoading, setIsLoading] = useState();
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -268,6 +301,32 @@ function OrderPageAction(props) {
 
     fetchData().catch(console.error);
   }, [country]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (props.allowLifeTimeAccess) {
+        setVideoType(props.currentCourseVideoType);
+        setVideoId(props.currentCourseVideoId);
+        setLifeAccess("yes");
+      } else {
+        setVideoType(props.purchasedCourseVideoType);
+        setVideoId(props.purchasedCourseVideoId);
+        setLifeAccess("no");
+      }
+    };
+
+    //call the function
+
+    fetchData().catch(console.error);
+  }, [props.currentCourseVideoType, props.purchasedCourseVideoType]);
+
+  console.log("purchase video type:", props.purchasedCourseVideoType);
+  console.log("current video type:", props.currentCourseVideoType);
+  console.log("dilivery Method:", props.deliveryMethod);
+  console.log(" props.allowLifeTimeAccess:", props.allowLifeTimeAccess);
+
+  console.log("videoType is:", videoType);
+  console.log("video id:", videoId);
 
   const onChange = (e) => {
     const quantity = parseFloat(e.target.value);
@@ -545,9 +604,23 @@ function OrderPageAction(props) {
     .toFixed(2)
     .replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
-  const buttonContent = () => {
+  const buttonRatingsContent = () => {
     return <React.Fragment>Rate this Product</React.Fragment>;
   };
+  const buttonLiveClassContent = () => {
+    return <React.Fragment>Join Live Class</React.Fragment>;
+  };
+  const buttonOnlineBundledClassRoomContent = () => {
+    return <React.Fragment>Enter Class Room</React.Fragment>;
+  };
+  const buttonOnlineLessonsSpittedClassRoomContent = () => {
+    return <React.Fragment>Enter Class Room</React.Fragment>;
+  };
+  const buttonOnlineTopicsSpittedClassRoomContent = () => {
+    return <React.Fragment>Enter Class Room</React.Fragment>;
+  };
+
+  console.log("props is:", props);
 
   const onSubmit = (formValues) => {
     setLoading(true);
@@ -557,14 +630,6 @@ function OrderPageAction(props) {
       setLoading(false);
       return;
     }
-
-    // if (props.paymentStatus !== "confirmed") {
-    //   props.handleFailedSnackbar(
-    //     "You can only rate a product with a confirmed payment"
-    //   );
-    //   setLoading(false);
-    //   return;
-    // }
 
     if (!rate) {
       props.handleFailedSnackbar("Please select a rating value and try again");
@@ -675,24 +740,86 @@ function OrderPageAction(props) {
             ></Grid>
 
             <Typography style={{ width: 300, marginTop: 15 }}>
-              Number of Learners' slot:&nbsp;{quantity}
-            </Typography>
-
-            <Typography style={{ width: 300, fontSize: 20, marginTop: 15 }}>
-              {/* Total Cost:&nbsp;{props.getCurrencyCode()}
-              {totalProductCostForDisplay} */}
-              Total Cost:&nbsp;{props.getCurrencyCode()}
-              {total}
+              Purchased Number of Learners' Slot:&nbsp;{quantity}
             </Typography>
 
             <Typography style={{ width: 300, marginTop: 15 }}>
-              Payment Method:&nbsp;{props.paymentMethod}
+              Payment Method:&nbsp;
+              {props.paymentMethod === "foreigner"
+                ? "Bank Transfer"
+                : props.paymentMethod.toUpperCase()}
             </Typography>
 
             <Typography style={{ width: 300, marginTop: 15 }}>
               Payment Status:&nbsp;{props.paymentStatus}
             </Typography>
           </Box>
+          {props.venueLink &&
+            (props.deliveryMethod === "live-online" ||
+              props.deliveryMethod === "blended") && (
+              <Button
+                variant="text"
+                className={classes.submitLiveClassButton}
+                onClick={() => window.open(props.venueLink)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonLiveClassContent()
+                )}
+              </Button>
+            )}
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "bundled" && (
+              <Button
+                component={Link}
+                // to="/mobileapps"
+                // to={`/categories/${categoryId}/${productId}`}
+                to={`/classroom/bundled/${lifeAccess}/${props.orderId}/${props.courseId}`}
+                varaint="outlined"
+                className={classes.submitClassRoomButton}
+                onClick={() => <BundledClassRoom />}
+              >
+                {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
+                {loading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineBundledClassRoomContent()
+                )}
+              </Button>
+            )}
+
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "splitted-by-lessons" && (
+              <Button
+                variant="text"
+                className={classes.submitClassRoomButton}
+                //onClick={props.handleSubmit(onSubmitToCart)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineLessonsSpittedClassRoomContent()
+                )}
+              </Button>
+            )}
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "splitted-by-topics" && (
+              <Button
+                variant="text"
+                className={classes.submitClassRoomButton}
+                //onClick={props.handleSubmit(onSubmitToCart)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineTopicsSpittedClassRoomContent()
+                )}
+              </Button>
+            )}
         </form>
       ) : (
         <form id="checkoutActionPage">
@@ -712,20 +839,14 @@ function OrderPageAction(props) {
               justifyContent="center"
             >
               <Typography style={{ width: "100%", marginTop: 15 }}>
-                Number of Learners' slot:&nbsp;{quantity}
-              </Typography>
-
-              <Typography
-                style={{ width: "100%", fontSize: 20, marginTop: 15 }}
-              >
-                {/* Total Cost:&nbsp;{props.getCurrencyCode()}
-              {totalProductCostForDisplay} */}
-                Total Cost:&nbsp;{props.getCurrencyCode()}
-                {total}
+                Purchased Number of Learners' Slot:&nbsp;{quantity}
               </Typography>
 
               <Typography style={{ width: "100%", marginTop: 15 }}>
-                Payment Method:&nbsp;{props.paymentMethod}
+                Payment Method:&nbsp;
+                {props.paymentMethod === "foreigner"
+                  ? "Bank Transfer"
+                  : props.paymentMethod.toUpperCase()}
               </Typography>
 
               <Typography style={{ width: "100%", marginTop: 15 }}>
@@ -733,6 +854,72 @@ function OrderPageAction(props) {
               </Typography>
             </Grid>
           </Box>
+          {props.venueLink &&
+            (props.deliveryMethod === "live-online" ||
+              props.deliveryMethod === "blended") && (
+              <Button
+                variant="text"
+                className={classes.submitLiveClassButton}
+                onClick={() => window.open(props.venueLink)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonLiveClassContent()
+                )}
+              </Button>
+            )}
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "bundled" && (
+              <Button
+                component={Link}
+                // to="/mobileapps"
+                // to={`/categories/${categoryId}/${productId}`}
+                to={`/classroom/${lifeAccess}/${props.orderId}/${props.courseId}`}
+                varaint="outlined"
+                className={classes.submitButton}
+                onClick={() => <BundledClassRoom />}
+              >
+                {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
+                {loading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineBundledClassRoomContent()
+                )}
+              </Button>
+            )}
+
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "splitted-by-lessons" && (
+              <Button
+                variant="text"
+                className={classes.submitClassRoomButton}
+                //onClick={props.handleSubmit(onSubmitToCart)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineLessonsSpittedClassRoomContent()
+                )}
+              </Button>
+            )}
+          {(props.deliveryMethod === "self-pace" ||
+            props.deliveryMethod === "blended") &&
+            videoType === "splitted-by-topics" && (
+              <Button
+                variant="text"
+                className={classes.submitClassRoomButton}
+                //onClick={props.handleSubmit(onSubmitToCart)}
+              >
+                {isLoading ? (
+                  <CircularProgress size={30} color="inherit" />
+                ) : (
+                  buttonOnlineTopicsSpittedClassRoomContent()
+                )}
+              </Button>
+            )}
         </form>
       )}
     </>

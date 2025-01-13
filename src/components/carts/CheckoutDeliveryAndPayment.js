@@ -260,14 +260,18 @@ function CheckoutDeliveryAndPayment(props) {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
   const [isVisible, setIsVisible] = useState(true);
-  const [paymentMethod, setPaymentMethod] = useState("audit");
+  const [paymentMethod, setPaymentMethod] = useState(
+    props.isCourseAuditable && props.courseList.length === 1 ? "audit" : "card"
+  );
   const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
   const [provideDeliveryCost, setProvideDeliveryCost] = useState(false);
   const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
-  const [orderDetails, setOrderDetails] = useState({});
+  const [orderDetails, setOrderpDetails] = useState({});
   const [ordered, setOrdered] = useState(false);
-  const [isOnlinePayment, setIsOnlinePayment] = useState(false);
+  const [isOnlinePayment, setIsOnlinePayment] = useState(
+    props.isCourseAuditable && props.courseList.length === 1 ? false : true
+  );
   const [customerEmail, setCustomerEmail] = useState();
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNumber] = useState();
@@ -319,8 +323,6 @@ function CheckoutDeliveryAndPayment(props) {
 
     fetchData().catch(console.error);
   }, []);
-
-  console.log("props.courseList.length:", props.courseList.length);
 
   const onRecipientNameChange = (e) => {
     setRecipientName(e.target.value);
@@ -471,13 +473,15 @@ function CheckoutDeliveryAndPayment(props) {
             label="Payment Method"
             style={{ height: 38, width: 300, marginTop: 0, marginLeft: 10 }}
           >
-            <MenuItem value={"audit"}>Audit Course(s) for Free</MenuItem>
+            {props.isCourseAuditable && props.courseList.length === 1 && (
+              <MenuItem value={"audit"}>Audit Course(s) for Free</MenuItem>
+            )}
             <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
-            <MenuItem value={"foreigner"}>Foreigner</MenuItem>
+            <MenuItem value={"foreigner"}>Bank Transfer</MenuItem>
           </Select>
           <FormHelperText>
-            Payment Method (Choose "Credit/Debit Card" if you are paying with
-            'Naira' otherwise choose 'Foreigner'")
+            Payment Method (Choose "Credit/Debit Card" for online card payment
+            or Bank Transfer if you are making payment via Bank Transfers")
           </FormHelperText>
         </FormControl>
       </Box>
@@ -544,7 +548,7 @@ function CheckoutDeliveryAndPayment(props) {
       paymentMethod: paymentMethod,
       paymentStatus: "to-be-confirmed",
       orderedBy: props.userId,
-      productCurrency: "Pound Sterling or US Dollars",
+      productCurrency: "Payment in Naira By Bank Transfer",
     };
 
     //write to the transaction table first
@@ -590,6 +594,45 @@ function CheckoutDeliveryAndPayment(props) {
               paymentMethod: paymentMethod,
               paymentStatus: "to-be-confirmed",
               orderedBy: cart.cartHolder,
+
+              isCourseAuditable: cart.isCourseAuditable,
+              weekdayAuditDays: cart.weekdayAuditDays,
+              weekendAuditDays: cart.weekendAuditDays,
+              venue: cart.venue,
+              venueLink: cart.venueLink,
+              weekdaySessionPeriod: cart.weekdaySessionPeriod,
+              weekendSessionPeriod: cart.weekendSessionPeriod,
+              type: cart.type,
+              lectureDuration: cart.lectureDuration,
+              projectDuration: cart.projectDuration,
+              capstoneProject: cart.capstoneProject,
+              passGrade: cart.passGrade,
+              hasMentorshipCredit: cart.hasMentorshipCredit,
+              mentorshipCredit: cart.mentorshipCredit,
+              mentorshipDuration: cart.mentorshipDuration,
+              costPerMentorshipCredit: cart.costPerMentorshipCredit,
+              videoId: cart.videoId,
+              previewVideoId: cart.previewVideoId,
+              deliveryMethod: cart.deliveryMethod,
+              duration: cart.duration,
+              category: cart.category,
+              channel: cart.channel,
+              programme: cart.programme,
+              hasMentorshipCredit: cart.hasMentorshipCredit,
+              mentorshipCredit: cart.mentorshipCredit,
+              mentorshipDuration: cart.mentorshipDuration,
+              costPerMentorshipCredit: cart.costPerMentorshipCredit,
+              series: cart.series,
+              hasSeries: cart.hasSeries,
+              commencementWeekdaysDate: cart.commencementWeekdaysDate,
+              commencementWeekendsDate: cart.commencementWeekendsDate,
+              isInstallmentalPaymentAllowed: cart.isInstallmentalPaymentAllowed,
+              maximumInstallmentalPayment: cart.maximumInstallmentalPayment,
+              paymentOptions: cart.paymentOptions,
+              slug: cart.slug,
+              allowLifeTimeAccess: cart.allowLifeTimeAccess,
+              videoType: cart.videoType,
+              priceLabel: cart.priceLabel,
             };
 
             if (data) {
@@ -726,6 +769,45 @@ function CheckoutDeliveryAndPayment(props) {
               paymentMethod: paymentMethod,
               paymentStatus: "to-be-confirmed",
               orderedBy: cart.cartHolder,
+
+              isCourseAuditable: cart.isCourseAuditable,
+              weekdayAuditDays: cart.weekdayAuditDays,
+              weekendAuditDays: cart.weekendAuditDays,
+              venue: cart.venue,
+              venueLink: cart.venueLink,
+              weekdaySessionPeriod: cart.weekdaySessionPeriod,
+              weekendSessionPeriod: cart.weekendSessionPeriod,
+              type: cart.type,
+              lectureDuration: cart.lectureDuration,
+              projectDuration: cart.projectDuration,
+              capstoneProject: cart.capstoneProject,
+              passGrade: cart.passGrade,
+              hasMentorshipCredit: cart.hasMentorshipCredit,
+              mentorshipCredit: cart.mentorshipCredit,
+              mentorshipDuration: cart.mentorshipDuration,
+              costPerMentorshipCredit: cart.costPerMentorshipCredit,
+              videoId: cart.videoId,
+              previewVideoId: cart.previewVideoId,
+              deliveryMethod: cart.deliveryMethod,
+              duration: cart.duration,
+              category: cart.category,
+              channel: cart.channel,
+              programme: cart.programme,
+              hasMentorshipCredit: cart.hasMentorshipCredit,
+              mentorshipCredit: cart.mentorshipCredit,
+              mentorshipDuration: cart.mentorshipDuration,
+              costPerMentorshipCredit: cart.costPerMentorshipCredit,
+              series: cart.series,
+              hasSeries: cart.hasSeries,
+              commencementWeekdaysDate: cart.commencementWeekdaysDate,
+              commencementWeekendsDate: cart.commencementWeekendsDate,
+              isInstallmentalPaymentAllowed: cart.isInstallmentalPaymentAllowed,
+              maximumInstallmentalPayment: cart.maximumInstallmentalPayment,
+              paymentOptions: cart.paymentOptions,
+              slug: cart.slug,
+              allowLifeTimeAccess: cart.allowLifeTimeAccess,
+              videoType: cart.videoType,
+              priceLabel: cart.priceLabel,
             };
 
             if (data) {
@@ -864,12 +946,12 @@ function CheckoutDeliveryAndPayment(props) {
                 autoComplete="off"
               >
                 <Typography variant="h5">
-                  Enrolling from the United Kingdom:
+                  ControlSoft Limited Bank Details:
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Expected Amount:</strong> &nbsp; &nbsp; &#163;
                   {totalProductCostForUkForDisplay}
-                </Typography>
+                </Typography> */}
                 <Typography>
                   <strong>Pay To:</strong>
                 </Typography>
@@ -878,16 +960,17 @@ function CheckoutDeliveryAndPayment(props) {
                   Limited
                 </Typography>
                 <Typography>
-                  <strong>Bank Name: </strong>&nbsp; &nbsp; Barclays Bank
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; First Bank Plc
                 </Typography>
                 <Typography>
-                  <strong>Account Number: </strong>&nbsp; &nbsp; 02313927
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 2018268898
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Sort Code:</strong> &nbsp; &nbsp; 231486
-                </Typography>
+                </Typography> */}
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                  Send proof of payment to: &nbsp; &nbsp;
+                  nextchamp-academy@gmail.com
                 </Typography>
 
                 <Typography>
@@ -895,13 +978,12 @@ function CheckoutDeliveryAndPayment(props) {
                 </Typography>
 
                 <Typography variant="h5">
-                  Enrolling from the United States or Other Countries outside
-                  Nigeria:
+                  ControlSoft Limited Bank Details:
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Expected Amount:</strong>&nbsp; &nbsp; $
                   {totalProductCostForUsForDisplay}
-                </Typography>
+                </Typography> */}
                 <Typography>
                   <strong>Pay To:</strong>
                 </Typography>
@@ -910,16 +992,17 @@ function CheckoutDeliveryAndPayment(props) {
                   Limited
                 </Typography>
                 <Typography>
-                  <strong>Bank Name: </strong>&nbsp; &nbsp; First Century Bank
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; FCMB
                 </Typography>
                 <Typography>
-                  <strong>Account Number: </strong>&nbsp; &nbsp; 4010187581108
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 2206083011
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Routing (ABA):</strong> &nbsp; &nbsp; 061120084
-                </Typography>
+                </Typography> */}
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                  Send proof of payment to: &nbsp; &nbsp;
+                  nextchamp-academy@gmail.com
                 </Typography>
               </Box>
             </Grid>
@@ -966,19 +1049,21 @@ function CheckoutDeliveryAndPayment(props) {
               </Button>
             )}
 
-            {!isOnlinePayment && paymentMethod === "audit" && (
-              <Button
-                variant="contained"
-                className={classes.submitAuditButton}
-                onClick={onAuditSubmit}
-              >
-                {loading ? (
-                  <CircularProgress size={30} color="inherit" />
-                ) : (
-                  buttonAuditContent()
-                )}
-              </Button>
-            )}
+            {!isOnlinePayment &&
+              paymentMethod === "audit" &&
+              props.isCourseAuditable && (
+                <Button
+                  variant="contained"
+                  className={classes.submitAuditButton}
+                  onClick={onAuditSubmit}
+                >
+                  {loading ? (
+                    <CircularProgress size={30} color="inherit" />
+                  ) : (
+                    buttonAuditContent()
+                  )}
+                </Button>
+              )}
 
             {isOnlinePayment &&
               renderOnlinePayment(
@@ -1019,12 +1104,12 @@ function CheckoutDeliveryAndPayment(props) {
                 autoComplete="off"
               >
                 <Typography variant="h5">
-                  Enrolling from the United Kingdom? Use the details below:
+                  ControlSoft Limited Bank Details:
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Expected Amount:</strong> &nbsp; &nbsp; &#163;
                   {totalProductCostForUkForDisplay}
-                </Typography>
+                </Typography> */}
                 <Typography>
                   <strong>Pay To:</strong>
                 </Typography>
@@ -1033,28 +1118,28 @@ function CheckoutDeliveryAndPayment(props) {
                   Limited
                 </Typography>
                 <Typography>
-                  <strong>Bank Name: </strong>&nbsp; &nbsp; Barclays Bank
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; First Bank Plc
                 </Typography>
                 <Typography>
-                  <strong>Account Number: </strong>&nbsp; &nbsp; 02313927
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 2018268898
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Sort Code:</strong> &nbsp; &nbsp; 231486
-                </Typography>
+                </Typography> */}
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                  Send proof of payment to: &nbsp; &nbsp;
+                  nextchamp-academy@gmail.com
                 </Typography>
 
                 <Typography>=====================================</Typography>
 
                 <Typography variant="h5">
-                  Enrolling from the United States or Other Countries outside
-                  Nigeria? Use the details below:
+                  ControlSoft Limited Bank Details:
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Expected Amount:</strong>&nbsp; &nbsp; $
                   {totalProductCostForUsForDisplay}
-                </Typography>
+                </Typography> */}
                 <Typography>
                   <strong>Pay To:</strong>
                 </Typography>
@@ -1063,16 +1148,17 @@ function CheckoutDeliveryAndPayment(props) {
                   Limited
                 </Typography>
                 <Typography>
-                  <strong>Bank Name: </strong>&nbsp; &nbsp; First Century Bank
+                  <strong>Bank Name: </strong>&nbsp; &nbsp; FCMB
                 </Typography>
                 <Typography>
-                  <strong>Account Number: </strong>&nbsp; &nbsp; 4010187581108
+                  <strong>Account Number: </strong>&nbsp; &nbsp; 2206083011
                 </Typography>
-                <Typography>
+                {/* <Typography>
                   <strong>Routing (ABA):</strong> &nbsp; &nbsp; 061120084
-                </Typography>
+                </Typography> */}
                 <Typography style={{ marginTop: 15 }}>
-                  Send proof of payment to: &nbsp; &nbsp; payment@nextchamp.co
+                  Send proof of payment to: &nbsp; &nbsp;
+                  nextchamp-academy@gmail.com
                 </Typography>
               </Box>
             </Grid>
@@ -1119,19 +1205,21 @@ function CheckoutDeliveryAndPayment(props) {
                 )}
               </Button>
             )}
-            {!isOnlinePayment && paymentMethod === "audit" && (
-              <Button
-                variant="contained"
-                className={classes.submitAuditButtonMobile}
-                onClick={onAuditSubmit}
-              >
-                {loading ? (
-                  <CircularProgress size={30} color="inherit" />
-                ) : (
-                  buttonAuditContent()
-                )}
-              </Button>
-            )}
+            {!isOnlinePayment &&
+              paymentMethod === "audit" &&
+              props.isCourseAuditable && (
+                <Button
+                  variant="contained"
+                  className={classes.submitAuditButtonMobile}
+                  onClick={onAuditSubmit}
+                >
+                  {loading ? (
+                    <CircularProgress size={30} color="inherit" />
+                  ) : (
+                    buttonAuditContent()
+                  )}
+                </Button>
+              )}
 
             {isOnlinePayment &&
               renderOnlinePayment(customerEmail, amountForPayment, orderNumber)}

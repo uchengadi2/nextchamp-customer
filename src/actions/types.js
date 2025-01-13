@@ -105,3 +105,52 @@ export const FETCH_TRANSACTIONS = "FETCH_TRANSACTIONS";
 export const FETCH_TRANSACTION = "FETCH_TRANSACTION";
 export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
 export const EDIT_TRANSACTION = "EDIT_TRANSACTION";
+
+// for country resources
+export const CREATE_COUNTRY = "CREATE_COUNTRY";
+export const FETCH_COUNTRIES = "FETCH_COUNTRIES";
+export const FETCH_COUNTRY = "FETCH_COUNTRY";
+export const DELETE_COUNTRY = "DELETE_COUNTRY";
+export const EDIT_COUNTRY = "EDIT_COUNTRY";
+
+// for state resources
+export const CREATE_STATE = "CREATE_STATE";
+export const FETCH_STATES = "FETCH_STATES";
+export const FETCH_STATE = "FETCH_STATE";
+export const DELETE_STATE = "DELETE_STATE";
+export const EDIT_STATE = "EDIT_STATE";
+
+// for currency resources
+export const CREATE_CURRENCY = "CREATE_CURRENCY";
+export const FETCH_CURRENCIES = "FETCH_CURRENCIES";
+export const FETCH_CURRENCY = "FETCH_CURRENCY";
+export const DELETE_CURRENCY = "DELETE_CURRENCY";
+export const EDIT_CURRENCY = "EDIT_CURRENCY";
+
+// for location resources
+export const CREATE_LOCATION = "CREATE_LOCATION";
+export const FETCH_LOCATIONS = "FETCH_LOCATIONS";
+export const FETCH_LOCATION = "FETCH_LOCATION";
+export const DELETE_LOCATION = "DELETE_LOCATION";
+export const EDIT_LOCATION = "EDIT_LOCATION";
+
+// for suppliers resources
+export const CREATE_SUPPLIER = "CREATE_SUPPLIER";
+export const FETCH_SUPPLIERS = "FETCH_SUPPLIERS";
+export const FETCH_SUPPLIER = "FETCH_SUPPLIER";
+export const DELETE_SUPPLIER = "DELETE_SUPPLIER";
+export const EDIT_SUPPLIER = "EDIT_SUPPLIER";
+
+// for channel resources
+export const CREATE_CHANNEL = "CREATE_CHANNEL";
+export const FETCH_CHANNELS = "FETCH_CHANNELS";
+export const FETCH_CHANNEL = "FETCH_CHANNEL";
+export const DELETE_CHANNEL = "DELETE_CHANNEL";
+export const EDIT_CHANNEL = "EDIT_CHANNEL";
+
+// for programme resources
+export const CREATE_PROGRAMME = "CREATE_PROGRAMME";
+export const FETCH_PROGRAMMES = "FETCH_PROGRAMMES";
+export const FETCH_PROGRAMME = "FETCH_PROGRAMME";
+export const DELETE_PROGRAMME = "DELETE_PROGRAMME";
+export const EDIT_PROGRAMME = "EDIT_PROGRAMME";

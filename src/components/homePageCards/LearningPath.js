@@ -128,7 +128,7 @@ export default function LearningPath(props) {
   const [stateName, setStateName] = useState();
   const [product, setProduct] = useState({});
 
-  const [learningPath, setLearningPath] = useState("crash-course");
+  const [learningPath, setLearningPath] = useState("certification");
 
   // const { token, setToken } = useToken();
   // const { userId, setUserId } = useUserId();
@@ -178,10 +178,8 @@ export default function LearningPath(props) {
           >
             <MenuItem value={"crash-course"}>Nuggets(Short Courses)</MenuItem>
             <MenuItem value={"regular-course"}>Regular Courses</MenuItem>
-            <MenuItem value={"programmes"}>
-              Programmes & Certifications
-            </MenuItem>
-            <MenuItem value={"channels"}>Channels</MenuItem>
+            <MenuItem value={"certification"}>Certification Courses</MenuItem>
+            {/* <MenuItem value={"channels"}>Channels</MenuItem>
             <MenuItem value={"assessments"}>Assessments</MenuItem>
             <MenuItem value={"mentoring"}>Mentoring</MenuItem>
             <MenuItem value={"mocks"}>Mocks</MenuItem>
@@ -189,8 +187,8 @@ export default function LearningPath(props) {
               Live Interview Preps
             </MenuItem>
             <MenuItem value={"talk-to-expert"}>Engage An Expert</MenuItem>
-            <MenuItem value={"books"}>Books</MenuItem>
-            <MenuItem value={"life"}>Life Courses</MenuItem>
+            <MenuItem value={"books"}>Books</MenuItem> */}
+            <MenuItem value={"vocational"}>Vocational Courses</MenuItem>
           </Select>
           <FormHelperText>Choose Path</FormHelperText>
         </FormControl>

@@ -302,6 +302,44 @@ function OrderPage(props) {
           orderedBy: order.orderedBy,
           paymentStatus: order.paymentStatus,
           paymentMethod: order.paymentMethod,
+
+          isCourseAuditable: order.isCourseAuditable,
+          weekdayAuditDays: order.weekdayAuditDays,
+          weekendAuditDays: order.weekendAuditDays,
+          venue: order.venue,
+          venueLink: order.venueLink,
+          weekdaySessionPeriod: order.weekdaySessionPeriod,
+          weekendSessionPeriod: order.weekendSessionPeriod,
+          type: order.type,
+          lectureDuration: order.lectureDuration,
+          projectDuration: order.projectDuration,
+          capstoneProject: order.capstoneProject,
+          passGrade: order.passGrade,
+          hasMentorshipCredit: order.hasMentorshipCredit,
+          mentorshipCredit: order.mentorshipCredit,
+          mentorshipDuration: order.mentorshipDuration,
+          costPerMentorshipCredit: order.costPerMentorshipCredit,
+          videoId: order.videoId,
+          previewVideoId: order.previewVideoId,
+          deliveryMethod: order.deliveryMethod,
+          duration: order.duration,
+          category: order.category,
+          channel: order.channel,
+          programme: order.programme,
+          hasMentorshipCredit: order.hasMentorshipCredit,
+          mentorshipCredit: order.mentorshipCredit,
+          mentorshipDuration: order.mentorshipDuration,
+          costPerMentorshipCredit: order.costPerMentorshipCredit,
+          series: order.series,
+          hasSeries: order.hasSeries,
+          commencementWeekdaysDate: order.commencementWeekdaysDate,
+          commencementWeekendsDate: order.commencementWeekendsDate,
+          isInstallmentalPaymentAllowed: order.isInstallmentalPaymentAllowed,
+          maximumInstallmentalPayment: order.maximumInstallmentalPayment,
+          paymentOptions: order.paymentOptions,
+          slug: order.slug,
+          videoType: order.videoType,
+          allowLifeTimeAccess: order.allowLifeTimeAccess,
         });
       });
 
@@ -349,6 +387,7 @@ function OrderPage(props) {
             <OrderProductCard
               product={order.product}
               key={`${order.id}${index}`}
+              orderId={order.id}
               cartId={order.id}
               dateAddedToCart={order.dateAddedToCart}
               locationCountry={order.locationCountry}
@@ -366,6 +405,41 @@ function OrderPage(props) {
               recipientCountry={order.recipientCountry}
               recipientState={order.recipientState}
               totalDeliveryCost={order.totalDeliveryCost}
+              isCourseAuditable={order.isCourseAuditable}
+              weekdayAuditDays={order.weekdayAuditDays}
+              weekendAuditDays={order.weekendAuditDays}
+              venue={order.venue}
+              venueLink={order.venueLink}
+              weekdaySessionPeriod={order.weekdaySessionPeriod}
+              weekendSessionPeriod={order.weekendSessionPeriod}
+              type={order.type}
+              lectureDuration={order.lectureDuration}
+              projectDuration={order.projectDuration}
+              capstoneProject={order.capstoneProject}
+              passGrade={order.passGrade}
+              hasMentorshipCredit={order.hasMentorshipCredit}
+              mentorshipCredit={order.mentorshipCredit}
+              mentorshipDuration={order.mentorshipDuration}
+              costPerMentorshipCredit={order.costPerMentorshipCredit}
+              videoId={order.videoId}
+              previewVideoId={order.previewVideoId}
+              deliveryMethod={order.deliveryMethod}
+              videoType={order.videoType}
+              allowLifeTimeAccess={order.allowLifeTimeAccess}
+              duration={order.duration}
+              category={order.category}
+              channel={order.channel}
+              programme={order.programme}
+              series={order.series}
+              hasSeries={order.hasSeries}
+              commencementWeekdaysDate={order.commencementWeekdaysDate}
+              commencementWeekendsDate={order.commencementWeekendsDate}
+              isInstallmentalPaymentAllowed={
+                order.isInstallmentalPaymentAllowed
+              }
+              maximumInstallmentalPayment={order.maximumInstallmentalPayment}
+              paymentOptions={order.paymentOptions}
+              slug={order.slug}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}
@@ -389,6 +463,7 @@ function OrderPage(props) {
             <OrderProductCard
               product={order.product}
               key={`${order.id}${index}`}
+              orderId={order.id}
               cartId={order.id}
               dateAddedToCart={order.dateAddedToCart}
               locationCountry={order.locationCountry}
@@ -406,6 +481,41 @@ function OrderPage(props) {
               recipientCountry={order.recipientCountry}
               recipientState={order.recipientState}
               totalDeliveryCost={order.totalDeliveryCost}
+              isCourseAuditable={order.isCourseAuditable}
+              weekdayAuditDays={order.weekdayAuditDays}
+              weekendAuditDays={order.weekendAuditDays}
+              venue={order.venue}
+              venueLink={order.venueLink}
+              weekdaySessionPeriod={order.weekdaySessionPeriod}
+              weekendSessionPeriod={order.weekendSessionPeriod}
+              type={order.type}
+              lectureDuration={order.lectureDuration}
+              projectDuration={order.projectDuration}
+              capstoneProject={order.capstoneProject}
+              passGrade={order.passGrade}
+              hasMentorshipCredit={order.hasMentorshipCredit}
+              mentorshipCredit={order.mentorshipCredit}
+              mentorshipDuration={order.mentorshipDuration}
+              costPerMentorshipCredit={order.costPerMentorshipCredit}
+              videoId={order.videoId}
+              videoType={order.videoType}
+              allowLifeTimeAccess={order.allowLifeTimeAccess}
+              previewVideoId={order.previewVideoId}
+              deliveryMethod={order.deliveryMethod}
+              duration={order.duration}
+              category={order.category}
+              channel={order.channel}
+              programme={order.programme}
+              series={order.series}
+              hasSeries={order.hasSeries}
+              commencementWeekdaysDate={order.commencementWeekdaysDate}
+              commencementWeekendsDate={order.commencementWeekendsDate}
+              isInstallmentalPaymentAllowed={
+                order.isInstallmentalPaymentAllowed
+              }
+              maximumInstallmentalPayment={order.maximumInstallmentalPayment}
+              paymentOptions={order.paymentOptions}
+              slug={order.slug}
               token={props.token}
               userId={props.userId}
               setToken={props.setToken}

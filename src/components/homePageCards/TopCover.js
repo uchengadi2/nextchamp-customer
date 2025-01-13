@@ -144,17 +144,21 @@ export default function TopCover() {
             <Grid item style={{ width: "48%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
                 <Typography variant="h5" color="textSecondary" component="p">
-                  At NextChamp, we take students through a combination of
-                  teachings, practices, mockings, assessments and mentoring. At
-                  the end of each course, a student is evaluated and assessed
-                  based on the module and/or capstone projects on that course.
+                  Nextchamp is an innovative learning platform designed to
+                  bridge the gap between expertise and ambition. We empower
+                  novices by connecting them with seasoned professionals,
+                  academicians and industry leaders, who provide personalized
+                  guidance, mentorship, and hands-on training. Our mission is to
+                  nurture talent, build skills, and inspire growth, transforming
+                  learners into the next generation of champions in their
+                  respective fields.
                 </Typography>
                 <br />
-                <Typography variant="h5" color="textSecondary" component="p">
-                  A certificate of attendance will be awarded to all students at
-                  the completion of a course. However the students that meet the
-                  NextChamp grade mark on that course will become a NextChamp.
-                </Typography>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  component="p"
+                ></Typography>
               </CardContent>
             </Grid>
 
@@ -168,11 +172,14 @@ export default function TopCover() {
             >
               <CardContent disableRipple>
                 <Typography variant="h5" color="textSecondary" component="p">
-                  Corporations and Institutions that need trusted and competent
-                  hands in their workforce or as part of a project could hire
-                  from the pool of the professional NextChamps (Next Champion).
-                  However Academic NextChamps will have the confidence they need
-                  to overcome further challenges on that study domain.
+                  By fostering a dynamic community of continuous learning and
+                  expert-driven development, Nextchamp helps individuals unlock
+                  their full potential and achieve excellence.
+                </Typography>
+                <br />
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Join us and become part of a transformative journey where
+                  experience meets opportunity to shape the leaders of tomorrow.
                 </Typography>
               </CardContent>
             </Grid>
@@ -186,17 +193,21 @@ export default function TopCover() {
             <Grid item style={{ width: "100%", border: "1px dotted grey" }}>
               <CardContent disableRipple>
                 <Typography variant="h5" color="textSecondary" component="p">
-                  At NextChamp, we take students through a combination of
-                  teachings, practices, mockings, assessments and mentoring. At
-                  the end of each course, a student is evaluated and assessed
-                  based on the module and/or capstone projects on that course.
+                  Nextchamp is an innovative learning platform designed to
+                  bridge the gap between expertise and ambition. We empower
+                  novices by connecting them with seasoned professionals,
+                  academicians and industry leaders, who provide personalized
+                  guidance, mentorship, and hands-on training. Our mission is to
+                  nurture talent, build skills, and inspire growth, transforming
+                  learners into the next generation of champions in their
+                  respective fields.
                 </Typography>
-                <br />
+                {/* <br />
                 <Typography variant="h5" color="textSecondary" component="p">
                   A certificate of attendance will be awarded to all students at
                   the completion of a course. However the students that meet the
                   NextChamp grade mark on that course will become a NextChamp.
-                </Typography>
+                </Typography> */}
               </CardContent>
             </Grid>
 
@@ -211,11 +222,14 @@ export default function TopCover() {
             >
               <CardContent disableRipple>
                 <Typography variant="h5" color="textSecondary" component="p">
-                  Corporations and Institutions that need trusted and competent
-                  hands in their workforce or as part of a project could hire
-                  from the pool of the professional NextChamps (Next Champion).
-                  However Academic NextChamps will have the confidence they need
-                  to overcome further challenges on that study domain.
+                  By fostering a dynamic community of continuous learning and
+                  expert-driven development, Nextchamp helps individuals unlock
+                  their full potential and achieve excellence.
+                </Typography>
+                <br />
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Join us and become part of a transformative journey where
+                  experience meets opportunity to shape the leaders of tomorrow.
                 </Typography>
               </CardContent>
             </Grid>

@@ -360,6 +360,13 @@ function ProductDetails(props) {
           isInstallmentalPaymentAllowed:
             course[0].isInstallmentalPaymentAllowed,
           maximumInstallmentalPayment: course[0].maximumInstallmentalPayment,
+          type: course[0].type,
+          class: course[0].class,
+          videoId: course[0].videoId,
+          previewVideoId: course[0].previewVideoId,
+          allowLifeTimeAccess: course[0].allowLifeTimeAccess,
+          videoType: course[0].videoType,
+          priceLabel: course[0].priceLabel,
         });
 
         setCourse({
@@ -422,6 +429,13 @@ function ProductDetails(props) {
           isInstallmentalPaymentAllowed:
             allData[0].isInstallmentalPaymentAllowed,
           maximumInstallmentalPayment: allData[0].maximumInstallmentalPayment,
+          type: allData[0].type,
+          class: allData[0].class,
+          videoId: allData[0].videoId,
+          previewVideoId: allData[0].previewVideoId,
+          allowLifeTimeAccess: allData[0].allowLifeTimeAccess,
+          videoType: allData[0].videoType,
+          priceLabel: allData[0].priceLabel,
         });
 
         setIsLoading(false);
