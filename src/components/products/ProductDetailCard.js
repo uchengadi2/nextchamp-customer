@@ -56,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     //height: 440,
     //height: 800,
-    width: "80%",
+    width: "99.5%",
 
     marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "3.5em",
+    marginTop: "0.04em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",

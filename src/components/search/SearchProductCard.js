@@ -625,7 +625,8 @@ export default function SearchProductCard(props) {
                       <strong>Weekday Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekdaysDate.join("|")}
+                      {/* {product.commencementWeekdaysDate.join("|")} */}
+                      {product.commencementWeekdaysDate}
                     </span>
                   </Typography>
                 )}
@@ -638,7 +639,8 @@ export default function SearchProductCard(props) {
                       <strong>Weekend Start Date(s):</strong>
                     </span>
                     <span style={{ marginLeft: 3, textAlign: "center" }}>
-                      {product.commencementWeekendsDate.join("|")}
+                      {/* {product.commencementWeekendsDate.join("|")} */}
+                      {product.commencementWeekendsDate}
                     </span>
                   </Typography>
                 )}
@@ -952,7 +954,8 @@ export default function SearchProductCard(props) {
                         <strong>Weekday Start Date(s):</strong>
                       </span>
                       <span style={{ marginLeft: 3, textAlign: "center" }}>
-                        {product.commencementWeekdaysDate.join("|")}
+                        {/* {product.commencementWeekdaysDate.join("|")} */}
+                        {product.commencementWeekdaysDate}
                       </span>
                     </Typography>
                   )}
@@ -965,7 +968,8 @@ export default function SearchProductCard(props) {
                         <strong>Weekend Start Date(s):</strong>
                       </span>
                       <span style={{ marginLeft: 3, textAlign: "center" }}>
-                        {product.commencementWeekendsDate.join("|")}
+                        {/* {product.commencementWeekendsDate.join("|")} */}
+                        {product.commencementWeekendsDate}
                       </span>
                     </Typography>
                   )}
