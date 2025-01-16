@@ -1349,6 +1349,10 @@ function ProductEditForm(props) {
         ? formValues.previewVideoId
         : params[0].previewVideoId
     );
+    // form.append(
+    //   "previewVideoId",
+    //   formValues.previewVideoId ? formValues.previewVideoId : " "
+    // );
     form.append("hasSeries", hasSeries ? hasSeries : params[0].hasSeries);
     form.append(
       "series",

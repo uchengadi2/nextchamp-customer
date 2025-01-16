@@ -1039,30 +1039,32 @@ export default function ProductDetailCard(props) {
               </Typography>
             </Box>
           </Grid>
-          {props.course.previewVideoId && (
-            <Typography
-              variant="h5"
-              style={{ color: "black", fontSize: 15, marginLeft: 30 }}
-            >
-              <strong>`"{props.course.title}" Course Preview`</strong>
-            </Typography>
-          )}
-          {props.course.previewVideoId && (
-            <Grid item className={classes.seventhColumn}>
-              <Card>
-                <CardMedia
-                  className={classes.videoMedia}
-                  component="iframe"
-                  alt={props.course.title}
-                  height="140"
-                  src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
-                  //allow="autoPlay"
-                  allowfullscreen="allowfullscreen"
-                  controls
-                />
-              </Card>
-            </Grid>
-          )}
+          {props.course.previewVideoId &&
+            props.course.previewVideoId !== "null" && (
+              <Typography
+                variant="h5"
+                style={{ color: "black", fontSize: 15, marginLeft: 30 }}
+              >
+                <strong>`"{props.course.title}" Course Preview`</strong>
+              </Typography>
+            )}
+          {props.course.previewVideoId &&
+            props.course.previewVideoId !== "null" && (
+              <Grid item className={classes.seventhColumn}>
+                <Card>
+                  <CardMedia
+                    className={classes.videoMedia}
+                    component="iframe"
+                    alt={props.course.title}
+                    height="140"
+                    src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
+                    //allow="autoPlay"
+                    allowfullscreen="allowfullscreen"
+                    controls
+                  />
+                </Card>
+              </Grid>
+            )}
         </Grid>
       ) : (
         <Grid container direction="column" className={classes.rootMobile}>
@@ -1551,30 +1553,32 @@ export default function ProductDetailCard(props) {
               </Typography>
             </Box>
           </Grid>
-          {props.course.previewVideoId && (
-            <Typography
-              variant="h5"
-              style={{ color: "black", fontSize: 15, marginLeft: 30 }}
-            >
-              <strong>`"{props.course.title}" Course Preview`</strong>
-            </Typography>
-          )}
-          {props.course.previewVideoId && (
-            <Grid item className={classes.seventhColumn}>
-              <Card>
-                <CardMedia
-                  className={classes.videoMedia}
-                  component="iframe"
-                  alt={props.course.title}
-                  height="140"
-                  src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
-                  //allow="autoPlay"
-                  allowfullscreen="allowfullscreen"
-                  controls
-                />
-              </Card>
-            </Grid>
-          )}
+          {props.course.previewVideoId &&
+            props.course.previewVideoId !== "null" && (
+              <Typography
+                variant="h5"
+                style={{ color: "black", fontSize: 15, marginLeft: 30 }}
+              >
+                <strong>`"{props.course.title}" Course Preview`</strong>
+              </Typography>
+            )}
+          {props.course.previewVideoId &&
+            props.course.previewVideoId !== "null" && (
+              <Grid item className={classes.seventhColumn}>
+                <Card>
+                  <CardMedia
+                    className={classes.videoMedia}
+                    component="iframe"
+                    alt={props.course.title}
+                    height="140"
+                    src={`https://www.youtube.com/embed/${props.course.previewVideoId}`}
+                    //allow="autoPlay"
+                    allowfullscreen="allowfullscreen"
+                    controls
+                  />
+                </Card>
+              </Grid>
+            )}
 
           {/* </Grid> */}
         </Grid>

@@ -24,6 +24,7 @@ import api from "./../../../apis/local";
 import ProductForm from "./ProductForm";
 import ProductDeleteForm from "./ProductDeleteForm";
 import ProductEditForm from "./ProductEditForm";
+import ProductDuplicateForm from "./ProductDuplicateForm";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -55,15 +56,19 @@ function Products(props) {
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [onboardOpen, setOnboardOpen] = useState(false);
+  const [duplicateOpen, setDuplicateOpen] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState();
   const [rowNumber, setRowNumber] = useState(0);
   const [updateProductCounter, setUpdateProductCounter] = useState(false);
   const [updateEdittedProductCounter, setUpdateEdittedProductCounter] =
     useState(false);
+  const [updateDuplicatedProductCounter, setUpdateDuplicatedProductCounter] =
+    useState(false);
   const [updateDeletedProductCounter, setUpdateDeletedProductCounter] =
     useState(false);
   const [productsList, setProductsList] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({
     open: false,
@@ -171,6 +176,7 @@ function Products(props) {
     updateProductCounter,
     updateEdittedProductCounter,
     updateDeletedProductCounter,
+    updateDuplicatedProductCounter,
   ]);
 
   useEffect(() => {
@@ -184,6 +190,10 @@ function Products(props) {
 
   const renderProductEdittedUpdateCounter = () => {
     setUpdateEdittedProductCounter((prevState) => !prevState);
+  };
+
+  const renderProductDuplicatedUpdateCounter = () => {
+    setUpdateDuplicatedProductCounter((prevState) => !prevState);
   };
 
   const renderProductDeletedUpdateCounter = () => {
@@ -200,6 +210,16 @@ function Products(props) {
     });
   };
   const handleSuccessfulEditSnackbar = (message) => {
+    //setBecomePartnerOpen(false);
+    setAlert({
+      open: true,
+      message: message,
+      //backgroundColor: "#4BB543",
+      backgroundColor: "#FF731D",
+    });
+  };
+
+  const handleSuccessfulDuplicateSnackbar = (message) => {
     //setBecomePartnerOpen(false);
     setAlert({
       open: true,
@@ -242,6 +262,9 @@ function Products(props) {
   const handleEditDialogOpenStatus = () => {
     setEditOpen(false);
   };
+  const handleDuplicateDialogOpenStatus = () => {
+    setDuplicateOpen(false);
+  };
 
   const handleDeleteDialogOpenStatus = () => {
     setDeleteOpen(false);
@@ -255,8 +278,11 @@ function Products(props) {
     setDeleteOpen(true);
   };
 
-  const handleOnboardOpen = () => {
-    setOnboardOpen(true);
+  // const handleOnboardOpen = () => {
+  //   setOnboardOpen(true);
+  // };
+  const handleDuplicateOpen = () => {
+    setDuplicateOpen(true);
   };
 
   const onRowsSelectionHandler = (ids, rows) => {
@@ -550,9 +576,34 @@ function Products(props) {
                       />
                     </DialogContent>
                   </Dialog>
-                  <Button variant="contained" onClick={handleOnboardOpen}>
+                  <Button variant="contained" onClick={handleDuplicateOpen}>
                     Duplicate
                   </Button>
+                  <Dialog
+                    //style={{ zIndex: 1302 }}
+                    fullScreen={matchesXS}
+                    open={duplicateOpen}
+                    // onClose={() => [setOpen(false), history.push("/utilities/countries")]}
+                    onClose={() => [setDuplicateOpen(false)]}
+                  >
+                    <DialogContent>
+                      <ProductDuplicateForm
+                        token={token}
+                        userId={userId}
+                        params={selectedRows}
+                        handleDuplicateDialogOpenStatus={
+                          handleDuplicateDialogOpenStatus
+                        }
+                        handleFailedSnackbar={handleFailedSnackbar}
+                        renderProductDuplicatedUpdateCounter={
+                          renderProductDuplicatedUpdateCounter
+                        }
+                        handleSuccessfulDuplicateSnackbar={
+                          handleSuccessfulDuplicateSnackbar
+                        }
+                      />
+                    </DialogContent>
+                  </Dialog>
                   <Button variant="contained" onClick={handleDeleteOpen}>
                     Delete
                   </Button>

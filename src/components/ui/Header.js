@@ -1323,7 +1323,7 @@ const Header = (props) => {
                   <TextField
                     variant="outlined"
                     className={classes.rootMobile}
-                    style={{ width: "45%", marginLeft: "0.5%" }}
+                    style={{ width: "40%", marginLeft: "0.5%" }}
                     onChange={onChangeSearchText}
                     onKeyDown={(e) => (e.key === 13 ? <SearchPage /> : null)}
                     defaultValue={searchText}
