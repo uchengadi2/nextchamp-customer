@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
     marginLeft: 70,
     marginTop: 30,
+    marginBottom: "3.5em",
     color: "white",
     backgroundColor: theme.palette.common.green,
     "&:hover": {
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     height: 40,
     width: 200,
     marginLeft: 70,
-    marginTop: 30,
+    marginTop: 10,
     color: "white",
     backgroundColor: theme.palette.common.orange,
     "&:hover": {
@@ -878,7 +879,7 @@ function OrderPageAction(props) {
                 // to={`/categories/${categoryId}/${productId}`}
                 to={`/classroom/${lifeAccess}/${props.orderId}/${props.courseId}`}
                 varaint="outlined"
-                className={classes.submitButton}
+                className={classes.submitClassRoomButton}
                 onClick={() => <BundledClassRoom />}
               >
                 {/* <span style={{ marginRight: 10 }}>Show Details </span> */}
