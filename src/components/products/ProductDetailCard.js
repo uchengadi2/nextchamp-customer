@@ -56,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     //height: 440,
     //height: 800,
-    width: "99.5%",
+    width: "100%",
 
     marginLeft: "0px",
     //borderRadius: 30,
-    marginTop: "0.04em",
+    marginTop: "-2.00em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -128,7 +128,8 @@ const useStyles = makeStyles((theme) => ({
   secondRowMobile: {
     marginLeft: 0,
     marginTop: 50,
-    width: 380,
+    //width: 380,
+    width: "100%",
     border: "1px dotted",
     padding: 10,
   },
@@ -145,7 +146,8 @@ const useStyles = makeStyles((theme) => ({
   thirdRowMobile: {
     marginLeft: 10,
     marginTop: 30,
-    width: 380,
+    //width: 380,
+    width: "100%",
     border: "1px dotted",
     padding: 20,
   },
@@ -1069,7 +1071,7 @@ export default function ProductDetailCard(props) {
       ) : (
         <Grid container direction="column" className={classes.rootMobile}>
           <Grid item container direction="column">
-            <Grid item>
+            <Grid item style={{ width: "100%" }}>
               <Card>
                 <CardMedia
                   className={classes.mediaMobile}

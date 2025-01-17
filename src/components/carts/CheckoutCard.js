@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: "3px",
     //borderRadius: 30,
-    marginTop: "1.5em",
+    marginTop: "-3.5em",
     marginBottom: "3em",
     padding: 0,
     backgroundColor: "#FFFFFF",
@@ -498,8 +498,6 @@ export default function CheckoutCard(props) {
     return <></>;
   }
 
-  console.log("props. priceLabel:", props.priceLabel);
-
   return (
     <>
       {matchesMDUp ? (
@@ -840,7 +838,7 @@ export default function CheckoutCard(props) {
                   handleSuccessfulCreateSnackbar={
                     props.handleSuccessfulCreateSnackbar
                   }
-                  handleFailedSnackbar={props.handleFailedSnack}
+                  handleFailedSnackbar={props.handleFailedSnackbar}
                   renderCheckoutUpdate={props.renderCheckoutUpdate}
                 />
               )}
@@ -1196,7 +1194,8 @@ export default function CheckoutCard(props) {
                   handleSuccessfulCreateSnackbar={
                     props.handleSuccessfulCreateSnackbar
                   }
-                  handleFailedSnackbar={props.handleFailedSnack}
+                  handleFailedSnackbar={props.handleFailedSnackbar}
+                  renderCheckoutUpdate={props.renderCheckoutUpdate}
                 />
               )}
             </Grid>

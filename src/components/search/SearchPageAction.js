@@ -205,19 +205,17 @@ function SearchPageAction(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let allData = [];
-      api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-      const response = await api.get(`/categories/${categoryId}`);
-      const items = response.data.data.data;
+      // let allData = [];
+      // api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+      // const response = await api.get(`/categories/${categoryId}`);
+      // const items = response.data.data.data;
 
-      allData.push({
-        id: items._id,
-        slug: items.slug,
-      });
+      // allData.push({
+      //   id: items._id,
+      //   slug: items.slug,
+      // });
 
-      if (allData) {
-        setCategorySlug(allData[0].slug);
-      }
+      setCategorySlug(categoryId[0].slug);
     };
 
     //call the function

@@ -368,13 +368,13 @@ function UpperFooter(props) {
                     <Typography variant="subtitle2">Say hello!</Typography>
                   ) : (
                     <Typography variant="subtitle2" style={{ fontSize: 14 }}>
-                      <span> 157 Adetola Street, Aguda, Surulere</span>
+                      <span> 64 Okota Road, Isolo, Lagos</span>
                       <br />
 
-                      <span>info@nextchamp.co</span>
+                      <span>nextchamps.academy@gmail.com</span>
                       <br />
 
-                      <span>+234 803 201 5819, +234 803 200 5819</span>
+                      <span>+234 803 201 5819, +234 701 854 1894</span>
                     </Typography>
                   )}
                   {matchesMD ? (
