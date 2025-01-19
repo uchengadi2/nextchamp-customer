@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     //height: "100%",
-    height: 550,
+    height: 500,
     width: "100%",
 
     marginLeft: "10px",
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   instructorsButton: {
     borderRadius: 10,
     height: 40,
-    width: 270,
+    width: 210,
     marginLeft: 50,
     marginTop: 1,
     marginBottom: 20,
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     marginLeft: 5,
     marginTop: 1,
-    marginBottom: 20,
+    marginBottom: 100,
     borderRadius: 50,
     fontSize: 9,
     color: "white",
@@ -118,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
   assessorsButton: {
     borderRadius: 10,
     height: 40,
-    width: 330,
-    marginLeft: 50,
+    width: 220,
+    marginLeft: 70,
     marginTop: 1,
     marginBottom: 20,
     borderRadius: 100,
@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     marginLeft: 5,
     marginTop: 1,
-    marginBottom: 20,
+    marginBottom: 100,
     borderRadius: 50,
     fontSize: 9,
     color: "white",
@@ -147,8 +147,8 @@ const useStyles = makeStyles((theme) => ({
   mentorsButton: {
     borderRadius: 10,
     height: 40,
-    width: 270,
-    marginLeft: 50,
+    width: 150,
+    marginLeft: 120,
     marginTop: 1,
     marginBottom: 20,
     borderRadius: 100,
@@ -165,7 +165,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     marginLeft: 5,
     marginTop: 1,
-    marginBottom: 20,
+    marginBottom: 80,
     borderRadius: 50,
     color: "white",
     fontSize: 9,
@@ -330,15 +330,18 @@ export default function TopCoverNew(props) {
   const Str = require("@supercharge/strings");
 
   const instructorSection = () => {
-    return <React.Fragment>Learn More About Instructors</React.Fragment>;
+    // return <React.Fragment>Learn More About Instructors</React.Fragment>;
+    return <React.Fragment>Get a Home Instructor</React.Fragment>;
   };
   const assessorsSection = () => {
     return (
-      <React.Fragment>Learn More About Assessments & Mocks</React.Fragment>
+      // <React.Fragment>Learn More About Assessments & Mocks</React.Fragment>
+      <React.Fragment>Take Assessments & Mocks</React.Fragment>
     );
   };
   const mentorsSection = () => {
-    return <React.Fragment>Learn More About Mentorship</React.Fragment>;
+    // return <React.Fragment>Learn More About Mentorship</React.Fragment>;
+    return <React.Fragment>Seek Mentorship</React.Fragment>;
   };
 
   const instructorMobileSection = () => {
@@ -382,17 +385,22 @@ export default function TopCoverNew(props) {
                 style={{ height: "45%", marginLeft: "3.5em" }}
               >
                 <Typography>
-                  Nextchamp instructors do more than just teach—they inspire. By
-                  designing engaging courses, providing hands-on mentorship, and
-                  offering real-world insights, you’ll play a critical role in
-                  shaping careers and building the next wave of industry
-                  experts.
+                  Nextchamp’s Private Home Instructors provide personalized,
+                  one-on-one learning at your convenience, delivering customized
+                  lesson plans and expert guidance in the comfort of your home.
+                  Enjoy flexible scheduling, focused tutorship, and a tailored
+                  educational experience that accelerates progress and mastery
+                  of any subject or skill. Unlock a highly effective and
+                  convenient path to success with this service.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0 }}>
-                  Join Nextchamp today and turn your expertise into a legacy.
-                  Let’s create champions together
-                </Typography>
+                {/* <Typography style={{ marginTop: 0 }}>
+                  With Nextchamp’s Private Home Instructors, you gain direct
+                  access to expertise and personalized guidance that accelerates
+                  learning and enhances results. Explore this service to unlock
+                  a highly effective, convenient, and customized path to your
+                  educational success.
+                </Typography> */}
               </Grid>
               <Grid
                 item
@@ -439,18 +447,21 @@ export default function TopCoverNew(props) {
                 style={{ height: "45%", marginLeft: "3.5em" }}
               >
                 <Typography>
-                  As a performance assessor at Nextchamp, you go beyond
-                  evaluation by guiding learners toward excellence. Your
-                  detailed feedback highlights strengths, identifies areas for
-                  improvement, and fosters clarity and confidence, driving
-                  continuous growth and professional readiness.
+                  Nextchamp’s Assessments and Mock Exams help learners measure
+                  progress, identify strengths, and target areas for
+                  improvement. By simulating real-world tests, these tools build
+                  confidence, enhance performance, and prepare learners for
+                  success. With real-time feedback, personalized insights, and
+                  goal-oriented preparation, they offer a clear path to mastery
+                  and readiness for industry and academic challenges.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0 }}>
-                  Join us in creating impactful learning experiences that
-                  transform potential into proven expertise while advancing
-                  performance, quality, and innovation.
-                </Typography>
+                {/* <Typography style={{ marginTop: 0 }}>
+                  Explore the Assessments and Mocks service on Nextchamp to
+                  strengthen your readiness and accelerate your journey toward
+                  expertise. With practice, feedback, and targeted improvement,
+                  success is within reach.
+                </Typography> */}
               </Grid>
               <Grid
                 item
@@ -497,16 +508,21 @@ export default function TopCoverNew(props) {
                 style={{ height: "45%", marginLeft: "3.5em" }}
               >
                 <Typography>
-                  Mentors at Nextchamp go beyond teaching by instilling
-                  confidence, modeling success, and offering real-world
-                  strategies that empower mentees to excel. Your personalized
-                  guidance transforms ambition into achievement.
+                  Nextchamp’s Mentorship Service connects learners with seasoned
+                  professionals for personalized guidance, real-world insights,
+                  and strategic advice. Mentors foster one-on-one relationships
+                  to accelerate growth, build confidence, and drive
+                  goal-oriented progress. Unlock your potential with expert
+                  support and tailored learning to achieve lasting success.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0 }}>
-                  Join us to shape the next generation of champions and drive
-                  the future of learning and leadership.
-                </Typography>
+                {/* <Typography style={{ marginTop: 0 }}>
+                  With Nextchamp’s Mentorship Service, you’ll have a trusted
+                  advisor who’s invested in your success. Explore the Mentorship
+                  page to find a mentor who aligns with your aspirations and
+                  take your learning journey to the next level. Together, we’ll
+                  turn your potential into proven expertise.
+                </Typography> */}
               </Grid>
               <Grid
                 item
@@ -563,17 +579,22 @@ export default function TopCoverNew(props) {
                 style={{ height: "60%", marginLeft: 10 }}
               >
                 <Typography style={{ fontSize: 11 }}>
-                  Nextchamp instructors do more than just teach—they inspire. By
-                  designing engaging courses, providing hands-on mentorship, and
-                  offering real-world insights, you’ll play a critical role in
-                  shaping careers and building the next wave of industry
-                  experts.
+                  Nextchamp’s Private Home Instructors provide personalized,
+                  one-on-one learning at your convenience, delivering customized
+                  lesson plans and expert guidance in the comfort of your home.
+                  Enjoy flexible scheduling, focused tutorship, and a tailored
+                  educational experience that accelerates progress and mastery
+                  of any subject or skill. Unlock a highly effective and
+                  convenient path to success with this service.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0, fontSize: 11 }}>
-                  Join Nextchamp today and turn your expertise into a legacy.
-                  Let’s create champions together
-                </Typography>
+                {/* <Typography style={{ marginTop: 0, fontSize: 11 }}>
+                  With Nextchamp’s Private Home Instructors, you gain direct
+                  access to expertise and personalized guidance that accelerates
+                  learning and enhances results. Explore this service to unlock
+                  a highly effective, convenient, and customized path to your
+                  educational success.
+                </Typography> */}
               </Grid>
               <Grid
                 item
@@ -620,18 +641,21 @@ export default function TopCoverNew(props) {
                 style={{ height: "60%", marginLeft: 25 }}
               >
                 <Typography style={{ fontSize: 11 }}>
-                  As a performance assessor at Nextchamp, you go beyond
-                  evaluation by guiding learners toward excellence. Your
-                  detailed feedback highlights strengths, identifies areas for
-                  improvement, and fosters clarity and confidence, driving
-                  continuous growth and professional readiness.
+                  Nextchamp’s Assessments and Mock Exams help learners measure
+                  progress, identify strengths, and target areas for
+                  improvement. By simulating real-world tests, these tools build
+                  confidence, enhance performance, and prepare learners for
+                  success. With real-time feedback, personalized insights, and
+                  goal-oriented preparation, they offer a clear path to mastery
+                  and readiness for industry and academic challenges.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0, fontSize: 11 }}>
-                  Join us in creating impactful learning experiences that
-                  transform potential into proven expertise while advancing
-                  performance, quality, and innovation.
-                </Typography>
+                {/* <Typography style={{ marginTop: 0, fontSize: 11 }}>
+                  Explore the Assessments and Mocks service on Nextchamp to
+                  strengthen your readiness and accelerate your journey toward
+                  expertise. With practice, feedback, and targeted improvement,
+                  success is within reach.
+                </Typography> */}
               </Grid>
               <Grid
                 item
@@ -678,16 +702,21 @@ export default function TopCoverNew(props) {
                 style={{ height: "60%", marginLeft: 25 }}
               >
                 <Typography style={{ fontSize: 11 }}>
-                  Mentors at Nextchamp go beyond teaching by instilling
-                  confidence, modeling success, and offering real-world
-                  strategies that empower mentees to excel. Your personalized
-                  guidance transforms ambition into achievement.
+                  Nextchamp’s Mentorship Service connects learners with seasoned
+                  professionals for personalized guidance, real-world insights,
+                  and strategic advice. Mentors foster one-on-one relationships
+                  to accelerate growth, build confidence, and drive
+                  goal-oriented progress. Unlock your potential with expert
+                  support and tailored learning to achieve lasting success.
                 </Typography>
                 <br />
-                <Typography style={{ marginTop: 0, fontSize: 11 }}>
-                  Join us to shape the next generation of champions and drive
-                  the future of learning and leadership.
-                </Typography>
+                {/* <Typography style={{ marginTop: 0, fontSize: 11 }}>
+                  With Nextchamp’s Mentorship Service, you’ll have a trusted
+                  advisor who’s invested in your success. Explore the Mentorship
+                  page to find a mentor who aligns with your aspirations and
+                  take your learning journey to the next level. Together, we’ll
+                  turn your potential into proven expertise.
+                </Typography> */}
               </Grid>
               <Grid
                 item

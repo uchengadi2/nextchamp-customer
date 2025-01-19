@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
@@ -52,6 +53,35 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       //border: "solid",
       //borderColor: theme.palette.common.grey,
+    },
+  },
+  instructorsButton: {
+    borderRadius: 10,
+    height: 40,
+    width: 210,
+    marginLeft: 400,
+    marginTop: 1,
+    marginBottom: 20,
+    borderRadius: 100,
+    color: "white",
+    backgroundColor: theme.palette.common.orange,
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+    },
+  },
+  instructorsMobileButton: {
+    borderRadius: 10,
+    height: 40,
+    width: 210,
+    marginLeft: 60,
+    marginTop: 1,
+    marginBottom: 100,
+    borderRadius: 50,
+    //fontSize: 9,
+    color: "white",
+    backgroundColor: theme.palette.common.orange,
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
     },
   },
   mediaMobile: {
@@ -117,6 +147,7 @@ export default function TopCover() {
   // const { token, setToken } = useToken();
   // const { userId, setUserId } = useUserId();
   const [expanded, setExpanded] = useState(false);
+  const [isLoading, setIsLoading] = useState();
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -134,6 +165,11 @@ export default function TopCover() {
   }
 
   const Str = require("@supercharge/strings");
+
+  const instructorSection = () => {
+    // return <React.Fragment>Learn More About Instructors</React.Fragment>;
+    return <React.Fragment>Become an Instructor</React.Fragment>;
+  };
 
   return (
     <>
@@ -164,24 +200,50 @@ export default function TopCover() {
 
             <Grid
               item
+              direction="column"
               style={{
                 width: "50%",
                 marginLeft: "1.7%",
                 border: "1px dotted grey",
               }}
             >
-              <CardContent disableRipple>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  By fostering a dynamic community of continuous learning and
-                  expert-driven development, Nextchamp helps individuals unlock
-                  their full potential and achieve excellence.
-                </Typography>
-                <br />
-                <Typography variant="h5" color="textSecondary" component="p">
-                  Join us and become part of a transformative journey where
-                  experience meets opportunity to shape the leaders of tomorrow.
-                </Typography>
-              </CardContent>
+              <Grid item>
+                <CardContent disableRipple>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    By fostering a dynamic community of continuous learning and
+                    expert-driven development, Nextchamp helps individuals
+                    unlock their full potential and achieve excellence.
+                  </Typography>
+                  <br />
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    Join us and become part of a transformative journey where
+                    experience meets opportunity to shape the leaders of
+                    tomorrow.
+                  </Typography>
+                </CardContent>
+              </Grid>
+              <Grid
+                item
+                alignItems="center"
+                style={{ height: "10%", marginLeft: "1.5em" }}
+              >
+                <Button
+                  variant="text"
+                  className={classes.instructorsButton}
+                  component={"a"}
+                  //href="https://www.linkedin.com/company/e-shield-africa/"
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_self"
+                  //onClick={props.handleSubmit(onSubmitToCart)}
+                >
+                  {isLoading ? (
+                    <CircularProgress size={30} color="inherit" />
+                  ) : (
+                    instructorSection()
+                  )}
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
           {/* </CardActionArea> */}
@@ -213,6 +275,7 @@ export default function TopCover() {
 
             <Grid
               item
+              direction="row"
               style={{
                 width: "100%",
                 marginLeft: "0%",
@@ -220,18 +283,43 @@ export default function TopCover() {
                 border: "1px dotted grey",
               }}
             >
-              <CardContent disableRipple>
-                <Typography variant="h5" color="textSecondary" component="p">
-                  By fostering a dynamic community of continuous learning and
-                  expert-driven development, Nextchamp helps individuals unlock
-                  their full potential and achieve excellence.
-                </Typography>
-                <br />
-                <Typography variant="h5" color="textSecondary" component="p">
-                  Join us and become part of a transformative journey where
-                  experience meets opportunity to shape the leaders of tomorrow.
-                </Typography>
-              </CardContent>
+              <Grid item>
+                <CardContent disableRipple>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    By fostering a dynamic community of continuous learning and
+                    expert-driven development, Nextchamp helps individuals
+                    unlock their full potential and achieve excellence.
+                  </Typography>
+                  <br />
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    Join us and become part of a transformative journey where
+                    experience meets opportunity to shape the leaders of
+                    tomorrow.
+                  </Typography>
+                </CardContent>
+              </Grid>
+              <Grid
+                item
+                alignItems="center"
+                style={{ height: "10%", marginLeft: "1.5em" }}
+              >
+                <Button
+                  variant="text"
+                  className={classes.instructorsMobileButton}
+                  component={"a"}
+                  //href="https://www.linkedin.com/company/e-shield-africa/"
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_self"
+                  //onClick={props.handleSubmit(onSubmitToCart)}
+                >
+                  {isLoading ? (
+                    <CircularProgress size={30} color="inherit" />
+                  ) : (
+                    instructorSection()
+                  )}
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
           {/* </CardActionArea> */}

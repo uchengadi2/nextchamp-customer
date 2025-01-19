@@ -1216,9 +1216,10 @@ const Marketplace = (props) => {
         {/* </section> */}
 
         <TopCover />
+        <TopCoverServices />
         <TopCoverNew />
         {/* <TopCover /> */}
-        <TopCoverServices />
+
         <LearningPath
           updatePathHandler={updatePathHandler}
           updateLearningPathInfoInfo={updateLearningPathInfoInfo}
