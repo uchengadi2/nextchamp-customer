@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   rootMobile: {
     maxWidth: "100%",
-    height: 680,
+    height: 720,
     //height: "100%",
     width: "100%",
 
