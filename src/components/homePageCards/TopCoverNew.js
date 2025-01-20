@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
   assessorsMobileButton: {
     borderRadius: 10,
     height: 40,
-    width: 100,
+    width: 120,
     marginLeft: 5,
     marginTop: 1,
     marginBottom: 100,
@@ -345,13 +345,13 @@ export default function TopCoverNew(props) {
   };
 
   const instructorMobileSection = () => {
-    return <React.Fragment>Learn More</React.Fragment>;
+    return <React.Fragment>Get Home Instructor</React.Fragment>;
   };
   const assessorsMobileSection = () => {
-    return <React.Fragment>Learn More</React.Fragment>;
+    return <React.Fragment>Take Assessment & Mock</React.Fragment>;
   };
   const mentorsMobileSection = () => {
-    return <React.Fragment>Learn Morep</React.Fragment>;
+    return <React.Fragment>Seek Mentorship</React.Fragment>;
   };
   return (
     <>
@@ -660,7 +660,7 @@ export default function TopCoverNew(props) {
               <Grid
                 item
                 alignItems="center"
-                style={{ height: "15%", marginLeft: "1.5em", marginTop: 40 }}
+                style={{ height: "15%", marginLeft: "0.5em", marginTop: 40 }}
               >
                 <Button
                   variant="text"
