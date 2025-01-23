@@ -261,7 +261,9 @@ function CheckoutDeliveryAndPayment(props) {
   const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
   const [isVisible, setIsVisible] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(
-    props.isCourseAuditable && props.courseList.length === 1 ? "audit" : "card"
+    props.isCourseAuditable && props.courseList.length === 1
+      ? "audit"
+      : "foreigner"
   );
   const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
   const [provideDeliveryCost, setProvideDeliveryCost] = useState(false);
@@ -270,8 +272,13 @@ function CheckoutDeliveryAndPayment(props) {
   const [orderDetails, setOrderpDetails] = useState({});
   const [ordered, setOrdered] = useState(false);
   const [isOnlinePayment, setIsOnlinePayment] = useState(
-    props.isCourseAuditable && props.courseList.length === 1 ? false : true
+    props.isCourseAuditable && props.courseList.length === 1
+      ? false
+      : !props.isCourseAuditable && props.courseList.length === 1
+      ? false
+      : true
   );
+  // const [isOnlinePayment, setIsOnlinePayment] = useState(false);
   const [customerEmail, setCustomerEmail] = useState();
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNumber] = useState();
@@ -477,7 +484,9 @@ function CheckoutDeliveryAndPayment(props) {
               <MenuItem value={"audit"}>Audit Course(s) for Free</MenuItem>
             )}
             <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
-            <MenuItem value={"foreigner"}>Bank Transfer</MenuItem>
+            <MenuItem value={"foreigner"}>
+              Register and Pay Later via Bank Transfer
+            </MenuItem>
           </Select>
           <FormHelperText>
             Payment Method (Choose "Credit/Debit Card" for online card payment
@@ -509,7 +518,7 @@ function CheckoutDeliveryAndPayment(props) {
   const amountForPayment = +totalProductCost.toFixed(2) * 100;
 
   const buttonContent = () => {
-    return <React.Fragment>Make Payment</React.Fragment>;
+    return <React.Fragment>Register</React.Fragment>;
   };
 
   const buttonAuditContent = () => {
