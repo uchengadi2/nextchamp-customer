@@ -352,6 +352,7 @@ function SendCourseToCheckoutForm(props) {
       allowLifeTimeAccess: props.course.allowLifeTimeAccess,
       videoType: props.course.videoType,
       priceLabel: props.course.priceLabel,
+      acceptablePaymentOptions: props.course.acceptablePaymentOptions,
     };
 
     //create a new cart and add the product
@@ -468,6 +469,7 @@ function SendCourseToCheckoutForm(props) {
       allowLifeTimeAccess: props.course.allowLifeTimeAccess,
       videoType: props.course.videoType,
       priceLabel: props.course.priceLabel,
+      acceptablePaymentOptions: props.course.acceptablePaymentOptions,
     };
 
     //create a new cart and add the product

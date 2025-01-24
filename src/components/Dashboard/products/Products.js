@@ -163,6 +163,7 @@ function Products(props) {
           channelId: product.channel[0] ? product.channel[0].id : " ",
           programmeId: product.programme[0] ? product.programme[0].id : " ",
           categoryId: product.category[0] ? product.category[0].id : " ",
+          acceptablePaymentOptions: product.acceptablePaymentOptions,
         });
       });
       setProductsList(allData);
@@ -485,6 +486,7 @@ function Products(props) {
         //currency: product.currency ? product.currency[0].id : " ",
         currency: product.currency,
         allowLifeTimeAccess: product.allowLifeTimeAccess,
+        acceptablePaymentOptions: product.acceptablePaymentOptions,
       };
       rows.push(row);
     });

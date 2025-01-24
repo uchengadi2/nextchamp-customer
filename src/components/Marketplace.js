@@ -323,8 +323,6 @@ const Marketplace = (props) => {
     setBecomePartnerOpen(true);
   };
 
-  console.log("path is:", path);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -391,6 +389,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -404,7 +403,7 @@ const Marketplace = (props) => {
         });
         console.log("regular courses response is:", response);
         const workingData = response.data.data.data;
-        console.log("regular courses workingData is:", workingData);
+
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -460,6 +459,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -471,9 +471,9 @@ const Marketplace = (props) => {
         const response = await data.get("/courses?sort=desc", {
           params: { type: path },
         });
-        console.log("certification response is:", response);
+
         const workingData = response.data.data.data;
-        console.log("workingData is:", workingData);
+
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -529,6 +529,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -596,6 +597,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -663,6 +665,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -730,6 +733,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -795,6 +799,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -860,6 +865,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -927,6 +933,7 @@ const Marketplace = (props) => {
             isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
             maximumInstallmentalPayment: course.maximumInstallmentalPayment,
             allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
           });
         });
         setCourseList(allData);
@@ -979,6 +986,7 @@ const Marketplace = (props) => {
               venueLink={course.venueLink}
               track={course.track}
               status={course.status}
+              acceptablePaymentOptions={course.acceptablePaymentOptions}
               commencementWeekdaysDate={course.commencementWeekdaysDate}
               commencementWeekendsDate={course.commencementWeekendsDate}
               showGenericWeekdayStartDateText={
@@ -1060,6 +1068,7 @@ const Marketplace = (props) => {
               venueLink={course.venueLink}
               track={course.track}
               status={course.status}
+              acceptablePaymentOptions={course.acceptablePaymentOptions}
               commencementWeekdaysDate={course.commencementWeekdaysDate}
               commencementWeekendsDate={course.commencementWeekendsDate}
               showGenericWeekdayStartDateText={

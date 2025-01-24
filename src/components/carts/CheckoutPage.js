@@ -218,6 +218,7 @@ function CheckoutPage(props) {
   const [totalCost, setTotalCost] = useState();
   const [currency, setCurrency] = useState();
   const [isCourseAuditable, setIsCourseAuditable] = useState();
+  const [acceptablePaymentOptions, setAcceptablePaymentOptions] = useState();
   const [isLoading, setIsLoading] = useState(null);
 
   const [alert, setAlert] = useState({
@@ -331,6 +332,7 @@ function CheckoutPage(props) {
           programme: cart.programme[0].id,
           allowLifeTimeAccess: cart.allowLifeTimeAccess,
           priceLabel: cart.priceLabel,
+          acceptablePaymentOptions: cart.acceptablePaymentOptions,
         });
       });
 
@@ -344,6 +346,10 @@ function CheckoutPage(props) {
 
       if (allData.length >= 1) {
         setIsCourseAuditable(allData[0].isCourseAuditable);
+      }
+
+      if (allData.length >= 1) {
+        setAcceptablePaymentOptions(allData[0].acceptablePaymentOptions);
       }
 
       setCartProductList(allData);
@@ -367,6 +373,7 @@ function CheckoutPage(props) {
               course={cart.course}
               key={`${cart.id}${index}`}
               cartHolder={cart.cartHolder}
+              acceptablePaymentOptions={acceptablePaymentOptions}
               priceLabel={cart.priceLabel}
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
@@ -408,6 +415,7 @@ function CheckoutPage(props) {
               cartHolder={cart.cartHolder}
               cartId={cart.id}
               dateAddedToCart={cart.dateAddedToCart}
+              acceptablePaymentOptions={acceptablePaymentOptions}
               refNumber={cart.refNumber}
               quantity={cart.quantity}
               isCourseAuditable={isCourseAuditable}
@@ -468,6 +476,7 @@ function CheckoutPage(props) {
             <CheckoutDeliveryAndPayment
               courseList={cartProductList}
               isCourseAuditable={isCourseAuditable}
+              acceptablePaymentOptions={acceptablePaymentOptions}
               totalCost={total}
               currency="naira"
               token={props.token}

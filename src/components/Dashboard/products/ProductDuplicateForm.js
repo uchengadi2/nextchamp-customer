@@ -297,6 +297,9 @@ function ProductDuplicateForm(props) {
   const [allowLifeTimeAccess, setAllowLifeTimeAccess] = useState(
     params[0].allowLifeTimeAccess
   );
+  const [acceptablePaymentOptions, setAcceptablePaymentOptions] = useState(
+    params[0].acceptablePaymentOptions
+  );
 
   const dispatch = useDispatch();
 
@@ -492,6 +495,10 @@ function ProductDuplicateForm(props) {
 
   const handleShowGenericWeekdayStartDateTextChange = (event) => {
     setShowGenericWeekdayStartDateText(event.target.value);
+  };
+
+  const handleAcceptablePaymentOptionsChange = (event) => {
+    setAcceptablePaymentOptions(event.target.value);
   };
 
   const handleUploadFiles = (files) => {
@@ -1093,6 +1100,39 @@ function ProductDuplicateForm(props) {
     );
   };
 
+  const renderAcceptablePaymentTypesField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="acceptablePaymentOptions"
+            id="acceptablePaymentOptions"
+            value={acceptablePaymentOptions}
+            onChange={handleAcceptablePaymentOptionsChange}
+            //label="Is Featured"
+            style={{ width: 500, marginTop: 10, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"all-types"}>All Types</MenuItem>
+            <MenuItem value={"only-online"}>Strictly Online Payment</MenuItem>
+            <MenuItem value={"only-bank-transfer"}>
+              Strictly Bank Transfers
+            </MenuItem>
+          </Select>
+          <FormHelperText>Select Acceptable Payment Type</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
   const buttonContent = () => {
     return <React.Fragment> Submit</React.Fragment>;
   };
@@ -1260,6 +1300,18 @@ function ProductDuplicateForm(props) {
     form.append("track", track ? track : params[0].track);
     form.append("type", courseType ? courseType : params[0].track);
     form.append("status", courseStatus ? courseStatus : params[0].status);
+    form.append(
+      "paymentOptions",
+      formValues.paymentOptions
+        ? formValues.paymentOptions
+        : params[0].paymentOptions
+    );
+    form.append(
+      "acceptablePaymentOptions",
+      acceptablePaymentOptions
+        ? acceptablePaymentOptions
+        : params[0].acceptablePaymentOptions
+    );
 
     form.append("createdBy", props.userId);
 
@@ -1313,12 +1365,7 @@ function ProductDuplicateForm(props) {
       "passGrade",
       formValues.passGrade ? formValues.passGrade : params[0].passGrade
     );
-    form.append(
-      "paymentOptions",
-      formValues.paymentOptions
-        ? formValues.paymentOptions
-        : params[0].paymentOptions
-    );
+
     // form.append("deliverability", formValues.deliverability);
     form.append(
       "isInstallmentalPaymentAllowed",
@@ -1514,7 +1561,6 @@ function ProductDuplicateForm(props) {
             autoComplete="off"
             style={{ marginTop: 20 }}
           />
-
           <Field
             label=""
             id="shortDescription"
@@ -1535,7 +1581,6 @@ function ProductDuplicateForm(props) {
             helperText="Detail Description"
             component={renderMultilineField}
           />
-
           <Grid item container style={{ marginTop: 20 }}>
             <FormLabel style={{ color: "blue" }} component="legend">
               Course Keywords for Discoverability
@@ -1578,7 +1623,6 @@ function ProductDuplicateForm(props) {
               Course Features
             </FormLabel>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -1708,6 +1752,14 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
+          <Field
+            label=""
+            id="acceptablePaymentOptions"
+            name="acceptablePaymentOptions"
+            type="text"
+            component={renderAcceptablePaymentTypesField}
+          />
+          />
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -1732,7 +1784,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -1757,7 +1808,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "100%" }}>
               <Field
@@ -1805,7 +1855,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "50%" }}>
               <Field
@@ -1830,7 +1879,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "55%" }}>
               <Field
@@ -1855,7 +1903,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -1880,7 +1927,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Field
             label=""
             id="features"
@@ -1905,7 +1951,6 @@ function ProductDuplicateForm(props) {
             autoComplete="off"
             style={{ marginTop: 10 }}
           />
-
           <Field
             label=""
             id="tools"
@@ -1942,7 +1987,6 @@ function ProductDuplicateForm(props) {
             autoComplete="off"
             style={{ marginTop: 10 }}
           />
-
           <Field
             label=""
             id="contents"
@@ -1967,7 +2011,6 @@ function ProductDuplicateForm(props) {
             autoComplete="off"
             style={{ marginTop: 10 }}
           />
-
           <Field
             label=""
             id="majorSkills"
@@ -1992,7 +2035,6 @@ function ProductDuplicateForm(props) {
             autoComplete="off"
             style={{ marginTop: 10 }}
           />
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -2017,7 +2059,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -2042,7 +2083,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field
@@ -2063,7 +2103,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "40%" }}>
               <Field
@@ -2098,13 +2137,11 @@ function ProductDuplicateForm(props) {
             component={renderSingleLineField}
             style={{ marginTop: 10 }}
           />
-
           <Grid item container style={{ marginTop: 20 }}>
             <FormLabel style={{ color: "blue" }} component="legend">
               Course Projects
             </FormLabel>
           </Grid>
-
           <Field
             label=""
             id="capstoneProject"
@@ -2122,7 +2159,6 @@ function ProductDuplicateForm(props) {
               Mentorship
             </FormLabel>
           </Grid>
-
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "40%" }}>
               <Field
@@ -2171,7 +2207,6 @@ function ProductDuplicateForm(props) {
               />
             </Grid>
           </Grid>
-
           <Grid item container style={{ marginTop: 20 }}>
             <FormLabel style={{ color: "blue" }} component="legend">
               Product images
@@ -2199,7 +2234,6 @@ function ProductDuplicateForm(props) {
             />
             {uploadedFiles.map((file) => [<br />, file.name])}
           </Grid> */}
-
           <Button
             variant="contained"
             className={classes.submitButton}

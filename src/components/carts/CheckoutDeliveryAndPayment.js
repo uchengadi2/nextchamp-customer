@@ -261,24 +261,32 @@ function CheckoutDeliveryAndPayment(props) {
   const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
   const [isVisible, setIsVisible] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(
-    props.isCourseAuditable && props.courseList.length === 1
+    props.acceptablePaymentOptions &&
+      props.isCourseAuditable &&
+      props.courseList.length === 1
       ? "audit"
+      : !props.isCourseAuditable &&
+        props.acceptablePaymentOptions === "only-online"
+      ? "card"
       : "foreigner"
   );
+
+  // const [paymentMethod, setPaymentMethod] = useState();
+
   const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
   const [provideDeliveryCost, setProvideDeliveryCost] = useState(false);
   const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [orderDetails, setOrderpDetails] = useState({});
   const [ordered, setOrdered] = useState(false);
-  const [isOnlinePayment, setIsOnlinePayment] = useState(
-    props.isCourseAuditable && props.courseList.length === 1
-      ? false
-      : !props.isCourseAuditable && props.courseList.length === 1
-      ? false
-      : true
-  );
-  // const [isOnlinePayment, setIsOnlinePayment] = useState(false);
+  // const [isOnlinePayment, setIsOnlinePayment] = useState(
+  //   props.acceptablePaymentOptions === '' && props.isCourseAuditable && props.courseList.length === 1
+  //     ? false
+  //     : !props.isCourseAuditable && props.acceptablePaymentOptions && props.courseList.length >= 1
+  //     ? false
+  //     : true
+  // );
+  const [isOnlinePayment, setIsOnlinePayment] = useState();
   const [customerEmail, setCustomerEmail] = useState();
   const [customerName, setCustomerName] = useState();
   const [customerPhoneNumber, setCustomerPhoneNumber] = useState();
@@ -306,6 +314,31 @@ function CheckoutDeliveryAndPayment(props) {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (props.isCourseAuditable && props.courseList.length === 1) {
+        setIsOnlinePayment(false);
+        //setPaymentMethod("audit");
+      } else {
+        if (
+          !props.isCourseAuditable &&
+          props.courseList.length >= 1 &&
+          props.acceptablePaymentOptions === "only-online"
+        ) {
+          setIsOnlinePayment(true);
+          // setPaymentMethod("card");
+        } else {
+          setIsOnlinePayment(false);
+          //setPaymentMethod("foreigner");
+        }
+      }
+    };
+
+    //call the function
+
+    fetchData().catch(console.error);
+  }, [props]);
 
   //get the email address of the customer
 
@@ -483,10 +516,21 @@ function CheckoutDeliveryAndPayment(props) {
             {props.isCourseAuditable && props.courseList.length === 1 && (
               <MenuItem value={"audit"}>Audit Course(s) for Free</MenuItem>
             )}
-            <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
-            <MenuItem value={"foreigner"}>
-              Register and Pay Later via Bank Transfer
-            </MenuItem>
+            {/* {props.isCourseAuditable &&
+              (props.acceptablePaymentOptions === "all-types" ||
+                (props.acceptablePaymentOptions === "only-online" && (
+                  <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
+                )))} */}
+            {(props.acceptablePaymentOptions === "all-types" ||
+              props.acceptablePaymentOptions === "only-online") && (
+              <MenuItem value={"card"}>Credit/Debit Card</MenuItem>
+            )}
+            {(props.acceptablePaymentOptions === "all-types" ||
+              props.acceptablePaymentOptions === "only-bank-transfer") && (
+              <MenuItem value={"foreigner"}>
+                Register and Pay Later via Bank Transfer
+              </MenuItem>
+            )}
           </Select>
           <FormHelperText>
             Payment Method (Choose "Credit/Debit Card" for online card payment

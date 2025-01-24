@@ -302,6 +302,8 @@ function ProductForm(props) {
   const [hasMentorshipCredit, setHasMentorshipCredit] = useState("false");
   const [videoType, setVideoType] = useState("bundled");
   const [allowLifeTimeAccess, setAllowLifeTimeAccess] = useState("false");
+  const [acceptablePaymentOptions, setAcceptablePaymentOptions] =
+    useState("all-types");
 
   const dispatch = useDispatch();
 
@@ -485,6 +487,10 @@ function ProductForm(props) {
 
   const handleHasMentorshipCreditChange = (event) => {
     setHasMentorshipCredit(event.target.value);
+  };
+
+  const handleAcceptablePaymentOptionsChange = (event) => {
+    setAcceptablePaymentOptions(event.target.value);
   };
 
   const handleIsCourseAuditableChange = (event) => {
@@ -1097,6 +1103,40 @@ function ProductForm(props) {
       </Box>
     );
   };
+
+  const renderAcceptablePaymentTypesField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="acceptablePaymentOptions"
+            id="acceptablePaymentOptions"
+            value={acceptablePaymentOptions}
+            onChange={handleAcceptablePaymentOptionsChange}
+            //label="Is Featured"
+            style={{ width: 500, marginTop: 10, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"all-types"}>All Types</MenuItem>
+            <MenuItem value={"only-online"}>Strictly Online Payment</MenuItem>
+            <MenuItem value={"only-bank-transfer"}>
+              Strictly Bank Transfers
+            </MenuItem>
+          </Select>
+          <FormHelperText>Select Acceptable Payment Type</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
   const buttonContent = () => {
     return <React.Fragment> Submit</React.Fragment>;
   };
@@ -1153,6 +1193,7 @@ function ProductForm(props) {
     form.append("channel", channel);
     form.append("programme", programme);
     form.append("category", category);
+    form.append("paymentOptions", formValues.paymentOptions);
     form.append(
       "shortDescription",
       formValues.shortDescription ? formValues.shortDescription : ""
@@ -1223,7 +1264,7 @@ function ProductForm(props) {
     form.append("majorSkills", formValues.majorSkills);
     form.append("minorSkills", formValues.minorSkills);
     form.append("passGrade", formValues.passGrade);
-    form.append("paymentOptions", formValues.paymentOptions);
+    form.append("acceptablePaymentOptions", acceptablePaymentOptions);
     // form.append("deliverability", formValues.deliverability);
     form.append("isInstallmentalPaymentAllowed", isInstallmentalPaymentAllowed);
 
@@ -1238,9 +1279,17 @@ function ProductForm(props) {
     form.append("hasSeries", hasSeries);
     form.append("series", formValues.series);
     form.append("hasMentorshipCredit", hasMentorshipCredit);
-    form.append("mentorshipCredit", formValues.mentorshipCredit);
+    form.append(
+      "mentorshipCredit",
+      formValues.mentorshipCredit ? formValues.mentorshipCredit : 0
+    );
     form.append("mentorshipDuration", formValues.mentorshipDuration);
-    form.append("costPerMentorshipCredit", formValues.costPerMentorshipCredit);
+    form.append(
+      "costPerMentorshipCredit",
+      formValues.costPerMentorshipCredit
+        ? formValues.costPerMentorshipCredit
+        : 0
+    );
 
     if (!formValues["refNumber"]) {
       const refNumber =
@@ -1584,6 +1633,14 @@ function ProductForm(props) {
               />
             </Grid>
           </Grid>
+
+          <Field
+            label=""
+            id="acceptablePaymentOptions"
+            name="acceptablePaymentOptions"
+            type="text"
+            component={renderAcceptablePaymentTypesField}
+          />
 
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
@@ -1964,6 +2021,7 @@ function ProductForm(props) {
                 label=""
                 id="mentorshipCredit"
                 name="mentorshipCredit"
+                defaultValue={0}
                 type="number"
                 helperText="Mentorship Credit"
                 component={renderSingleLineField}
@@ -1986,6 +2044,7 @@ function ProductForm(props) {
                 label=""
                 id="costPerMentorshipCredit"
                 name="costPerMentorshipCredit"
+                defaultValue={0}
                 type="number"
                 helperText="Cost Per Mentorship Credit"
                 component={renderSingleLineField}

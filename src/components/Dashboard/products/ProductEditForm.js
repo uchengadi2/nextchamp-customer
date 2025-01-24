@@ -297,6 +297,9 @@ function ProductEditForm(props) {
   const [allowLifeTimeAccess, setAllowLifeTimeAccess] = useState(
     params[0].allowLifeTimeAccess
   );
+  const [acceptablePaymentOptions, setAcceptablePaymentOptions] = useState(
+    params[0].acceptablePaymentOptions
+  );
 
   const dispatch = useDispatch();
 
@@ -492,6 +495,10 @@ function ProductEditForm(props) {
 
   const handleShowGenericWeekdayStartDateTextChange = (event) => {
     setShowGenericWeekdayStartDateText(event.target.value);
+  };
+
+  const handleAcceptablePaymentOptionsChange = (event) => {
+    setAcceptablePaymentOptions(event.target.value);
   };
 
   const handleUploadFiles = (files) => {
@@ -1093,6 +1100,39 @@ function ProductEditForm(props) {
     );
   };
 
+  const renderAcceptablePaymentTypesField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="acceptablePaymentOptions"
+            id="acceptablePaymentOptions"
+            value={acceptablePaymentOptions}
+            onChange={handleAcceptablePaymentOptionsChange}
+            //label="Is Featured"
+            style={{ width: 500, marginTop: 10, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"all-types"}>All Types</MenuItem>
+            <MenuItem value={"only-online"}>Strictly Online Payment</MenuItem>
+            <MenuItem value={"only-bank-transfer"}>
+              Strictly Bank Transfers
+            </MenuItem>
+          </Select>
+          <FormHelperText>Select Acceptable Payment Type</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
   const buttonContent = () => {
     return <React.Fragment> Submit</React.Fragment>;
   };
@@ -1137,6 +1177,7 @@ function ProductEditForm(props) {
     form.append("channel", channel ? channel : params[0].channel);
     form.append("programme", programme ? programme : params[0].programme);
     form.append("category", category ? category : params[0].category);
+
     form.append(
       "shortDescription",
       formValues.shortDescription
@@ -1260,6 +1301,18 @@ function ProductEditForm(props) {
     form.append("track", track ? track : params[0].track);
     form.append("type", courseType ? courseType : params[0].track);
     form.append("status", courseStatus ? courseStatus : params[0].status);
+    form.append(
+      "paymentOptions",
+      formValues.paymentOptions
+        ? formValues.paymentOptions
+        : params[0].paymentOptions
+    );
+    form.append(
+      "acceptablePaymentOptions",
+      acceptablePaymentOptions
+        ? acceptablePaymentOptions
+        : params[0].acceptablePaymentOptions
+    );
 
     form.append("createdBy", props.userId);
 
@@ -1313,12 +1366,7 @@ function ProductEditForm(props) {
       "passGrade",
       formValues.passGrade ? formValues.passGrade : params[0].passGrade
     );
-    form.append(
-      "paymentOptions",
-      formValues.paymentOptions
-        ? formValues.paymentOptions
-        : params[0].paymentOptions
-    );
+
     // form.append("deliverability", formValues.deliverability);
     form.append(
       "isInstallmentalPaymentAllowed",
@@ -1349,10 +1397,7 @@ function ProductEditForm(props) {
         ? formValues.previewVideoId
         : params[0].previewVideoId
     );
-    // form.append(
-    //   "previewVideoId",
-    //   formValues.previewVideoId ? formValues.previewVideoId : " "
-    // );
+
     form.append("hasSeries", hasSeries ? hasSeries : params[0].hasSeries);
     form.append(
       "series",
@@ -1712,6 +1757,13 @@ function ProductEditForm(props) {
               />
             </Grid>
           </Grid>
+          <Field
+            label=""
+            id="acceptablePaymentOptions"
+            name="acceptablePaymentOptions"
+            type="text"
+            component={renderAcceptablePaymentTypesField}
+          />
           <Grid container direction="row" style={{ marginTop: 20 }}>
             <Grid item style={{ width: "60%" }}>
               <Field

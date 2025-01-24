@@ -367,6 +367,7 @@ function ProductDetails(props) {
           allowLifeTimeAccess: course[0].allowLifeTimeAccess,
           videoType: course[0].videoType,
           priceLabel: course[0].priceLabel,
+          acceptablePaymentOptions: course[0].acceptablePaymentOptions,
         });
 
         setCourse({
@@ -436,6 +437,7 @@ function ProductDetails(props) {
           allowLifeTimeAccess: allData[0].allowLifeTimeAccess,
           videoType: allData[0].videoType,
           priceLabel: allData[0].priceLabel,
+          acceptablePaymentOptions: allData[0].acceptablePaymentOptions,
         });
 
         setIsLoading(false);
@@ -496,6 +498,7 @@ function ProductDetails(props) {
             isInstallmentalPaymentAllowed={course.isInstallmentalPaymentAllowed}
             maximumInstallmentalPayment={course.maximumInstallmentalPayment}
             series={course.series}
+            acceptablePaymentOptions={course.acceptablePaymentOptions}
             key={course.id}
             token={props.token}
             userId={props.userId}
@@ -535,6 +538,7 @@ function ProductDetails(props) {
             successTips={course.successTips}
             track={course.track}
             status={course.status}
+            acceptablePaymentOptions={course.acceptablePaymentOptions}
             commencementWeekdaysDate={course.commencementWeekdaysDate}
             commencementWeekendsDate={course.commencementWeekendsDate}
             channel={course.channel}
