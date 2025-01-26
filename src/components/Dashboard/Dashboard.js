@@ -63,6 +63,7 @@ import Discount from "./products/Discount";
 import PurchaseOrders from "./products/PurchaseOrders";
 import Transfers from "./products/Transfers";
 import Orders from "./ecommerce/Orders";
+import OrderList from "./ecommerce/OrderList";
 import Payments from "./ecommerce/Payment";
 // import Delivery from "./ecommerce/Delivery";
 // import Packaging from "./ecommerce/Packaging";
@@ -320,12 +321,12 @@ function Dashboard(props) {
               </Typography>
               <MenuItem
                 className={
-                  slug === "ecommerce-orders" ? classes.selected : null
+                  slug === "dashboard-transactions" ? classes.selected : null
                 }
-                selected={slug === "ecommerce-orders" ? true : false}
+                selected={slug === "dashboard-transactions" ? true : false}
                 onClick={(event) => {
                   event.preventDefault();
-                  history.push(`/dashboard/ecommerce-orders`);
+                  history.push(`/dashboard/dashboard-transactions`);
                 }}
               >
                 <ListItemIcon>
@@ -333,7 +334,7 @@ function Dashboard(props) {
                 </ListItemIcon>
                 <ListItemText>Transactions</ListItemText>
               </MenuItem>
-              <MenuItem
+              {/* <MenuItem
                 className={
                   slug === "ecommerce-quotes" ? classes.selected : null
                 }
@@ -347,15 +348,30 @@ function Dashboard(props) {
                   <LuggageIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Requested Quotes</ListItemText>
+              </MenuItem> */}
+              <MenuItem
+                className={
+                  slug === "dashboard-orderslist" ? classes.selected : null
+                }
+                selected={slug === "dashboard-orderslist" ? true : false}
+                onClick={(event) => {
+                  event.preventDefault();
+                  history.push(`/dashboard/dashboard-orderslist`);
+                }}
+              >
+                <ListItemIcon>
+                  <AssignmentReturnIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Orders List</ListItemText>
               </MenuItem>
               <MenuItem
                 className={
-                  slug === "ecommerce-payment" ? classes.selected : null
+                  slug === "dashboard-payment" ? classes.selected : null
                 }
-                selected={slug === "ecommerce-payment" ? true : false}
+                selected={slug === "dashboard-payment" ? true : false}
                 onClick={(event) => {
                   event.preventDefault();
-                  history.push(`/dashboard/ecommerce-payment`);
+                  history.push(`/dashboard/dashboard-payment`);
                 }}
               >
                 <ListItemIcon>
@@ -899,12 +915,17 @@ function Dashboard(props) {
             <Categories />
           </Grid>
         )}
-        {slug === "ecommerce-orders" && (
+        {slug === "dashboard-transactions" && (
           <Grid item xs={9.5}>
             <Orders />
           </Grid>
         )}
-        {slug === "ecommerce-payment" && (
+        {slug === "dashboard-orderslist" && (
+          <Grid item xs={9.5}>
+            <OrderList />
+          </Grid>
+        )}
+        {slug === "dashboard-payment" && (
           <Grid item xs={9.5}>
             <Payments />
           </Grid>
@@ -919,22 +940,22 @@ function Dashboard(props) {
             <Delivery />
           </Grid>
         )} */}
-        {slug === "ecommerce-returns" && (
+        {slug === "dashboard-returns" && (
           <Grid item xs={9.5}>
             <Returns />
           </Grid>
         )}
-        {slug === "ecommerce-subscriptions" && (
+        {slug === "dashboard-subscriptions" && (
           <Grid item xs={9.5}>
             <Subscription />
           </Grid>
         )}
-        {slug === "ecommerce-biddings" && (
+        {slug === "dashboard-biddings" && (
           <Grid item xs={9.5}>
             <Bidding />
           </Grid>
         )}
-        {slug === "ecommerce-quotations" && (
+        {slug === "dashboard-quotations" && (
           <Grid item xs={9.5}>
             <Quotations />
           </Grid>

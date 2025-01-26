@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
-
+import useToken from "../../../custom-hooks/useToken";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Orders(props) {
   const classes = useStyles();
+  const { token, setToken } = useToken();
 
   const [open, setOpen] = React.useState(false);
   const [transactionList, setTransactionList] = useState([]);
@@ -43,11 +44,10 @@ function Orders(props) {
     setLoading(true);
     const fetchData = async () => {
       let allData = [];
-      api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
-      const response = await api.get(`/transactions`, {
-        params: { shopType: "online" },
-      });
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const response = await api.get(`/transactions`);
       const workingData = response.data.data.data;
+
       workingData.map((transaction) => {
         allData.push({
           id: transaction._id,
@@ -90,7 +90,6 @@ function Orders(props) {
           recipientCountryName: transaction.recipientCountryName,
           recipientStateName: transaction.recipientStateName,
           recipientCityName: transaction.recipientCityName,
-          shopType: transaction.shopType,
         });
       });
       setTransactionList(allData);
@@ -150,13 +149,7 @@ function Orders(props) {
 
         //editable: true,
       },
-      {
-        field: "shopType",
-        headerName: "Transaction From",
-        width: 150,
 
-        //editable: true,
-      },
       {
         field: "status",
         headerName: "Status",
@@ -166,35 +159,7 @@ function Orders(props) {
       },
       {
         field: "totalProductCost",
-        headerName: `Total Product Cost`,
-        width: 180,
-
-        //editable: true,
-      },
-      {
-        field: "totalDeliveryCost",
-        headerName: `Total Delivery Cost`,
-        width: 180,
-
-        //editable: true,
-      },
-      {
-        field: "deliveryStatus",
-        headerName: `Delivery Status`,
-        width: 180,
-
-        //editable: true,
-      },
-      {
-        field: "deliveryMode",
-        headerName: `Delivery Mode`,
-        width: 180,
-
-        //editable: true,
-      },
-      {
-        field: "daysToDelivery",
-        headerName: `Days To Delivery`,
+        headerName: `Total Cost of Course(s)`,
         width: 180,
 
         //editable: true,
@@ -207,27 +172,49 @@ function Orders(props) {
         //editable: true,
       },
       {
-        field: "orderaction",
-        headerName: "",
-        width: 30,
-        description: "transaction row",
-        renderCell: (params) => (
-          <strong>
-            {/* {params.value.getFullYear()} */}
-            <ViewListIcon
-              style={{ cursor: "pointer" }}
-              onClick={() => [
-                // this.setState({
-                //   editOpen: true,
-                //   id: params.id,
-                //   params: params.row,
-                // }),
-                // history.push(`/products/onboard/${params.id}`),
-              ]}
-            />
-          </strong>
-        ),
+        field: "recipientName",
+        headerName: `Trainer Name`,
+        width: 250,
+
+        //editable: true,
       },
+
+      {
+        field: "recipientPhoneNumber",
+        headerName: `Trainee Phone Number`,
+        width: 180,
+
+        //editable: true,
+      },
+      {
+        field: "recipientEmailAddress",
+        headerName: `Trainee Email Address`,
+        width: 180,
+
+        //editable: true,
+      },
+      // {
+      //   field: "orderaction",
+      //   headerName: "",
+      //   width: 30,
+      //   description: "transaction row",
+      //   renderCell: (params) => (
+      //     <strong>
+      //       {/* {params.value.getFullYear()} */}
+      //       <ViewListIcon
+      //         style={{ cursor: "pointer" }}
+      //         onClick={() => [
+      //           // this.setState({
+      //           //   editOpen: true,
+      //           //   id: params.id,
+      //           //   params: params.row,
+      //           // }),
+      //           // history.push(`/products/onboard/${params.id}`),
+      //         ]}
+      //       />
+      //     </strong>
+      //   ),
+      // },
     ];
 
     transactionList.map((transaction, index) => {
@@ -244,29 +231,36 @@ function Orders(props) {
           /(^\w|\s\w)(\S*)/g,
           (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
         ),
-        shopType: transaction.shopType.replace(
-          /(^\w|\s\w)(\S*)/g,
-          (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
-        ),
-        deliveryStatus: transaction.deliveryStatus.replace(
-          /(^\w|\s\w)(\S*)/g,
-          (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
-        ),
-        deliveryMode: transaction.deliveryMode.replace(
-          /(^\w|\s\w)(\S*)/g,
-          (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
-        ),
+        // shopType: transaction.shopType.replace(
+        //   /(^\w|\s\w)(\S*)/g,
+        //   (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+        // ),
+        // deliveryStatus: transaction.deliveryStatus.replace(
+        //   /(^\w|\s\w)(\S*)/g,
+        //   (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+        // ),
+        // deliveryMode: transaction.deliveryMode.replace(
+        //   /(^\w|\s\w)(\S*)/g,
+        //   (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+        // ),
         // daysToDelivery: transaction.daysToDelivery.replace(
         //   /(^\w|\s\w)(\S*)/g,
         //   (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
         // ),
         daysToDelivery: transaction.daysToDelivery,
 
-        // paymentMethod: transaction.paymentMethod.replace(
-        //   /(^\w|\s\w)(\S*)/g,
-        //   (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
-        // ),
+        paymentMethod: transaction.paymentMethod.replace(
+          /(^\w|\s\w)(\S*)/g,
+          (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+        ),
         paymentMethod: transaction.paymentMethod,
+        customerName: transaction.customerName,
+        customerPhoneNumber: transaction.customerPhoneNumber,
+        customerEmailAddress: transaction.customerEmailAddress,
+        customerEmailAddress: transaction.customerEmailAddress,
+        recipientName: transaction.recipientName,
+        recipientPhoneNumber: transaction.recipientPhoneNumber,
+        recipientEmailAddress: transaction.recipientEmailAddress,
       };
       rows.push(row);
     });
