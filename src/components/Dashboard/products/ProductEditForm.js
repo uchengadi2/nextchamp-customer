@@ -1427,8 +1427,9 @@ function ProductEditForm(props) {
     );
 
     if (!formValues["refNumber"]) {
-      const refNumber =
-        "NEXT" + "-" + Math.floor(Math.random() * 100000000) + "-" + "PR";
+      // const refNumber =
+      //   "NEXT" + "-" + Math.floor(Math.random() * 100000000) + "-" + "PR";
+      const refNumber = params[0].refNumber;
 
       form.append("refNumber", refNumber);
     } else {

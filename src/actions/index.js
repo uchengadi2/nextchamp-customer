@@ -111,6 +111,46 @@ import {
   FETCH_PROGRAMMES,
   DELETE_PROGRAMME,
   EDIT_PROGRAMME,
+  CREATE_INSTRUCTOR,
+  FETCH_INSTRUCTORS,
+  FETCH_INSTRUCTOR,
+  DELETE_INSTRUCTOR,
+  EDIT_INSTUCTOR,
+  CREATE_ASSESSOR,
+  FETCH_ASSESSOR,
+  FETCH_ASSESSORS,
+  DELETE_ASSESSOR,
+  EDIT_ASSESSOR,
+  CREATE_MENTOR,
+  FETCH_MENTOR,
+  FETCH_MENTORS,
+  DELETE_MENTOR,
+  EDIT_MENTOR,
+  CREATE_COURSE_INSTRUCTOR,
+  FETCH_COURSE_INSTRUCTORS,
+  FETCH_COURSE_INSTRUCTOR,
+  DELETE_COURSE_INSTRUCTOR,
+  EDIT_COURSE_INSTRUCTOR,
+  CREATE_COURSE_ASSESSOR,
+  FETCH_COURSE_ASSESSORS,
+  FETCH_COURSE_ASSESSOR,
+  DELETE_COURSE_ASSESSOR,
+  EDIT_COURSE_ASSESSOR,
+  CREATE_COURSE_MENTOR,
+  FETCH_COURSE_MENTORS,
+  FETCH_COURSE_MENTOR,
+  DELETE_COURSE_MENTOR,
+  EDIT_COURSE_MENTOR,
+  CREATE_COURSE_LESSON,
+  FETCH_COURSE_LESSONS,
+  FETCH_COURSE_LESSON,
+  DELETE_COURSE_LESSON,
+  EDIT_COURSE_LESSON,
+  CREATE_COURSE_TOPIC,
+  FETCH_COURSE_TOPICS,
+  FETCH_COURSE_TOPIC,
+  DELETE_COURSE_TOPIC,
+  EDIT_COURSE_TOPIC,
 } from "./types";
 
 //authentication and authorization  operations
@@ -1171,6 +1211,380 @@ export const deleteProgramme = (id) => {
   return async (dispatch) => {
     await data.delete(`/programmes/${id}`);
     dispatch({ type: DELETE_PROGRAMME, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////INSTRUCTOR///////////////////////////////
+//INSTRUCTOR resources crud operations
+export const createInstructor = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/instructors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_INSTRUCTOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchInstructors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/instructors");
+    dispatch({ type: FETCH_INSTRUCTORS, payload: response.data.data.data });
+  };
+};
+
+export const fetchInstructor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/instructors/${id}`);
+    dispatch({ type: FETCH_INSTRUCTOR, payload: response.data.data });
+  };
+};
+
+export const editInstructor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/instructors/${id}`, formValues);
+    dispatch({ type: EDIT_INSTUCTOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteInstructor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/instructors/${id}`);
+    dispatch({ type: DELETE_INSTRUCTOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////ASSESSOR///////////////////////////////
+//ASSESSOR resources crud operations
+export const createAssessor = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/assessors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_ASSESSOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchAssessors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/assessors");
+    dispatch({ type: FETCH_ASSESSORS, payload: response.data.data.data });
+  };
+};
+
+export const fetchAssessor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/assessors/${id}`);
+    dispatch({ type: FETCH_ASSESSOR, payload: response.data.data });
+  };
+};
+
+export const editAssessor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/assessors/${id}`, formValues);
+    dispatch({ type: EDIT_ASSESSOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteAssesor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/assessors/${id}`);
+    dispatch({ type: DELETE_ASSESSOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////MENTOR///////////////////////////////
+//MENTOR resources crud operations
+export const createMentor = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/mentors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_MENTOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchMentors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/mentors");
+    dispatch({ type: FETCH_MENTORS, payload: response.data.data.data });
+  };
+};
+
+export const fetchMentor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/mentors/${id}`);
+    dispatch({ type: FETCH_MENTOR, payload: response.data.data });
+  };
+};
+
+export const editMentor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/mentors/${id}`, formValues);
+    dispatch({ type: EDIT_MENTOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteMentor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/mentors/${id}`);
+    dispatch({ type: DELETE_MENTOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////COURSE INSTRUCTOR///////////////////////////////
+//COURSE INSTRUCTOR resources crud operations
+export const createCourseInstructor = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/courseinstructors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COURSE_INSTRUCTOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCourseInstructors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/courseinstructors");
+    dispatch({
+      type: FETCH_COURSE_INSTRUCTORS,
+      payload: response.data.data.data,
+    });
+  };
+};
+
+export const fetchCourseInstructor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/courseinstructors/${id}`);
+    dispatch({ type: FETCH_COURSE_INSTRUCTOR, payload: response.data.data });
+  };
+};
+
+export const editCourseInstructor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/courseinstructors/${id}`, formValues);
+    dispatch({ type: EDIT_COURSE_INSTRUCTOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCourseInstructor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/courseinstructors/${id}`);
+    dispatch({ type: DELETE_COURSE_INSTRUCTOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////COURSE ASSESSORS///////////////////////////////
+//COURSE ASSESSORS resources crud operations
+export const createCourseAssessor = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/courseassessors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COURSE_ASSESSOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCourseAssessors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/courseassessors");
+    dispatch({
+      type: FETCH_COURSE_ASSESSORS,
+      payload: response.data.data.data,
+    });
+  };
+};
+
+export const fetchCourseAssessor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/courseassessors/${id}`);
+    dispatch({ type: FETCH_COURSE_ASSESSOR, payload: response.data.data });
+  };
+};
+
+export const editCourseAssessor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/courseassessors/${id}`, formValues);
+    dispatch({ type: EDIT_COURSE_ASSESSOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCourseAssessor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/courseassessors/${id}`);
+    dispatch({ type: DELETE_COURSE_ASSESSOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////COURSE mentors///////////////////////////////
+//COURSE mentors resources crud operations
+export const createCourseMentors = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/coursementors", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COURSE_MENTOR, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCourseMentors = () => {
+  return async (dispatch) => {
+    const response = await data.get("/coursementors");
+    dispatch({ type: FETCH_COURSE_MENTORS, payload: response.data.data.data });
+  };
+};
+
+export const fetchCourseMentor = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/coursementors/${id}`);
+    dispatch({ type: FETCH_COURSE_MENTOR, payload: response.data.data });
+  };
+};
+
+export const editCourseMentor = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/coursementors/${id}`, formValues);
+    dispatch({ type: EDIT_COURSE_MENTOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCourseMentor = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/coursementors/${id}`);
+    dispatch({ type: DELETE_COURSE_MENTOR, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////COURSE LESSONS///////////////////////////////
+//COURSE LESSONS resources crud operations
+export const createCourseLesson = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/courselessons", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COURSE_LESSON, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCourseLessons = () => {
+  return async (dispatch) => {
+    const response = await data.get("/courselessons");
+    dispatch({ type: FETCH_COURSE_LESSONS, payload: response.data.data.data });
+  };
+};
+
+export const fetchCourseLesson = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/courselessons/${id}`);
+    dispatch({ type: FETCH_COURSE_LESSON, payload: response.data.data });
+  };
+};
+
+export const editCourseLesson = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/courselessons/${id}`, formValues);
+    dispatch({ type: EDIT_COURSE_MENTOR, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCourseLesson = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/courselessons/${id}`);
+    dispatch({ type: DELETE_COURSE_LESSON, payload: id });
+    //history.push("/");
+  };
+};
+
+////////////////////////////////////////COURSE TOPICS///////////////////////////////
+//COURSE TOPICS resources crud operations
+export const createCourseTopic = (formValues) => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await data.post("/coursetopics", {
+      ...formValues,
+      userId,
+    });
+
+    //console.log(response);
+    dispatch({ type: CREATE_COURSE_TOPIC, payload: response.data });
+    // history.push("/");
+  };
+};
+
+export const fetchCourseTopics = () => {
+  return async (dispatch) => {
+    const response = await data.get("/coursetopics");
+    dispatch({ type: FETCH_COURSE_TOPICS, payload: response.data.data.data });
+  };
+};
+
+export const fetchCourseTopic = (id) => {
+  return async (dispatch) => {
+    const response = await data.get(`/coursetopics/${id}`);
+    dispatch({ type: FETCH_COURSE_TOPIC, payload: response.data.data });
+  };
+};
+
+export const editCourseTopic = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await data.patch(`/coursetopics/${id}`, formValues);
+    dispatch({ type: EDIT_COURSE_TOPIC, payload: response.data.data });
+    //history.push("/");
+  };
+};
+
+export const deleteCourseTopic = (id) => {
+  return async (dispatch) => {
+    await data.delete(`/coursetopics/${id}`);
+    dispatch({ type: DELETE_COURSE_TOPIC, payload: id });
     //history.push("/");
   };
 };

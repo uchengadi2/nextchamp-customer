@@ -20,6 +20,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PolicyIcon from "@mui/icons-material/Policy";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import CategoryIcon from "@mui/icons-material/Category";
+import HailIcon from "@mui/icons-material/Hail";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DiscountIcon from "@mui/icons-material/Discount";
@@ -98,6 +99,14 @@ import PoSPackaging from "./pos/Packaging";
 import PoSPayments from "./pos/Payment";
 import PoSReturns from "./pos/Returns";
 import PoSSubscription from "./pos/Subscription";
+import Instructors from "./products/Instructors";
+import Assessors from "./products/Assessors";
+import Mentors from "./products/Mentors";
+import CourseInstructors from "./products/CourseInstructors";
+import CourseAssessors from "./products/CourseAssessors";
+import CourseMentors from "./products/CourseMentors";
+import CourseLessons from "./products/CourseLessons";
+import CourseTopics from "./products/CourseTopics";
 // import Delistments from "./products/Delistments";
 // import Accessories from "./utilities/Accessories";
 // import Affiliates from "./utilities/Affiliates";
@@ -233,7 +242,7 @@ function Dashboard(props) {
                 }}
               >
                 <ListItemIcon>
-                  <Inventory2Icon fontSize="small" />
+                  <HailIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Instructors</ListItemText>
               </MenuItem>
@@ -263,58 +272,78 @@ function Dashboard(props) {
                 </ListItemIcon>
                 <ListItemText>Assessors</ListItemText>
               </MenuItem>
-              {/* <MenuItem
-                className={slug === "purchaseorders" ? classes.selected : null}
-                selected={slug === "purchaseorders" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/purchaseorders`);
-                }}
-              >
-                <ListItemIcon>
-                  <ReorderIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Purchase Orders</ListItemText>
-              </MenuItem>
               <MenuItem
-                className={slug === "discount" ? classes.selected : null}
-                selected={slug === "discount" ? true : false}
+                className={
+                  slug === "courseinstructors" ? classes.selected : null
+                }
+                selected={slug === "courseinstructors" ? true : false}
                 onClick={(event) => {
                   event.preventDefault();
-                  history.push(`/dashboard/discount`);
+                  history.push(`/dashboard/courseinstructors`);
                 }}
               >
                 <ListItemIcon>
-                  <DiscountIcon fontSize="small" />
+                  <TransferWithinAStationIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText>Discounts</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "remediation" ? classes.selected : null}
-                selected={slug === "remediation" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/remediation`);
-                }}
-              >
-                <ListItemIcon>
-                  <RedeemIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Remediations</ListItemText>
+                <ListItemText>Course Instructors</ListItemText>
               </MenuItem>
+
               <MenuItem
-                className={slug === "delistments" ? classes.selected : null}
-                selected={slug === "delistments" ? true : false}
+                className={slug === "courseassessors" ? classes.selected : null}
+                selected={slug === "courseassessors" ? true : false}
                 onClick={(event) => {
                   event.preventDefault();
-                  history.push(`/dashboard/delistments`);
+                  history.push(`/dashboard/courseassessors`);
                 }}
               >
                 <ListItemIcon>
-                  <DeleteForeverIcon fontSize="small" />
+                  <TransferWithinAStationIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText>Delistments</ListItemText>
-              </MenuItem> */}
+                <ListItemText>Course Assessors</ListItemText>
+              </MenuItem>
+
+              <MenuItem
+                className={slug === "coursementors" ? classes.selected : null}
+                selected={slug === "coursementors" ? true : false}
+                onClick={(event) => {
+                  event.preventDefault();
+                  history.push(`/dashboard/coursementors`);
+                }}
+              >
+                <ListItemIcon>
+                  <TransferWithinAStationIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Course Mentors</ListItemText>
+              </MenuItem>
+
+              <MenuItem
+                className={slug === "courselessons" ? classes.selected : null}
+                selected={slug === "courselessons" ? true : false}
+                onClick={(event) => {
+                  event.preventDefault();
+                  history.push(`/dashboard/courselessons`);
+                }}
+              >
+                <ListItemIcon>
+                  <TransferWithinAStationIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Course Lessons</ListItemText>
+              </MenuItem>
+
+              <MenuItem
+                className={slug === "coursetopics" ? classes.selected : null}
+                selected={slug === "coursetopics" ? true : false}
+                onClick={(event) => {
+                  event.preventDefault();
+                  history.push(`/dashboard/coursetopics`);
+                }}
+              >
+                <ListItemIcon>
+                  <TransferWithinAStationIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Course Topics</ListItemText>
+              </MenuItem>
+
               <Divider />
               <Typography style={{ marginLeft: 10, fontWeight: "Bold" }}>
                 Transactions
@@ -334,21 +363,7 @@ function Dashboard(props) {
                 </ListItemIcon>
                 <ListItemText>Transactions</ListItemText>
               </MenuItem>
-              {/* <MenuItem
-                className={
-                  slug === "ecommerce-quotes" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-quotes" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-quotes`);
-                }}
-              >
-                <ListItemIcon>
-                  <LuggageIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Requested Quotes</ListItemText>
-              </MenuItem> */}
+
               <MenuItem
                 className={
                   slug === "dashboard-orderslist" ? classes.selected : null
@@ -380,237 +395,6 @@ function Dashboard(props) {
                 <ListItemText>Payment & Reconciliation</ListItemText>
               </MenuItem>
 
-              {/* <MenuItem
-                className={
-                  slug === "ecommerce-delivery" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-delivery" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-delivery`);
-                }}
-              >
-                <ListItemIcon>
-                  <LocalShippingIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Delivery & Shippment</ListItemText>
-              </MenuItem>
-              <MenuItem
-                className={
-                  slug === "ecommerce-returns" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-returns" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-returns`);
-                }}
-              >
-                <ListItemIcon>
-                  <AssignmentReturnIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Returns</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={
-                  slug === "ecommerce-subscriptions" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-subscriptions" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-subscriptions`);
-                }}
-              >
-                <ListItemIcon>
-                  <SubscriptionsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Subscriptions</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={
-                  slug === "ecommerce-biddings" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-biddings" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-biddings`);
-                }}
-              >
-                <ListItemIcon>
-                  <MonetizationOnIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Biddings</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={
-                  slug === "ecommerce-quotations" ? classes.selected : null
-                }
-                selected={slug === "ecommerce-quotations" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/ecommerce-quotations`);
-                }}
-              >
-                <ListItemIcon>
-                  <RequestQuoteIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Quotations</ListItemText>
-              </MenuItem> */}
-              <Divider />
-              {/* <Typography style={{ marginLeft: 10, fontWeight: "Bold" }}>
-                Point of Sale (PoS) Transactions
-              </Typography>
-              <MenuItem
-                className={slug === "pos-orders" ? classes.selected : null}
-                selected={slug === "pos-orders" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-orders`);
-                }}
-              >
-                <ListItemIcon>
-                  <ShoppingBasketIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Orders</ListItemText>
-              </MenuItem>
-              <MenuItem
-                className={slug === "pos-payments" ? classes.selected : null}
-                selected={slug === "pos-payments" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-payments`);
-                }}
-              >
-                <ListItemIcon>
-                  <PaymentsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Payment & Reconciliation</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "pos-packaging" ? classes.selected : null}
-                selected={slug === "pos-packaging" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-packaging`);
-                }}
-              >
-                <ListItemIcon>
-                  <PaymentsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Packaging</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "pos-delivery" ? classes.selected : null}
-                selected={slug === "pos-delivery" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-delivery`);
-                }}
-              >
-                <ListItemIcon>
-                  <PaymentsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Delivery & Shippment</ListItemText>
-              </MenuItem>
-              <MenuItem
-                className={slug === "pos-returns" ? classes.selected : null}
-                selected={slug === "pos-returns" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-returns`);
-                }}
-              >
-                <ListItemIcon>
-                  <AssignmentReturnIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Returns</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={
-                  slug === "pos-subscriptions" ? classes.selected : null
-                }
-                selected={slug === "pos-subscriptions" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-subscriptions`);
-                }}
-              >
-                <ListItemIcon>
-                  <SubscriptionsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Subscriptions</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "pos-invoicing" ? classes.selected : null}
-                selected={slug === "pos-invoicing" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/pos-invoicing`);
-                }}
-              >
-                <ListItemIcon>
-                  <ReceiptIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Invoicing</ListItemText>
-              </MenuItem> */}
-              {/* <Divider /> */}
-
-              {/* <Typography style={{ marginLeft: 10, fontWeight: "Bold" }}>
-                Affiliates Transactions
-              </Typography>
-              <MenuItem
-                className={slug === "direct-orders" ? classes.selected : null}
-                selected={slug === "direct-orders" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/direct-orders`);
-                }}
-              >
-                <ListItemIcon>
-                  <ShoppingBasketIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Orders</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "direct-payments" ? classes.selected : null}
-                selected={slug === "direct-payments" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/direct-payments`);
-                }}
-              >
-                <ListItemIcon>
-                  <PaymentsIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Payment & Reconciliation</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={slug === "direct-returns" ? classes.selected : null}
-                selected={slug === "direct-returns" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/direct-returns`);
-                }}
-              >
-                <ListItemIcon>
-                  <AssignmentReturnIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Returns</ListItemText>
-              </MenuItem> */}
-              {/* <MenuItem
-                className={
-                  slug === "direct-invoicing" ? classes.selected : null
-                }
-                selected={slug === "direct-invoicing" ? true : false}
-                onClick={(event) => {
-                  event.preventDefault();
-                  history.push(`/dashboard/direct-invoicing`);
-                }}
-              >
-                <ListItemIcon>
-                  <ReceiptIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Invoicing</ListItemText>
-              </MenuItem> */}
               <Divider />
               <Typography style={{ marginLeft: 10, fontWeight: "Bold" }}>
                 Analytics & Reports
@@ -896,7 +680,7 @@ function Dashboard(props) {
         )}
         {slug === "instructors" && (
           <Grid item xs={9.5}>
-            <Categories />
+            <Instructors />
           </Grid>
         )}
         {slug === "purchaseorders" && (
@@ -907,12 +691,12 @@ function Dashboard(props) {
 
         {slug === "mentors" && (
           <Grid item xs={9.5}>
-            <Categories />
+            <Mentors />
           </Grid>
         )}
         {slug === "assessors" && (
           <Grid item xs={9.5}>
-            <Categories />
+            <Assessors />
           </Grid>
         )}
         {slug === "dashboard-transactions" && (
@@ -930,29 +714,29 @@ function Dashboard(props) {
             <Payments />
           </Grid>
         )}
-        {/* {slug === "ecommerce-packaging" && (
+        {slug === "courseassessors" && (
           <Grid item xs={9.5}>
-            <Packaging />
+            <CourseAssessors />
           </Grid>
         )}
-        {slug === "ecommerce-delivery" && (
+        {slug === "coursementors" && (
           <Grid item xs={9.5}>
-            <Delivery />
-          </Grid>
-        )} */}
-        {slug === "dashboard-returns" && (
-          <Grid item xs={9.5}>
-            <Returns />
+            <CourseMentors />
           </Grid>
         )}
-        {slug === "dashboard-subscriptions" && (
+        {slug === "courseinstructors" && (
           <Grid item xs={9.5}>
-            <Subscription />
+            <CourseInstructors />
           </Grid>
         )}
-        {slug === "dashboard-biddings" && (
+        {slug === "courselessons" && (
           <Grid item xs={9.5}>
-            <Bidding />
+            <CourseLessons />
+          </Grid>
+        )}
+        {slug === "coursetopics" && (
+          <Grid item xs={9.5}>
+            <CourseTopics />
           </Grid>
         )}
         {slug === "dashboard-quotations" && (

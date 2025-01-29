@@ -15,6 +15,14 @@ import ordersAssignedReducer from "./ordersAssignedReducer";
 import ordersCompletedReducer from "./ordersCompletedReducer";
 import orderOnTransitReducer from "./orderOnTransitReducer";
 import transactionReducer from "./transactionReducer";
+import instructorReducer from "./instructorReducer";
+import assessorReducer from "./assessorReducer";
+import mentorReducer from "./mentorReducer";
+import courseInstructorReducer from "./courseInstructorReducer";
+import courseAssessorReducer from "./courseAssessorReducer";
+import courseMentorReducer from "./courseMentorReducer";
+import courseLessonReducer from "./courseLessonReducer";
+import courseTopicReducer from "./courseTopicReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -33,4 +41,12 @@ export default combineReducers({
   user: userReducer,
   vendor: vendorReducer,
   transaction: transactionReducer,
+  instructor: instructorReducer,
+  assessor: assessorReducer,
+  mentor: mentorReducer,
+  courseInstructor: courseInstructorReducer,
+  courseAssessor: courseAssessorReducer,
+  courseMentor: courseMentorReducer,
+  courseLesson: courseLessonReducer,
+  courseTopic: courseTopicReducer,
 });
