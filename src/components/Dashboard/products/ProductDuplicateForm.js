@@ -300,6 +300,18 @@ function ProductDuplicateForm(props) {
   const [acceptablePaymentOptions, setAcceptablePaymentOptions] = useState(
     params[0].acceptablePaymentOptions
   );
+  const [allowInstructors, setAllowInstructors] = useState(
+    params[0].allowInstructors
+  );
+  const [allowHomeInstructors, setAllowHomeInstructors] = useState(
+    params[0].allowHomeInstructors
+  );
+  const [allowAssessments, setAllowAssessments] = useState(
+    params[0].allowAssessments
+  );
+  const [allowMentorship, setAllowMentorship] = useState(
+    params[0].allowMentorship
+  );
 
   const dispatch = useDispatch();
 
@@ -501,6 +513,22 @@ function ProductDuplicateForm(props) {
     setAcceptablePaymentOptions(event.target.value);
   };
 
+  const handleAllowInstructorsChange = (event) => {
+    setAllowInstructors(event.target.value);
+  };
+
+  const handleAllowHomeInstructorsChange = (event) => {
+    setAllowHomeInstructors(event.target.value);
+  };
+
+  const handleAllowAssessmentsChange = (event) => {
+    setAllowAssessments(event.target.value);
+  };
+
+  const handleAllowMentorshipChange = (event) => {
+    setAllowMentorship(event.target.value);
+  };
+
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
     let limitExceeded = false;
@@ -524,6 +552,127 @@ function ProductDuplicateForm(props) {
     handleUploadFiles(chosenFiles);
   };
 
+  const renderAllowInstructorsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowInstructors"
+            id="allowInstructors"
+            value={allowInstructors}
+            onChange={handleAllowInstructorsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Available for Teaching Service?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowHomeInstructorsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowHomeInstructors"
+            id="allowHomeInstructors"
+            value={allowHomeInstructors}
+            onChange={handleAllowHomeInstructorsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Available for Home & Private Service?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowAssessmentsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowAssessments"
+            id="allowAssessments"
+            value={allowAssessments}
+            onChange={handleAllowAssessmentsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>
+            Available for Assessments & Mocks Service?
+          </FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowMentorshipField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowMentorship"
+            id="allowMentorship"
+            value={allowMentorship}
+            onChange={handleAllowMentorshipChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Allow Mentorship?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
   const renderIsVatableField = ({
     input,
     label,
@@ -1424,6 +1573,25 @@ function ProductDuplicateForm(props) {
         : params[0].costPerMentorshipCredit
     );
 
+    form.append(
+      "allowInstructors",
+      allowInstructors ? allowInstructors : params[0].allowInstructors
+    );
+    form.append(
+      "allowHomeInstructors",
+      allowHomeInstructors
+        ? allowHomeInstructors
+        : params[0].allowHomeInstructors
+    );
+    form.append(
+      "allowAssessments",
+      allowAssessments ? allowAssessments : params[0].allowAssessments
+    );
+    form.append(
+      "allowMentorship",
+      allowMentorship ? allowMentorship : params[0].allowMentorship
+    );
+
     if (!formValues["refNumber"]) {
       const refNumber =
         "NEXT" + "-" + Math.floor(Math.random() * 100000000) + "-" + "PR";
@@ -2204,6 +2372,55 @@ function ProductDuplicateForm(props) {
                 defaultValue={params[0].costPerMentorshipCredit}
                 helperText="Cost Per Mentorship Credit"
                 component={renderSingleLineField}
+              />
+            </Grid>
+          </Grid>
+          <Grid item container style={{ marginTop: 20 }}>
+            <FormLabel style={{ color: "blue" }} component="legend">
+              Availability Platforms
+            </FormLabel>
+          </Grid>
+          <Grid container direction="row" style={{ marginTop: 20 }}>
+            <Grid item style={{ width: "50%" }}>
+              <Field
+                label=""
+                id="allowInstructors"
+                name="allowInstructors"
+                type="text"
+                helperText="Available for Teaching Service"
+                component={renderAllowInstructorsField}
+              />
+            </Grid>
+            <Grid item style={{ marginLeft: 10 }}>
+              <Field
+                label=""
+                id="allowHomeInstructors"
+                name="allowHomeInstructors"
+                type="test"
+                helperText="Available for Home & Private Teaching"
+                component={renderAllowHomeInstructorsField}
+              />
+            </Grid>
+          </Grid>
+          <Grid container direction="row" style={{ marginTop: 20 }}>
+            <Grid item style={{ width: "50%" }}>
+              <Field
+                label=""
+                id="allowAssessments"
+                name="allowAssessments"
+                type="text"
+                helperText="Available for Assessments & Mocks"
+                component={renderAllowAssessmentsField}
+              />
+            </Grid>
+            <Grid item style={{ marginLeft: 10 }}>
+              <Field
+                label=""
+                id="allowMentorship"
+                name="allowMentorship"
+                type="text"
+                helperText="Available for Mentorship"
+                component={renderAllowMentorshipField}
               />
             </Grid>
           </Grid>

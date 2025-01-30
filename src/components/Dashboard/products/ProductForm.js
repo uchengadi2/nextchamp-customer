@@ -305,6 +305,11 @@ function ProductForm(props) {
   const [acceptablePaymentOptions, setAcceptablePaymentOptions] =
     useState("all-types");
 
+  const [allowInstructors, setAllowInstructors] = useState("true");
+  const [allowHomeInstructors, setAllowHomeInstructors] = useState("false");
+  const [allowAssessments, setAllowAssessments] = useState("false");
+  const [allowMentorship, setAllowMentorship] = useState("false");
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -505,6 +510,22 @@ function ProductForm(props) {
     setShowGenericWeekdayStartDateText(event.target.value);
   };
 
+  const handleAllowInstructorsChange = (event) => {
+    setAllowInstructors(event.target.value);
+  };
+
+  const handleAllowHomeInstructorsChange = (event) => {
+    setAllowHomeInstructors(event.target.value);
+  };
+
+  const handleAllowAssessmentsChange = (event) => {
+    setAllowAssessments(event.target.value);
+  };
+
+  const handleAllowMentorshipChange = (event) => {
+    setAllowMentorship(event.target.value);
+  };
+
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
     let limitExceeded = false;
@@ -526,6 +547,128 @@ function ProductForm(props) {
   const handleFileEvent = (e) => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
     handleUploadFiles(chosenFiles);
+  };
+
+  const renderAllowInstructorsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowInstructors"
+            id="allowInstructors"
+            value={allowInstructors}
+            onChange={handleAllowInstructorsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Available for Teaching Service?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowHomeInstructorsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowHomeInstructors"
+            id="allowHomeInstructors"
+            value={allowHomeInstructors}
+            onChange={handleAllowHomeInstructorsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Available for Home & Private Service?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowAssessmentsField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowAssessments"
+            id="allowAssessments"
+            value={allowAssessments}
+            onChange={handleAllowAssessmentsChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>
+            Available for Assessments & Mocks Service?
+          </FormHelperText>
+        </FormControl>
+      </Box>
+    );
+  };
+
+  const renderAllowMentorshipField = ({
+    input,
+    label,
+    meta: { touched, error, invalid },
+    type,
+    id,
+    ...custom
+  }) => {
+    return (
+      <Box>
+        <FormControl variant="outlined">
+          {/* <InputLabel id="vendor_city">City</InputLabel> */}
+          <Select
+            labelId="allowMentorship"
+            id="allowMentorship"
+            value={allowMentorship}
+            onChange={handleAllowMentorshipChange}
+            //label="allowInstructors"
+            style={{ width: 237, marginTop: 0, height: 38 }}
+            //{...input}
+          >
+            <MenuItem value={"false"}>No</MenuItem>
+            <MenuItem value={"true"}>Yes</MenuItem>
+          </Select>
+          <FormHelperText>Available for Mentorship Service?</FormHelperText>
+        </FormControl>
+      </Box>
+    );
   };
 
   const renderIsVatableField = ({
@@ -1291,6 +1434,11 @@ function ProductForm(props) {
         : 0
     );
 
+    form.append("allowInstructors", allowInstructors);
+    form.append("allowHomeInstructors", allowHomeInstructors);
+    form.append("allowAssessments", allowAssessments);
+    form.append("allowMentorship", allowMentorship);
+
     if (!formValues["refNumber"]) {
       const refNumber =
         "NEXT" + "-" + Math.floor(Math.random() * 100000000) + "-" + "PR";
@@ -2048,6 +2196,56 @@ function ProductForm(props) {
                 type="number"
                 helperText="Cost Per Mentorship Credit"
                 component={renderSingleLineField}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid item container style={{ marginTop: 20 }}>
+            <FormLabel style={{ color: "blue" }} component="legend">
+              Availability Platforms
+            </FormLabel>
+          </Grid>
+          <Grid container direction="row" style={{ marginTop: 20 }}>
+            <Grid item style={{ width: "50%" }}>
+              <Field
+                label=""
+                id="allowInstructors"
+                name="allowInstructors"
+                type="text"
+                helperText="Available for Teaching Service"
+                component={renderAllowInstructorsField}
+              />
+            </Grid>
+            <Grid item style={{ marginLeft: 10 }}>
+              <Field
+                label=""
+                id="allowHomeInstructors"
+                name="allowHomeInstructors"
+                type="test"
+                helperText="Available for Home & Private Teaching"
+                component={renderAllowHomeInstructorsField}
+              />
+            </Grid>
+          </Grid>
+          <Grid container direction="row" style={{ marginTop: 20 }}>
+            <Grid item style={{ width: "50%" }}>
+              <Field
+                label=""
+                id="allowAssessments"
+                name="allowAssessments"
+                type="text"
+                helperText="Available for Assessments & Mocks"
+                component={renderAllowAssessmentsField}
+              />
+            </Grid>
+            <Grid item style={{ marginLeft: 10 }}>
+              <Field
+                label=""
+                id="allowMentorship"
+                name="allowMentorship"
+                type="text"
+                helperText="Available for Mentorship"
+                component={renderAllowMentorshipField}
               />
             </Grid>
           </Grid>

@@ -164,6 +164,11 @@ function Products(props) {
           programmeId: product.programme[0] ? product.programme[0].id : " ",
           categoryId: product.category[0] ? product.category[0].id : " ",
           acceptablePaymentOptions: product.acceptablePaymentOptions,
+
+          allowInstructors: product.allowInstructors,
+          allowHomeInstructors: product.allowHomeInstructors,
+          allowAssessments: product.allowAssessments,
+          allowMentorship: product.allowMentorship,
         });
       });
       setProductsList(allData);
@@ -383,6 +388,35 @@ function Products(props) {
 
         //editable: true,
       },
+
+      {
+        field: "allowInstructors",
+        headerName: "Teaching is allowed",
+        width: 180,
+
+        //editable: true,
+      },
+      {
+        field: "allowHomeInstructors",
+        headerName: "Home Teaching is allowed",
+        width: 180,
+
+        //editable: true,
+      },
+      {
+        field: "allowAssessments",
+        headerName: "Assessment & Mock is allowed",
+        width: 180,
+
+        //editable: true,
+      },
+      {
+        field: "allowMentorship",
+        headerName: "Mentorship is allowed",
+        width: 180,
+
+        //editable: true,
+      },
     ];
 
     productsList.map((product, index) => {
@@ -487,6 +521,10 @@ function Products(props) {
         currency: product.currency,
         allowLifeTimeAccess: product.allowLifeTimeAccess,
         acceptablePaymentOptions: product.acceptablePaymentOptions,
+        allowInstructors: product.allowInstructors,
+        allowHomeInstructors: product.allowHomeInstructors,
+        allowAssessments: product.allowAssessments,
+        allowMentorship: product.allowMentorship,
       };
       rows.push(row);
     });
