@@ -19,6 +19,9 @@ import backgroundInstructors from "./../../assets/images/covers/instructors2.png
 import backgroundAssessments from "./../../assets/images/covers/assessments.png";
 import backgroundMentors from "./../../assets/images/covers/mentors.png";
 import backgroundRetail from "./../../assets/images/covers/delivery.png";
+import AssessmentsAndMocksServices from "../AssessmentsAndMocksServices";
+import HomeAndPrivateServices from "../HomeAndPrivateServices";
+import MentorshipService from "../MentorshipService";
 
 import { baseURL } from "../../apis/util";
 
@@ -410,13 +413,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.instructorsButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //disabled={false}
-                  //onClick={()=>#}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/privateservices`}
+                  varaint="outlined"
+                  onClick={() => <HomeAndPrivateServices />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -471,12 +473,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.assessorsButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/assessments`}
+                  varaint="outlined"
+                  onClick={() => <AssessmentsAndMocksServices />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -532,12 +534,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.mentorsButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/mentorships`}
+                  varaint="outlined"
+                  onClick={() => <MentorshipService />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -604,13 +606,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.instructorsMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //disabled={false}
-                  //onClick={()=>#}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/privateservices`}
+                  varaint="outlined"
+                  onClick={() => <HomeAndPrivateServices />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -665,12 +666,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.assessorsMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/assessments`}
+                  varaint="outlined"
+                  onClick={() => <AssessmentsAndMocksServices />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -726,12 +727,12 @@ export default function TopCoverNew(props) {
                 <Button
                   variant="text"
                   className={classes.mentorsMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/services/mentorships`}
+                  varaint="outlined"
+                  onClick={() => <MentorshipService />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />

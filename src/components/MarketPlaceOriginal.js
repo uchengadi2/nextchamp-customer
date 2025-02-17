@@ -15,9 +15,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Snackbar from "@material-ui/core/Snackbar";
 import ReactPlayer from "react-player";
 
-import data from "./../apis/local";
+import data from "../apis/local";
 import CallToAction from "./ui/CallToAction";
-import animationData from "./../animations/landinganimation/data";
+import animationData from "../animations/landinganimation/data";
 import customSoftwareicon from "./../assets/Custom Software Icon.svg";
 import mobileAppsIcon from "./../assets/mobileIcon.svg";
 import websiteIcon from "./../assets/websiteIcon.svg";
@@ -48,7 +48,7 @@ import BecomePartnerFormContainer from "./partner/BecomePartnerFormContainer";
 import heroVideo from "./../assets/video/background_video.mp4";
 import heroVideoMobile from "./../assets/video/background_video_mobile.mp4";
 
-import { baseURL } from "./../apis/util";
+import { baseURL } from "../apis/util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -212,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MarketplaceOriginal = (props) => {
+const Marketplace = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -769,4 +769,4 @@ const MarketplaceOriginal = (props) => {
   );
 };
 
-export default MarketplaceOriginal;
+export default Marketplace;

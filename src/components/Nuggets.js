@@ -16,16 +16,17 @@ import Snackbar from "@material-ui/core/Snackbar";
 import ReactPlayer from "react-player";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import data from "../apis/local";
+import data from "./../apis/local";
 import CallToAction from "./ui/CallToAction";
-import animationData from "../animations/landinganimation/data";
+import animationData from "./../animations/landinganimation/data";
 
 import revolutionBackground from "./../assets/repeatingBackground.svg";
 import infoBackground from "./../assets/infoBackground.svg";
 
-import background from "./../assets/images/covers/cover_1_image.jpg";
+import background from "./../assets/images/covers/nuggets2.png";
 import UpperFooter from "./ui/UpperFooter";
 import TopCover from "./homePageCards/TopCover";
+import TopCoverMentorship from "./homePageCards/TopCoverMentorship";
 import LearningPath from "./homePageCards/LearningPath";
 import TopCoverNew from "./homePageCards/TopCoverNew";
 import TopCoverServices from "./homePageCards/TopCoverServices";
@@ -35,7 +36,11 @@ import ServicePreferences from "./homePageCards/ServicePreferences";
 
 import AllCourses from "./homePageCards/AllCourses";
 
-import { baseURL } from "../apis/util";
+import { baseURL } from "./../apis/util";
+import ServicePreferenceOthers from "./homePageCards/ServicePreferenceOthers";
+import TopCoverNuggets from "./homePageCards/TopCoverNuggets";
+import ServicePreferenceNugget from "./homePageCards/ServicePreferenceNugget";
+import AllNuggetCourses from "./homePageCards/AllNuggetCourses";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -230,7 +235,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     //backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    height: "50em",
+    //height: "50em",
+    height: "36em",
     width: "100%",
     [theme.breakpoints.down("md")]: {
       // backgroundImage: `url(${mobileBackground})`,
@@ -263,7 +269,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Marketplace = (props) => {
+const Nuggets = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -278,7 +284,7 @@ const Marketplace = (props) => {
   const [updateLearningPath, setUpdateLearningPath] = useState(false);
   const [updateServicePath, setUpdateServicePath] = useState(false);
   //const [path, setPath] = useState("crash-course");
-  const [path, setPath] = useState("all");
+  const [path, setPath] = useState("crash-course");
 
   // const [courseType, setCourseType] = useState(0);
   const [channel, setChannel] = useState(0);
@@ -317,21 +323,15 @@ const Marketplace = (props) => {
   // };
 
   const updateChannelHandler = (value) => {
-    console.log("the country value is:", value);
     setChannel(value);
   };
   const updateProgrammeHandler = (value) => {
-    console.log("the state value is:", value);
     setProgramme(value);
   };
 
   // const updateBuyingPathInfoInfo = () => {
   //   setUpdateBuyingPath((prevState) => !prevState);
   // };
-
-  console.log("channel is:", channel);
-  console.log("programme is:", programme);
-  console.log("path is:", path);
 
   const updateServicePathInfoInfo = () => {
     setUpdateServicePath((prevState) => !prevState);
@@ -1786,7 +1786,7 @@ const Marketplace = (props) => {
       {
         <Grid container direction="row">
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllNuggetCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1868,7 +1868,7 @@ const Marketplace = (props) => {
           alignItems="center"
         >
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllNuggetCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1988,14 +1988,17 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where seasoned <br />
+                        We provide bite-sized, on-demand knowledge refreshers
+                        for professionals
+                        <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        experts and academicians train and mentor novices,
+                        and students. These helps you to quickly revisit key
+                        concepts,
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 20 : 110 }}>
-                        transforming them into future champions in their fields
+                        reinforce knowledge, and stay ahead—anytime, anywhere.
                       </span>
                       <br />
                     </Typography>
@@ -2013,19 +2016,21 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where <br />
+                        We provide bite-sized, on-demand knowledge refreshers
+                        for professionals <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        seasoned experts and academicians train
+                        and students. These helps you to quickly revisit key
+                        concepts,
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 30 : 110 }}>
-                        and mentor novices,transforming them
+                        reinforce knowledge, and stay ahead—anytime, anywhere.
                       </span>
                       <br />
-                      <span style={{ marginLeft: matchesSM ? 50 : 140 }}>
+                      {/* <span style={{ marginLeft: matchesSM ? 50 : 140 }}>
                         into future champions in their fields
-                      </span>
+                      </span> */}
                     </Typography>
                   )}
 
@@ -2051,15 +2056,16 @@ const Marketplace = (props) => {
           </Grid>
         </Grid>
         {/* </section> */}
-        <TopCover />
-        <TopCoverServices />
-        <TopCoverNew />
+
+        <TopCoverNuggets />
+        {/* <TopCoverServices />
+        <TopCoverNew /> */}
         {/* <TopCover /> */}
         {/* <LearningPath
           updatePathHandler={updatePathHandler}
           updateLearningPathInfoInfo={updateLearningPathInfoInfo}
         /> */}
-        <ServicePreferences
+        <ServicePreferenceNugget
           //updateCourseTypeHandler={updateCourseTypeHandler}
           updatePathHandler={updatePathHandler}
           updateChannelHandler={updateChannelHandler}
@@ -2083,7 +2089,7 @@ const Marketplace = (props) => {
             component="p"
             style={{ marginTop: 60, marginLeft: 170 }}
           >
-            No Course Is Found
+            No Nugget Is Found
           </Typography>
         )}
         {/** This is for path = crash-course**/}
@@ -2175,4 +2181,4 @@ const Marketplace = (props) => {
   );
 };
 
-export default Marketplace;
+export default Nuggets;

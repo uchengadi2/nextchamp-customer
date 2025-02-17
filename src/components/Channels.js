@@ -16,26 +16,27 @@ import Snackbar from "@material-ui/core/Snackbar";
 import ReactPlayer from "react-player";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import data from "../apis/local";
+import data from "./../apis/local";
 import CallToAction from "./ui/CallToAction";
-import animationData from "../animations/landinganimation/data";
+import animationData from "./../animations/landinganimation/data";
 
 import revolutionBackground from "./../assets/repeatingBackground.svg";
 import infoBackground from "./../assets/infoBackground.svg";
 
-import background from "./../assets/images/covers/cover_1_image.jpg";
+import background from "./../assets/images/covers/channels2.png";
 import UpperFooter from "./ui/UpperFooter";
 import TopCover from "./homePageCards/TopCover";
 import LearningPath from "./homePageCards/LearningPath";
 import TopCoverNew from "./homePageCards/TopCoverNew";
 import TopCoverServices from "./homePageCards/TopCoverServices";
-import ServicePreferences from "./homePageCards/ServicePreferences";
 
 //import mobileBackground from "./../../assets/mobileBackground.jpg";
 
 import AllCourses from "./homePageCards/AllCourses";
 
-import { baseURL } from "../apis/util";
+import { baseURL } from "./../apis/util";
+import TopCoverChannels from "./homePageCards/TopCoverChannels";
+import LearningPathChannels from "./homePageCards/LearningPathChannels";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -230,7 +231,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     //backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    height: "50em",
+    //height: "50em",
+    height: "36em",
     width: "100%",
     [theme.breakpoints.down("md")]: {
       // backgroundImage: `url(${mobileBackground})`,
@@ -263,7 +265,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Marketplace = (props) => {
+const Channels = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -276,13 +278,8 @@ const Marketplace = (props) => {
   const [coursesList, setCourseList] = useState([]);
   const [isLoading, setIsLoading] = useState(null);
   const [updateLearningPath, setUpdateLearningPath] = useState(false);
-  const [updateServicePath, setUpdateServicePath] = useState(false);
   //const [path, setPath] = useState("crash-course");
-  const [path, setPath] = useState("all");
-
-  // const [courseType, setCourseType] = useState(0);
-  const [channel, setChannel] = useState(0);
-  const [programme, setProgramme] = useState(0);
+  const [path, setPath] = useState("certification");
 
   const [alert, setAlert] = useState({
     open: false,
@@ -311,32 +308,6 @@ const Marketplace = (props) => {
     setUpdateLearningPath((prevState) => !prevState);
   };
 
-  // const updateCourseTypeHandler = (value) => {
-  //   console.log("the market value is:", value);
-  //   setCourseType(value);
-  // };
-
-  const updateChannelHandler = (value) => {
-    console.log("the country value is:", value);
-    setChannel(value);
-  };
-  const updateProgrammeHandler = (value) => {
-    console.log("the state value is:", value);
-    setProgramme(value);
-  };
-
-  // const updateBuyingPathInfoInfo = () => {
-  //   setUpdateBuyingPath((prevState) => !prevState);
-  // };
-
-  console.log("channel is:", channel);
-  console.log("programme is:", programme);
-  console.log("path is:", path);
-
-  const updateServicePathInfoInfo = () => {
-    setUpdateServicePath((prevState) => !prevState);
-  };
-
   const handleSuccessfulBecomeAPartnerOpenDialogBoxWithSnackbar = () => {
     setBecomePartnerOpen(false);
     setAlert({
@@ -360,14 +331,80 @@ const Marketplace = (props) => {
       setIsLoading(true);
       let allData = [];
 
-      //this is for path = crash-course
-
-      if (path === "crash-course" && channel !== 0 && programme !== 0) {
+      if (path === "crash-course") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: { type: path },
         });
+        const workingData = response.data.data.data;
+        workingData.map((course) => {
+          allData.push({
+            id: course._id,
+            title: course.title,
+            image: course.imageCover,
+            features: course.features,
+            shortDescription: course.shortDescription,
+            longDescription: course.longDescription,
+            deliveryMethod: course.deliveryMethod,
+            duration: course.duration,
+            commencementDate: course.commencementDate,
+            price: course.price,
+            priceLabel: course.priceLabel,
+            venue: course.venue,
+            instructor: course.instructor,
+            sessionDuration: course.sessionDuration,
+            sessionPeriod: course.sessionPeriod,
+            studyPeriod: course.studyPeriod,
+            lectureDuration: course.lectureDuration,
+            projectDuration: course.projectDuration,
+            category: course.category[0].id,
+            image: course.imageCover,
+            prerequisites: course.prerequisites,
+            tools: course.tools,
+            targetAudience: course.targetAudience,
+            whatToLearn: course.whatToLearn,
+            venueLink: course.venueLink,
+            track: course.track,
+            status: course.status,
+            commencementWeekdaysDate: course.commencementWeekdaysDate,
+            commencementWeekendsDate: course.commencementWeekendsDate,
+            channel: course.channel[0].id,
+            programme: course.programme[0].id,
+            showGenericWeekdayStartDateText:
+              course.showGenericWeekdayStartDateText,
+            showGenericWeekendStartDateText:
+              course.showGenericWeekendStartDateText,
+            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
+            genericWeekendStartDateText: course.genericWeekendStartDateText,
+            weekdaySessionPeriod: course.weekdaySessionPeriod,
+            weekendSessionPeriod: course.weekendSessionPeriod,
+            paymentOptions: course.paymentOptions,
+            slug: course.slug,
+            isCourseAuditable: course.isCourseAuditable,
+            weekdayAuditDays: course.weekdayAuditDays,
+            weekendAuditDays: course.weekendAuditDays,
+            hasMentorshipCredit: course.hasMentorshipCredit,
+            mentorshipCredit: course.mentorshipCredit,
+            mentorshipDuration: course.mentorshipDuration,
+            hasSeries: course.hasSeries,
+            series: course.series,
+            costPerMentorshipCredit: course.costPerMentorshipCredit,
+            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
+            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
+            allowLifeTimeAccess: course.allowLifeTimeAccess,
+            acceptablePaymentOptions: course.acceptablePaymentOptions,
+          });
+        });
+        setCourseList(allData);
+        setIsLoading(false);
+      }
 
+      if (path === "regular-course") {
+        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const response = await data.get("/courses?sort=desc", {
+          params: { type: path },
+        });
+        console.log("regular courses response is:", response);
         const workingData = response.data.data.data;
 
         workingData.map((course) => {
@@ -432,147 +469,7 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      if (path === "crash-course" && channel === 0 && programme !== 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "crash-course" && channel !== 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "crash-course" && channel === 0 && programme === 0) {
+      if (path === "certification") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
           params: { type: path },
@@ -642,16 +539,12 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      //This is path = regular-course
-
-      if (path === "regular-course" && channel !== 0 && programme !== 0) {
+      if (path === "vocational") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: { type: "vocational" },
         });
-
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -672,7 +565,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -683,8 +576,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -714,14 +607,12 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      if (path === "regular-course" && channel === 0 && programme !== 0) {
+      if (path === "live-interviews-preps") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: { type: "live-interviews-preps" },
         });
-
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -742,7 +633,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -753,8 +644,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -784,14 +675,12 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      if (path === "regular-course" && channel !== 0 && programme === 0) {
+      if (path === "talk-to-expert") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
+          params: { type: "talk-to-expert" },
         });
-
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -812,7 +701,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -823,8 +712,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -854,14 +743,10 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      if (path === "regular-course" && channel === 0 && programme === 0) {
+      if (path === "channels") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
-        });
-
+        const response = await data.get("/channels?sort=desc");
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -882,7 +767,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -893,8 +778,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -924,16 +809,10 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      //this is path = certification
-
-      if (path === "certification" && channel !== 0 && programme !== 0) {
+      if (path === "programmes") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
-        });
-
+        const response = await data.get("/programmes?sort=desc");
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -954,7 +833,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -965,8 +844,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -996,14 +875,12 @@ const Marketplace = (props) => {
         setIsLoading(false);
       } //ends here
 
-      if (path === "certification" && channel === 0 && programme !== 0) {
+      if (path === "mocks") {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: { type: "mocks" },
         });
-
         const workingData = response.data.data.data;
-
         workingData.map((course) => {
           allData.push({
             id: course._id,
@@ -1024,7 +901,7 @@ const Marketplace = (props) => {
             studyPeriod: course.studyPeriod,
             lectureDuration: course.lectureDuration,
             projectDuration: course.projectDuration,
-            category: course.category[0].id,
+            category: course.category,
             image: course.imageCover,
             prerequisites: course.prerequisites,
             tools: course.tools,
@@ -1035,710 +912,8 @@ const Marketplace = (props) => {
             status: course.status,
             commencementWeekdaysDate: course.commencementWeekdaysDate,
             commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "certification" && channel !== 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "certification" && channel === 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      //this is path = vocational
-
-      if (path === "vocational" && channel !== 0 && programme !== 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "vocational" && channel === 0 && programme !== 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "vocational" && channel !== 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "vocational" && channel === 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      //this is when path =all
-
-      if (path === "all" && channel === 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc");
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "all" && channel !== 0 && programme !== 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { channel: channel, programme: programme },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "all" && channel !== 0 && programme === 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { channel: channel },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
-            showGenericWeekdayStartDateText:
-              course.showGenericWeekdayStartDateText,
-            showGenericWeekendStartDateText:
-              course.showGenericWeekendStartDateText,
-            genericWeekdayStartDateText: course.genericWeekdayStartDateText,
-            genericWeekendStartDateText: course.genericWeekendStartDateText,
-            weekdaySessionPeriod: course.weekdaySessionPeriod,
-            weekendSessionPeriod: course.weekendSessionPeriod,
-            paymentOptions: course.paymentOptions,
-            slug: course.slug,
-            isCourseAuditable: course.isCourseAuditable,
-            weekdayAuditDays: course.weekdayAuditDays,
-            weekendAuditDays: course.weekendAuditDays,
-            hasMentorshipCredit: course.hasMentorshipCredit,
-            mentorshipCredit: course.mentorshipCredit,
-            mentorshipDuration: course.mentorshipDuration,
-            hasSeries: course.hasSeries,
-            series: course.series,
-            costPerMentorshipCredit: course.costPerMentorshipCredit,
-            isInstallmentalPaymentAllowed: course.isInstallmentalPaymentAllowed,
-            maximumInstallmentalPayment: course.maximumInstallmentalPayment,
-            allowLifeTimeAccess: course.allowLifeTimeAccess,
-            acceptablePaymentOptions: course.acceptablePaymentOptions,
-          });
-        });
-        setCourseList(allData);
-        setIsLoading(false);
-      } //ends here
-
-      if (path === "all" && channel === 0 && programme !== 0) {
-        //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc", {
-          params: { programme: programme },
-        });
-
-        const workingData = response.data.data.data;
-
-        workingData.map((course) => {
-          allData.push({
-            id: course._id,
-            title: course.title,
-            image: course.imageCover,
-            features: course.features,
-            shortDescription: course.shortDescription,
-            longDescription: course.longDescription,
-            deliveryMethod: course.deliveryMethod,
-            duration: course.duration,
-            commencementDate: course.commencementDate,
-            price: course.price,
-            priceLabel: course.priceLabel,
-            venue: course.venue,
-            instructor: course.instructor,
-            sessionDuration: course.sessionDuration,
-            sessionPeriod: course.sessionPeriod,
-            studyPeriod: course.studyPeriod,
-            lectureDuration: course.lectureDuration,
-            projectDuration: course.projectDuration,
-            category: course.category[0].id,
-            image: course.imageCover,
-            prerequisites: course.prerequisites,
-            tools: course.tools,
-            targetAudience: course.targetAudience,
-            whatToLearn: course.whatToLearn,
-            venueLink: course.venueLink,
-            track: course.track,
-            status: course.status,
-            commencementWeekdaysDate: course.commencementWeekdaysDate,
-            commencementWeekendsDate: course.commencementWeekendsDate,
-            channel: course.channel[0].id,
-            programme: course.programme[0].id,
+            channel: course.channel,
+            programme: course.programme,
             showGenericWeekdayStartDateText:
               course.showGenericWeekdayStartDateText,
             showGenericWeekendStartDateText:
@@ -1772,7 +947,7 @@ const Marketplace = (props) => {
     //call the function
 
     fetchData().catch(console.error);
-  }, [path, channel, programme, updateServicePath]);
+  }, [path, updateLearningPath]);
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -1988,16 +1163,20 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where seasoned <br />
+                        At Nextchamp, our structured learning channels make it
+                        <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        experts and academicians train and mentor novices,
+                        simple to find the right programmes. Explore content by
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 20 : 110 }}>
-                        transforming them into future champions in their fields
+                        Examination Bodies, Institutions, or Knowledge Domains
                       </span>
                       <br />
+                      <span style={{ marginLeft: matchesSM ? 40 : 130 }}>
+                        -- ensuring a seamless, tailored learning experience.
+                      </span>
                     </Typography>
                   ) : (
                     <Typography
@@ -2013,18 +1192,19 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where <br />
+                        At Nextchamp, our structured learning channels make it{" "}
+                        <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        seasoned experts and academicians train
+                        simple to find the right programmes. Explore content by
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 30 : 110 }}>
-                        and mentor novices,transforming them
+                        Examination Bodies, Institutions, or Knowledge Domains
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 50 : 140 }}>
-                        into future champions in their fields
+                        -- ensuring a seamless, tailored learning experience.
                       </span>
                     </Typography>
                   )}
@@ -2051,23 +1231,16 @@ const Marketplace = (props) => {
           </Grid>
         </Grid>
         {/* </section> */}
-        <TopCover />
-        <TopCoverServices />
-        <TopCoverNew />
+
+        <TopCoverChannels />
+        {/* <TopCoverServices />
+        <TopCoverNew /> */}
         {/* <TopCover /> */}
-        {/* <LearningPath
+
+        <LearningPathChannels
           updatePathHandler={updatePathHandler}
           updateLearningPathInfoInfo={updateLearningPathInfoInfo}
-        /> */}
-        <ServicePreferences
-          //updateCourseTypeHandler={updateCourseTypeHandler}
-          updatePathHandler={updatePathHandler}
-          updateChannelHandler={updateChannelHandler}
-          updateProgrammeHandler={updateProgrammeHandler}
-          updateServicePathInfoInfo={updateServicePathInfoInfo}
-          //preference={preference}
         />
-
         {isLoading && (
           <CircularProgress
             size={100}
@@ -2075,98 +1248,26 @@ const Marketplace = (props) => {
             style={{ marginTop: 250, marginLeft: 650 }}
           />
         )}
-        {/**if there is no course */}
-        {!isLoading && coursesList.length === 0 && (
-          <Typography
-            variant="h4"
-            color="textSecondary"
-            component="p"
-            style={{ marginTop: 60, marginLeft: 170 }}
-          >
-            No Course Is Found
-          </Typography>
-        )}
-        {/** This is for path = crash-course**/}
-        {!isLoading &&
-          path === "crash-course" &&
-          channel !== 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "crash-course" &&
-          channel === 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "crash-course" &&
-          channel !== 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "crash-course" &&
-          channel === 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {/** This is for path = regular-course**/}
-        {!isLoading &&
-          path === "regular-course" &&
-          channel !== 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "regular-course" &&
-          channel === 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "regular-course" &&
-          channel !== 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "regular-course" &&
-          channel === 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {/** This is for path = vocational**/}
-        {!isLoading &&
-          path === "vocational" &&
-          channel !== 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "vocational" &&
-          channel === 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "vocational" &&
-          channel !== 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "vocational" &&
-          channel === 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {/** This is for path = certification**/}
-        {!isLoading &&
-          path === "certification" &&
-          channel !== 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "certification" &&
-          channel === 0 &&
-          programme !== 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "certification" &&
-          channel !== 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {!isLoading &&
-          path === "certification" &&
-          channel === 0 &&
-          programme === 0 && <Grid item>{allCoursesList}</Grid>}
-        {/** This is for path = all**/}
-        {!isLoading && path === "all" && channel !== 0 && programme !== 0 && (
+        {!isLoading && path === "crash-course" && (
           <Grid item>{allCoursesList}</Grid>
         )}
-        {!isLoading && path === "all" && channel === 0 && programme !== 0 && (
+        {!isLoading && path === "regular-course" && (
           <Grid item>{allCoursesList}</Grid>
         )}
-        {!isLoading && path === "all" && channel !== 0 && programme === 0 && (
+        {!isLoading && path === "vocational" && (
           <Grid item>{allCoursesList}</Grid>
         )}
-        {!isLoading && path === "all" && channel === 0 && programme === 0 && (
+        {!isLoading && path === "certification" && (
           <Grid item>{allCoursesList}</Grid>
         )}
+        {!isLoading && path === "mocks" && <Grid item>{allCoursesList}</Grid>}
+        {!isLoading && path === "live-interviews-preps" && (
+          <Grid item>{allCoursesList}</Grid>
+        )}
+        {!isLoading && path === "talk-to-expert" && (
+          <Grid item>{allCoursesList}</Grid>
+        )}
+
         <Grid item className={classes.footer}>
           <UpperFooter />
         </Grid>
@@ -2175,4 +1276,4 @@ const Marketplace = (props) => {
   );
 };
 
-export default Marketplace;
+export default Channels;

@@ -19,6 +19,9 @@ import backgroundChannels from "./../../assets/images/covers/channels.png";
 import backgroundProgrammes from "./../../assets/images/covers/programmes.png";
 import backgroundNuggets from "./../../assets/images/covers/nuggets.png";
 import backgroundRetail from "./../../assets/images/covers/delivery.png";
+import Channels from "../Channels";
+import Programmes from "../Programmes";
+import Nuggets from "../Nuggets";
 
 import { baseURL } from "../../apis/util";
 
@@ -397,14 +400,13 @@ export default function TopCoverServices(props) {
                 style={{ height: "10%", marginLeft: "1.5em" }}
               >
                 <Button
-                  variant="text"
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/channels`}
+                  varaint="outlined"
                   className={classes.channelsButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  onClick={() => <Channels />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -457,12 +459,12 @@ export default function TopCoverServices(props) {
                 <Button
                   variant="text"
                   className={classes.programmesButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/programmes`}
+                  varaint="outlined"
+                  onClick={() => <Programmes />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -515,12 +517,12 @@ export default function TopCoverServices(props) {
                 <Button
                   variant="text"
                   className={classes.nuggetsButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/nuggets`}
+                  varaint="outlined"
+                  onClick={() => <Nuggets />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -579,12 +581,12 @@ export default function TopCoverServices(props) {
                 <Button
                   variant="text"
                   className={classes.channelsMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/channels`}
+                  varaint="outlined"
+                  onClick={() => <Channels />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -631,12 +633,12 @@ export default function TopCoverServices(props) {
                 <Button
                   variant="text"
                   className={classes.programmesMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/programmes`}
+                  varaint="outlined"
+                  onClick={() => <Programmes />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -684,12 +686,12 @@ export default function TopCoverServices(props) {
                 <Button
                   variant="text"
                   className={classes.nuggetsMobileButton}
-                  component={"a"}
-                  //href="https://www.linkedin.com/company/e-shield-africa/"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_self"
-                  //onClick={props.handleSubmit(onSubmitToCart)}
+                  component={Link}
+                  // to="/mobileapps"
+                  // to={`/categories/${categoryId}/${productId}`}
+                  to={`/nuggets`}
+                  varaint="outlined"
+                  onClick={() => <Nuggets />}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />

@@ -16,16 +16,17 @@ import Snackbar from "@material-ui/core/Snackbar";
 import ReactPlayer from "react-player";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import data from "../apis/local";
+import data from "./../apis/local";
 import CallToAction from "./ui/CallToAction";
-import animationData from "../animations/landinganimation/data";
+import animationData from "./../animations/landinganimation/data";
 
 import revolutionBackground from "./../assets/repeatingBackground.svg";
 import infoBackground from "./../assets/infoBackground.svg";
 
-import background from "./../assets/images/covers/cover_1_image.jpg";
+import background from "./../assets/images/covers/instructors2.png";
 import UpperFooter from "./ui/UpperFooter";
 import TopCover from "./homePageCards/TopCover";
+import TopCoverMentorship from "./homePageCards/TopCoverMentorship";
 import LearningPath from "./homePageCards/LearningPath";
 import TopCoverNew from "./homePageCards/TopCoverNew";
 import TopCoverServices from "./homePageCards/TopCoverServices";
@@ -35,7 +36,10 @@ import ServicePreferences from "./homePageCards/ServicePreferences";
 
 import AllCourses from "./homePageCards/AllCourses";
 
-import { baseURL } from "../apis/util";
+import { baseURL } from "./../apis/util";
+import ServicePreferenceOthers from "./homePageCards/ServicePreferenceOthers";
+import TopCoverHomeTeaching from "./homePageCards/TopCoverHomeTeaching";
+import AllHomeAndPrivateCourses from "./homePageCards/AllHomeAndPrivateCourses";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -230,7 +234,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     //backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    height: "50em",
+    //height: "50em",
+    height: "36em",
     width: "100%",
     [theme.breakpoints.down("md")]: {
       // backgroundImage: `url(${mobileBackground})`,
@@ -263,7 +268,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Marketplace = (props) => {
+const HomeAndPrivateServices = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -317,21 +322,15 @@ const Marketplace = (props) => {
   // };
 
   const updateChannelHandler = (value) => {
-    console.log("the country value is:", value);
     setChannel(value);
   };
   const updateProgrammeHandler = (value) => {
-    console.log("the state value is:", value);
     setProgramme(value);
   };
 
   // const updateBuyingPathInfoInfo = () => {
   //   setUpdateBuyingPath((prevState) => !prevState);
   // };
-
-  console.log("channel is:", channel);
-  console.log("programme is:", programme);
-  console.log("path is:", path);
 
   const updateServicePathInfoInfo = () => {
     setUpdateServicePath((prevState) => !prevState);
@@ -365,7 +364,12 @@ const Marketplace = (props) => {
       if (path === "crash-course" && channel !== 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: {
+            type: path,
+            channel: channel,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -435,7 +439,11 @@ const Marketplace = (props) => {
       if (path === "crash-course" && channel === 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: {
+            type: path,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -505,7 +513,7 @@ const Marketplace = (props) => {
       if (path === "crash-course" && channel !== 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
+          params: { type: path, channel: channel, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -575,7 +583,7 @@ const Marketplace = (props) => {
       if (path === "crash-course" && channel === 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
+          params: { type: path, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -647,7 +655,12 @@ const Marketplace = (props) => {
       if (path === "regular-course" && channel !== 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: {
+            type: path,
+            channel: channel,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -717,7 +730,11 @@ const Marketplace = (props) => {
       if (path === "regular-course" && channel === 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: {
+            type: path,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -787,7 +804,7 @@ const Marketplace = (props) => {
       if (path === "regular-course" && channel !== 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
+          params: { type: path, channel: channel, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -857,7 +874,7 @@ const Marketplace = (props) => {
       if (path === "regular-course" && channel === 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
+          params: { type: path, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -929,7 +946,12 @@ const Marketplace = (props) => {
       if (path === "certification" && channel !== 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: {
+            type: path,
+            channel: channel,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -999,7 +1021,11 @@ const Marketplace = (props) => {
       if (path === "certification" && channel === 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: {
+            type: path,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -1069,7 +1095,7 @@ const Marketplace = (props) => {
       if (path === "certification" && channel !== 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
+          params: { type: path, channel: channel, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1139,7 +1165,7 @@ const Marketplace = (props) => {
       if (path === "certification" && channel === 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
+          params: { type: path, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1211,7 +1237,12 @@ const Marketplace = (props) => {
       if (path === "vocational" && channel !== 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel, programme: programme },
+          params: {
+            type: path,
+            channel: channel,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -1281,7 +1312,11 @@ const Marketplace = (props) => {
       if (path === "vocational" && channel === 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, programme: programme },
+          params: {
+            type: path,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -1351,7 +1386,7 @@ const Marketplace = (props) => {
       if (path === "vocational" && channel !== 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path, channel: channel },
+          params: { type: path, channel: channel, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1421,7 +1456,7 @@ const Marketplace = (props) => {
       if (path === "vocational" && channel === 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { type: path },
+          params: { type: path, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1492,7 +1527,9 @@ const Marketplace = (props) => {
 
       if (path === "all" && channel === 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const response = await data.get("/courses?sort=desc");
+        const response = await data.get("/courses?sort=desc", {
+          params: { allowHomeInstructors: true },
+        });
 
         const workingData = response.data.data.data;
 
@@ -1561,7 +1598,11 @@ const Marketplace = (props) => {
       if (path === "all" && channel !== 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { channel: channel, programme: programme },
+          params: {
+            channel: channel,
+            programme: programme,
+            allowHomeInstructors: true,
+          },
         });
 
         const workingData = response.data.data.data;
@@ -1631,7 +1672,7 @@ const Marketplace = (props) => {
       if (path === "all" && channel !== 0 && programme === 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { channel: channel },
+          params: { channel: channel, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1701,7 +1742,7 @@ const Marketplace = (props) => {
       if (path === "all" && channel === 0 && programme !== 0) {
         //data.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await data.get("/courses?sort=desc", {
-          params: { programme: programme },
+          params: { programme: programme, allowHomeInstructors: true },
         });
 
         const workingData = response.data.data.data;
@@ -1786,7 +1827,7 @@ const Marketplace = (props) => {
       {
         <Grid container direction="row">
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllHomeAndPrivateCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1868,7 +1909,7 @@ const Marketplace = (props) => {
           alignItems="center"
         >
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllHomeAndPrivateCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1988,14 +2029,16 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where seasoned <br />
+                        We offer personalized learning for students &
+                        professionals <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        experts and academicians train and mentor novices,
+                        at all levels. Master academics or advance your career
+                        with
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 20 : 110 }}>
-                        transforming them into future champions in their fields
+                        expert tutors—right from the comfort of your home
                       </span>
                       <br />
                     </Typography>
@@ -2013,18 +2056,19 @@ const Marketplace = (props) => {
                         }}
                       >
                         {" "}
-                        Nextchamp is a learning platform where <br />
+                        We offer personalized learning for students &
+                        <br />
                       </span>{" "}
                       <span style={{ marginLeft: matchesSM ? 20 : 60 }}>
-                        seasoned experts and academicians train
+                        professionals at all levels. Master academics
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 30 : 110 }}>
-                        and mentor novices,transforming them
+                        or advance your career with expert tutors—right
                       </span>
                       <br />
                       <span style={{ marginLeft: matchesSM ? 50 : 140 }}>
-                        into future champions in their fields
+                        from the comfort of your home
                       </span>
                     </Typography>
                   )}
@@ -2051,15 +2095,16 @@ const Marketplace = (props) => {
           </Grid>
         </Grid>
         {/* </section> */}
-        <TopCover />
-        <TopCoverServices />
-        <TopCoverNew />
+
+        <TopCoverHomeTeaching />
+        {/* <TopCoverServices />
+        <TopCoverNew /> */}
         {/* <TopCover /> */}
         {/* <LearningPath
           updatePathHandler={updatePathHandler}
           updateLearningPathInfoInfo={updateLearningPathInfoInfo}
         /> */}
-        <ServicePreferences
+        <ServicePreferenceOthers
           //updateCourseTypeHandler={updateCourseTypeHandler}
           updatePathHandler={updatePathHandler}
           updateChannelHandler={updateChannelHandler}
@@ -2175,4 +2220,4 @@ const Marketplace = (props) => {
   );
 };
 
-export default Marketplace;
+export default HomeAndPrivateServices;

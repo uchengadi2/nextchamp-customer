@@ -32,6 +32,15 @@ import OrderPage from "./orders/OrderPage";
 import SearchPage from "./search/SearchPage";
 import api from "./../apis/local";
 import BundledClassRoom from "./orders/BundledClassRoom";
+import Channels from "./Channels";
+import Programmes from "./Programmes";
+import Nuggets from "./Nuggets";
+import AssessmentsAndMocksServices from "./AssessmentsAndMocksServices";
+import MentorshipService from "./MentorshipService";
+import HomeAndPrivateServices from "./HomeAndPrivateServices";
+import ProgrammeDetails from "./products/ProgrammeDetails";
+import ProductNuggetDetails from "./products/ProductNuggetDetails";
+import ProductHomeAndPrivateDetails from "./products/ProductHomeAndPrivateDetails";
 
 function App() {
   const { token, setToken } = useToken();
@@ -180,6 +189,29 @@ function App() {
               />
             </Route>
 
+            <Route path="/nuggets/:catSlug/:slug">
+              <ProductNuggetDetails
+                token={token}
+                userId={userId}
+                setToken={setToken ? setToken : {}}
+                setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                handleFailedSnackbar={handleFailedSnackbar}
+              />
+            </Route>
+            <Route path="/privateservices/:catSlug/:slug">
+              <ProductHomeAndPrivateDetails
+                token={token}
+                userId={userId}
+                setToken={setToken ? setToken : {}}
+                setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                handleFailedSnackbar={handleFailedSnackbar}
+              />
+            </Route>
+
             <Route path="/classroom/bundled/:life/:orderId/:courseId">
               <BundledClassRoom
                 token={token}
@@ -265,11 +297,69 @@ function App() {
                 setUserId={setUserId ? setUserId : {}}
               />
             </Route>
+            <Route path="/channels">
+              <Channels
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+            <Route path="/programmes">
+              <Programmes
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+            <Route path="/nuggets">
+              <Nuggets
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+            <Route path="/services/mentorships">
+              <MentorshipService
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+            <Route path="/services/privateservices">
+              <HomeAndPrivateServices
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+
+            <Route path="/services/assessments">
+              <AssessmentsAndMocksServices
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+
             <Route path="/career">
               <CareerPage />
             </Route>
             <Route path="/dashboard/:slug">
               <Dashboard
+                token={token}
+                setToken={setToken ? setToken : {}}
+                userId={userId}
+                setUserId={setUserId ? setUserId : {}}
+              />
+            </Route>
+            <Route path="/channel/:channel/:programme/:programmeSlug">
+              <ProgrammeDetails
                 token={token}
                 setToken={setToken ? setToken : {}}
                 userId={userId}
