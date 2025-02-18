@@ -38,6 +38,7 @@ import AllCourses from "./homePageCards/AllCourses";
 
 import { baseURL } from "./../apis/util";
 import ServicePreferenceOthers from "./homePageCards/ServicePreferenceOthers";
+import AllMentorshipCourses from "./homePageCards/AllMentorshipCourses";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -1809,7 +1810,7 @@ const MentorshipService = (props) => {
       {
         <Grid container direction="row">
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllMentorshipCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1891,7 +1892,7 @@ const MentorshipService = (props) => {
           alignItems="center"
         >
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllMentorshipCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)

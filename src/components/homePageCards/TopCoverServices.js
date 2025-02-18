@@ -400,13 +400,21 @@ export default function TopCoverServices(props) {
                 style={{ height: "10%", marginLeft: "1.5em" }}
               >
                 <Button
-                  component={Link}
-                  // to="/mobileapps"
-                  // to={`/categories/${categoryId}/${productId}`}
-                  to={`/channels`}
-                  varaint="outlined"
+                  // component={Link}
+                  // // to="/mobileapps"
+                  // // to={`/categories/${categoryId}/${productId}`}
+                  // to={`/channels`}
+                  // varaint="outlined"
+                  // className={classes.channelsButton}
+                  // onClick={() => <Channels />}
+                  variant="text"
                   className={classes.channelsButton}
-                  onClick={() => <Channels />}
+                  component={"a"}
+                  //href="https://www.linkedin.com/company/e-shield-africa/"
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_self"
+                  //onClick={props.handleSubmit(onSubmitToCart)}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />
@@ -579,14 +587,22 @@ export default function TopCoverServices(props) {
                 style={{ height: "17%", marginLeft: "1.5em", marginTop: 40 }}
               >
                 <Button
+                  // variant="text"
+                  // className={classes.channelsMobileButton}
+                  // component={Link}
+                  // // to="/mobileapps"
+                  // // to={`/categories/${categoryId}/${productId}`}
+                  // to={`/channels`}
+                  // varaint="outlined"
+                  // onClick={() => <Channels />}
                   variant="text"
                   className={classes.channelsMobileButton}
-                  component={Link}
-                  // to="/mobileapps"
-                  // to={`/categories/${categoryId}/${productId}`}
-                  to={`/channels`}
-                  varaint="outlined"
-                  onClick={() => <Channels />}
+                  component={"a"}
+                  //href="https://www.linkedin.com/company/e-shield-africa/"
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_self"
+                  //onClick={props.handleSubmit(onSubmitToCart)}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color="inherit" />

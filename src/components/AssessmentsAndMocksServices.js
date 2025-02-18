@@ -39,6 +39,7 @@ import AllCourses from "./homePageCards/AllCourses";
 import { baseURL } from "./../apis/util";
 import ServicePreferenceOthers from "./homePageCards/ServicePreferenceOthers";
 import TopCoverAssessment from "./homePageCards/TopCoverAssessment";
+import AllAssessableCourses from "./homePageCards/AllAssessableCourses";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -1810,7 +1811,7 @@ const AssessmentsAndMocksServices = (props) => {
       {
         <Grid container direction="row">
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllAssessableCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)
@@ -1892,7 +1893,7 @@ const AssessmentsAndMocksServices = (props) => {
           alignItems="center"
         >
           {coursesList.map((course, index) => (
-            <AllCourses
+            <AllAssessableCourses
               title={course.title}
               key={`${course.id}${index}`}
               shortDescription={Str(course.shortDescription)

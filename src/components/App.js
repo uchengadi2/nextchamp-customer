@@ -41,6 +41,8 @@ import HomeAndPrivateServices from "./HomeAndPrivateServices";
 import ProgrammeDetails from "./products/ProgrammeDetails";
 import ProductNuggetDetails from "./products/ProductNuggetDetails";
 import ProductHomeAndPrivateDetails from "./products/ProductHomeAndPrivateDetails";
+import ProductMentorshipDetails from "./products/ProductMentorshipDetails";
+import ProductAssessmentDetails from "./products/ProductAssessmentDetails";
 
 function App() {
   const { token, setToken } = useToken();
@@ -202,6 +204,28 @@ function App() {
             </Route>
             <Route path="/privateservices/:catSlug/:slug">
               <ProductHomeAndPrivateDetails
+                token={token}
+                userId={userId}
+                setToken={setToken ? setToken : {}}
+                setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                handleFailedSnackbar={handleFailedSnackbar}
+              />
+            </Route>
+            <Route path="/mentorships/:catSlug/:slug">
+              <ProductMentorshipDetails
+                token={token}
+                userId={userId}
+                setToken={setToken ? setToken : {}}
+                setUserId={setUserId ? setUserId : {}}
+                cartCounterHandler={cartCounterHandler}
+                handleSuccessfulCreateSnackbar={handleSuccessfulCreateSnackbar}
+                handleFailedSnackbar={handleFailedSnackbar}
+              />
+            </Route>
+            <Route path="/assessments/:catSlug/:slug">
+              <ProductAssessmentDetails
                 token={token}
                 userId={userId}
                 setToken={setToken ? setToken : {}}
